@@ -1,23 +1,12 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
 import products from "../../data/product"
-
 import "../style/content.css"
 import "react-lazy-load-image-component/src/effects/blur.css"
-import axios from "axios"
 
 const Content = () => {
 
     const navigate = useNavigate()
-
-    const reftoken = async() => {
-        try {
-            await axios.get('http://localhost:1010/reftoken')
-        } 
-        catch (error) {
-            {(error.response) && console.log(error.response.data)}
-        }
-    }
 
     return (
         <div className="content">
@@ -27,7 +16,7 @@ const Content = () => {
                 <div className="text-wrapper">
                     <div>Vixcera Developer</div>
                     <div>Dimas Putra Utama</div>
-                    <div className="button contact" onClick={() => reftoken()}>Contact</div>
+                    <div className="button contact">Contact</div>
                 </div>
             </div>
             {(products.map((i,k) => {
