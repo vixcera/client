@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom"
 import Context from "../../utils/context"
 import { useContext } from "react"
-import "../style/sidebar.css"
 import axios from "axios"
+import "../style/sidebar.css"
 
 const Sidebar = () => {
 
@@ -16,8 +16,7 @@ const Sidebar = () => {
 
     const logout = async() => {
         try {
-            const response = await axios.get(`http://localhost:1010/logout/${context.userid}`)
-            localStorage.clear()
+            const response = await axios.get(`http://localhost:1010/logout/${context.id}`)
             location.reload()
         } 
         catch (error) {
@@ -49,9 +48,9 @@ const Sidebar = () => {
                 </div>
 
                 <div className="botside">
-                    {(context.userid) ? 
+                    {(context.id) ? 
                     <>
-                    <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} to="/account">
+                    <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} to="/user">
                         <div className="fa-solid fa-user fa-xl"/>
                         <div className="sidetext">Account</div>
                     </NavLink>

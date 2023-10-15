@@ -1,11 +1,13 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import Context from "../../utils/context"
 import { useContext } from "react"
 import "../style/navbar.css"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 const Navbar = () => {
 
   const context = useContext(Context)
+  const navigate = useNavigate()
 
   window.onscroll = () => {
     let y = window.scrollY
@@ -43,8 +45,8 @@ const Navbar = () => {
           <NavLink className="menu" to="/support">Support</NavLink> 
         </div>
         <div className="nav-user">
-          {(context.userid) ? 
-          <NavLink className="button" to="/user"><div className="fa-solid fa-address-card fa-xl"></div></NavLink>
+          {(context.id) ? 
+          <LazyLoadImage onClick={() => navigate('/user')} style={{width : '36px', border : '2px solid var(--yellow)', borderRadius : '50%', cursor : 'pointer'}} src={context.img}/>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
           }

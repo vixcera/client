@@ -3,10 +3,22 @@ import { useNavigate } from "react-router-dom"
 import products from "../../data/product"
 import "../style/content.css"
 import "react-lazy-load-image-component/src/effects/blur.css"
+import axios from "axios"
+import { useContext } from "react"
+import Context from "../../utils/context"
 
 const Content = () => {
 
     const navigate = useNavigate()
+    const context = useContext(Context)
+
+    const getUser = async () => {
+        const response = await context.axtoken.get(`http://localhost:1010/user/${context.id}`, {
+            withCredentials: true,
+            headers : { Authorization: `bearer ${context.token}` }
+        })
+        console.log(response.data)
+    }
 
     return (
         <div className="content">
@@ -16,7 +28,7 @@ const Content = () => {
                 <div className="text-wrapper">
                     <div>Vixcera Developer</div>
                     <div>Dimas Putra Utama</div>
-                    <div className="button contact">Contact</div>
+                    <div className="button contact" onClick={() => getUser()}>Contact</div>
                 </div>
             </div>
             {(products.map((i,k) => {

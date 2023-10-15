@@ -59,6 +59,11 @@
     color: var(--yellow);
 }
 
+.nav-user {
+    display: flex;
+    align-items: center;
+}
+
 .nav-user-mobile {
     display: none;
 }

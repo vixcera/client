@@ -8,20 +8,19 @@ import "../style/login.css"
 
 const Login = () => {
 
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
     const context = useContext(Context)
-    const url = `https://api-dimasputra.cyclic.app/admin`
+    const url = `http://localhost:1010/login`
 
     const handleLogin = async (event) => {
         event.preventDefault()
         context.setLoading(true)
         try {
-            const response = await axios.post(url, { email, password, username : email })
-            const token = response.data.accesstoken
-            localStorage.setItem('token', token)
+            const response = await axios.post(url, { username, password }, { withCredentials: true })
+            context.setToken(response.data.token)
             navigate('/')
         }
         catch (error) {
@@ -34,8 +33,9 @@ const Login = () => {
                 text : error.response.data,
                 showConfirmButton : false,
                 timer : 2000
-            })
-            } 
+                })  
+            }
+                 
         }
         finally{context.setLoading(false)}
     }
@@ -54,7 +54,7 @@ const Login = () => {
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
                 <form className="login-input" onSubmit={handleLogin}>
-                    <input type="text" placeholder="email or username" onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} required/>
                     <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
