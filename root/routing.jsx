@@ -43,12 +43,12 @@ const Routing = () => {
   }, [token])
 
   useEffect(() => {
-    axtoken.get('http://localhost:1010/reftoken', { withCredentials: true })
+    axios.get('http://localhost:1010/reftoken', { withCredentials: true })
     .then((response) => setToken(response.data.token))
   }, [])
 
   if (loading) return (<Loading/>)
-  const context = {id, img, email, username, setLoading, setToken, axtoken}
+  const context = {id, img, email, username, token, setLoading, setToken, axtoken}
 
   return (
     <Context.Provider value={context}>

@@ -21,7 +21,7 @@ const Login = () => {
         try {
             const response = await axios.post(url, { username, password }, { withCredentials: true })
             context.setToken(response.data.token)
-            navigate('/')
+            navigate('/user')
         }
         catch (error) {
             if (error.response) {

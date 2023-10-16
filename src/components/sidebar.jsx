@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom"
 import Context from "../../utils/context"
 import { useContext } from "react"
-import axios from "axios"
+import swal from "sweetalert2"
 import "../style/sidebar.css"
+import axios from "axios"
 
 const Sidebar = () => {
 
@@ -12,17 +13,6 @@ const Sidebar = () => {
         if (document.querySelector('.sidebar').classList.contains('show')) {
             document.querySelector('.sidebar').classList.remove('show')
         }
-    }
-
-    const logout = async() => {
-        try {
-            const response = await axios.get(`http://localhost:1010/logout/${context.id}`)
-            location.reload()
-        } 
-        catch (error) {
-            {error.response && console.log(error.response.data)}
-        }
-        
     }
 
     return (
@@ -48,15 +38,11 @@ const Sidebar = () => {
                 </div>
 
                 <div className="botside">
-                    {(context.id) ? 
+                    {(context.token) ? 
                     <>
                     <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} to="/user">
                         <div className="fa-solid fa-user fa-xl"/>
                         <div className="sidetext">Account</div>
-                    </NavLink>
-                    <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} onClick={() => logout()}>
-                        <i className="fa-solid fa-right-from-bracket fa-xl"/>
-                        <div className="sidetext">Log out</div>
                     </NavLink>
                     </>
                     : 

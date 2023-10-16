@@ -1,14 +1,34 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
+import Context from "../../utils/context"
+import swal from "sweetalert2"
+import axios from "axios"
 
 import "../style/login.css"
 
 const Register = () => {
 
     const navigate = useNavigate()
+    const context = useContext(Context)
 
     const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    const createUser = async (e) => {
+        e.preventDefault()
+        context.setLoading(true)
+        try {
+            const response = await axios.post('http://localhost:1010/register',
+            {email, username, password}, {withCredentials: true})
+            swal.fire({icon: 'success', text: response.data, showConfirmButton: false, timer: 3000})
+            .then(() => navigate('/'))
+        } 
+        catch (error) {
+            swal.fire({icon: 'error', showConfirmButton: false, timer: 1500, text: error.response.data})
+        }
+        finally {context.setLoading(false)}
+    }
 
     return (
         <div className="page">
@@ -23,8 +43,9 @@ const Register = () => {
                     <div className="title"><span>Regis</span>ter</div>
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
-                <form className="login-input">
+                <form onSubmit={createUser} className="login-input">
                     <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="text" placeholder='username' onChange={(e) => setUsername(e.target.value)} required/>
                     <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Create</button>
