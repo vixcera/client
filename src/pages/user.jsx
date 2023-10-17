@@ -10,10 +10,17 @@ const User = () => {
     const inputref = useRef(null)
     const context = useContext(Context)
     const [file, setFile] = useState(null)
+    const [email, setEmail] = useState('')
+
+    const edit = () => {
+        const mail = document.getElementById('changemail')
+        mail.removeAttribute('readOnly')
+        mail.value = context.email
+    }
 
     const logout = async() => {
         try {
-            const response = await axios.get(`http://localhost:1010/logout`, {withCredentials: true})
+            const response = await axios.get(`${import.meta.env.VITE_API}/logout`, {withCredentials: true})
             context.setToken('')
             swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000})
             .then((res) => location.href = '/')
@@ -27,7 +34,7 @@ const User = () => {
         let formData = new FormData();
         formData.append('file', file);
         try {
-            const response = await axios.put('http://localhost:1010/user/update', formData, {
+            const response = await axios.put(`${import.meta.env.VITE_API}/user/update`, formData, {
                 headers : {"Content-Type" : "multipart/form-data"}, 
                 withCredentials : true
             })
@@ -48,8 +55,12 @@ const User = () => {
             <div className='title'>{context.username}</div>
             <form style={{display: 'flex', alignItems: "center", flexDirection: 'column'}} onSubmit={updateImage}>
                 <input type="file" onChange={(e) => setFile(e.target.files[0])} ref={inputref} style={{display: 'none'}}/>
-                <input type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
-                {(file) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : <div className='button' onClick={logout} style={{margin: '30px 0'}}><i className='fa-solid fa-right-from-bracket fa-xl'/></div>}  
+                <input id='changemail' onChange={(e) => setEmail(e.target.value)} type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
+                {(file || email) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : 
+                <div style={{margin: '30px 0', display: 'flex', gap: '20px'}}>
+                    <div className='button' onClick={() => edit()}><i style={{cursor: 'pointer'}} className='fa-solid fa-pen-to-square fa-xl'/></div>
+                    <div className='button' onClick={logout}><i className='fa-solid fa-right-from-bracket fa-xl'/></div>
+                </div>}  
             </form>
         </div>
     )

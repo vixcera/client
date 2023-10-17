@@ -19,7 +19,7 @@ const Register = () => {
         e.preventDefault()
         context.setLoading(true)
         try {
-            const response = await axios.post('http://localhost:1010/register',
+            const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {withCredentials: true})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, timer: 3000})
             .then(() => navigate('/'))

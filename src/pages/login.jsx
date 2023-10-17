@@ -13,7 +13,7 @@ const Login = () => {
 
     const navigate = useNavigate()
     const context = useContext(Context)
-    const url = `http://localhost:1010/login`
+    const url = `${import.meta.env.VITE_API}/login`
 
     const handleLogin = async (event) => {
         event.preventDefault()

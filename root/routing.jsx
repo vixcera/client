@@ -25,7 +25,7 @@ const Routing = () => {
   axtoken.interceptors.request.use(async (config) => {
     const current = new Date().getTime()
     if (expires * 1000 < current) {
-      const response = await axios.get('http://localhost:1010/reftoken',{withCredentials: true})
+      const response = await axios.get(`${import.meta.env.VITE_API}/reftoken`,{withCredentials: true})
       setToken(response.data.token)}
       config.headers.Authorization = `bearer ${token}`
       return config
@@ -43,7 +43,7 @@ const Routing = () => {
   }, [token])
 
   useEffect(() => {
-    axios.get('http://localhost:1010/reftoken', { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_API}/reftoken`, { withCredentials: true })
     .then((response) => setToken(response.data.token))
   }, [])
 

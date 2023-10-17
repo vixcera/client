@@ -13,7 +13,6 @@ const Content = () => {
     return (
         <div className="content">
             <div className="grep"/>
-            {(!context.id) &&
             <div className="developer">
                 <img src="/img/dimasputra.png" alt="" className="dimasputra"/> 
                 <div className="text-wrapper">
@@ -21,7 +20,7 @@ const Content = () => {
                 <div>Dimas Putra Utama</div>
                 <div className="button contact">Contact</div>
                 </div>
-            </div>}
+            </div>
             {(products.map((i,k) => {
                 return(
                     <div className="service" key={k}>
