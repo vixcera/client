@@ -5,18 +5,12 @@ const products =
         data : 
         [
             {
-                title : "Movie reference",
-                text : "Search any movies details",
-                img : "img/cinema.png",
-                color : "var(--yellow)",
-                pricing : ["free"],
-            },
-            {
                 title : "Web design",
                 text : "React js UI web template",
                 img : "img/web.png",
                 color : "var(--yellow)",
                 pricing : ["paid", "free"],
+                ctg : "web"
             },
         ]
     },
@@ -24,6 +18,14 @@ const products =
         ctg : "Upcoming",
         data : 
         [
+            {
+                title : "Movie reference",
+                text : "Search any movies details",
+                img : "img/cinema.png",
+                color : "var(--yellow)",
+                pricing : ["free"],
+                ctg : "movie"
+            },
             {
                 title : "Vector design",
                 text : "find vector assets template",

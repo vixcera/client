@@ -1,14 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useEffect, useState } from "react"
 import jwt_decode from "jwt-decode"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 import Main from "../src/pages/main"
 import User from "../src/pages/user"
 import Login from "../src/pages/login"
 import Context from "../utils/context"
 import Loading from "../utils/loading"
+import Create from "../src/pages/create"
+import Product from "../src/pages/product"
 import Register from "../src/pages/register"
+import Request from "../src/pages/request"
 
 const Routing = () => {
 
@@ -25,7 +28,7 @@ const Routing = () => {
   axtoken.interceptors.request.use(async (config) => {
     const current = new Date().getTime()
     if (expires * 1000 < current) {
-      const response = await axios.get(`${import.meta.env.VITE_API}/reftoken`,{withCredentials: true})
+      const response = await axios.get(`${import.meta.env.VITE_API}/reftoken`)
       setToken(response.data.token)}
       config.headers.Authorization = `bearer ${token}`
       return config
@@ -43,8 +46,8 @@ const Routing = () => {
   }, [token])
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API}/reftoken`, { withCredentials: true })
-    .then((response) => setToken(response.data.token))
+      axios.get(`${import.meta.env.VITE_API}/reftoken`)
+      .then((response) => setToken(response.data.token))
   }, [])
 
   if (loading) return (<Loading/>)
@@ -57,7 +60,10 @@ const Routing = () => {
           <Route path="/" element={<Main/>}/>
           <Route path="/user" element={<User/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/create" element={<Create/>}/>
+          <Route path="/request" element={<Request/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/product/:ctg" element={<Product/>}/>
           <Route path="/support" element={<Main/>}/>
           <Route path="/pricing" element={<Main/>}/>
         </Routes>

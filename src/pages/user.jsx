@@ -20,7 +20,7 @@ const User = () => {
 
     const logout = async() => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/logout`, {withCredentials: true})
+            const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
             swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000})
             .then((res) => location.href = '/')
@@ -32,7 +32,7 @@ const User = () => {
         e.preventDefault()
         context.setLoading(true)
         let formData = new FormData();
-        formData.append('file', file);
+        formData.append('img', file);
         try {
             const response = await axios.put(`${import.meta.env.VITE_API}/user/update`, formData, {
                 headers : {"Content-Type" : "multipart/form-data"}, 

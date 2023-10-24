@@ -10,21 +10,21 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   window.onscroll = () => {
-    let y = window.scrollY
-    let w = window.innerWidth
-    let nav = document.querySelector('.navbar-container')
-    let grep = document.querySelector('.grep')
-
-    if (w > 420) {
-      if (y > 170) { 
-        nav.classList.add('fix') 
-        grep.classList.add('block')
+      let y = window.scrollY
+      let w = window.innerWidth
+      let nav = document.querySelector('.navbar-container')
+      let grep = document.querySelector('.grep')
+  
+      if (w > 420) {
+        if (y > 170) { 
+          nav.classList.add('fix') 
+          grep.classList.add('block')
+        }
       }
-    }
-    if (nav.classList.contains('fix') && y < 5) {
-      nav.classList.remove('fix')
-      grep.classList.remove('block')
-    }
+      if (nav.classList.contains('fix') && y < 5) {
+        nav.classList.remove('fix')
+        grep.classList.remove('block')
+      }
   }
 
   const handleSidebar = () => {

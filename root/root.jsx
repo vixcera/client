@@ -1,6 +1,8 @@
 import React from 'react'
+import axios from 'axios'
 import Routing from './routing'
 import ReactDOM from 'react-dom/client'
+axios.defaults.withCredentials = true
 
 import "react-lazy-load-image-component/src/effects/blur.css"
 import "@fortawesome/fontawesome-free/css/all.css"

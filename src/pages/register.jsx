@@ -20,7 +20,7 @@ const Register = () => {
         context.setLoading(true)
         try {
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
-            {email, username, password}, {withCredentials: true})
+            {email, username, password})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, timer: 3000})
             .then(() => navigate('/'))
         } 

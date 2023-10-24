@@ -18,7 +18,7 @@ const Content = () => {
                 <div className="text-wrapper">
                 <div>Vixcera Developer</div>
                 <div>Dimas Putra Utama</div>
-                <div className="button contact">Contact</div>
+                <div className="button contact" onClick={() => navigate('/request')}>Manage</div>
                 </div>
             </div>
             {(products.map((i,k) => {
@@ -26,7 +26,7 @@ const Content = () => {
                     <div className="service" key={k}>
                         <div className="itext"><span>{i.ctg}</span> Categories</div>
                         {i.data.map((p, l) => 
-                            <div className="sbox" key={l} onClick={() => p.link && navigate(p.link)}  style={{borderRight : `2px solid ${p.color}`}}>
+                            <div className="sbox" key={l} onClick={() => navigate(`/product/${p.ctg}`)}  style={{borderRight : `2px solid ${p.color}`}}>
                                 <div className="image-container" style={{backgroundColor : `${p.color}`}}>
                                     {p.img && <LazyLoadImage src={p.img} className="simg" loading="lazy" effect="blur"/>}
                                 </div>
