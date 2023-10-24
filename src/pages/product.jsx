@@ -22,7 +22,7 @@ const Product = () => {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
+        axios.get(`${import.meta.env.VITE_API}/products/${ctg}` || `http://localhost:1010/products/${ctg}`)
         .then((response) => {
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
