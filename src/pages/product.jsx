@@ -8,7 +8,6 @@ import "../style/product.css"
 
 const Product = () => {
     const { ctg } = useParams()
-    console.log(ctg)
     const [data, setData] = useState([])
     const navigate = useNavigate()
 
@@ -17,20 +16,23 @@ const Product = () => {
             const response = await axios.get(`${import.meta.env.VITE_API}/download/${data.map((i) => {return i.id})}`)
             Swal.fire({icon:'question', text:'apakah kamu ingin mendownload file ini?',background:'var(--primary)',color:'var(--text)', confirmButtonColor:'var(--primary)'})
             .then((res) => res.isConfirmed ? location.href = response.data : '')
-        } catch (error) {
+        }   catch (error) {
             if (error) Swal.fire({icon:'error',showConfirmButton:false,text:error.response.data,background:'var(--primary)', color:'var(--text)',timer:1500})
         }
     }
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/products/${ctg}` || `http://localhost:1010/products/${ctg}`)
-        .then((response) => {
+    const getProducts = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}` || `http://localhost:1010/products/${ctg}`)
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
-        })
-        .catch((error) => (error.response) && Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
-        .then((res) => res.isDismissed && navigate('/')))
-    }, [])
+        }   catch (error) {
+            if (error) Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            .then((res) => res.isDismissed && navigate('/'))
+        }
+    }
+
+    useEffect(() => {getProducts()}, [])
 
     return (
         <div className='page'>
