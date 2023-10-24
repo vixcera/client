@@ -28,11 +28,9 @@ const Product = () => {
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         })
-        .catch((error) => (error) && Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+        .catch((error) => (error.response) && Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
         .then((res) => res.isDismissed && navigate('/')))
     }, [])
-
-    if (!data.length) return navigate('/')
 
     return (
         <div className='page'>
