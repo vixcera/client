@@ -17,7 +17,7 @@ const Product = () => {
             Swal.fire({icon:'question', text:'apakah kamu ingin mendownload file ini?',background:'var(--primary)',color:'var(--text)', confirmButtonColor:'var(--primary)'})
             .then((res) => res.isConfirmed ? location.href = response.data : '')
         } catch (error) {
-            if (error.response) Swal.fire({icon:'error',showConfirmButton:false,text:error.response.data,background:'var(--primary)', color:'var(--text)',timer:1500})
+            if (error) Swal.fire({icon:'error',showConfirmButton:false,text:error.response.data,background:'var(--primary)', color:'var(--text)',timer:1500})
         }
     }
 
@@ -27,7 +27,7 @@ const Product = () => {
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         })
-        .catch(() => Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+        .catch((error) => (error) && Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
         .then((res) => res.isDismissed && navigate('/')))
     }, [])
 
