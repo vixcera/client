@@ -32,11 +32,10 @@ const Product = () => {
         }
     }
 
-    useEffect(() => {getProducts()}, [])
-    if (!data.length) {
+    useEffect(() => {
         Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
         .then((res) => res.isDismissed && navigate('/'))
-    }
+    }, [])
 
     return (
         <div className='page'>
