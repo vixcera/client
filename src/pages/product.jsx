@@ -8,6 +8,7 @@ import "../style/product.css"
 
 const Product = () => {
     const { ctg } = useParams()
+    console.log(ctg)
     const [data, setData] = useState([])
     const navigate = useNavigate()
 
@@ -30,6 +31,8 @@ const Product = () => {
         .catch((error) => (error) && Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
         .then((res) => res.isDismissed && navigate('/')))
     }, [])
+
+    if (!data.length) return navigate('/')
 
     return (
         <div className='page'>
