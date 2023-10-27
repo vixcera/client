@@ -12,6 +12,7 @@ import Create from "../src/pages/create"
 import Product from "../src/pages/product"
 import Register from "../src/pages/register"
 import Request from "../src/pages/request"
+import Support from "../src/pages/support"
 
 const Routing = () => {
 
@@ -48,6 +49,7 @@ const Routing = () => {
   useEffect(() => {
       axios.get(`${import.meta.env.VITE_API}/reftoken`)
       .then((response) => setToken(response.data.token))
+      .catch((error) => {console.log(error.message)})
   }, [])
 
   if (loading) return (<Loading/>)
@@ -64,7 +66,7 @@ const Routing = () => {
           <Route path="/request" element={<Request/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
-          <Route path="/support" element={<Main/>}/>
+          <Route path="/support" element={<Support/>}/>
           <Route path="/pricing" element={<Main/>}/>
         </Routes>
       </Router>
