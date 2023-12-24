@@ -1,6 +1,7 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
 import products from "../../data/product"
+import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
 import { useContext } from "react"
@@ -23,11 +24,61 @@ const Content = () => {
                 <div className="button contact" onClick={() => navigate('/request')}>Manage</div>
                 </div>
             </div>
-            {(path !== '/about') ? 
-            (products.map((i,k) => {
+            {(path == '/') && 
+            <div>
+                <div className="developer">
+                    <img src="/img/pi.png" className="dimasputra" style={{width: '56%'}} alt="" />
+                    <div className="text-wrapper">
+                        <div>Welcome to Vixcera</div>
+                        <div>Let's survive with us.</div>
+                        <div className="button contact" onClick={() => navigate('/register')}>Get started</div>
+                    </div>
+                </div>
+                {(vixcera.map((i,k) => {
+                return(
+                    <div className="service" style={(path == '/') ? {paddingTop: '40px'} : {}} key={k}>
+                        <div className="itext"><span>{i.ctg}</span> Vixcera</div>
+                        {i.data.map((p, l) => 
+                            <div className="sbox" key={l} onClick={() => {p.ctg && navigate(`/product/${p.ctg}`)}} style={{borderRight : `2px solid ${p.color}`}}>
+                                <div className="image-container" style={{backgroundColor : `${p.color}`}}>
+                                    {p.img && <LazyLoadImage src={p.img} className="simg" style={{width: '65px'}} loading="lazy" effect="blur"/>}
+                                </div>
+                                <div className="text-container">
+                                    <h3>{p.title}</h3>
+                                    <p>{p.text}</p>
+                                    <div className="wrapdet">{p.pricing && p.pricing.map((s, l) => {return(<div key={l}>{s}</div>)})}</div>
+                                </div>
+                            </div>
+                        )}
+                    </div>)
+                }))}
+            </div>
+            }
+            {(path == '/about') &&
+            (about.map((i,k) => {
                 return(
                     <div className="service" style={(path == '/about') ? {paddingTop: '40px'} : {}} key={k}>
-                        <div className="itext"><span>{i.ctg}</span> Categories</div>
+                        <div className="itext"><span>{i.ctg}</span> Vixcera</div>
+                        {i.data.map((p, l) => 
+                            <div className="sbox" key={l} style={{borderRight : `2px solid ${p.color}`}}>
+                                <div className="image-container" style={{backgroundColor : `${p.color}`}}>
+                                    {p.img && <LazyLoadImage src={p.img} className="simg" style={{width: '50px'}} loading="lazy" effect="blur"/>}
+                                </div>
+                                <div className="text-container">
+                                    <h3>{p.title}</h3>
+                                    <p>{p.text}</p>
+                                    <div className="wrapdet">{p.pricing && p.pricing.map((s, l) => {return(<div key={l}>{s}</div>)})}</div>
+                                </div>
+                            </div>
+                        )}
+                    </div>)
+            })) 
+            }
+            {(path == '/products') && 
+            (products.map((i,k) => {
+                return(
+                    <div className="service" style={(path == '/products') ? {marginBottom: '35px'} : {}} key={k}>
+                        <div className="itext"><span>{i.ctg && i.ctg}</span> Categories</div>
                         {i.data.map((p, l) => 
                             <div className="sbox" key={l} onClick={() => navigate(`/product/${p.ctg}`)}  style={{borderRight : `2px solid ${p.color}`}}>
                                 <div className="image-container" style={{backgroundColor : `${p.color}`}}>
@@ -43,26 +94,7 @@ const Content = () => {
                     </div>
                 )
             }))
-            : 
-            (about.map((i,k) => {
-                return(
-                    <div className="service" style={(path == '/about') ? {paddingTop: '40px'} : {}} key={k}>
-                        <div className="itext"><span>{i.ctg}</span> Vixcera</div>
-                        {i.data.map((p, l) => 
-                            <div className="sbox" key={l} style={{borderRight : `2px solid ${p.color}`}}>
-                                <div className="image-container" style={{backgroundColor : `${p.color}`}}>
-                                    {p.img && <LazyLoadImage src={p.img} className="simg" loading="lazy" effect="blur"/>}
-                                </div>
-                                <div className="text-container">
-                                    <h3>{p.title}</h3>
-                                    <p>{p.text}</p>
-                                    <div className="wrapdet">{p.pricing && p.pricing.map((s, l) => {return(<div key={l}>{s}</div>)})}</div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                )
-            }))}
+            }
             
         </div>
     )

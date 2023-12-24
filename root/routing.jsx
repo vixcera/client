@@ -68,8 +68,8 @@ const Routing = () => {
           <Route path="/register" element={<Register/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
           <Route path="/order/:id" element={<Order/>}/>
+          <Route path="/products" element={<Main/>}/>
           <Route path="/about" element={<Main/>}/>
-          <Route path="/pricing" element={<Main/>}/>
         </Routes>
       </Router>
     </Context.Provider>

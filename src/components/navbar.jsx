@@ -41,8 +41,8 @@ const Navbar = () => {
         </div>
         <div className="nav-menu">
           <NavLink className="menu" to="/">Home</NavLink> 
-          <NavLink className="menu" to="/pricing">Pricing</NavLink> 
           <NavLink className="menu" to="/about">About</NavLink> 
+          <NavLink className="menu" to="/products">Products</NavLink> 
         </div>
         <div className="nav-user">
           {(context.id) ? 
@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>  
         <div className="nav-user-mobile">
           <div className="i fa-solid fa-magnifying-glass fa-xl"/>
-          <div className="i fa-solid fa-qrcode fa-xl" onClick={() => handleSidebar()} style={{fontSize : "26px"}}/>
+          <div className="i fa-solid fa-qrcode fa-xl" onClick={() => handleSidebar()} style={{fontSize : "28px"}}/>
         </div>
       </div>
     </div>

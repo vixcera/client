@@ -25,9 +25,9 @@ const Sidebar = () => {
                         <i className="fa-solid fa-home fa-xl"/>
                         <div className="sidetext">Home</div>
                     </NavLink>
-                    <NavLink className="sidelist" to="/pricing">
-                        <i className="fa-solid fa-sack-dollar fa-xl"></i>
-                        <div className="sidetext">Pricing</div>
+                    <NavLink className="sidelist" to="/products">
+                        <i className="fa-solid fa-layer-group fa-xl"></i>
+                        <div className="sidetext">Products</div>
                     </NavLink>
                     <NavLink className="sidelist" to="/about">
                         <i className="fa-solid fa-circle-info fa-xl"></i>
