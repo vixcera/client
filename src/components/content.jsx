@@ -31,7 +31,7 @@ const Content = () => {
                     <div className="text-wrapper">
                         <div>Welcome to Vixcera</div>
                         <div>Let's survive with us.</div>
-                        <div className="button contact" onClick={() => navigate('/register')}>Get started</div>
+                        <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
                     </div>
                 </div>
                 {(vixcera.map((i,k) => {
@@ -77,7 +77,7 @@ const Content = () => {
             {(path == '/products') && 
             (products.map((i,k) => {
                 return(
-                    <div className="service" style={(path == '/products') ? {marginBottom: '35px'} : {}} key={k}>
+                    <div className="service" style={(path == '/products') ? {marginBottom: '30px'} : {}} key={k}>
                         <div className="itext"><span>{i.ctg && i.ctg}</span> Categories</div>
                         {i.data.map((p, l) => 
                             <div className="sbox" key={l} onClick={() => navigate(`/product/${p.ctg}`)}  style={{borderRight : `2px solid ${p.color}`}}>

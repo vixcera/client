@@ -15,29 +15,29 @@ const vixcera =
         ]
     },
     {
-        ctg : "Upcoming",
+        ctg : "Get started with",
         data : 
         [
             {
-                title : "Movie reference",
-                text : "Search any movies details",
-                img : "img/cinema.png",
+                title : "High quality",
+                text : "donwload file with the best quality.",
+                img : "img/star.png",
                 color : "var(--yellow)",
-                pricing : ["free"],
+                pricing : ["HD"],
             },
             {
-                title : "Vector design",
-                text : "find vector assets template",
-                img : "img/vector.png",
-                color : "#FF4B63",
-                pricing : ["paid", "free"]
-            },
-            {
-                title : "3D design",
-                text : "assets 3d for your projects",
-                img : "img/3d.png",
+                title : "Ready to use",
+                text : "make your project with the quick assets.",
+                img : "img/ready.png",
                 color : "var(--text)",
-                pricing : ["paid"]
+                pricing : ["usable", "easy"]
+            },
+            {
+                title : "Simple, cheap, efficient",
+                text : "don't waste your time",
+                img : "img/simple.png",
+                color : "#FF4B63",
+                pricing : ["simple"]
             },
         ]
     }
