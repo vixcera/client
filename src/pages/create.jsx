@@ -4,6 +4,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component"
 import convertPrice from '../../utils/price'
 import swal from "sweetalert2"
 import axios from "axios"
+import admin from "../../utils/admin"
 import "../style/create.css"
 
 const Create = () => {
@@ -44,6 +45,10 @@ const Create = () => {
       if (error.response) {swal.fire({icon: 'error', text:error.response.data,showConfirmButton:false})}
     }
   }
+
+  useEffect(() => {
+    admin()
+  }, [])
 
   return (
     <div className='page' style={{gap:'30px'}}>
@@ -98,7 +103,7 @@ const Create = () => {
             <div className='product-title'>{(title) ? title : 'Untitled'}</div>
             <div className='product-desc'>{(desc) ? desc : 'no description available'}</div>
             <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(price)}</div>
-            <div style={{ position:'absolute', bottom:'30px', right:'20px', color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-download fa-xl' />
+            <div style={{ position:'absolute', bottom:'30px', right:'20px', color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
           </div>
           <div className='button' onClick={() => createProduct()} style={(file && title && image && desc && price && ctg) ? {width:'130px', marginTop:"30px"} : {display:'none'}}>Create</div>
         </div>

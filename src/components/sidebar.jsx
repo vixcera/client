@@ -1,9 +1,7 @@
 import { NavLink } from "react-router-dom"
 import Context from "../../utils/context"
 import { useContext } from "react"
-import swal from "sweetalert2"
 import "../style/sidebar.css"
-import axios from "axios"
 
 const Sidebar = () => {
 
@@ -31,9 +29,9 @@ const Sidebar = () => {
                         <i className="fa-solid fa-sack-dollar fa-xl"></i>
                         <div className="sidetext">Pricing</div>
                     </NavLink>
-                    <NavLink className="sidelist" to="/support">
-                        <i className="fa-solid fa-heart fa-xl"></i>
-                        <div className="sidetext">Support</div>
+                    <NavLink className="sidelist" to="/about">
+                        <i className="fa-solid fa-circle-info fa-xl"></i>
+                        <div className="sidetext">About</div>
                     </NavLink>
                 </div>
 
