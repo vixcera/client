@@ -11,14 +11,13 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const context = useContext(Context)
-    console.log(import.meta.env)
 
     const [data, setData] = useState([])
     const [admin, setAdmin] = useState('')
     
     const getProducts = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/products/${ctg}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/${ctg}`)
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         }   catch (error) {
