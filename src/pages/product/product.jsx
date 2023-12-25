@@ -11,6 +11,7 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const context = useContext(Context)
+    console.log(import.meta.env)
 
     const [data, setData] = useState([])
     const [admin, setAdmin] = useState('')
