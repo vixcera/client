@@ -14,7 +14,6 @@ const Product = () => {
 
     const [data, setData] = useState([])
     const [admin, setAdmin] = useState('')
-    console.log(admin)
     
     const getProducts = async () => {
         try {

@@ -29,14 +29,14 @@ const about =
                 title : "Trusted partner",
                 text : "safe and reliable for every transaction.",
                 img : "img/trusted.png",
-                color : "var(--yellow)",
+                color : "var(--text)",
                 pricing : ["Trusted", "Safe"]
             },
             {
                 title : "No Ads",
                 text : "improve your browsing experience.",
                 img : "img/no-ads.png",
-                color : "var(--yellow)",
+                color : "var(--text)",
                 pricing : ["Ads", "Block"]
             },
         ]

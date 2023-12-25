@@ -40,6 +40,40 @@ const vixcera =
                 pricing : ["simple"]
             },
         ]
+    },
+    {
+        ctg : "How to download on",
+        data : 
+        [
+            {
+                title : "Find assets",
+                text : "find the assets what you need.",
+                img : "img/find.png",
+                color : "var(--text)",
+                pricing : ["search"],
+            },
+            {
+                title : "Complete the form",
+                text : "after complete, click order button.",
+                img : "img/form.png",
+                color : "var(--yellow)",
+                pricing : ["email", "phone"]
+            },
+            {
+                title : "Payment method",
+                text : "choose method and pay the amount.",
+                img : "img/pay.png",
+                color : "#FF4B63",
+                pricing : ["pay"]
+            },
+            {
+                title : "Get the file",
+                text : "finish, file will automatically downloaded.",
+                img : "img/df.png",
+                color : "#279EFF",
+                pricing : ["finish"]
+            },
+        ]
     }
 ]
 

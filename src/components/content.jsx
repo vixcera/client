@@ -21,11 +21,14 @@ const Content = () => {
                 <div className="text-wrapper">
                 <div>Vixcera Developer</div>
                 <div>Dimas Putra Utama</div>
-                <div className="button contact" onClick={() => navigate('/request')}>Manage</div>
+                <div className="button contact" onClick={() => navigate('/request')}>Contact</div>
                 </div>
             </div>
             {(path == '/') && 
             <div>
+                {(context.token) ? 
+                ''
+                : 
                 <div className="developer">
                     <img src="/img/pi.png" className="dimasputra" style={{width: '56%'}} alt="" />
                     <div className="text-wrapper">
@@ -33,7 +36,7 @@ const Content = () => {
                         <div>Let's survive with us.</div>
                         <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
                     </div>
-                </div>
+                </div>}
                 {(vixcera.map((i,k) => {
                 return(
                     <div className="service" style={(path == '/') ? {paddingTop: '40px'} : {}} key={k}>
@@ -41,7 +44,7 @@ const Content = () => {
                         {i.data.map((p, l) => 
                             <div className="sbox" key={l} onClick={() => {p.ctg && navigate(`/product/${p.ctg}`)}} style={{borderRight : `2px solid ${p.color}`}}>
                                 <div className="image-container" style={{backgroundColor : `${p.color}`}}>
-                                    {p.img && <LazyLoadImage src={p.img} className="simg" style={{width: '65px'}} loading="lazy" effect="blur"/>}
+                                    {p.img && <LazyLoadImage src={p.img} className="simg" style={{width: '60px'}} loading="lazy" effect="blur"/>}
                                 </div>
                                 <div className="text-container">
                                     <h3>{p.title}</h3>
