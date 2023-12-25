@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
-import convertPrice from '../../utils/price'
+import convertPrice from '../../../utils/price'
 import swal from "sweetalert2"
 import axios from "axios"
-import admin from "../../utils/admin"
-import "../style/create.css"
+import admin from "../../../utils/admin"
+import "../../style/create.css"
 
 const Create = () => {
   const path = location.pathname
@@ -72,7 +72,7 @@ const Create = () => {
           </div>
           <div className='wrap-file'>
             <div>
-              <div>Image : </div>
+              <div>Preview : </div>
               <div className='prevfile' onClick={() => imgref.current.click()}>
                 <div className={(image) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-image fa-xl'} style={{color: 'var(--background)'}}/>
                 <input type="file" onChange={(e) => setImage(e.target.files[0])} ref={imgref} style={{display:'none'}}/>

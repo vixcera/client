@@ -1,11 +1,11 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import convertPrice from "../../utils/price"
-import Context from '../../utils/context'
+import convertPrice from "../../../utils/price"
+import Context from '../../../utils/context'
 import axios from "axios"
 import Swal from 'sweetalert2'
-import "../style/product.css"
+import "../../style/product.css"
 
 const Product = () => {
     const { ctg } = useParams()
@@ -17,7 +17,7 @@ const Product = () => {
     
     const getProducts = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
+            const response = await axios.get(`http://localhost:3000/products/${ctg}`)
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         }   catch (error) {

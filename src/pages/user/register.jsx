@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import Context from "../../utils/context"
+import Context from "../../../utils/context"
 import swal from "sweetalert2"
 import axios from "axios"
 
-import "../style/login.css"
+import "../../style/login.css"
 
 const Register = () => {
 

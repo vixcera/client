@@ -1,19 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useEffect, useState } from "react"
 import jwt_decode from "jwt-decode"
-import axios, { AxiosError } from "axios"
+import axios from "axios"
 
-import Main from "../src/pages/main"
-import User from "../src/pages/user"
-import Login from "../src/pages/login"
+import Main from "../src/pages/user/main"
+import User from "../src/pages/user/user"
+import Login from "../src/pages/user/login"
 import Context from "../utils/context"
 import Loading from "../utils/loading"
-import Create from "../src/pages/create"
-import Product from "../src/pages/product"
-import Register from "../src/pages/register"
-import Request from "../src/pages/request"
-import Support from "../src/pages/support"
-import Order from "../src/pages/order"
+import Order from "../src/pages/product/order"
+import Create from "../src/pages/product/create"
+import Product from "../src/pages/product/product"
+import Register from "../src/pages/user/register"
+import Dashboard from "../src/pages/admin/dashboard"
 
 const Routing = () => {
 
@@ -64,8 +63,8 @@ const Routing = () => {
           <Route path="/user" element={<User/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/create" element={<Create/>}/>
-          <Route path="/request" element={<Request/>}/>
           <Route path="/register" element={<Register/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
           <Route path="/order/:id" element={<Order/>}/>
           <Route path="/products" element={<Main/>}/>

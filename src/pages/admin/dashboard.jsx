@@ -1,11 +1,11 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import convertPrice from "../../utils/price"
+import convertPrice from "../../../utils/price"
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
-const Request = () => {
+const Dashboard = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const [password, setPassword] = useState('')
@@ -71,4 +71,4 @@ const Request = () => {
     )
 }
 
-export default Request
+export default Dashboard

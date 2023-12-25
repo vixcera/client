@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
-import Context from "../../utils/context"
+import Context from "../../../utils/context"
 import Swal from "sweetalert2"
 import axios from "axios"
 
-import "../style/login.css"
+import "../../style/login.css"
 
 const Login = () => {
 

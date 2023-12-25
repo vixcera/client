@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
-import Context from '../../utils/context'
+import Context from '../../../utils/context'
 import swal from "sweetalert2"
 import axios from "axios"
 

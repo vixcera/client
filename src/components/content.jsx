@@ -80,7 +80,7 @@ const Content = () => {
             {(path == '/products') && 
             (products.map((i,k) => {
                 return(
-                    <div className="service" style={(path == '/products') ? {marginBottom: '30px'} : {}} key={k}>
+                    <div className="service" style={(path == '/products') ? {marginBottom: '20px'} : {}} key={k}>
                         <div className="itext"><span>{i.ctg && i.ctg}</span> Categories</div>
                         {i.data.map((p, l) => 
                             <div className="sbox" key={l} onClick={() => navigate(`/product/${p.ctg}`)}  style={{borderRight : `2px solid ${p.color}`}}>

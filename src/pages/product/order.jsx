@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import snap from "../../utils/snap"
-import Context from '../../utils/context'
-import convertPrice from '../../utils/price'
+import snap from "../../../utils/snap"
+import Context from '../../../utils/context'
+import convertPrice from '../../../utils/price'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import "../style/create.css"
+import "../../style/create.css"
 
 const Order = () => {
 

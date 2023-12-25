@@ -1,7 +1,7 @@
-import Navbar from "../components/navbar"
-import Content from "../components/content"
-import Sidebar from "../components/sidebar"
-import "../style/main.css"
+import Navbar from "../../components/navbar"
+import Content from "../../components/content"
+import Sidebar from "../../components/sidebar"
+import "../../style/main.css"
 
 const Main = () => {
 
