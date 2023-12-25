@@ -17,7 +17,7 @@ const Product = () => {
     
     const getProducts = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/${ctg}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         }   catch (error) {
