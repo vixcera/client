@@ -4,8 +4,7 @@ import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
-import { useContext, useEffect } from "react"
-import axios from "axios"
+import { useContext } from "react"
 import "../style/content.css"
 
 const Content = () => {
@@ -13,11 +12,6 @@ const Content = () => {
     const path = location.pathname
     const navigate = useNavigate()
     const context = useContext(Context)
-
-    useEffect(() => {
-        axios.get('https://pro-criminal-presidential-zdnet.trycloudflare.com')
-        .then((res) => console.log(res.data))
-    }, [])
 
     return (
         <div className="content">

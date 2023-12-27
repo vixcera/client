@@ -32,7 +32,7 @@ const Order = () => {
             .then((res) => res.isDismissed && navigate('/'))
         }
     }
-
+    
     const checkout = async () => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{

@@ -19,7 +19,7 @@ const Login = () => {
         event.preventDefault()
         context.setLoading(true)
         try {
-            const response = await axios.post(url, { username, password })
+            const response = await axios.post(url, { username, password }, {withCredentials: true})
             context.setToken(response.data.token)
             navigate('/user')
         }
