@@ -7,7 +7,7 @@ import "../../style/login.css"
 
 const Login = () => {
 
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ const Login = () => {
         event.preventDefault()
         context.setLoading(true)
         try {
-            const response = await axios.post(url, { username, password }, {withCredentials: true})
+            const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
             navigate('/user')
         }
@@ -51,7 +51,7 @@ const Login = () => {
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
                 <form className="login-input" onSubmit={handleLogin}>
-                    <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
