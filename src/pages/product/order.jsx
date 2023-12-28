@@ -35,12 +35,14 @@ const Order = () => {
     
     const checkout = async () => {
       try {
+        context.setLoading(true)
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
           id      : id,
           name    : name,
           email   : email,
           phone   : phone,
         })
+        context.setLoading(false)
         window.snap.pay(response.data, {
           onSuccess: (result) => {
             localStorage.setItem('result', result)

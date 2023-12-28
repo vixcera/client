@@ -224,3 +224,47 @@
         font-size: 0.8rem;
     }
 }
+
+
+@media (max-width: 320px) {
+    .developer {
+        height: 180px;
+    }
+
+    .dimasputra {
+        width: 170px;
+        right: -35px;
+        bottom: -75px;
+    }
+
+    .text-wrapper div:nth-child(1) {
+        font-size: 18px;
+    }
+    .text-wrapper div:nth-child(2) {
+        font-size: 20px;
+    }
+
+    .image-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .text-container h3{
+        font-size: 0.85rem;
+    }
+    .text-container p {
+        font-size: 0.7rem;
+    }
+
+    .wrapdet div {
+        width: 65px;
+        height: 20px;
+        font-size: 0.6rem;
+    }
+
+    .button.contact {
+        width: 130px;
+        height: 36px;
+        margin-top: 20px;
+    }
+}

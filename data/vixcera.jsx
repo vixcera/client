@@ -33,7 +33,7 @@ const vixcera =
                 pricing : ["usable", "easy"]
             },
             {
-                title : "Simple, cheap, efficient",
+                title : "Simple & efficient",
                 text : "don't waste your time",
                 img : "img/simple.png",
                 color : "#FF4B63",

@@ -41,8 +41,8 @@ const Navbar = () => {
         </div>
         <div className="nav-menu">
           <NavLink className="menu" to="/">Home</NavLink> 
+          <NavLink className="menu" to="/products">Product</NavLink> 
           <NavLink className="menu" to="/about">About</NavLink> 
-          <NavLink className="menu" to="/products">Products</NavLink> 
         </div>
         <div className="nav-user">
           {(context.id) ? 
