@@ -3,7 +3,6 @@ import { useContext, useState } from "react"
 import Context from "../../../utils/context"
 import Swal from "sweetalert2"
 import axios from "axios"
-
 import "../../style/login.css"
 
 const Login = () => {
@@ -52,8 +51,8 @@ const Login = () => {
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
                 <form className="login-input" onSubmit={handleLogin}>
-                    <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} required/>
-                    <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/>
+                    <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+                    <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
                         <NavLink to='/register' style={{textDecoration : "none", color : "var(--text)"}}>Create account</NavLink>

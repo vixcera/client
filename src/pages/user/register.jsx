@@ -21,7 +21,7 @@ const Register = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password})
-            swal.fire({icon: 'success', text: response.data, showConfirmButton: false, timer: 3000})
+            swal.fire({icon: 'success', text: response.data, showConfirmButton: false})
             .then(() => navigate('/'))
         } 
         catch (error) {
@@ -44,9 +44,9 @@ const Register = () => {
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
                 <form onSubmit={createUser} className="login-input">
-                    <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} required/>
-                    <input type="text" placeholder='username' onChange={(e) => setUsername(e.target.value)} required/>
-                    <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/>
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
+                    <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Create</button>
                         <NavLink to="/login" style={{textDecoration : "none", color : "var(--text)"}}>Have an account</NavLink>
