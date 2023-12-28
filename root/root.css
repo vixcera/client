@@ -32,6 +32,15 @@
     cursor: pointer;
 }
 
+select {
+    width: 110px;
+    height: 30px;
+    border: none;
+    font-weight: bold;
+    color: var(--second);
+    appearance: menu;
+}
+
 .i {
     color: var(--text);
     cursor: pointer;
