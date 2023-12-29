@@ -19,16 +19,15 @@ const Product = () => {
         context.setLoading(true)
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-            if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is still empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is still empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             .then((res) => res.isDismissed && navigate('/'))
         }   finally {context.setLoading(false)}
     }    
 
     useEffect(() => {
-        context.setLoading(true)
         getProducts()
         axios.get(`${import.meta.env.VITE_API}/administrator`)
         .then((response) => {
@@ -37,7 +36,6 @@ const Product = () => {
         .catch((error) => {
             if (error.response) return setAdmin(false)
         })
-        context.setLoading(false)
     }, [])
 
     return (

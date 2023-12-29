@@ -15,7 +15,6 @@ const Login = () => {
     const navigate = useNavigate()
     const context = useContext(Context)
 
-    console.log(as, url)
     useEffect(() => {
         if (as == 'user') return setUrl(`${import.meta.env.VITE_API}/login`)
         else return setUrl(`${import.meta.env.VITE_API}/login/contributor`)
