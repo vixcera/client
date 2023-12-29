@@ -17,11 +17,9 @@ const Product = () => {
     
     const getProducts = async () => {
         try {
-            context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
-            context.setLoading(false)
         }   catch (error) {
             if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             .then((res) => res.isDismissed && navigate('/'))
@@ -29,6 +27,7 @@ const Product = () => {
     }    
 
     useEffect(() => {
+        context.setLoading(true)
         getProducts()
         axios.get(`${import.meta.env.VITE_API}/administrator`)
         .then((response) => {
@@ -37,6 +36,7 @@ const Product = () => {
         .catch((error) => {
             if (error.response) return setAdmin(false)
         })
+        context.setLoading(false)
     }, [])
 
     return (
