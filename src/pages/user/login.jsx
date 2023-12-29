@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Context from "../../../utils/context"
 import Swal from "sweetalert2"
 import axios from "axios"
@@ -8,19 +8,24 @@ import "../../style/login.css"
 const Login = () => {
 
     const [as, setAs] = useState('')
+    const [url, setUrl] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
     const context = useContext(Context)
-    const urlUser = `${import.meta.env.VITE_API}/login`
-    const urlCont = `${import.meta.env.VITE_API}/login/contributor`
+
+    console.log(as, url)
+    useEffect(() => {
+        if (as == 'user') return setUrl(`${import.meta.env.VITE_API}/login`)
+        else return setUrl(`${import.meta.env.VITE_API}/login/contributor`)
+    }, [as])
 
     const handleLogin = async (event) => {
         event.preventDefault()
         context.setLoading(true)
         try {
-            const response = await axios.post(urlUser, { email, password }, {withCredentials: true})
+            const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
             navigate('/user')
         }
@@ -57,10 +62,10 @@ const Login = () => {
                     <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
-                        <select onChange={(e) => setAs(e.target.value)} style={{width: '120px'}}>
+                        <select onChange={(e) => setAs(e.target.value)} style={{width: '120px'}} required>
                             <option value=""></option>
                             <option value="user">User</option>
-                            <option value="user">Contributor</option>
+                            <option value="contributor">Contributor</option>
                         </select>
                         {/* <NavLink to='/register' style={{textDecoration : "none", color : "var(--text)"}}>Create account</NavLink> */}
                     </div>
