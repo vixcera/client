@@ -53,7 +53,7 @@ const Content = () => {
             <div>
                 {(about.map((i,k) => {
                 return(
-                    <div className="service" style={{paddingTop: '40px'}} key={k}>
+                    <div className="service" style={{paddingTop: '20px'}} key={k}>
                         <div className="itext"><span>{i.ctg}</span> Vixcera</div>
                         {i.data.map((p, l) => 
                             <div className="sbox" key={l} style={{borderRight : `2px solid ${p.color}`}}>
