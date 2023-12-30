@@ -13,6 +13,8 @@
     --caveat : "caveat", cursive;
 
     --boxshadow : 5px 5px 40px var(--second);
+
+    color-scheme: light;
 }
 
 .button {
