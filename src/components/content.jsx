@@ -51,14 +51,6 @@ const Content = () => {
             }
             {(path == '/about') &&
             <div>
-                <div className="developer">
-                <img src="/img/dimasputra.png" alt="" className="dimasputra"/> 
-                <div className="text-wrapper">
-                <div>Vixcera Developer</div>
-                <div>Dimas Putra Utama</div>
-                <div className="button contact" onClick={() => navigate('/request')}>Contact</div>
-                </div>
-                </div>
                 {(about.map((i,k) => {
                 return(
                     <div className="service" style={{paddingTop: '40px'}} key={k}>
@@ -77,6 +69,14 @@ const Content = () => {
                         )}
                     </div>)
             }))}
+            <div className="developer">
+                <img src="/img/dimasputra.png" alt="" className="dimasputra"/> 
+                <div className="text-wrapper">
+                <div>Vixcera Developer</div>
+                <div>Dimas Putra Utama</div>
+                <div className="button contact" onClick={() => navigate('/request')}>Contact</div>
+                </div>
+                </div>
             </div>
             
             }
