@@ -22,7 +22,7 @@ const Content = () => {
                 ''
                 : 
                 <div className="developer">
-                    <img src="/img/pi.png" className="dimasputra" style={{width: '56%'}} alt="" />
+                    <img src="/img/pi.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
                     <div>Welcome to Vixcera</div>
                     <div>Let's survive with us.</div>

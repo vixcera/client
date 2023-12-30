@@ -155,7 +155,7 @@
         height: 230px;
         padding: 20px;
         margin-top: 20px;
-        overflow: hidden;
+        
     }
 
     .text-wrapper div:nth-child(1) {
@@ -168,8 +168,8 @@
 
     .dimasputra {
         width: 210px;
-        right: -10px;
-        bottom: -85px;
+        right: 10px;
+        bottom: 0px;
     
     }
 
@@ -198,6 +198,16 @@
 
     .service {
         width: 100%;
+    }
+}
+
+@media (max-width : 470px) {
+    .developer {
+        overflow: hidden;
+    }
+    .dimasputra {
+        right: -10px;
+        bottom: -85px;
     }
 }
 
