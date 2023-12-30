@@ -62,12 +62,11 @@ const Login = () => {
                     <div className="login-button">
                         <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
                         <select onChange={(e) => setAs(e.target.value)} style={{width: '120px'}} required>
-                            <option value=""></option>
                             <option value="user">User</option>
                             <option value="contributor">Contributor</option>
                         </select>
-                        {/* <NavLink to='/register' style={{textDecoration : "none", color : "var(--text)"}}>Create account</NavLink> */}
                     </div>
+                    <NavLink to='/register' style={{textDecoration : "none", color : "var(--text)", translate: '0 20px'}}>Create account</NavLink>
                 </form>
             </div>
         </div>
