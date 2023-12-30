@@ -143,6 +143,12 @@
 
 }
 
+@media (max-width : 600px) {
+    .service {
+        width: 100%;
+    }
+}
+
 @media (max-width : 550px) {
     .developer {
         width: 100%;
