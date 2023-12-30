@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../../utils/context"
+import cookie from "js-cookie"
 import Swal from "sweetalert2"
 import axios from "axios"
 import "../../style/login.css"
@@ -26,7 +27,7 @@ const Login = () => {
         try {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
-            document.cookie("reftoken", `${response.data.untoken}`)
+            console.log(response.data)
             navigate('/user')
         }
         catch (error) {
