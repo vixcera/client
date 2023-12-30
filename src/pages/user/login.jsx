@@ -26,6 +26,7 @@ const Login = () => {
         try {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
+            document.cookie("reftoken", response.data.untoken)
             navigate('/user')
         }
         catch (error) {
