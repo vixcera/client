@@ -7,7 +7,7 @@ import "../../style/login.css"
 
 const Login = () => {
 
-    const [as, setAs] = useState('')
+    const [as, setAs] = useState('user')
     const [url, setUrl] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
