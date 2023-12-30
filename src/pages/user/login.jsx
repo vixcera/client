@@ -27,7 +27,7 @@ const Login = () => {
         try {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
-            console.log(response.data)
+            cookie.set('reftoken', response.data.token, {expires : 24 * 60 * 60 * 1000})
             navigate('/user')
         }
         catch (error) {
