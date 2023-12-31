@@ -26,6 +26,8 @@ const Login = () => {
         try {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
+            const get = await axios.get(`${import.meta.env.VITE_API}/reftoken`, {withCredentials: true})
+            console.log(get)
             navigate('/user')
         }
         catch (error) {
