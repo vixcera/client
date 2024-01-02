@@ -7,7 +7,7 @@
     --primary : #312e38;
     --second : #0b0b0e;
     --text : #FAF0E6;
-    --yellow : #EBE76C;
+    --yellow : rgb(235, 231, 108);
 
     --poppins : "poppins", sans-serif;
     --caveat : "caveat", cursive;
