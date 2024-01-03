@@ -21,7 +21,7 @@ const Product = () => {
             if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'server maintenance!',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             .then((res) => res.isDismissed && navigate('/'))
         }
     }    
