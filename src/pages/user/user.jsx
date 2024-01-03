@@ -20,12 +20,14 @@ const User = () => {
 
     const logout = async() => {
         try {
+            context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
             swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000})
             .then((res) => location.href = '/')
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
+        finally{context.setLoading(false)}
     }
 
     const updateImage = async(e) => {

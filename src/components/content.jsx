@@ -26,7 +26,7 @@ const Content = () => {
                     <div className="text-wrapper">
                     <div>Welcome to Vixcera</div>
                     <div>Let's survive with us.</div>
-                    <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
+                    <div className="button contact">Sign up</div>
                     </div>
                 </div>}
                 {(vixcera.map((i,k) => {
@@ -74,7 +74,7 @@ const Content = () => {
                 <div className="text-wrapper">
                 <div>Vixcera Developer</div>
                 <div>Dimas Putra Utama</div>
-                <div className="button contact" onClick={() => navigate('/request')}>Contact</div>
+                <div className="button contact" onClick={() => navigate('/dashboard')}>Contact</div>
                 </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@ const Content = () => {
                 <div className="text-wrapper">
                 <div>Become a Contributor</div>
                 <div>Sell your best work</div>
-                <div className="button contact" onClick={() => navigate('/request')}>Get started</div>
+                <div className="button contact">Get started</div>
                 </div>
                 </div>
                 {(products.map((i,k) => {
