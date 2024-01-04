@@ -17,7 +17,7 @@ const Dashboard = () => {
             const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`,{password : input.value})
             setPassword(input.value)
             setData(response.data)
-         } 
+        } 
             catch (error) {
             if (error) return navigate('/') 
         }
