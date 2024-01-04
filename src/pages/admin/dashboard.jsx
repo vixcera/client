@@ -18,7 +18,7 @@ const Dashboard = () => {
             setPassword(input.value)
             setData(response.data)
          } 
-        catch (error) {
+            catch (error) {
             if (error) return navigate('/') 
         }
     }
