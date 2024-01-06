@@ -17,8 +17,8 @@ const Product = () => {
         context.setLoading(true)
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-            context.setLoading(false)
             if (!response.data.length) {
+                context.setLoading(false)
                 Swal.fire({
                     icon: 'info', 
                     showConfirmButton: false, 
@@ -27,9 +27,10 @@ const Product = () => {
                     color:'var(--text)'})
                 }
             setData(response.data)
-        }   catch (error) {
             context.setLoading(false)
+        }   catch (error) {
             if (error || error.response) {
+                context.setLoading(false)
                 Swal.fire({
                     icon: 'info', 
                     showConfirmButton: false, 
