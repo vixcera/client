@@ -11,30 +11,34 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const context = useContext(Context)
-
     const [data, setData] = useState([])
-    const [admin, setAdmin] = useState('')
     
     const getProducts = async () => {
+        context.setLoading(true)
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-            if (!response.data.length) return Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            if (!response.data.length) {Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})}
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'server maintenance!',timer:1500,background: 'var(--primary)',color:'var(--text)'})
-            .then((res) => res.isDismissed && navigate('/'))
+            if (error || error.response) {Swal.fire({icon: 'info', showConfirmButton: false, text:'server maintenance!',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            .then((res) => res.isDismissed && navigate('/'))}
         }
-    }    
+        finally{context.setLoading(false)}
+    }
+
+    const requestCreate = async () => {
+        context.setLoading(true)
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/administrator`)
+            navigate('/create')
+        }   catch (error) {
+            if (error || error.response) {navigate('/register')}
+        }
+        finally{context.setLoading(false)}
+    }
 
     useEffect(() => {
         getProducts()
-        axios.get(`${import.meta.env.VITE_API}/administrator`)
-        .then((response) => {
-            setAdmin(response.data)
-        })
-        .catch((error) => {
-            if (error.response) return setAdmin(false)
-        })
     }, [])
 
     return (
@@ -59,7 +63,7 @@ const Product = () => {
                             )
                         })
                     }
-                    <div onClick={() => navigate('/create')} className='product-card' style={admin ? {display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column'} : {display: 'none'}}>
+                    <div onClick={() => requestCreate()} className='product-card' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column'}}>
                         <i className='fa-solid fa-plus fa-2xl' style={{fontSize: '80px', color: 'var(--yellow)'}}/>
                         <div style={{color: 'var(--yellow)', fontFamily: 'var(--poppins)', fontSize: '1rem', translate: '0 50px'}}>add new product</div>
                     </div>
