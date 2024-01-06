@@ -13,7 +13,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@hyvor/hyvor-talk-react": "^0.0.2",
-    "axios": "^1.5.1",
+    "axios": "^1.6.5",
     "buffer": "^6.0.3",
     "js-cookie": "^3.0.5",
     "js-file-download": "^0.4.12",
