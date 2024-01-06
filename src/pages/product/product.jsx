@@ -27,7 +27,7 @@ const Product = () => {
                     color:'var(--text)'})
                 }
             setData(response.data)
-            context.setLoading(false)
+            return context.setLoading(false)
         }   catch (error) {
             if (error || error.response) {
                 context.setLoading(false)
