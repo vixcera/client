@@ -12,6 +12,32 @@ const Product = () => {
     const navigate = useNavigate()
     const context = useContext(Context)
     const [data, setData] = useState([])
+    
+    const getProducts = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
+            if (!response.data.length) {
+                Swal.fire({
+                    icon                : 'info', 
+                    text                : 'product data is empty',
+                    background          : 'var(--primary)',
+                    showConfirmButton   : false, 
+                    timer               : 1500,
+                    color               : 'var(--text)'})
+                }
+            setData(response.data)
+        }   catch (error) {
+            if (error || error.response) {
+                Swal.fire({
+                    icon                : 'info', 
+                    text                : 'server maintenance!',
+                    background          : 'var(--primary)',
+                    showConfirmButton   : false, 
+                    timer               : 1500,
+                    color               : 'var(--text)'})
+            .then((res) => res.isDismissed && navigate('/'))}
+        }
+    }
 
     const requestCreate = async () => {
         context.setLoading(true)
@@ -26,31 +52,8 @@ const Product = () => {
 
     useEffect(() => {
         context.setLoading(true)
-        axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-        .then((response) => {
-            context.setLoading(false)
-            {(!response.data.length) ? Swal.fire({
-                icon                : 'info',
-                text                : "product data is empty",
-                showConfirmButton   : false,
-                background          : 'var(--primary)',
-                color               : 'var(--yellow)',
-                timer               : 1500,
-            }): setData(response.data)}
-        })
-        .catch((error) => {
-            context.setLoading(false)
-            if (error.response) {
-                Swal.fire({
-                    icon                : 'info',
-                    text                : "product data is empty",
-                    showConfirmButton   : false,
-                    background          : 'var(--primary)',
-                    color               : 'var(--yellow)',
-                    timer               : 1500,
-                })
-            }
-        })
+        getProducts()
+        context.setLoading(false)
     }, [])
 
     return (
