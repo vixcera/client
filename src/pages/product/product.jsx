@@ -17,13 +17,27 @@ const Product = () => {
         context.setLoading(true)
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-            if (!response.data.length) {Swal.fire({icon: 'info', showConfirmButton: false, text:'product data is empty',timer:1500,background: 'var(--primary)',color:'var(--text)'})}
+            context.setLoading(false)
+            if (!response.data.length) {
+                Swal.fire({
+                    icon: 'info', 
+                    showConfirmButton: false, 
+                    text:'product data is empty',
+                    timer:1500,background: 'var(--primary)',
+                    color:'var(--text)'})
+                }
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) {Swal.fire({icon: 'info', showConfirmButton: false, text:'server maintenance!',timer:1500,background: 'var(--primary)',color:'var(--text)'})
+            if (error || error.response) {
+                Swal.fire({
+                    icon: 'info', 
+                    showConfirmButton: false, 
+                    text:'server maintenance!',
+                    timer:1500,
+                    background: 'var(--primary)',
+                    color:'var(--text)'})
             .then((res) => res.isDismissed && navigate('/'))}
         }
-        finally{context.setLoading(false)}
     }
 
     const requestCreate = async () => {
