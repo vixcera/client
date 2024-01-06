@@ -65,6 +65,10 @@ const Product = () => {
             </div>
             <div className='product-page'>
                 <div className='product-container' style={(data.length < 4) && {justifyContent: 'center'}}>
+                    <div onClick={() => requestCreate()} className='product-card' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column'}}>
+                        <i className='fa-solid fa-plus fa-2xl' style={{fontSize: '80px', color: 'var(--yellow)'}}/>
+                        <div style={{color: 'var(--yellow)', fontFamily: 'var(--poppins)', fontSize: '1rem', translate: '0 50px'}}>add new product</div>
+                    </div>
                     {(data.length) &&
                         data.map((i, k) => {
                             return(
@@ -78,10 +82,6 @@ const Product = () => {
                             )
                         })
                     }
-                    <div onClick={() => requestCreate()} className='product-card' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column'}}>
-                        <i className='fa-solid fa-plus fa-2xl' style={{fontSize: '80px', color: 'var(--yellow)'}}/>
-                        <div style={{color: 'var(--yellow)', fontFamily: 'var(--poppins)', fontSize: '1rem', translate: '0 50px'}}>add new product</div>
-                    </div>
                 </div>
             </div>
         </div>
