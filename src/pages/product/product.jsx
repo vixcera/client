@@ -50,11 +50,7 @@ const Product = () => {
         finally{context.setLoading(false)}
     }
 
-    useEffect(() => {
-        context.setLoading(true)
-        getProducts()
-        context.setLoading(false)
-    }, [])
+    useEffect(() => { getProducts() }, [])
 
     return (
         <div className='page'>
