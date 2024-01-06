@@ -28,6 +28,7 @@ const Product = () => {
                 }
             setData(response.data)
         }   catch (error) {
+            context.setLoading(false)
             if (error || error.response) {
                 Swal.fire({
                     icon: 'info', 
