@@ -19,7 +19,14 @@ const Content = () => {
             {(path == '/') && 
             <div>
                 {(context.token) ? 
-                ''
+                <div className="developer">
+                    <img src="/img/pi.png" className="dimasputra" alt="" />
+                    <div className="text-wrapper">
+                    <div>Hi {context.username}!,</div>
+                    <div>Welcome back.</div>
+                    <div className="button contact">Account</div>
+                </div>
+                </div>
                 : 
                 <div className="developer">
                     <img src="/img/pi.png" className="dimasputra" alt="" />
