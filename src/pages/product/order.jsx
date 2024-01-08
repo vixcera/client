@@ -22,7 +22,6 @@ const Order = () => {
     const [email, setEmail] = useState(context.email ? context.email : '')
     const [phone, setPhone] = useState('')
     
-
     const getProducts = async () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/id/${id}`)
