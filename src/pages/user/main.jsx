@@ -7,9 +7,9 @@ const Main = () => {
 
     return (
         <div className="main">
-                <Navbar/>
-                <Content/>
-                <Sidebar/>
+            <Navbar/>
+            <Content/>
+            <Sidebar/>
         </div>
     )
 }
