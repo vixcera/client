@@ -6,14 +6,15 @@ import axios from "axios"
 import "../../style/login.css"
 
 const Login = () => {
+    
+    const navigate = useNavigate()
+    const context = useContext(Context)
 
     const [as, setAs] = useState('user')
     const [url, setUrl] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const navigate = useNavigate()
-    const context = useContext(Context)
 
     useEffect(() => {
         if (as == 'user') return setUrl(`${import.meta.env.VITE_API}/login`)
