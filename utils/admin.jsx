@@ -1,10 +1,11 @@
 import swal from "sweetalert2"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const admin = async () => {
+  const navigate = useNavigate()
   try {
     const response = await axios.get(`${import.meta.env.VITE_API}/administrator`)
-    console.log(response.data)
   } catch (error) {
     if (error || error.response) {
       swal.fire({
@@ -15,7 +16,11 @@ const admin = async () => {
         background: 'var(--background)',
         timer: 1500
       })
-      .then((res) => res.isDismissed? location.href = '/' : '/')
+      .then((res) => {
+        if (res.isDismissed) {
+          return navigate('/')
+        }
+      })
     }
   }
   

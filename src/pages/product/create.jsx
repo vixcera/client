@@ -8,7 +8,6 @@ import admin from "../../../utils/admin"
 import "../../style/create.css"
 
 const Create = () => {
-  const path = location.pathname
   const navigate = useNavigate()
   const fileref = useRef(null)
   const imgref = useRef(null)
