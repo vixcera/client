@@ -1,4 +1,3 @@
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import { NavLink, useNavigate } from "react-router-dom"
 import Context from "../../utils/context"
 import { useContext } from "react"
