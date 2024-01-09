@@ -76,16 +76,15 @@ const Content = () => {
                         )}
                     </div>)
             }))}
-            <div className="developer">
+            {/* <div className="developer">
                 <img src="/img/dimasputra.png" alt="" className="dimasputra"/> 
                 <div className="text-wrapper">
                 <div>Vixcera Developer</div>
                 <div>Dimas Putra Utama</div>
                 <div className="button contact" onClick={() => navigate('/dashboard')}>Contact</div>
                 </div>
-                </div>
+            </div> */}
             </div>
-            
             }
             {(path == '/products') && 
             <div>
