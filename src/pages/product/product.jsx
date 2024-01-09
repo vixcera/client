@@ -65,8 +65,7 @@ const Product = () => {
                         <i className='fa-solid fa-plus fa-2xl' style={{fontSize: '80px', color: 'var(--yellow)'}}/>
                         <div style={{color: 'var(--yellow)', fontFamily: 'var(--poppins)', fontSize: '1rem', translate: '0 50px'}}>add new product</div>
                     </div>
-                    {(data.length) &&
-                        data.map((i, k) => {
+                    {data.map((i, k) => {
                             return(
                             <div className='product-card' key={k}>
                                 <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
