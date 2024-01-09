@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
         <div className="nav-user">
           {(context.id) ? 
-          <LazyLoadImage onClick={() => navigate('/user')} style={{width : '37px', height: '37px', borderRadius : '50%', cursor : 'pointer', objectFit: 'cover'}} src={context.img}/>
+          <NavLink className="i fa-solid fa-cart-shopping fa-xl"/>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
           }

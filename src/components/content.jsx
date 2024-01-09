@@ -24,7 +24,7 @@ const Content = () => {
                     <div className="text-wrapper">
                     <div>Hi {context.username}!,</div>
                     <div>Welcome back.</div>
-                    <div className="button contact">Account</div>
+                    <div className="button contact" onClick={() => navigate('/user')}>Account</div>
                 </div>
                 </div>
                 : 
@@ -33,7 +33,7 @@ const Content = () => {
                     <div className="text-wrapper">
                     <div>Welcome to Vixcera</div>
                     <div>Let's survive with us.</div>
-                    <div className="button contact">Sign up</div>
+                    <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
                     </div>
                 </div>}
                 {(vixcera.map((i,k) => {
