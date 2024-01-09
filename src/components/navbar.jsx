@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
         <div className="nav-user">
           {(context.id) ? 
-          <NavLink className="i fa-regular fa-cart-shopping fa-xl"/>
+          <NavLink><div className="i fa-solid fa-cart-shopping fa-xl"/></NavLink>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
           }
