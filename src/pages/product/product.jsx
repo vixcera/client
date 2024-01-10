@@ -24,7 +24,7 @@ const Product = () => {
                     showConfirmButton   : false, 
                     timer               : 1500,
                     color               : 'var(--text)'})
-                }
+                .then((res) => res.isDismissed && navigate('/'))}
             setData(response.data)
         }   catch (error) {
             if (error || error.response) {
