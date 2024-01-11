@@ -26,7 +26,7 @@ const Dashboard = () => {
     const confirm = async () => {
         const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
             password: password,
-            id: data.map((i) => {return i.id})
+            vid: data.map((i) => {return i.vid})
         })
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
@@ -34,7 +34,7 @@ const Dashboard = () => {
     const reject = async () => {
         const response = await axios.post(`${import.meta.env.VITE_API}/product/reject`,{
             password: password,
-            id: data.map((i) => {return i.id})
+            vid: data.map((i) => {return i.vid})
         })
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
@@ -49,20 +49,19 @@ const Dashboard = () => {
             </div>
             <div className='product-page'>
                 <div className='product-container' style={(data.length < 4) && {justifyContent: 'center'}}>
-                    {(data.length) &&
-                        data.map((i, k) => {
-                            return(
-                            <div className='product-card' key={k}>
-                                <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
-                                <div className='product-title'>{i.title}</div>
-                                <div className='product-desc'>{i.desc}</div>
-                                <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(i.price)}</div>
-                                <div style={{position: 'absolute', bottom: '35px', right: '20px', display: 'flex',gap:'15px'}}>
-                                    <div className='fa-solid fa-x fa-lg' onClick={() => reject()} style={{color: 'var(--text )', cursor: 'pointer'}}/>
-                                    <div className='fa-solid fa-check fa-xl' onClick={() => confirm()} style={{color: 'var(--yellow)', cursor: 'pointer'}}/>
-                                </div>
+                    {data.map((i, k) => {
+                        return(
+                        <div className='product-card' key={k}>
+                            <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
+                            <div className='product-title'>{i.title}</div>
+                            <div className='product-desc'>{i.desc}</div>
+                            <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(i.price)}</div>
+                            <div style={{position: 'absolute', bottom: '35px', right: '20px', display: 'flex',gap:'15px'}}>
+                                <div className='fa-solid fa-x fa-lg' onClick={() => reject()} style={{color: 'var(--text )', cursor: 'pointer'}}/>
+                                <div className='fa-solid fa-check fa-xl' onClick={() => confirm()} style={{color: 'var(--yellow)', cursor: 'pointer'}}/>
                             </div>
-                            ) 
+                        </div>
+                        ) 
                         })
                     }
                 </div>

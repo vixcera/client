@@ -14,6 +14,7 @@
     display: flex;
     padding: 10px 30px;
     box-sizing: border-box;
+    flex-direction: column-reverse;
     overflow: hidden scroll;
 }
 .productinput {
@@ -55,8 +56,12 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 25px;
     box-sizing: border-box;
+}
+
+.order-button {
+    width: 130px;
 }
 
 @media (max-width : 920px) {
@@ -75,6 +80,18 @@
 
     .prev-form {
         align-items: center;
+    }
+}
+
+@media (max-width: 755px) {
+    .form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .order.button {
+        width: 100%
     }
 }
 

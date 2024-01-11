@@ -13,7 +13,7 @@ import "../../style/create.css"
 
 const Order = () => {
 
-    const {id} = useParams()
+    const {vid} = useParams()
     const navigate = useNavigate()
     const context = useContext(Context)
 
@@ -24,7 +24,7 @@ const Order = () => {
     
     const getProducts = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/id/${id}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
             setData(response.data)
         }   catch (error) {
             if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
@@ -36,7 +36,7 @@ const Order = () => {
       try {
         context.setLoading(true)
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
-          id      : id,
+          vid     : vid,
           name    : name,
           email   : email,
           phone   : phone,
@@ -74,7 +74,7 @@ const Order = () => {
             <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form'>
-            <div className='input-form' style={{padding: '20px 0'}}>
+            <div className='input-form' style={{padding: '30px 0'}}>
               <div>
                 <div>Name :</div>
                 <input className='productinput' value={name} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} required/>
@@ -85,19 +85,26 @@ const Order = () => {
               </div>
               <div>
                 <div>Email :</div>
-                <input className='productinput' value={email} type="text" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
+                <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
               </div>
-              <div className='button' onClick={() => checkout()} style={(name && phone && email) ? {width:'130px', marginTop:"10px", fontSize:'14px', fontWeight: '550'} : {width: '130px',backgroundColor: '#aaa', fontWeight: '550'}}>Order</div>
+              <div className='button order' onClick={() => checkout()} style={(name && phone && email) ? {fontSize:'14px', fontWeight: '550'} : {backgroundColor: '#aaa', fontWeight: '550'}}>Order</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
               {data.map((i,k) => {
                     return(
                       <div className='product-card' key={k}>
+                          <div id='see' className='i fa-solid fa-eye fa-xl'/>
                           <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
-                          <div className='product-title'>{i.title}</div>
-                          <div className='product-desc'>{i.desc}</div>
-                          <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(i.price)}</div>
+                          <div className='wrapped-text'>
+                              <div className='product-title'>{i.title}</div>
+                              <div className='product-desc'>{i.desc}</div>
+                              <div className='wrapped-details'>
+                                  <div className='button price'>{convertPrice(i.price)}</div>
+                                  {/* <div style={{ color : 'var(--text)', cursor: 'pointer'}} onClick={() => navigate(`/order/${i.vid}`)} className='fa-solid fa-cart-plus fa-xl' /> */}
+                              </div>
+                          </div>
+                          <div className='by'>by: {i.by}</div>
                       </div>
                     )
                 })}

@@ -58,14 +58,14 @@ const Login = () => {
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
                 <form className="login-input" onSubmit={handleLogin}>
-                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                     <div className="login-button">
-                        <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
                         <select onChange={(e) => setAs(e.target.value)} style={{width: '120px'}} required>
                             <option value="user">User</option>
                             <option value="contributor">Contributor</option>
                         </select>
+                        <button type="submit" className="button" style={{fontFamily : "serif", width : "150px"}}>Sign in</button>
                     </div>
                     <NavLink to='/register' style={{textDecoration : "none", color : "var(--text)", translate: '0 20px'}}>Create account</NavLink>
                 </form>

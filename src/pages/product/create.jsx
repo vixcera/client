@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
 import swal from "sweetalert2"
 import axios from "axios"
-import admin from "../../../utils/admin"
 import "../../style/create.css"
 
 const Create = () => {
@@ -45,13 +44,10 @@ const Create = () => {
     }
   }
 
-  useEffect(() => {
-    admin()
-  }, [])
 
   return (
     <div className='page' style={{gap:'30px'}}>
-      <div className="back" onClick={() => navigate(-1)}>
+      <div className="back" onClick={() => navigate('/')}>
         <div className="fa-solid fa-arrow-left fa-xl active"></div>
         <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
       </div>
@@ -62,12 +58,12 @@ const Create = () => {
             <input className='productinput' value={title} type="text" placeholder='ex: company profile' onChange={(e) => setTitle(e.target.value)}/>
           </div>
           <div>
-            <div>Price :</div>
-            <input className='productinput' value={price} type="text" placeholder='ex: 350000' onChange={(e) => setPrice(e.target.value)}/>
-          </div>
-          <div>
             <div>Description :</div>
             <input className='productinput' value={desc} type="text" placeholder='ex: modern company web.....' onChange={(e) => setDesc(e.target.value)}/>
+          </div>
+          <div>
+            <div>Price :</div>
+            <input className='productinput' value={price} type="text" placeholder='ex: 350000' onChange={(e) => setPrice(e.target.value)}/>
           </div>
           <div className='wrap-file'>
             <div>
@@ -98,11 +94,15 @@ const Create = () => {
         <div className='prev-form'>
           <div className='itext'>Preview</div>
           <div className='product-card'>
-            <LazyLoadImage className='product-img' src={(image) && URL.createObjectURL(image)} loading='lazy' effect='blur'/>
-            <div className='product-title'>{(title) ? title : 'Untitled'}</div>
-            <div className='product-desc'>{(desc) ? desc : 'no description available'}</div>
-            <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(price)}</div>
-            <div style={{ position:'absolute', bottom:'30px', right:'20px', color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
+            <LazyLoadImage className='product-img' src={(image) ? URL.createObjectURL(image) : '/img/dpi.jpg'} loading='lazy' effect='blur'/>
+            <div className="wrapped-text">
+              <div className='product-title'>{(title) ? title : 'Untitled'}</div>
+              <div className='product-desc'>{(desc) ? desc : 'no description available'}</div>
+              <div className="wrapped-details">
+              <div className='button price'>{convertPrice(price)}</div>
+              <div style={{ color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
+              </div>
+            </div>
           </div>
           <div className='button' onClick={() => createProduct()} style={(file && title && image && desc && price && ctg) ? {width:'130px', marginTop:"30px"} : {display:'none'}}>Create</div>
         </div>

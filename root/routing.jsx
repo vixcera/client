@@ -43,6 +43,7 @@ const Routing = () => {
       setEmail(decoded.email)
       setExpires(decoded.exp)
       setUsername(decoded.username)
+      if (!decoded.img) setImg('/img/dui.jpg')
     } 
   }, [token])
 
@@ -66,7 +67,7 @@ const Routing = () => {
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
-          <Route path="/order/:id" element={<Order/>}/>
+          <Route path="/order/:vid" element={<Order/>}/>
           <Route path="/products" element={<Main/>}/>
           <Route path="/about" element={<Main/>}/>
         </Routes>
