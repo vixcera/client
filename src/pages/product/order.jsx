@@ -87,7 +87,7 @@ const Order = () => {
                 <div>Email :</div>
                 <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
               </div>
-              <div className='button order' onClick={() => checkout()} style={(name && phone && email) ? {fontSize:'14px', fontWeight: '550'} : {backgroundColor: '#aaa', fontWeight: '550'}}>Payment method</div>
+              <div className='button order' onClick={() => checkout()} style={(name && phone && email) ? {fontSize:'14px', fontWeight: '550'} : {fontSize:'14px', backgroundColor: '#aaa', fontWeight: '550'}}>Checkout</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
