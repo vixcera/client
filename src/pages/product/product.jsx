@@ -11,7 +11,6 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const context = useContext(Context)
-
     const [data, setData] = useState([])
     
     const getProducts = async () => {
