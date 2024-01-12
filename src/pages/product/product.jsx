@@ -71,7 +71,7 @@ const Product = () => {
                             return(
                             <div className='product-card' key={k}>
                                 <div id='see' className='i fa-solid fa-eye fa-xl'/>
-                                <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
+                                <LazyLoadImage className='product-img' src={i.img || '/img/img404.jpg'} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div className='product-desc'>{i.desc}</div>
