@@ -165,13 +165,16 @@
     .back.prod {
         position: static;
     }
+    
     .wrap-control {
         justify-content: space-between;
         gap: 10px;
     }
+
     .page.prod {
         padding-top: 5px;
     }
+
     .search {
         width: 220px;
     }
