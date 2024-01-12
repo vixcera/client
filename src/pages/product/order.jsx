@@ -69,7 +69,7 @@ const Order = () => {
 
     return (
         <div className='page' style={{gap:'30px'}}>
-          <div className="back" onClick={() => navigate('/')}>
+          <div className="back" onClick={() => navigate(-1)}>
             <div className="fa-solid fa-arrow-left fa-xl active"></div>
             <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
@@ -87,7 +87,7 @@ const Order = () => {
                 <div>Email :</div>
                 <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
               </div>
-              <div className='button order' onClick={() => checkout()} style={(name && phone && email) ? {fontSize:'14px', fontWeight: '550'} : {backgroundColor: '#aaa', fontWeight: '550'}}>Order</div>
+              <div className='button order' onClick={() => checkout()} style={(name && phone && email) ? {fontSize:'14px', fontWeight: '550'} : {backgroundColor: '#aaa', fontWeight: '550'}}>Payment method</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
