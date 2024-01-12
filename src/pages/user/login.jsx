@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../../utils/context"
+import alert from "../../../utils/alert"
 import Swal from "sweetalert2"
 import axios from "axios"
 import "../../style/login.css"
@@ -9,10 +10,11 @@ const Login = () => {
     
     const navigate = useNavigate()
     const context = useContext(Context)
+    const refemail = localStorage.getItem('email')
 
     const [as, setAs] = useState('user')
     const [url, setUrl] = useState('')
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState((refemail) ? refemail : '')
     const [password, setPassword] = useState('')
 
 
@@ -23,25 +25,17 @@ const Login = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault()
+        localStorage.setItem('email', email)
         context.setLoading(true)
         try {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
+            localStorage.removeItem('email')
             navigate('/user')
         }
         catch (error) {
-            if (error.response) {
-                Swal.fire({
-                icon : "error",
-                color : "var(--text)",
-                iconColor : "var(--yellow)",
-                background : "var(--primary)",
-                text : error.response.data,
-                showConfirmButton : false,
-                timer : 2000
-                })  
-            }
-                 
+            alert("server maintenance!")
+            error.response && alert(error.response.data)  
         }
         finally{context.setLoading(false)}
     }

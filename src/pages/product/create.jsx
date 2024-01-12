@@ -38,7 +38,7 @@ const Create = () => {
       })
       localStorage.clear()
       swal.fire({icon:'success',text:response.data,showConfirmButton:false,timer:2500})
-      .then((res) => res.isDismissed && location.reload())
+      .then((res) => res.dismiss && location.reload())
     } catch (error) {
       if (error.response) {swal.fire({icon: 'error', text:error.response.data,showConfirmButton:false})}
     }

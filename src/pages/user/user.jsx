@@ -60,7 +60,7 @@ const User = () => {
                 <input id='changemail' onChange={(e) => setEmail(e.target.value)} type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
                 {(file || email) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : 
                 <div style={{margin: '30px 0', display: 'flex', gap: '20px'}}>
-                    <div className='button' onClick={() => edit()}><i style={{cursor: 'pointer'}} className='fa-solid fa-pen-to-square fa-xl'/></div>
+                    <div className='button' onClick={() => edit()}><i style={{cursor: 'pointer'}} className='fa-solid fa-store fa-xl'/></div>
                     <div className='button' onClick={logout}><i className='fa-solid fa-right-from-bracket fa-xl'/></div>
                 </div>}  
             </form>

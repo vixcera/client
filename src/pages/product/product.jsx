@@ -52,11 +52,14 @@ const Product = () => {
     useEffect(() => { getProducts() }, [])
 
     return (
-        <div className='page'>
+        <div className='page prod'>
             <div id='snap-container'></div>
-            <div className="back" onClick={() => navigate('/')}>
-                <div className="fa-solid fa-arrow-left fa-xl active"></div>
-                <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
+            <div className='wrap-control'>
+                <div className="back prod" onClick={() => navigate('/')}>
+                    <div className="fa-solid fa-arrow-left fa-xl active"></div>
+                    <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
+                </div>
+                <input type="text" className='search'/>
             </div>
             <div className='product-page'>
                 <div className='product-container'>

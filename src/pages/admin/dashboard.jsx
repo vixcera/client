@@ -51,16 +51,20 @@ const Dashboard = () => {
                 <div className='product-container' style={(data.length < 4) && {justifyContent: 'center'}}>
                     {data.map((i, k) => {
                         return(
-                        <div className='product-card' key={k}>
-                            <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
-                            <div className='product-title'>{i.title}</div>
-                            <div className='product-desc'>{i.desc}</div>
-                            <div className='button' style={{width : '140px', position:'absolute', bottom:'15px', left:'15px'}}>{convertPrice(i.price)}</div>
-                            <div style={{position: 'absolute', bottom: '35px', right: '20px', display: 'flex',gap:'15px'}}>
-                                <div className='fa-solid fa-x fa-lg' onClick={() => reject()} style={{color: 'var(--text )', cursor: 'pointer'}}/>
-                                <div className='fa-solid fa-check fa-xl' onClick={() => confirm()} style={{color: 'var(--yellow)', cursor: 'pointer'}}/>
+                            <div className='product-card' key={k}>
+                                <div id='see' className='i fa-solid fa-eye fa-xl'/>
+                                <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
+                                <div className='wrapped-text'>
+                                    <div className='product-title'>{i.title}</div>
+                                    <div className='product-desc'>{i.desc}</div>
+                                    <div className='wrapped-details'>
+                                        <div className='button price'>{convertPrice(i.price)}</div>
+                                        <div className='fa-solid fa-x fa-lg' onClick={() => reject()} style={{color: 'var(--text )', cursor: 'pointer'}}/>
+                                        <div className='fa-solid fa-check fa-xl' onClick={() => confirm()} style={{color: 'var(--yellow)', cursor: 'pointer'}}/>
+                                    </div>
+                                </div>
+                                <div className='by'>by: {i.by}</div>
                             </div>
-                        </div>
                         ) 
                         })
                     }
