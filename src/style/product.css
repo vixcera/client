@@ -184,6 +184,8 @@
 @media (max-width : 425px) {
     .product-card {
         width: 100%;
+    }
+    .product-img {
         height: 170px;
     }
 }
