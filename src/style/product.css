@@ -152,6 +152,7 @@
         flex-direction: column;
         height: max-content;
         padding: 10px 10px 20px;
+        width: 85%;
     }
 
     .button {
