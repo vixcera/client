@@ -189,9 +189,12 @@
 
 @media (max-width : 375px) {
     .product-img {
-        width: 100%;
-    }
-    .product-img {
         height: 190px;
+    }
+}
+
+@media (max-width : 355px) {
+    .product-img {
+        height: 170px;
     }
 }
