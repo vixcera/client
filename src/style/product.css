@@ -181,9 +181,7 @@
 }
 
 @media (max-width : 475px) {
-    .product-img {
-        height: 150px;
-    }
+    
 }
 
 @media (max-width : 375px) {
