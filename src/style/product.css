@@ -144,7 +144,7 @@
 @media (max-width : 520px) {
     .product-img {
         width: 100%;
-        height: 150px;
+        height: 200px;
     }
 
 
@@ -177,6 +177,12 @@
 
     .search {
         width: 220px;
+    }
+}
+
+@media (max-width : 475px) {
+    .product-img {
+        height: 150px;
     }
 }
 

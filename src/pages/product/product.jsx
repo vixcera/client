@@ -29,25 +29,6 @@ const Product = () => {
         }
     }
 
-    const showPreview = (src, card) => {
-        let kartu = document.getElementById(`card${card}`)
-        let img = document.querySelector('.product-img')
-        kartu.appendChild(img)
-        img.setAttribute('src', src)
-        img.classList.toggle('show')
-    }
-
-    const requestCreate = async () => {
-        context.setLoading(true)
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/administrator`)
-            navigate('/create')
-        }   catch (error) {
-            if (error || error.response) {navigate('/register')}
-        }
-        finally{context.setLoading(false)}
-    }
-
     useEffect(() => { getProducts() }, [])
 
     return (
@@ -62,15 +43,11 @@ const Product = () => {
             </div>
             <div className='product-page'>
                 <div className='product-container'>
-                    {/* <div onClick={() => requestCreate()} className='product-card' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', flexDirection: 'column'}}>
-                        <i className='fa-solid fa-plus fa-2xl' style={{fontSize: '80px', color: 'var(--yellow)'}}/>
-                        <div style={{color: 'var(--yellow)', fontFamily: 'var(--poppins)', fontSize: '1rem', translate: '0 50px'}}>add new product</div>
-                    </div> */}
                     {data.map((i, k) => {
                             return(
                             <div className='product-card' key={k}>
                                 <div id='see' className='i fa-solid fa-eye fa-xl'/>
-                                <LazyLoadImage className='product-img' src={i.img || '/img/img404.jpg'} loading='lazy' effect='blur'/>
+                                <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div className='product-desc'>{i.desc}</div>
