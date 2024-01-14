@@ -15,6 +15,7 @@
     "@hyvor/hyvor-talk-react": "^0.0.2",
     "axios": "^1.6.5",
     "bootstrap": "^5.3.2",
+    "bowser": "^2.11.0",
     "buffer": "^6.0.3",
     "js-cookie": "^3.0.5",
     "js-file-download": "^0.4.12",
