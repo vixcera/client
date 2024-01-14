@@ -93,7 +93,7 @@ const Content = () => {
                 <div className="text-wrapper">
                 <div>Become a Contributor</div>
                 <div>Sell your best work</div>
-                <div className="button contact">Coming Soon</div>
+                <div className="button contact">Upcoming</div>
                 </div>
                 </div>
                 {(products.map((i,k) => {
