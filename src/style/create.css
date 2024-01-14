@@ -3,8 +3,8 @@
     width: 100%;
     border-radius: 5px;
     background-color: var(--primary);
-    padding-top: 50px;
-    padding-bottom: 25px;
+    padding-top: 45px;
+    padding-bottom: 20px;
     cursor: pointer;
     display: flex;
     flex-direction: column;

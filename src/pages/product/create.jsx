@@ -84,17 +84,19 @@ const Create = () => {
             <div>
               <div>Preview : </div>
               <div className='prevfile' onClick={() => imgref.current.click()}>
-                <div className={(image) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-image fa-xl'} style={{color: 'var(--background)', fontSize: '2rem'}}/>
-                <div style={{ color: 'var(--background)', fontSize: '0.9rem' }}>{'(JPEG, JPG, PNG, MP4)'}</div>
+                <div className={(image) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-image fa-xl'} style={{color: '#aaa', fontSize: '2rem'}}/>
+                <div style={{ color: '#aaa', fontSize: '0.7rem' }}>{'(JPEG, JPG, PNG, MP4)'}</div>
                 <input type="file" onChange={(e) => setImage(e.target.files[0])} ref={imgref} style={{display:'none'}}/>
+                <div style={{ color: '#aaa', fontSize: '0.95rem' }}>Max size: 10 Mb</div>
               </div>
             </div>
             <div>
               <div>File : </div>
               <div className='prevfile' onClick={() => fileref.current.click()}>
-                <div className={(file) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-file fa-xl'} style={{color: 'var(--background)', fontSize: '2rem'}}/>
+                <div className={(file) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-file fa-xl'} style={{color: '#aaa', fontSize: '2rem'}}/>
                 <input type="file" onChange={(e) => setFile(e.target.files[0])} ref={fileref} style={{display:'none'}}/>
-                <div style={{ color: 'var(--background)', fontSize: '0.9rem' }}>{'(ZIP, RAR)'}</div>
+                <div style={{ color: '#aaa', fontSize: '0.7rem' }}>{'(ZIP, RAR)'}</div>
+                <div style={{ color: '#aaa', fontSize: '0.95rem' }}>Max size: 20 Mb</div>
               </div>
             </div>
             <div className='button-max' onClick={() => createProduct()} style={(file && title && image && desc && price && ctg) ? {backgroundColor: 'var(--yellow)', marginTop: '60px'} : {backgroundColor: '#aaa', marginTop: '60px'}}>Create</div>
