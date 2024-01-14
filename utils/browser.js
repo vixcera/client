@@ -13,7 +13,7 @@ const browser = async () => {
             swal.fire({
                 icon: 'info',
                 titleText: 'safari detected!',
-                text: "vixcera requires cookies, please turn off prevent cross-site tracking on safari settings or open with other browser.",
+                text: "vixcera requires cookies, please turn off prevent cross-site tracking on safari settings.",
                 color: '#ccc',
                 background: 'var(--primary)',
                 confirmButtonText : "what's happend?",
@@ -24,7 +24,7 @@ const browser = async () => {
                 if (response.dismiss || response.isDenied) {
                     swal.fire({
                         icon: "warning",
-                        text: "vixcera may not work properly on this browser. please open in chrome or other browser.",
+                        text: "vixcera may not work properly on this browser",
                         background: 'var(--primary)',
                         color : '#ccc',
                         showDenyButton: true,
