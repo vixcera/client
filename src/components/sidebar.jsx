@@ -16,7 +16,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar" onClick={() => hideSidebar()}>
             <div className="nav-logo">
-                <img src="/img/viscera.png"/>
+                <img src="/img/vixcera.png"/>
                 <p>Vixcera</p>
             </div>
             <div className="sideitem">

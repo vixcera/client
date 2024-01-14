@@ -27,7 +27,7 @@ const about =
             },
             {
                 title : "Trusted partner",
-                text : "safe and reliable for every transaction.",
+                text : "safe and reliable",
                 img : "img/trusted.png",
                 color : "var(--text)",
                 pricing : ["Trusted", "Safe"]

@@ -35,7 +35,7 @@ const Navbar = () => {
     <div className="navbar-container">
       <div className='navbar'>
         <div className="nav-logo">
-          <img src="/img/viscera.png"/>
+          <img src="/img/vixcera.png"/>
           <div>VI | X</div>
         </div>
         <div className="nav-menu">
