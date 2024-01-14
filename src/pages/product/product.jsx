@@ -36,7 +36,7 @@ const Product = () => {
     return (
         <div className='page-max'>
             <div id='snap-container'></div>
-                <div className="back" onClick={() => navigate('/')}>
+                <div className="back" onClick={() => navigate(-1)}>
                     <div className="fa-solid fa-arrow-left fa-xl active"></div>
                     <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>
