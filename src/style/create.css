@@ -1,21 +1,22 @@
 .prevfile {
     text-align: center;
-    width: 50px;
+    width: 100%;
     border-radius: 5px;
-    background-color: var(--yellow);
-    padding: 10px;
+    background-color: var(--primary);
+    padding-top: 50px;
+    padding-bottom: 25px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .form {
-    width: 80%;
-    height: 95%;
+    width: 650px;
     margin-top: 40px;
     display: flex;
-    padding: 10px 30px;
     box-sizing: border-box;
     flex-direction: column-reverse;
-    overflow: hidden scroll;
 }
 .productinput {
     width: 400px;
@@ -32,15 +33,14 @@
 
 .wrap-file {
     display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    padding-bottom: 20px;
+    flex-direction: column;
 }
 
 .input-form{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
     gap: 30px;
     font-size: 1.1rem;
     font-family: var(--poppins);
@@ -48,6 +48,9 @@
 }
 .input-form div {
     margin-bottom: 10px;
+}
+.input-form input {
+    width: 100%;
 }
 
 .prev-form {
@@ -65,17 +68,9 @@
 }
 
 @media (max-width : 920px) {
-    .form {
-        padding: 0;
-        flex-direction: column-reverse;
-        padding-top: 10px;
-    }
-    .input-form input {
-        width: 100%;
-    }
+    
     .wrap-file {
         justify-content: center;
-        gap: 30px;
     }
 
     .prev-form {

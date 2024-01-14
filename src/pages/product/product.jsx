@@ -10,8 +10,10 @@ import "../../style/product.css"
 const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
-    const context = useContext(Context)
     const [data, setData] = useState([])
+    
+    const context = useContext(Context)
+    const total = data.map((result) => {return result})
     
     const getProducts = async () => {
         try {
@@ -23,7 +25,7 @@ const Product = () => {
             setData(response.data)
         }   catch (error) {
             if (error || error.response) {
-                alert("server maintenance!")
+                alert("server maintenance, please comeback later!")
                 .then((res) => res.isDismissed && navigate('/'))
             }
         }
@@ -32,21 +34,18 @@ const Product = () => {
     useEffect(() => { getProducts() }, [])
 
     return (
-        <div className='page prod'>
+        <div className='page-max'>
             <div id='snap-container'></div>
-            <div className='wrap-control'>
-                <div className="back prod" onClick={() => navigate('/')}>
+                <div className="back" onClick={() => navigate('/')}>
                     <div className="fa-solid fa-arrow-left fa-xl active"></div>
                     <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
-                </div>
-                {/* <input type="text" className='search'/> */}
             </div>
             <div className='product-page'>
                 <div className='product-container'>
+                <input type="text" className='search'/>
                     {data.map((i, k) => {
                             return(
                             <div className='product-card' key={k}>
-                                <div id='see' className='i fa-solid fa-eye fa-xl'/>
                                 <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>

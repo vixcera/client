@@ -10,13 +10,6 @@
     gap: 0 20px;
 }
 
-.page.prod {
-    flex-direction: column;
-    padding-top: 70px;
-    padding-bottom: 10px;
-    gap: 10px;
-}
-
 .product-container {
     margin: 0 auto;
     justify-content: center;
@@ -25,15 +18,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding-bottom: 150px;
 }
 
 .product-page {
     width: 100%;
-    height: 100vh;
-    overflow: hidden scroll;
-    padding: 30px;
-    margin-top: 10px;
+    margin-top: 50px;
     box-sizing: border-box;
     position: relative;
 }
@@ -90,13 +79,9 @@
 }
 
 .search {
-   width: 370px;
-}
-
-#see {
-    display: none;
-    z-index: 5;
-    color: var(--yellow);
+   width: 400px;
+   margin-bottom: 30px;
+   display: none;
 }
 
 .by {
@@ -177,7 +162,7 @@
     }
 
     .search {
-        width: 220px;
+        width: 90%;
     }
 }
 
