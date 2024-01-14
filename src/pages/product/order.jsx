@@ -95,7 +95,6 @@ const Order = () => {
               {data.map((i,k) => {
                     return(
                       <div className='product-card' key={k}>
-                          <div id='see' className='i fa-solid fa-eye fa-xl'/>
                           <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
                           <div className='wrapped-text'>
                               <div className='product-title'>{i.title}</div>
