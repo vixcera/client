@@ -9,6 +9,17 @@
     align-items: center;
 }
 
+.page-max {
+    width: 100%;
+    height: max-content;
+    background-color: var(--background);
+    padding: 25px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-box {
     width: 500px;
     height: 600px;
