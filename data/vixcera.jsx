@@ -20,14 +20,14 @@ const vixcera =
         [
             {
                 title : "High quality",
-                text : "donwload file with the best quality.",
+                text : "get file with the best quality.",
                 img : "img/star.png",
                 color : "var(--yellow)",
                 pricing : ["HD"],
             },
             {
                 title : "Ready to use",
-                text : "make your project with the quick assets.",
+                text : "make your project faster.",
                 img : "img/ready.png",
                 color : "var(--text)",
                 pricing : ["usable", "easy"]
@@ -68,7 +68,7 @@ const vixcera =
             },
             {
                 title : "Get the file",
-                text : "finish, file will automatically downloaded.",
+                text : "finish, file will downloaded.",
                 img : "img/df.png",
                 color : "#279EFF",
                 pricing : ["finish"]
