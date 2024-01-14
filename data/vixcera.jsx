@@ -29,14 +29,14 @@ const vixcera =
                 title : "Ready to use",
                 text : "make your project faster.",
                 img : "img/ready.png",
-                color : "var(--text)",
+                color : "#FAEDCA",
                 pricing : ["usable", "easy"]
             },
             {
                 title : "Simple & efficient",
                 text : "don't waste your time",
                 img : "img/simple.png",
-                color : "#FF4B63",
+                color : "#30D5C8",
                 pricing : ["simple"]
             },
         ]
@@ -49,7 +49,7 @@ const vixcera =
                 title : "Find assets",
                 text : "find the assets what you need.",
                 img : "img/find.png",
-                color : "var(--text)",
+                color : "var(--yellow)",
                 pricing : ["search"],
             },
             {
@@ -63,14 +63,14 @@ const vixcera =
                 title : "Payment method",
                 text : "choose method and pay the amount.",
                 img : "img/pay.png",
-                color : "#FF4B63",
+                color : "#FAEDCA",
                 pricing : ["pay"]
             },
             {
                 title : "Get the file",
                 text : "finish, file will downloaded.",
                 img : "img/df.png",
-                color : "#279EFF",
+                color : "#30D5C8",
                 pricing : ["finish"]
             },
         ]
