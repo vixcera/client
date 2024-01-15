@@ -4,9 +4,6 @@ import swal from "sweetalert2"
 
 const browser = async () => {
 
-    const testCookie = await axios.get(`${import.meta.env.VITE_API}`)
-    console.log(testCookie)
-
     const brow = bowser.getParser(window.navigator.userAgent);
     const useragent = navigator.userAgent
     const localagent = sessionStorage.getItem("useragent")
@@ -26,7 +23,8 @@ const browser = async () => {
                 denyButtonText : 'later'
             })
             .then((response) => {
-                if (response.dismiss || response.isDenied) {
+                if (response.dismiss) return
+                if (response.isDenied) {
                     swal.fire({
                         icon: "warning",
                         text: "vixcera may not work properly on this browser",

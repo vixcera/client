@@ -2,7 +2,7 @@ import Navbar from "../../components/navbar"
 import browser from "../../../utils/browser"
 import Content from "../../components/content"
 import Sidebar from "../../components/sidebar"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import "../../style/main.css"
 
 const Main = () => {
