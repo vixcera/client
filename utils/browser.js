@@ -9,7 +9,6 @@ const browser = async () => {
     const localagent = sessionStorage.getItem("useragent")
     const urldocs = 'https://support.apple.com/en-gb/guide/iphone/iphb01fc3c85/ios#:~:text=Control%20privacy%20and%20security%20settings,to%20allow%20cross%2Dsite%20tracking.'
 
-
     if (!localagent) {
         if (brow.satisfies({ safari : ">= 10" })) {
             swal.fire({
@@ -23,8 +22,7 @@ const browser = async () => {
                 denyButtonText : 'later'
             })
             .then((response) => {
-                if (response.dismiss) return
-                if (response.isDenied) {
+                if (response.dismiss || response.isDenied) {
                     swal.fire({
                         icon: "warning",
                         text: "vixcera may not work properly on this browser",
