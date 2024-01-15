@@ -30,7 +30,7 @@ const checkCookie = async () => {
                             background: 'var(--primary)',
                             color : 'var(--blue)',
                             showDenyButton: true,
-                            denyButtonText: 'skip',
+                            denyButtonText: 'skip & continue',
                             confirmButtonText: 'step by step'
                         })
                         .then((res) => {
