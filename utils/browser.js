@@ -2,18 +2,21 @@ import bowser from "bowser"
 import swal from "sweetalert2"
 
 const browser = async () => {
+    document.cookie = "testCookie=successornot; sameSite=None; Secure;";
     const brow = bowser.getParser(window.navigator.userAgent);
     const useragent = navigator.userAgent
     const localagent = sessionStorage.getItem("useragent")
     const urldocs = 'https://support.apple.com/en-gb/guide/iphone/iphb01fc3c85/ios#:~:text=Control%20privacy%20and%20security%20settings,to%20allow%20cross%2Dsite%20tracking.'
-    console.log(localagent)
+    const thirdCookie = document.cookie.indexOf("testCookie=successornot") !== -1;
+    console.log(thirdCookie)
+    
 
     if (!localagent) {
-        if (brow.satisfies({ safari: ">=10" })) {
+        if (!thirdCookie) {
             swal.fire({
                 icon: 'info',
                 titleText: 'safari detected!',
-                text: "vixcera requires cookies, please turn off prevent cross-site tracking on safari settings.",
+                text: "vixcera requires third-party cookies, please turn off prevent cross-site tracking on safari settings.",
                 color: '#ccc',
                 background: 'var(--primary)',
                 confirmButtonText : "what's happend?",
