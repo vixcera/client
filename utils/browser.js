@@ -14,7 +14,7 @@ const browser = async () => {
 
 
     if (!localagent) {
-        if (!brow.satisfies({ safari : ">= 10" })) {
+        if (brow.satisfies({ safari : ">= 10" })) {
             swal.fire({
                 icon: 'info',
                 titleText: 'safari detected!',
