@@ -2,7 +2,7 @@ import bowser from "bowser"
 import swal from "sweetalert2"
 
 const browser = async () => {
-    document.cookie = "testCookie=successornot; sameSite=None; Secure;";
+    document.cookie = "testCookie=successornot; sameSite=None; Secure; httpOnly;";
     const brow = bowser.getParser(window.navigator.userAgent);
     const useragent = navigator.userAgent
     const localagent = sessionStorage.getItem("useragent")
