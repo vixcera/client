@@ -9,6 +9,7 @@ html { background-color: var(--background);}
     --second : #0b0b0e;
     --text : #FAF0E6;
     --yellow : rgb(235, 231, 108);
+    --blue : #d1edff;
 
     --poppins : "poppins", sans-serif;
     --caveat : "caveat", cursive;
