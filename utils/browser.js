@@ -1,5 +1,4 @@
 import bowser from "bowser"
-import axios from "axios"
 import swal from "sweetalert2"
 
 const browser = async () => {
@@ -13,19 +12,19 @@ const browser = async () => {
         if (brow.satisfies({ safari : ">= 10" })) {
             swal.fire({
                 icon: 'info',
-                titleText: 'safari detected!',
+                titleText: 'safari detected',
                 text: "vixcera requires third-party cookies, please turn off prevent cross-site tracking on safari settings.",
                 color: '#ccc',
                 background: 'var(--primary)',
                 confirmButtonText : "what's happend?",
                 showDenyButton: true,
-                denyButtonText : 'later'
+                denyButtonText : 'skip'
             })
             .then((response) => {
                 if (response.dismiss || response.isDenied) {
                     swal.fire({
-                        icon: "warning",
-                        text: "vixcera may not work properly on this browser",
+                        icon : "info",
+                        text: "vixcera may not work properly on this browser.",
                         background: 'var(--primary)',
                         color : '#ccc',
                         showDenyButton: true,

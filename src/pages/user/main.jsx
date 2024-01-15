@@ -4,10 +4,13 @@ import Content from "../../components/content"
 import Sidebar from "../../components/sidebar"
 import { useEffect } from "react"
 import "../../style/main.css"
+import checkCookie from "../../../utils/checkCookie"
 
 const Main = () => {
 
-    useEffect(() => { browser() }, [])
+    useEffect(() => { 
+        checkCookie()
+     }, [])
 
     return (
         <div className="main">
