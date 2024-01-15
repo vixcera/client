@@ -1,16 +1,13 @@
 import Navbar from "../../components/navbar"
-import browser from "../../../utils/browser"
 import Content from "../../components/content"
 import Sidebar from "../../components/sidebar"
+import checkCookie from "../../../utils/rules"
 import { useEffect } from "react"
 import "../../style/main.css"
-import checkCookie from "../../../utils/checkCookie"
 
 const Main = () => {
 
-    useEffect(() => { 
-        checkCookie()
-     }, [])
+    useEffect(() => { checkCookie() }, [])
 
     return (
         <div className="main">
