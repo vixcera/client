@@ -2,7 +2,7 @@ import axios from "axios"
 
 const checkCookie = async () => {
     try {
-        axios.get(`${import.meta.env.VITE_API}/getcookie`)
+        const response = await axios.get(`${import.meta.env.VITE_API}/getcookie`)
         .then(() => axios.get(`${import.meta.env.VITE_API}/checkcookie`))
     } catch (error) {
         if (error.response){
