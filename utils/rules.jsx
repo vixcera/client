@@ -13,6 +13,16 @@ const checkCookie = async () => {
     const img_firefox = '/img/firefox.png'
     const img_default = '/img/browser.png'
 
+    const endpoint = (name === 'safari') && 'https://support.apple.com/en-gb/guide/iphone/iphb01fc3c85/ios#:~:text=Control%20privacy%20and%20security%20settings,to%20allow%20cross%2Dsite%20tracking.' ||
+                     (name === 'chrome') && 'https://support.google.com/accounts/answer/61416?hl=id&co=GENIE.Platform%3DDesktop&oco=1' ||
+                     (name === 'firefox') && 'https://www-internetcookies-com.translate.goog/enable-cookies-firefox/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc' ||
+                     (!name.includes("safari" || "chrome" || "firefox")) && 'https://www-123formbuilder-com.translate.goog/docs/how-to-enable-third-party-cookies-in-your-web-browser/?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc'
+
+    const endimg = (name === 'safari') && img_safari ||
+                   (name === 'chrome') && img_chrome ||
+                   (name === 'firefox') && img_firefox ||
+                   (!name.includes("safari" || "chrome" || "firefox")) && img_default
+
     if (!agent) {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/getcookie`)
@@ -32,20 +42,15 @@ const checkCookie = async () => {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        if (res.isConfirmed) {
-                            swal.fire({
-                                imageUrl: (name === 'safari') && img_safari ||
-                                          (name === 'chrome') && img_chrome ||
-                                          (name === 'firefox') && img_firefox ||
-                                          (!name.includes("safari" || "chrome" || "firefox")) && img_default,
-                                imageWidth : 120,
-                                background: 'var(--primary)',
-                                color : 'var(--blue)',
-                                title : name,
-                                text : `you are using ${name}, let's go configure now.`,
-                                confirmButtonText: 'configuration'
-                            })
-                        }
+                        swal.fire({
+                            imageUrl: endimg,
+                            imageWidth : 120,
+                            background: 'var(--primary)',
+                            color : 'var(--blue)',
+                            title : name,
+                            text : `we detected you are using ${name}, let's configure and start exploring vixcera`,
+                            confirmButtonText: 'configuration'
+                        })
                     }
                     if (result.isDenied) {
                         swal.fire({
@@ -56,7 +61,6 @@ const checkCookie = async () => {
                             showDenyButton: true,
                             denyButtonText: 'skip & continue',
                             confirmButtonText: 'step by step',
-                            reverseButtons: true
                         })
                         .then((res) => {
                             if (res.isDenied) {
@@ -64,10 +68,7 @@ const checkCookie = async () => {
                             }
                             if (res.isConfirmed) {
                                 swal.fire({
-                                    imageUrl: (name === 'safari') && img_safari ||
-                                              (name === 'chrome') && img_chrome ||
-                                              (name === 'firefox') && img_firefox ||
-                                              (!name.includes("safari" || "chrome" || "firefox")) && img_default,
+                                    imageUrl: endimg,
                                     imageWidth : 120,
                                     background: 'var(--primary)',
                                     color : 'var(--blue)',
