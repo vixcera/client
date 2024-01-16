@@ -31,7 +31,9 @@ const UserConfirm = () => {
         finally{context.setLoading(false)}
     }
 
-    useEffect(() => { !token && navigate('/') }, [])
+    useEffect(() => { 
+        navigate('/')
+     }, [])
 
     return(
         <div className="page-max">
