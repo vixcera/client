@@ -1,9 +1,17 @@
 import axios from "axios"
+import bowser from "bowser"
 import swal from "sweetalert2"
 
 const checkCookie = async () => {
 
     const agent = sessionStorage.getItem("agent")
+    const info = bowser.parse(window.navigator.userAgent)
+    const name = info.browser.name.toLowerCase()
+
+    const img_safari = '/img/safari.png'
+    const img_chrome = '/img/chrome.png'
+    const img_firefox = '/img/firefox.png'
+    const img_default = '/img/browser.png'
 
     if (!agent) {
         try {
@@ -23,6 +31,22 @@ const checkCookie = async () => {
                     confirmButtonText: 'yes, understand'
                 })
                 .then((result) => {
+                    if (result.isConfirmed) {
+                        if (res.isConfirmed) {
+                            swal.fire({
+                                imageUrl: (name === 'safari') && img_safari ||
+                                          (name === 'chrome') && img_chrome ||
+                                          (name === 'firefox') && img_firefox ||
+                                          (!name.includes("safari" || "chrome" || "firefox")) && img_default,
+                                imageWidth : 120,
+                                background: 'var(--primary)',
+                                color : 'var(--blue)',
+                                title : name,
+                                text : `you are using ${name}, let's go configure now.`,
+                                confirmButtonText: 'configuration'
+                            })
+                        }
+                    }
                     if (result.isDenied) {
                         swal.fire({
                             icon: 'warning',
@@ -31,14 +55,26 @@ const checkCookie = async () => {
                             color : 'var(--blue)',
                             showDenyButton: true,
                             denyButtonText: 'skip & continue',
-                            confirmButtonText: 'step by step'
+                            confirmButtonText: 'step by step',
+                            reverseButtons: true
                         })
                         .then((res) => {
                             if (res.isDenied) {
                                 sessionStorage.setItem("agent", "prevent")
                             }
                             if (res.isConfirmed) {
-                                window.location.href='/browser'
+                                swal.fire({
+                                    imageUrl: (name === 'safari') && img_safari ||
+                                              (name === 'chrome') && img_chrome ||
+                                              (name === 'firefox') && img_firefox ||
+                                              (!name.includes("safari" || "chrome" || "firefox")) && img_default,
+                                    imageWidth : 120,
+                                    background: 'var(--primary)',
+                                    color : 'var(--blue)',
+                                    title : name,
+                                    text : `you are using ${name}, let's go configure now.`,
+                                    confirmButtonText: 'configuration'
+                                })
                             }
                         })
                     }
