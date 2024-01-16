@@ -7,6 +7,7 @@ const checkCookie = async () => {
     const agent = sessionStorage.getItem("agent")
     const info = bowser.parse(window.navigator.userAgent)
     const name = info.browser.name.toLowerCase()
+    console.log(info)
 
     const img_safari = '/img/safari.png'
     const img_chrome = '/img/chrome.png'
