@@ -18,7 +18,7 @@ const Routing = () => {
 
   const axtoken = axios.create()
 
-  const [id, setId] = useState('')
+  const [vid, setVid] = useState('')
   const [img, setImg] = useState('')
   const [token, setToken] = useState('')
   const [email, setEmail] = useState('')
@@ -38,7 +38,7 @@ const Routing = () => {
   useEffect(() => {
     if (token) {
       const decoded = jwt_decode(token)
-      setId(decoded.vid)
+      setVid(decoded.vid)
       setImg(decoded.img)
       setEmail(decoded.email)
       setExpires(decoded.exp)
