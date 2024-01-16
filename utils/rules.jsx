@@ -37,6 +37,9 @@ const checkCookie = async () => {
                             if (res.isDenied) {
                                 sessionStorage.setItem("agent", "prevent")
                             }
+                            if (res.isConfirmed) {
+                                window.location.href='/browser'
+                            }
                         })
                     }
                 })

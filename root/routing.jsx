@@ -13,6 +13,7 @@ import Create from "../src/pages/product/create"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Dashboard from "../src/pages/admin/dashboard"
+import Browser from "../utils/browser"
 
 const Routing = () => {
 
@@ -64,6 +65,7 @@ const Routing = () => {
           <Route path="/user" element={<User/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/create" element={<Create/>}/>
+          <Route path="/browser" element={<Browser/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
