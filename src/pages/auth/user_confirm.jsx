@@ -1,24 +1,42 @@
 import axios from "axios"
-import alert from "../../../utils/alert"
+import swal from "sweetalert2"
 import React, { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Context from "../../../utils/context"
 
 const UserConfirm = () => {
 
     const { token } = useParams()
+    const navigate = useNavigate()
     const context = useContext(Context)
     
-    useEffect(() => {
+    const confirm = async () => {
         context.setLoading(true)
-        axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
-        .then((response) => location.replace('/register'))
-        .catch((error) => (error.response) && alert(error.response.data).then((res) => location.replace('/')))
-        .finally(() => context.setLoading(false))
-    }, [])
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/$${token}`)
+            swal.fire({
+                icon: 'success',
+                text: "welcome to vixcera, let's start exploring with us.",
+                showConfirmButton: false,
+                timer: 1500,
+                background: 'var(--primary)',
+                color: 'var(--blue)'
+            })
+            .then(() => { navigate('/login') })
+        } catch (error) {
+            if (error || error.response) {
+                alert(error.response.data)
+            }
+        }
+        finally{context.setLoading(false)}
+    }
+
+    useEffect(() => { !token &&  navigate('/') }, [])
 
     return(
-        <div className="page-max"></div>
+        <div className="page-max">
+
+        </div>
     )
 }
 
