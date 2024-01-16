@@ -12,7 +12,7 @@ const UserConfirm = () => {
     useEffect(() => {
         context.setLoading(true)
         axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
-        .then((response) => console.log(response))
+        .then((response) => location.replace('/register'))
         .catch((error) => (error.response) && alert(error.response.data).then((res) => location.replace('/')))
         .finally(() => context.setLoading(false))
     }, [])
