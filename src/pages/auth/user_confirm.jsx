@@ -19,14 +19,13 @@ const UserConfirm = () => {
                 icon: 'success',
                 text: "welcome to vixcera, let's start exploring with us.",
                 showConfirmButton: false,
-                timer: 1500,
                 background: 'var(--primary)',
                 color: 'var(--blue)'
             })
             .then(() => { navigate('/login') })
         } catch (error) {
-            alert("internal server error").then(() => navigate('/'))
-            if (error.response) alert(error.response.data).then(() => location.href = '/register')
+            alert("internal server error").then(() => location.href = '/')
+            if (error.response) alert(error.response.data).then(() => location.href = '/')
         }
         finally{context.setLoading(false)}
     }
