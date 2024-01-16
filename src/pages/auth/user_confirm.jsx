@@ -26,7 +26,9 @@ const UserConfirm = () => {
             .then(() => { navigate('/login') })
         } catch (error) {
             alert("internal server error").then(() => navigate('/'))
-            if (error.response) {alert(error.response.data).then((res) => res.dismiss && navigate('/register'))}
+            if (error.response) {alert(error.response.data).then((res) => {
+                if (res.dismiss) return location.href = '/register'
+            })}
         }
         finally{context.setLoading(false)}
     }
