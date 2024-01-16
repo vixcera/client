@@ -23,7 +23,9 @@ const UserConfirm = () => {
                 background: 'var(--primary)',
                 color: 'var(--blue)'
             })
-            .then(() => { navigate('/login') })
+            .then((res) => {
+                if (res.dismiss) return location.href = '/login'
+            })
         } catch (error) {
             alert("internal server error").then(() => navigate('/'))
             if (error.response) {alert(error.response.data).then((res) => {
