@@ -7,7 +7,6 @@ const checkCookie = async () => {
     const agent = sessionStorage.getItem("agent")
     const info = bowser.parse(window.navigator.userAgent)
     const name = info.browser.name.toLowerCase()
-    const os = info.os.name
 
     const img_safari = '/img/safari.png'
     const img_chrome = '/img/chrome.png'
@@ -39,7 +38,10 @@ const checkCookie = async () => {
                     color : 'var(--blue)',
                     showDenyButton: true,
                     denyButtonText: 'skip',
-                    confirmButtonText: "how's that?"
+                    confirmButtonText: "how's that?",
+                    showClass : {
+                        popup : `animate__animated`
+                    }
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
@@ -48,7 +50,7 @@ const checkCookie = async () => {
                             imageWidth : 90,
                             background: 'var(--primary)',
                             color : 'var(--blue)',
-                            title : `${name}(${os})`,
+                            title : name,
                             text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
                             confirmButtonText: "check it out"
                         })
@@ -76,7 +78,7 @@ const checkCookie = async () => {
                                     imageWidth : 90,
                                     background: 'var(--primary)',
                                     color : 'var(--blue)',
-                                    title : `${name}(${os})`,
+                                    title : name,
                                     text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
                                     confirmButtonText: 'check it out'
                                 })
