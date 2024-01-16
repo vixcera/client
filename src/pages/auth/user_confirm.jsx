@@ -14,7 +14,9 @@ const UserConfirm = () => {
         axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
         .then((response) => console.log(response))
         .catch((error) => {
-            return context.setLoading(false)
+            if (error) {
+                return context.setLoading(false)
+            }
         })
     }, [token])
 
