@@ -2,10 +2,10 @@ import swal from "sweetalert2"
 
 const alert = (error) => {
     return swal.fire({
-        icon: "warning",
+        icon: "info",
         text: `${error}`,
         showConfirmButton : false,
-        color: 'var(--yellow)',
+        color : 'var(--blue)',
         background: 'var(--primary)',
         timer: 1500
     })
