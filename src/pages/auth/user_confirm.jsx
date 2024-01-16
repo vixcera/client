@@ -15,7 +15,7 @@ const UserConfirm = () => {
         .then((response) => console.log(response))
         .catch((error) => (error.response) && alert(error.response.data).then((res) => location.replace('/')))
         .finally(() => context.setLoading(false))
-    }, [token])
+    }, [])
 
     return(
         <div className="page-max"></div>
