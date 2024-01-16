@@ -14,7 +14,7 @@ const UserConfirm = () => {
     const confirm = async () => {
         context.setLoading(true)
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/$${token}`)
             swal.fire({
                 icon: 'success',
                 text: "welcome to vixcera, let's start exploring with us.",
@@ -23,9 +23,7 @@ const UserConfirm = () => {
                 background: 'var(--primary)',
                 color: 'var(--blue)'
             })
-            .then((res) => {
-                if (res.dismiss) return location.href = '/login'
-            })
+            .then(() => { navigate('/login') })
         } catch (error) {
             alert("internal server error").then(() => navigate('/'))
             if (error.response) {alert(error.response.data).then((res) => {
