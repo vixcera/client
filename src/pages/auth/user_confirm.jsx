@@ -14,7 +14,7 @@ const UserConfirm = () => {
     const confirm = async () => {
         context.setLoading(true)
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/$${token}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
             swal.fire({
                 icon: 'success',
                 text: "welcome to vixcera, let's start exploring with us.",
