@@ -61,15 +61,15 @@ const Create = () => {
         <div className='input-form'>
           <div>
             <div>Title :</div>
-            <input className='productinput' value={title} type="text" placeholder='ex: company profile' onChange={(e) => setTitle(e.target.value)}/>
+            <input className='productinput' value={title} type="text" placeholder='e.g. company profile' onChange={(e) => setTitle(e.target.value)}/>
           </div>
           <div>
             <div>Description :</div>
-            <input className='productinput' value={desc} type="text" placeholder='ex: modern company web.....' onChange={(e) => setDesc(e.target.value)}/>
+            <input className='productinput' value={desc} type="text" placeholder='e.g. modern company web.....' onChange={(e) => setDesc(e.target.value)}/>
           </div>
           <div>
             <div>Price :</div>
-            <input className='productinput' value={price} type="text" placeholder='ex: 350000' onChange={(e) => setPrice(e.target.value)}/>
+            <input className='productinput' value={price} type="text" placeholder='e.g. 350000' onChange={(e) => setPrice(e.target.value)}/>
           </div>
           <div>
               <div>Category :</div>
