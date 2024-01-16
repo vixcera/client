@@ -44,7 +44,7 @@ const Navbar = () => {
           <NavLink className="menu" to="/about">About</NavLink> 
         </div>
         <div className="nav-user">
-          {(context.id) ? 
+          {(context.vid) ? 
           <NavLink className='button'><div style={{color: 'var(--background)'}} className="i fa-solid fa-cart-shopping fa-xl"/></NavLink>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
