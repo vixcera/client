@@ -1,33 +1,30 @@
 import axios from "axios"
 import swal from "sweetalert2"
 import alert from "../../../utils/alert"
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Context from "../../../utils/context"
 
 const UserConfirm = () => {
 
     const { token } = useParams()
     const navigate = useNavigate()
-    const context = useContext(Context)
     
     const confirm = async () => {
-        context.setLoading(true)
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/confirm/user/${token}`)
             swal.fire({
                 icon: 'success',
                 text: "welcome to vixcera, let's start exploring with us.",
+                timer: 2000,
                 showConfirmButton: false,
                 background: 'var(--primary)',
                 color: 'var(--blue)'
             })
-            .then(() => { navigate('/login') })
+            .then((res) => { res.dismiss && navigate('/login') })
         } catch (error) {
-            alert("internal server error").then(() => location.href = '/')
-            if (error.response) alert(error.response.data).then(() => location.href = '/')
+            alert("internal server error").then((res) => res.dismiss && navigate('/'))
+            if (error.response) alert(error.response.data).then((res) => res.dismiss && navigate('/register'))
         }
-        finally{context.setLoading(false)}
     }
 
     useEffect(() => { confirm() }, [])
