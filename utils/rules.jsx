@@ -51,6 +51,9 @@ const checkCookie = async () => {
                             text : `we detected you are using ${name}, let's configure and start exploring vixcera`,
                             confirmButtonText: 'configuration'
                         })
+                        .then((res) => {
+                            if (res.isConfirmed) return window.open(endpoint, "_blank")
+                        })
                     }
                     if (result.isDenied) {
                         swal.fire({
@@ -73,8 +76,11 @@ const checkCookie = async () => {
                                     background: 'var(--primary)',
                                     color : 'var(--blue)',
                                     title : name,
-                                    text : `you are using ${name}, let's go configure now.`,
+                                    text : `we detected you are using ${name}, let's configure and start exploring vixcera`,
                                     confirmButtonText: 'configuration'
+                                })
+                                .then((show) => {
+                                    if (show.isConfirmed) return window.open(endpoint, "_blank")
                                 })
                             }
                         })
