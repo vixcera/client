@@ -38,7 +38,7 @@ const Routing = () => {
   useEffect(() => {
     if (token) {
       const decoded = jwt_decode(token)
-      setId(decoded.id)
+      setId(decoded.vid)
       setImg(decoded.img)
       setEmail(decoded.email)
       setExpires(decoded.exp)
@@ -54,7 +54,7 @@ const Routing = () => {
   }, [])
 
   if (loading) return (<Loading/>)
-  const context = {id, img, email, username, token, setLoading, setToken, axtoken}
+  const context = {vid, img, email, username, token, setLoading, setToken, axtoken}
 
   return (
     <Context.Provider value={context}>
