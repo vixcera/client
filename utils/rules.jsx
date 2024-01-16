@@ -39,13 +39,6 @@ const checkCookie = async () => {
                     showDenyButton: true,
                     denyButtonText: 'skip',
                     confirmButtonText: "how's that?",
-                    showClass : {
-                        popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `
-                    }
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
