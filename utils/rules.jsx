@@ -38,7 +38,7 @@ const checkCookie = async () => {
                     color : 'var(--blue)',
                     showDenyButton: true,
                     denyButtonText: 'skip',
-                    confirmButtonText: 'yes, understand'
+                    confirmButtonText: "how's that?"
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
@@ -48,8 +48,8 @@ const checkCookie = async () => {
                             background: 'var(--primary)',
                             color : 'var(--blue)',
                             title : name,
-                            text : `we detected you are using ${name}, let's configure and start exploring vixcera`,
-                            confirmButtonText: 'configuration'
+                            text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
+                            confirmButtonText: "check it out"
                         })
                         .then((res) => {
                             if (res.isConfirmed) return window.open(endpoint, "_blank")
@@ -63,7 +63,7 @@ const checkCookie = async () => {
                             color : 'var(--blue)',
                             showDenyButton: true,
                             denyButtonText: 'skip & continue',
-                            confirmButtonText: 'step by step',
+                            confirmButtonText: "how's that?",
                         })
                         .then((res) => {
                             if (res.isDenied) {
@@ -76,8 +76,8 @@ const checkCookie = async () => {
                                     background: 'var(--primary)',
                                     color : 'var(--blue)',
                                     title : name,
-                                    text : `we detected you are using ${name}, let's configure and start exploring vixcera`,
-                                    confirmButtonText: 'configuration'
+                                    text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
+                                    confirmButtonText: 'check it out'
                                 })
                                 .then((show) => {
                                     if (show.isConfirmed) return window.open(endpoint, "_blank")
