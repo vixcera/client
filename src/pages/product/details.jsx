@@ -31,8 +31,8 @@ const Details = () => {
             </div>
             <div className='prev-form' style={{ marginTop: '50px' }}>
               <div className='itext'>Product Details</div>
-              <div className="product-card" style={{alignItems: 'center', justifyContent:'center'}}>
-                <LazyLoadImage style={{ height: '210px' }} onClick={() => swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+              <div className="product-card" style={{alignItems: 'center', justifyContent:'center', padding: '10px'}}>
+                <LazyLoadImage onClick={() => swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
               </div>
               {data.map((i,k) => {
                   return(
