@@ -52,8 +52,8 @@ const Product = () => {
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
                                         <div className='product-desc'>{i.desc.length >= 50 ? i.desc.substring(0,50) + '...' : i.desc}</div>
                                         <div className='wrapdet' style={{ position: 'unset', marginTop: '15px', marginLeft: '5px', gap: '5px' }}>
-                                            <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>Tech :</div>
-                                            <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>React</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '120px', height: '30px' }}>Tech :</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '120px', height: '30px' }}>{i.tech}</div>
                                          </div>
                                     </div>
                                     <div className='wrapped-details'>
