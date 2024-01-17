@@ -54,7 +54,7 @@
 
 .wrapped-text {
     width: 100%;
-    padding-right: 20px;
+    padding-right: 10px;
     transition: 0.3s linear;
     transform-origin: left;
 }
@@ -112,7 +112,7 @@
 
 @media (max-width: 655px) {
     .by { display: none; }
-    .product-desc {display: none;}
+    /* .product-desc {display: none;} */
 }
 
 @media (max-width: 550px) {

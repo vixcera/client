@@ -17,12 +17,14 @@ const Create = () => {
   const [file, setFile] = useState('')
   const [image, setImage] = useState('')
   const [ctg, setCtg] = useState((inputHistory) ? inputHistory.ctg : '')
+  const [tech, setTech] = useState((inputHistory) ? inputHistory.tech : '')
+  const [type, setType] = useState((inputHistory) ? inputHistory.type : '')
   const [desc, setDesc] = useState((inputHistory) ? inputHistory.desc : '')
   const [title, setTitle] = useState((inputHistory) ? inputHistory.title : '')
   const [price, setPrice] = useState((inputHistory) ? inputHistory.price : '')
 
   if (title || price || desc || ctg || file || image) {
-    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg}))
+    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg, tech, type}))
   }
 
   const createProduct = async () => {
@@ -61,25 +63,50 @@ const Create = () => {
         <div className='input-form'>
           <div>
             <div>Title :</div>
-            <input className='productinput' value={title} type="text" placeholder='e.g. company profile' onChange={(e) => setTitle(e.target.value)}/>
+            <input className='productinput' value={title} type="text" placeholder='e.g. company profile' onChange={(e) => setTitle(e.target.value)} required/>
           </div>
           <div>
             <div>Description :</div>
-            <input className='productinput' value={desc} type="text" placeholder='e.g. modern company web.....' onChange={(e) => setDesc(e.target.value)}/>
+            <input className='productinput' value={desc} type="text" placeholder='e.g. modern company web.....' onChange={(e) => setDesc(e.target.value)} required/>
           </div>
           <div>
             <div>Price :</div>
-            <input className='productinput' value={price} type="text" placeholder='e.g. 350000' onChange={(e) => setPrice(e.target.value)}/>
+            <input className='productinput' value={price} type="text" placeholder='e.g. 350000' onChange={(e) => setPrice(e.target.value)} required/>
           </div>
           <div>
               <div>Category :</div>
-              <select style={{width: '100%'}} value={ctg} onChange={(e) => setCtg(e.target.value)}>
+              <select style={{width: '100%'}} value={ctg} onChange={(e) => setCtg(e.target.value)} required>
                 <option value=""></option>
                 <option value="web">Web</option>
                 <option value="vector">Vector</option>
                 <option value="video">Video</option>
               </select>
+          </div>
+          {(ctg == 'web') && 
+          <>
+            <div>
+                <div>Web type :</div>
+                <select style={{width: '100%'}} value={type} onChange={(e) => setType(e.target.value)} required>
+                  <option value=""></option>
+                  <option value="static">Static</option>
+                  <option value="dynamic">Dynamic</option>
+                </select>
             </div>
+            <div>
+                <div>Technology :</div>
+                <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
+                  <option value=""></option>
+                  <option value="html">HTML & CSS</option>
+                  <option value="angular">Angular JS</option>
+                  <option value="svelte">Svelte JS</option>
+                  <option value="react">React JS</option>
+                  <option value="next">Next JS</option>
+                  <option value="vue">Vue JS</option>
+                </select>
+            </div>
+          </>
+          }
+          
           <div className='wrap-file'>
             <div>
               <div>Preview : </div>
@@ -108,7 +135,7 @@ const Create = () => {
             <LazyLoadImage className='product-img' src={(image) ? URL.createObjectURL(image) : '/img/dpi.jpg'} loading='lazy' effect='blur'/>
             <div className="wrapped-text">
               <div className='product-title'>{(title) ? title : 'Untitled'}</div>
-              <div className='product-desc'>{(desc) ? desc : 'no description available'}</div>
+              <div className='product-desc'>{(desc) ? (desc.length >= 30) ? desc.substring(0,30) + "..." : desc : 'no description available'}</div>
               <div className="wrapped-details">
               <div className='button price'>{convertPrice(price)}</div>
               <div style={{ color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
