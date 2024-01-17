@@ -92,7 +92,7 @@ const Create = () => {
                 <div>Framework :</div>
                 <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
                   <option value=""></option>
-                  <option value="html">HTML & CSS</option>
+                  <option value="html & css">HTML & CSS</option>
                   <option value="angular">Angular JS</option>
                   <option value="svelte">Svelte JS</option>
                   <option value="react">React JS</option>
