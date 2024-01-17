@@ -13,7 +13,7 @@ import Create from "../src/pages/product/create"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Dashboard from "../src/pages/admin/dashboard"
-import UserConfirm from "../src/pages/auth/user_confirm"
+import UserConfirm from "../auth/userConfirm"
 
 const Routing = () => {
 
