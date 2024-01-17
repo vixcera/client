@@ -23,7 +23,7 @@ const Profile = () => {
             context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
-            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000, background: 'var(--primary)', color: 'var(--blue)'})
             .then((res) => location.href = '/')
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
