@@ -19,6 +19,7 @@ const UserConfirm = () => {
                 background: 'var(--primary)',
                 color: 'var(--blue)'
             })
+            navigate('/login')
         } catch (error) {
             navigate('/')
             alert("internal server error")
