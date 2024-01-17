@@ -18,31 +18,31 @@ const Create = () => {
   const [image, setImage] = useState('')
   const [ctg, setCtg] = useState((inputHistory) ? inputHistory.ctg : '')
   const [tech, setTech] = useState((inputHistory) ? inputHistory.tech : '')
-  const [type, setType] = useState((inputHistory) ? inputHistory.type : '')
   const [desc, setDesc] = useState((inputHistory) ? inputHistory.desc : '')
   const [title, setTitle] = useState((inputHistory) ? inputHistory.title : '')
   const [price, setPrice] = useState((inputHistory) ? inputHistory.price : '')
 
   if (title || price || desc || ctg || file || image) {
-    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg, tech, type}))
+    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg, tech }))
   }
 
   const createProduct = async () => {
     
-    if (file && title && image && desc && price && ctg) {
+    if (file && title && image && desc && price && ctg && tech) {
       try {
         let formData = new FormData()
         formData.append('ctg', ctg);
         formData.append('img', image);
         formData.append('desc', desc);
         formData.append('file', file);
+        formData.append('tech', tech);
         formData.append('title', title);
         formData.append('price', price);
         const response = await axios.post(`${import.meta.env.VITE_API}/product`,formData, {
           headers: {"Content-Type": 'multipart/form-data'}
         })
         localStorage.clear()
-        swal.fire({icon:'success',text:response.data,showConfirmButton:false,timer:2500})
+        swal.fire({icon:'success',text:response.data,showConfirmButton:false, background: 'var(--primary)', color: 'var(--blue)'})
         .then((res) => res.dismiss && location.reload())
       } catch (error) {
         if (error.response) { alert(error.response.data) }
@@ -85,15 +85,7 @@ const Create = () => {
           {(ctg == 'web') && 
           <>
             <div>
-                <div>Web type :</div>
-                <select style={{width: '100%'}} value={type} onChange={(e) => setType(e.target.value)} required>
-                  <option value=""></option>
-                  <option value="static">Static</option>
-                  <option value="dynamic">Dynamic</option>
-                </select>
-            </div>
-            <div>
-                <div>Technology :</div>
+                <div>Framework :</div>
                 <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
                   <option value=""></option>
                   <option value="html">HTML & CSS</option>
@@ -126,7 +118,7 @@ const Create = () => {
                 <div style={{ color: '#aaa', fontSize: '0.95rem' }}>Max size: 20 Mb</div>
               </div>
             </div>
-            <div className='button-max' onClick={() => createProduct()} style={(file && title && image && desc && price && ctg) ? {backgroundColor: 'var(--yellow)', marginTop: '60px'} : {backgroundColor: '#aaa', marginTop: '60px'}}>Create</div>
+            <div className='button-max' onClick={() => createProduct()} style={(file && title && image && desc && price && ctg && tech) ? {backgroundColor: 'var(--yellow)', marginTop: '60px'} : {backgroundColor: '#aaa', marginTop: '60px'}}>Create</div>
             </div>
           </div>
         <div className='prev-form'>
