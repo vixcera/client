@@ -49,7 +49,13 @@ const Product = () => {
                                 <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
-                                    <div className='product-desc'>{i.desc}</div>
+                                    <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
+                                        <div className='product-desc'>{i.desc}</div>
+                                        <div className='wrapdet' style={{ position: 'unset', marginTop: '10px', marginLeft: '5px' }}>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>Tech :</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>React</div>
+                                         </div>
+                                    </div>
                                     <div className='wrapped-details'>
                                         <div className='button price'>{convertPrice(i.price)}</div>
                                         <div style={{ color : 'var(--text)', cursor: 'pointer'}} onClick={() => navigate(`/order/${i.vid}`)} className='fa-solid fa-cart-plus fa-xl' />
