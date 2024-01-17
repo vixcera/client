@@ -29,9 +29,9 @@ const Details = () => {
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>
-            <div className='prev-form' style={{ marginTop: '70px' }}>
+            <div className='prev-form' style={{ marginTop: '50px' }}>
               <div className='itext'>Product Details</div>
-              <div className="product-card">
+              <div className="product-card" style={{alignItems: 'center'}}>
                 <LazyLoadImage onClick={() => swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
               </div>
               {data.map((i,k) => {
