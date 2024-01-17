@@ -93,11 +93,11 @@ const Create = () => {
                 <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
                   <option value=""></option>
                   <option value="html & css">HTML & CSS</option>
-                  <option value="angular">Angular JS</option>
-                  <option value="svelte">Svelte JS</option>
-                  <option value="react">React JS</option>
-                  <option value="next">Next JS</option>
-                  <option value="vue">Vue JS</option>
+                  <option value="Angular JS">Angular JS</option>
+                  <option value="Svelte JS">Svelte JS</option>
+                  <option value="React JS">React JS</option>
+                  <option value="Next JS">Next JS</option>
+                  <option value="Vue JS">Vue JS</option>
                 </select>
             </div>
           </>
