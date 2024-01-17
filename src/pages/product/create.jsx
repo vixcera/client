@@ -48,7 +48,8 @@ const Create = () => {
         swal.fire({icon:'success',text:response.data,showConfirmButton:false, background: 'var(--primary)', color: 'var(--blue)'})
         .then((res) => res.dismiss && location.reload())
       } catch (error) {
-        if (error.response) { alert(error.response.data).then((res) => res.dismiss || res.isDismissed && navigate('/login')) }
+        alert("server maintenance!")
+        if (error.response) { alert(error.response.data) }
       } finally { context.setLoading(false) }
     } else {
       alert("please complete the form data!")
