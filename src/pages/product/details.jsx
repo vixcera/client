@@ -53,7 +53,7 @@ const Details = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Order & Donwload</div>
+                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Order & Download</div>
                         </>
                         )
                     })}
