@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import convertPrice from "../../../utils/price"
 import Context from '../../../utils/context'
 import alert from "../../../utils/alert"
+import swal from "sweetalert2"
 import axios from "axios"
 import "../../style/product.css"
 
@@ -46,7 +47,7 @@ const Product = () => {
                     {data.map((i, k) => {
                             return(
                             <div className='product-card' key={k}>
-                                <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
+                                <LazyLoadImage className='product-img' onClick={() => {swal.fire({imageUrl: i.img,showConfirmButton: false})}} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
