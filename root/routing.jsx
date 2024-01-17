@@ -10,6 +10,7 @@ import Loading from "../utils/loading"
 import Order from "../src/pages/product/order"
 import Profile from "../src/pages/user/profile"
 import Create from "../src/pages/product/create"
+import Details from "../src/pages/product/details"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Dashboard from "../src/pages/admin/dashboard"
@@ -68,6 +69,7 @@ const Routing = () => {
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
+          <Route path="/product/:vid" element={<Details/>}/>
           <Route path="/order/:vid" element={<Order/>}/>
           <Route path="/products" element={<Main/>}/>
           <Route path="/about" element={<Main/>}/>

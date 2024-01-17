@@ -40,19 +40,19 @@ const Product = () => {
                 <div className="back" onClick={() => navigate(-1)}>
                     <div className="fa-solid fa-arrow-left fa-xl active"></div>
                     <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
-            </div>
+                </div>
             <div className='product-page'>
                 <div className='product-container'>
                 <input type="text" className='search'/>
                     {data.map((i, k) => {
                             return(
-                            <div className='product-card' key={k}>
-                                <LazyLoadImage className='product-img' onClick={() => {swal.fire({imageUrl: i.img,showConfirmButton: false})}} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
+                            <div className='product-card' key={k} onClick={() => navigate(`/product/${i.vid}`)}>
+                                <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
-                                        <div className='product-desc'>{i.desc.length >= 30 ? i.desc.substring(0,30) + '...' : i.desc}</div>
-                                        <div className='wrapdet' style={{ position: 'unset', marginTop: '10px', marginLeft: '5px', gap: '5px' }}>
+                                        <div className='product-desc'>{i.desc.length >= 50 ? i.desc.substring(0,50) + '...' : i.desc}</div>
+                                        <div className='wrapdet' style={{ position: 'unset', marginTop: '15px', marginLeft: '5px', gap: '5px' }}>
                                             <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>Tech :</div>
                                             <div style={{ backgroundColor: 'var(--background)', width: '90px', height: '30px' }}>React</div>
                                          </div>
