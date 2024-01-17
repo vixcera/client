@@ -24,7 +24,7 @@ const Content = () => {
                     <div className="text-wrapper">
                     <div>Hi {context.username}!,</div>
                     <div>Welcome back.</div>
-                    <div className="button contact" onClick={() => navigate('/user')}>Account</div>
+                    <div className="button contact" onClick={() => navigate('/profile')}>Account</div>
                 </div>
                 </div>
                 : 

@@ -5,7 +5,7 @@ import Context from '../../../utils/context'
 import swal from "sweetalert2"
 import axios from "axios"
 
-const User = () => {
+const Profile = () => {
     const navigate = useNavigate()
     const inputref = useRef(null)
     const context = useContext(Context)
@@ -68,4 +68,4 @@ const User = () => {
     )
 }
 
-export default User
+export default Profile;

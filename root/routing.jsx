@@ -4,11 +4,11 @@ import jwt_decode from "jwt-decode"
 import axios from "axios"
 
 import Main from "../src/pages/user/main"
-import User from "../src/pages/user/user"
 import Login from "../src/pages/user/login"
 import Context from "../utils/context"
 import Loading from "../utils/loading"
 import Order from "../src/pages/product/order"
+import Profile from "../src/pages/user/profile"
 import Create from "../src/pages/product/create"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
@@ -62,9 +62,9 @@ const Routing = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Main/>}/>
-          <Route path="/user" element={<User/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/create" element={<Create/>}/>
+          <Route path="/Profile" element={<Profile/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>

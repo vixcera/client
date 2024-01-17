@@ -38,7 +38,7 @@ const Sidebar = () => {
                 <div className="botside">
                     {(context.token) ? 
                     <>
-                    <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} to="/user">
+                    <NavLink className={a => (a.isActive) ? "sidelist" : "sidelist"} to="/profile">
                         <div className="fa-solid fa-user fa-xl"/>
                         <div className="sidetext">Account</div>
                     </NavLink>
