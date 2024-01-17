@@ -31,7 +31,7 @@ const Login = () => {
             const response = await axios.post(url, { email, password }, {withCredentials: true})
             context.setToken(response.data.token)
             localStorage.removeItem('email')
-            navigate('/user')
+            navigate('/profile')
         }
         catch (error) {
             alert("server maintenance!")
