@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
+import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
 import swal from "sweetalert2"
 import axios from "axios"
 import "../../style/create.css"
 
 const Create = () => {
+  const context = useContext(Context)
   const navigate = useNavigate()
   const fileref = useRef(null)
   const imgref = useRef(null)
@@ -29,6 +31,7 @@ const Create = () => {
   const createProduct = async () => {
     
     if (file && title && image && desc && price && ctg && tech) {
+      context.setLoading(true)
       try {
         let formData = new FormData()
         formData.append('ctg', ctg);
@@ -45,8 +48,8 @@ const Create = () => {
         swal.fire({icon:'success',text:response.data,showConfirmButton:false, background: 'var(--primary)', color: 'var(--blue)'})
         .then((res) => res.dismiss && location.reload())
       } catch (error) {
-        if (error.response) { alert(error.response.data) }
-      }
+        if (error.response) { alert(error.response.data).then((res) => res.dismiss && navigate('/login')) }
+      } finally { context.setLoading(false) }
     } else {
       alert("please complete the form data!")
     }
