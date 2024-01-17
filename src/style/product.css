@@ -53,6 +53,13 @@
     line-height: 23px;
 }
 
+.product-desc-product {
+    font-size: 1rem;
+    color: rgb(152, 148, 160);
+    margin-left: 5px;
+    line-height: 23px;
+}
+
 .wrapped-text {
     width: 100%;
     padding-right: 10px;
@@ -107,7 +114,6 @@
     }
     .product-card {
         width: 100%;
-        height: max-content;
     }
 }
 

@@ -69,11 +69,11 @@ const Routing = () => {
           <Route path="/register" element={<Register/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/product/:ctg" element={<Product/>}/>
-          <Route path="/product/:vid" element={<Details/>}/>
           <Route path="/order/:vid" element={<Order/>}/>
           <Route path="/products" element={<Main/>}/>
           <Route path="/about" element={<Main/>}/>
           
+          <Route path="/product/details/:vid" element={<Details/>}/>
           <Route path="/confirm/user/:token" element={<UserConfirm/>}/>
         </Routes>
       </Router>
