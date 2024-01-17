@@ -50,10 +50,10 @@ const Product = () => {
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
-                                        <div className='product-desc'>{i.desc.length >= 50 ? i.desc.substring(0,50) + '...' : i.desc}</div>
+                                        <div className='product-desc'>{i.desc.length >= 40 ? i.desc.substring(0,40) + '...' : i.desc}</div>
                                         <div className='wrapdet' style={{ position: 'unset', marginTop: '15px', marginLeft: '5px', gap: '5px' }}>
                                             <div style={{ backgroundColor: 'var(--background)', width: '120px', height: '30px' }}>Tech :</div>
-                                            <div style={{ backgroundColor: 'var(--background)', width: '120px', height: '30px' }}>{i.tech}</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '120px', height: '30px' }}>{i.tech.toUpperCase()}</div>
                                          </div>
                                     </div>
                                     <div className='wrapped-details'>
