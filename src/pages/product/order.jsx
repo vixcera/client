@@ -101,10 +101,8 @@ const Order = () => {
                               <div className='product-desc'>{i.desc}</div>
                               <div className='wrapped-details'>
                                   <div className='button price'>{convertPrice(i.price)}</div>
-                                  {/* <div style={{ color : 'var(--text)', cursor: 'pointer'}} onClick={() => navigate(`/order/${i.vid}`)} className='fa-solid fa-cart-plus fa-xl' /> */}
                               </div>
                           </div>
-                          <div className='by'>by: {i.by}</div>
                       </div>
                     )
                 })}
