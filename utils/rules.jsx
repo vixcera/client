@@ -25,8 +25,7 @@ const checkCookie = async () => {
 
     if (!agent) {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/getcookie`)
-            .then(() => axios.get(`${import.meta.env.VITE_API}/checkcookie`))
+            const response = await axios.get(`${import.meta.env.VITE_API}/checkcookie`)
             sessionStorage.setItem("agent", "prevent")
         } catch (error) {
             if (error.response){
