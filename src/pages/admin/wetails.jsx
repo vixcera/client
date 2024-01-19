@@ -54,7 +54,7 @@ const Wetails = () => {
                             </div>
                         </div>
                         <div className="button-max" style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Confirm</div>
-                        <div className="button-max" style={{ marginTop: '15px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
+                        <div className="button-max" style={{ marginTop: '5px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
                         </>
                         )
                     })}
