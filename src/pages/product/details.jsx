@@ -46,10 +46,10 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product">VID         : <span>{i.vid}</span></div>
-                                    <div className="product-desc-product">Price       : <span>{convertPrice(i.price)}</span></div>
-                                    <div className="product-desc-product">Category    : <span>{i.ctg}</span></div>
-                                    {i.ctg == 'web' && <div className="product-desc-product">Framework  : <span>{i.tech} {i.tech.toLowerCase().includes('html') ? "" : 'JS'}</span></div>}
+                                    <div className="product-desc-product"><span>VID</span>       : {i.vid}</div>
+                                    <div className="product-desc-product"><span>Price</span>       : <span>{convertPrice(i.price)}</span></div>
+                                    <div className="product-desc-product"><span>Category</span>   : <span>{i.ctg}</span></div>
+                                    {i.ctg == 'web' && <div className="product-desc-product"><span>Framework</span>  : {i.tech} {i.tech.toLowerCase().includes('html') ? "" : 'JS'}</div>}
                                 </div>
                             </div>
                         </div>
