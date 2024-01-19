@@ -12,10 +12,11 @@ const Login = () => {
     const context = useContext(Context)
     const refemail = localStorage.getItem('email')
 
-    const [as, setAs] = useState('user')
+    const [vxsrf, setVxsrf] = useState('')
     const [url, setUrl] = useState('')
-    const [email, setEmail] = useState((refemail) ? refemail : '')
+    const [as, setAs] = useState('user')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState((refemail) ? refemail : '')
 
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Login = () => {
         localStorage.setItem('email', email)
         context.setLoading(true)
         try {
-            const response = await axios.post(url, { email, password }, {withCredentials: true})
+            const response = await axios.post(url, { email, password }, { headers: {'xsrf-token' : vxsrf} })
             context.setToken(response.data.token)
             localStorage.removeItem('email')
             navigate('/profile')
@@ -42,7 +43,7 @@ const Login = () => {
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API}`)
-        .then(res => console.log(res.data))
+        .then((result) => setVxsrf(result.data))
     }, [])
 
     return(
