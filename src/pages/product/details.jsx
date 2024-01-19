@@ -39,16 +39,16 @@ const Details = () => {
                         <>
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
-                                <div className='product-title'>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block" }}>{i.desc}</div>
+                                <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1.1rem' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product"><span>VID</span>       : {i.vid}</div>
-                                    <div className="product-desc-product"><span>Price</span>       : <span>{convertPrice(i.price)}</span></div>
-                                    <div className="product-desc-product"><span>Category</span>   : <span>{i.ctg}</span></div>
+                                    <div className="product-desc-product"><span>VID</span>          : {i.vid}</div>
+                                    <div className="product-desc-product"><span>Price</span>        : {convertPrice(i.price)}</div>
+                                    <div className="product-desc-product"><span>Category</span>     : {i.ctg}</div>
                                     {i.ctg == 'web' && <div className="product-desc-product"><span>Framework</span>  : {i.tech} {i.tech.toLowerCase().includes('html') ? "" : 'JS'}</div>}
                                 </div>
                             </div>
