@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}`)
+        axios.get(`${import.meta.env.VITE_API}/vxsrf`)
         .then((result) => setVxsrf(result.data))
     }, [])
 

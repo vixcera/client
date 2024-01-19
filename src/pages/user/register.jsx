@@ -11,6 +11,7 @@ const Register = () => {
     const navigate = useNavigate()
     const context = useContext(Context)
 
+    const [vxsrf, setVxsrf] = useState('')
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -20,7 +21,7 @@ const Register = () => {
         context.setLoading(true)
         try {
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
-            {email, username, password})
+            {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, background: 'var(--primary)', color: 'var(--blue)'})
             .then(() => navigate('/'))
         } 
@@ -29,6 +30,12 @@ const Register = () => {
         }
         finally {context.setLoading(false)}
     }
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API}/vxsrf`)
+        .then((result) => setVxsrf(result.data))
+    }, [])
+
 
     return (
         <div className="page">
