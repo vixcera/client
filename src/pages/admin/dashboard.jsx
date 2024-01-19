@@ -48,24 +48,28 @@ const Dashboard = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>
             <div className='product-page'>
-                <div className='product-container' style={(data.length < 4) && {justifyContent: 'center'}}>
+                <div className='product-container'>
+                <input type="text" className='search'/>
                     {data.map((i, k) => {
-                        return(
+                            return(
                             <div className='product-card' key={k}>
-                                <div id='see' className='i fa-solid fa-eye fa-xl'/>
-                                <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
+                                <LazyLoadImage className='product-img' onClick={() => navigate(`/product/details/${i.vid}`)} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
-                                    <div className='product-desc'>{i.desc}</div>
+                                    <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
+                                        <div className='product-desc'>{i.desc.length >= 40 ? i.desc.substring(0,40) + '...' : i.desc}</div>
+                                        <div className='wrapdet' style={{ position: 'unset', marginTop: '15px', marginLeft: '5px', gap: '5px' }}>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech}</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech.toLowerCase().includes('html') ? "only" : 'JS'}</div>
+                                         </div>
+                                    </div>
                                     <div className='wrapped-details'>
                                         <div className='button price'>{convertPrice(i.price)}</div>
-                                        <div className='fa-solid fa-x fa-lg' onClick={() => reject()} style={{color: 'var(--text )', cursor: 'pointer'}}/>
-                                        <div className='fa-solid fa-check fa-xl' onClick={() => confirm()} style={{color: 'var(--yellow)', cursor: 'pointer'}}/>
+                                        <div style={{ color : 'var(--text)', cursor: 'pointer'}} onClick={() => navigate(`/order/${i.vid}`)} className='fa-solid fa-cart-plus fa-xl' />
                                     </div>
                                 </div>
-                                <div className='by'>by: {i.by}</div>
                             </div>
-                        ) 
+                            )
                         })
                     }
                 </div>
