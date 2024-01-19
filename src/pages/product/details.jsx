@@ -55,7 +55,7 @@ const Details = () => {
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">Category    : <span>{i.ctg}</span></div>
-                                    {i.ctg == 'web' && <div className="product-desc-product">Framework  : <span>{i.tech + '' + i.tech.toLowerCase().includes('html') ? "" : 'JS'}</span></div>}
+                                    {i.ctg == 'web' && <div className="product-desc-product">Framework  : <span>{i.tech + i.tech.toLowerCase().includes('html') ? "" : 'JS'}</span></div>}
                                 </div>
                             </div>
                         </div>
