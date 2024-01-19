@@ -40,7 +40,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '1.1rem' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1.15rem', marginTop: '10px' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
@@ -56,8 +56,8 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product">Created by  : <span>{i.by}</span></div>
-                                    <div className="product-desc-product">Created at  : <span>{i.createdAt.slice(0, 10)}</span></div>
+                                    <div className="product-desc-product"><span>Created By</span>  : {i.by}</div>
+                                    <div className="product-desc-product"><span>Created At</span>  : {i.createdAt.slice(0, 10)}</div>
                                 </div>
                             </div>
                         </div>
