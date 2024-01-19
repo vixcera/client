@@ -43,7 +43,7 @@ const Profile = () => {
                 headers : {"Content-Type" : "multipart/form-data", "xsrf-token" : vxsrf}, 
                 withCredentials : true
             })
-            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, background: 'var(--primary)', color: 'var(--blue)'})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, timer: 2000 , background: 'var(--primary)', color: 'var(--blue)'})
             .then(res => res.isDismissed && location.reload())
         } 
         catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})}
