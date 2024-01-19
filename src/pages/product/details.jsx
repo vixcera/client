@@ -1,13 +1,11 @@
 import axios from "axios"
 import swal from "sweetalert2"
 import convertPrice from "../../../utils/price"
-
 import { useState } from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-
 import "../../style/create.css"
 
 const Details = () => {
