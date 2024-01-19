@@ -40,7 +40,10 @@ const Login = () => {
         finally{context.setLoading(false)}
     }
 
-    // useEffect(() => {axios.get(`${import.meta.env.VITE_API}/ready`)}, [])
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API}`)
+        .then(res => console.log(res.data))
+    }, [])
 
     return(
         <div className="page">
