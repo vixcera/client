@@ -44,7 +44,7 @@ const Dashboard = () => {
     useEffect(() => {checkAdmin()}, [])
     
     return (
-        <div className='page'>
+        <div className='page-max'>
             <div className="back" onClick={() => navigate('/')}>
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
@@ -55,7 +55,7 @@ const Dashboard = () => {
                     {data.map((i, k) => {
                             return(
                             <div className='product-card' key={k}>
-                                <LazyLoadImage className='product-img' onClick={() => navigate(`/product/details/${i.vid}`)} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
+                                <LazyLoadImage className='product-img' onClick={() => navigate(`/waiting/details/${i.vid}`)} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>

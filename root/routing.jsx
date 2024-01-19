@@ -11,9 +11,10 @@ import Order from "../src/pages/product/order"
 import Profile from "../src/pages/user/profile"
 import Create from "../src/pages/product/create"
 import Details from "../src/pages/product/details"
+import Dashboard from "../src/pages/admin/dashboard"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
-import Dashboard from "../src/pages/admin/dashboard"
+import Wetails from "../src/pages/admin/wetails"
 import UserConfirm from "../auth/userConfirm"
 
 const Routing = () => {
@@ -74,6 +75,7 @@ const Routing = () => {
           <Route path="/about" element={<Main/>}/>
           
           <Route path="/product/details/:vid" element={<Details/>}/>
+          <Route path="/waiting/details/:vid" element={<Wetails/>}/>
           <Route path="/confirm/user/:token" element={<UserConfirm/>}/>
         </Routes>
       </Router>
