@@ -43,17 +43,11 @@ const Details = () => {
                                 <div className='product-desc' style={{ display: "block" }}>{i.desc}</div>
                             </div>
                         </div>
-                        <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '20px' }}>
+                        <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">VID         : <span>{i.vid}</span></div>
                                     <div className="product-desc-product">Price       : <span>{convertPrice(i.price)}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
-                            <div className='wrapped-text'>
-                                <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">Category    : <span>{i.ctg}</span></div>
                                     {i.ctg == 'web' && <div className="product-desc-product">Framework  : <span>{i.tech} {i.tech.toLowerCase().includes('html') ? "" : 'JS'}</span></div>}
                                 </div>
