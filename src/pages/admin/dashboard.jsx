@@ -9,14 +9,16 @@ const Dashboard = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const [password, setPassword] = useState('')
+    const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
-        const input = await swal.fire({input: 'password'})
+        const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
             const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`,{password : input.value})
             setPassword(input.value)
             setData(response.data)
+            sessionStorage.setItem("vxpwd", input.value)
         } 
             catch (error) {
             if (error) return navigate('/') 
