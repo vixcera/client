@@ -29,9 +29,9 @@ const Details = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>
             <div className="form">
-                <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0' }}>
+                <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
-                    <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '10px', justifyContent: 'center' }}>
+                    <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
                         <LazyLoadImage style={{ width: '100%' }} onClick={() => (width) <= 530 && swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
                     </div>
                 {data.map((i,k) => {
@@ -41,11 +41,27 @@ const Details = () => {
                             <div className='wrapped-text'>
                                 <div className='product-title'>{i.title}</div>
                                 <div className='product-desc' style={{ display: "block" }}>{i.desc}</div>
-                                <div className='wrapped-details' style={{margin: 0, display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
+                            </div>
+                        </div>
+                        <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '30px' }}>
+                            <div className='wrapped-text'>
+                                <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">vid         : <span>{i.vid}</span></div>
                                     <div className="product-desc-product">Price       : <span>{convertPrice(i.price)}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
+                            <div className='wrapped-text'>
+                                <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">Category    : <span>{i.ctg}</span></div>
                                     {i.ctg == 'web' && <div className="product-desc-product">Framework  : <span>{i.tech || '-'}</span></div>}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
+                            <div className='wrapped-text'>
+                                <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product">Created by  : <span>{i.by}</span></div>
                                     <div className="product-desc-product">Created at  : <span>{i.createdAt.slice(0, 10)}</span></div>
                                 </div>
