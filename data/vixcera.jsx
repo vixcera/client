@@ -5,7 +5,7 @@ const vixcera =
         data : 
         [
             {
-                title : "Web design",
+                title : "Material Web",
                 text : "Template for your UI web",
                 img : "img/web.png",
                 color : "var(--yellow)",
