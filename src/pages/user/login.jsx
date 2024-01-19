@@ -40,6 +40,8 @@ const Login = () => {
         finally{context.setLoading(false)}
     }
 
+    useEffect(() => {axios.get(`${import.meta.env.VITE_API}`)}, [])
+
     return(
         <div className="page">
             <div className="back" onClick={() => navigate('/')}>
