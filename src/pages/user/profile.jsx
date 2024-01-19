@@ -6,11 +6,14 @@ import swal from "sweetalert2"
 import axios from "axios"
 
 const Profile = () => {
+
     const navigate = useNavigate()
     const inputref = useRef(null)
     const context = useContext(Context)
+
     const [file, setFile] = useState(null)
     const [email, setEmail] = useState('')
+    const [vxsrf, setVxsrf] = useState('')
 
     const edit = () => {
         const mail = document.getElementById('changemail')
@@ -23,7 +26,7 @@ const Profile = () => {
             context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
-            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1000, background: 'var(--primary)', color: 'var(--blue)'})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 2000, background: 'var(--primary)', color: 'var(--blue)'})
             .then((res) => location.href = '/')
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
@@ -37,15 +40,20 @@ const Profile = () => {
         formData.append('img', file);
         try {
             const response = await axios.put(`${import.meta.env.VITE_API}/user/update`, formData, {
-                headers : {"Content-Type" : "multipart/form-data"}, 
+                headers : {"Content-Type" : "multipart/form-data", "xsrf-token" : vxsrf}, 
                 withCredentials : true
             })
-            swal.fire({icon : 'success', text : response.data, timer : 1000, showConfirmButton : false})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, background: 'var(--primary)', color: 'var(--blue)'})
             .then(res => res.isDismissed && location.reload())
         } 
-        catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, timer: 1500})}
+        catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})}
         finally {context.setLoading(false)}
     }
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API}/vxsrf`)
+        .then((result) => setVxsrf(result.data))
+    }, [])
 
     return (
         <div className='page' style={{flexDirection: 'column', gap : '10px'}}>
@@ -57,7 +65,7 @@ const Profile = () => {
             <div className='title'>{context.username}</div>
             <form style={{display: 'flex', alignItems: "center", flexDirection: 'column'}} onSubmit={updateImage}>
                 <input type="file" onChange={(e) => setFile(e.target.files[0])} ref={inputref} style={{display: 'none'}}/>
-                <input id='changemail' onChange={(e) => setEmail(e.target.value)} type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
+                <input id='changemail' type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
                 {(file || email) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : 
                 <div style={{margin: '30px 0', display: 'flex', gap: '20px'}}>
                     <div className='button' onClick={() => edit()}><i style={{cursor: 'pointer'}} className='fa-solid fa-store fa-xl'/></div>
