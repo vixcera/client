@@ -25,7 +25,7 @@ const checkvxsrf = async () => {
 
     if (!agent) {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/checkcookie`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/checkvxsrf`)
             sessionStorage.setItem("agent", "prevent")
         } catch (error) {
             if (error.response){
