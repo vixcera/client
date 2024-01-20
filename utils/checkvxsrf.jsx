@@ -36,7 +36,7 @@ const checkvxsrf = async () => {
                     background: 'var(--primary)',
                     color : 'var(--blue)',
                     showDenyButton: true,
-                    denyButtonText: 'skip',
+                    denyButtonText: 'dismiss',
                     confirmButtonText: "how's that?",
                 })
                 .then((result) => {
