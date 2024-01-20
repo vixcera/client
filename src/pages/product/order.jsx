@@ -21,6 +21,7 @@ const Order = () => {
     const [name, setName] = useState(context.username ? context.username : '')
     const [email, setEmail] = useState(context.email ? context.email : '')
     const [phone, setPhone] = useState('')
+    const [vxsrf, setVxsrf] = useState('')
     
     const getProducts = async () => {
         try {
@@ -40,7 +41,8 @@ const Order = () => {
           name    : name,
           email   : email,
           phone   : phone,
-        })
+        }, 
+        { headers : { "xsrf-token" : vxsrf } })
         context.setLoading(false)
         window.snap.pay(response.data, {
           onSuccess: (result) => {
@@ -60,11 +62,14 @@ const Order = () => {
           })
         }
       }
+      finally { context.setLoading(false) }
     }
 
     useEffect(() => {
-        getProducts()
-        snap()
+      axios.get(`${import.meta.env.VITE_API}/getvxsrf`)
+      .then((result) => setVxsrf(result.data))
+      getProducts()
+      snap()
     }, [])
 
     return (
