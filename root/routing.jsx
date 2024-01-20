@@ -16,6 +16,7 @@ import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Wetails from "../src/pages/admin/wetails"
 import UserConfirm from "../auth/userConfirm"
+import checkvxsrf from "../utils/checkvxsrf"
 
 const Routing = () => {
 
@@ -53,6 +54,7 @@ const Routing = () => {
   useEffect(() => {
       axios.get(`${import.meta.env.VITE_API}/reftoken`)
       .then((response) => setToken(response.data.token))
+      .then(() => checkvxsrf())
       .catch((error) => {console.log(error.message)})
   }, [])
 

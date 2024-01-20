@@ -2,7 +2,7 @@ import axios from "axios"
 import bowser from "bowser"
 import swal from "sweetalert2"
 
-const checkCookie = async () => {
+const checkvxsrf = async () => {
 
     const agent = sessionStorage.getItem("agent")
     const info = bowser.parse(window.navigator.userAgent)
@@ -90,4 +90,4 @@ const checkCookie = async () => {
     }
 }
 
-export default checkCookie;
+export default checkvxsrf;
