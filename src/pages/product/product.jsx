@@ -1,8 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import convertPrice from "../../../utils/price"
-import Context from '../../../utils/context'
 import alert from "../../../utils/alert"
 import axios from "axios"
 import "../../style/product.css"
@@ -11,9 +10,6 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    
-    const context = useContext(Context)
-    const total = data.map((result) => {return result})
     
     const getProducts = async () => {
         try {

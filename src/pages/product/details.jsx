@@ -14,7 +14,6 @@ const Details = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const img = data.map((i) => { return i.img })
-    const width = window.innerWidth;
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
@@ -32,7 +31,7 @@ const Details = () => {
                 <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
                     <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                        <LazyLoadImage style={{ width: '100%' }} onClick={() => (width) <= 530 && swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+                        <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
                     </div>
                 {data.map((i,k) => {
                     return(
