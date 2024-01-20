@@ -1,6 +1,7 @@
 import { useContext, useRef, useState, useEffect } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
+import getvxsrf from "../../../secure/getvxsrf"
 import Context from '../../../utils/context'
 import swal from "sweetalert2"
 import axios from "axios"
@@ -50,10 +51,7 @@ const Profile = () => {
         finally {context.setLoading(false)}
     }
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/getvxsrf`)
-        .then((result) => setVxsrf(result.data))
-    }, [])
+    useEffect(() => { getvxsrf().then((result) => setVxsrf(result)) }, [])
 
     return (
         <div className='page' style={{flexDirection: 'column', gap : '10px'}}>

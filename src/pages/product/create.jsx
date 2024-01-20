@@ -1,7 +1,8 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
+import getvxsrf from "../../../secure/getvxsrf"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
 import swal from "sweetalert2"
@@ -17,7 +18,9 @@ const Create = () => {
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
 
   const [file, setFile] = useState('')
+  const [vxsrf, setVxsrf] = useState('')
   const [image, setImage] = useState('')
+
   const [ctg, setCtg] = useState((inputHistory) ? inputHistory.ctg : '')
   const [tech, setTech] = useState((inputHistory) ? inputHistory.tech : '')
   const [desc, setDesc] = useState((inputHistory) ? inputHistory.desc : '')
@@ -42,7 +45,7 @@ const Create = () => {
         formData.append('title', title);
         formData.append('price', price);
         const response = await axios.post(`${import.meta.env.VITE_API}/product`,formData, {
-          headers: {"Content-Type": 'multipart/form-data'}
+          headers: {"Content-Type": 'multipart/form-data', "xsrf-token" : vxsrf}
         })
         localStorage.clear()
         swal.fire({icon:'success',text:response.data,showConfirmButton:false, background: 'var(--primary)', color: 'var(--blue)'})
@@ -56,6 +59,7 @@ const Create = () => {
     }
   }
 
+  useEffect(() => { getvxsrf().then((data) => setVxsrf(data)) }, [])
 
   return (
     <div className='page-max' style={{gap:'30px'}}>

@@ -10,6 +10,7 @@ import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
+import getvxsrf from '../../../secure/getvxsrf'
 
 const Order = () => {
 
@@ -66,8 +67,7 @@ const Order = () => {
     }
 
     useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API}/getvxsrf`)
-      .then((result) => setVxsrf(result.data))
+      getvxsrf().then((result) => setVxsrf(result))
       getProducts()
       snap()
     }, [])

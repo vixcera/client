@@ -16,7 +16,7 @@ import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Wetails from "../src/pages/admin/wetails"
 import UserConfirm from "../auth/userConfirm"
-import checkvxsrf from "../utils/checkvxsrf"
+import checkvxsrf from "../secure/checkvxsrf"
 
 const Routing = () => {
 

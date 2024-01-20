@@ -1,6 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import convertPrice from "../../../utils/price"
 import alert from "../../../utils/alert"
 import axios from "axios"

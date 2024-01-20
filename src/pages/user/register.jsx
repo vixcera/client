@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
+import getvxsrf from '../../../secure/getvxsrf'
 import Context from "../../../utils/context"
 import swal from "sweetalert2"
 import axios from "axios"
@@ -31,11 +32,7 @@ const Register = () => {
         finally {context.setLoading(false)}
     }
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/getvxsrf`)
-        .then((result) => setVxsrf(result.data))
-    }, [])
-
+    useEffect(() => getvxsrf().then((data) => setVxsrf(data)), [])
 
     return (
         <div className="page">

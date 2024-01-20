@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
-import Swal from "sweetalert2"
+import getvxsrf from "../../../secure/getvxsrf"
 import axios from "axios"
 import "../../style/login.css"
 
@@ -41,10 +41,7 @@ const Login = () => {
         finally{context.setLoading(false)}
     }
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/getvxsrf`)
-        .then((result) => setVxsrf(result.data))
-    }, [])
+    useEffect(() => { getvxsrf().then((result) => setVxsrf(result)) }, [])
 
     return(
         <div className="page">

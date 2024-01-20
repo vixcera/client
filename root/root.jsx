@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Routing from './routing'
+import Routing from './router'
 import ReactDOM from 'react-dom/client'
 axios.defaults.withCredentials = true
 
