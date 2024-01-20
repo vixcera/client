@@ -33,7 +33,7 @@ const Routing = () => {
   axtoken.interceptors.request.use(async (config) => {
     const current = new Date().getTime()
     if (expires * 1000 < current) {
-      const response = await axios.get(`${import.meta.env.VITE_API}/reftoken`)
+      const response = await axios.get(`${import.meta.env.VITE_API}/vxrft`)
       setToken(response.data.token)}
       config.headers.Authorization = `bearer ${token}`
       return config
@@ -52,7 +52,7 @@ const Routing = () => {
   }, [token])
 
   useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API}/reftoken`)
+      axios.get(`${import.meta.env.VITE_API}/vxrft`)
       .then((response) => setToken(response.data.token))
       .then(() => checkvxsrf())
       .catch((error) => {console.log(error.message)})
