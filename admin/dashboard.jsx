@@ -9,7 +9,6 @@ import {LazyLoadImage} from "react-lazy-load-image-component"
 const Dashboard = () => {
     const navigate = useNavigate()
     const [ data, setData ] = useState([])
-    const [ vxsrf, setVxsrf ] = useState('')
     const [ password, setPassword ] = useState('')
     const vxpwd = sessionStorage.getItem("vxpwd")
     
@@ -17,10 +16,8 @@ const Dashboard = () => {
         const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
-            let form = new FormData()
-            form.append("password", input.value)
-            const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`, form , {
-                headers: { "xsrf-token" : vxsrf }
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`, {
+                headers: { "author" : input.value }
             })
             setPassword(input.value)
             setData(response.data)
@@ -46,10 +43,6 @@ const Dashboard = () => {
         })
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
-
-    useEffect(() => {
-        getvxsrf().then((result) => {setVxsrf(result.data)})
-    }, [])
     
     return (
         <div className='page-max'>
