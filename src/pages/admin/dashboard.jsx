@@ -1,16 +1,15 @@
 import axios from 'axios'
 import swal from "sweetalert2"
+import alert from "../../../utils/alert"
 import convertPrice from '../../../utils/price'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
+
     const navigate = useNavigate()
-
     const [ data, setData ] = useState([])
-    const [ password, setPassword ] = useState('')
-
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
@@ -30,6 +29,10 @@ const Dashboard = () => {
       
             try {
               const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
+              if (!response.data.length) {
+                alert("product data is empty!")
+                .then((res) => res.dismiss && navigate('/'))
+              }
               setData(response.data);
               sessionStorage.setItem('vxpwd', password);
               return true;
