@@ -47,22 +47,6 @@ const Dashboard = () => {
         }
     };
 
-    const confirm = async () => {
-        const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
-            password: password,
-            vid: data.map((i) => {return i.vid})
-        })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
-    }
-
-    const reject = async () => {
-        const response = await axios.post(`${import.meta.env.VITE_API}/product/reject`,{
-            password: password,
-            vid: data.map((i) => {return i.vid})
-        })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
-    }
-
     useEffect(() => { checkAdmin() }, [])
 
     return (

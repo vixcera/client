@@ -18,6 +18,16 @@ const Wetails = () => {
     const [data, setData] = useState([])
     const img = data.map((i) => { return i.img })
 
+    const confirm = async () => {
+        const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
+        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+    }
+
+    const reject = async () => {
+        const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: {"author" : vxpwd} })
+        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+    }
+
     const checkAdmin = async () => {
         const result = await swal.fire({
           title: 'verify your identity',
@@ -92,8 +102,8 @@ const Wetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
-                        <div className="button-max" style={{ marginTop: '5px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
+                        <div className="button-max" onClick={() => confirm()} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
+                        <div className="button-max" onClick={() => reject()} style={{ marginTop: '5px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
                         </>
                         )
                     })}
