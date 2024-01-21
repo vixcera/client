@@ -1,5 +1,6 @@
 import axios from "axios"
-import swal from "sweetalert2"
+import alert from "../../../utils/alert"
+import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
 import { useState } from "react"
 import { useEffect } from "react"
@@ -12,14 +13,26 @@ const Details = () => {
 
     const { vid } = useParams()
     const navigate = useNavigate()
-    const [data, setData] = useState([])
+    const [ data, setData ] = useState([])
+    const [ error, setError ] = useState('')
+    const [ loading, setLoading ] = useState(false)
     const img = data.map((i) => { return i.img })
 
     useEffect(() => {
+        setLoading(true)
         axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
         .then((response) => setData(response.data))
-        .catch((error) => console.log(error))
+        .catch((error) => {
+            if (error.response) {
+                alert(error.response.data)
+                .then((res) => res.dismiss && navigate(-1))
+            }
+            setError(error)
+        })
+        .finally(() => { setLoading(false) })
     }, [])
+
+    if (loading) return <Loading/>
 
     return (
         <div className='page-max'>

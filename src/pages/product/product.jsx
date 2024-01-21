@@ -36,7 +36,7 @@ const Product = () => {
 
     useEffect(() => { getProducts() }, [ctg])
     
-    if (loading) { return <Loading/> }
+    if (loading) return <Loading/>
     if (error) {
         alert("server maintenance, please comeback later!")
         .then((res) => res.dismiss && navigate('/'))
