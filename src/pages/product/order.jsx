@@ -3,6 +3,8 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
 import Context from '../../../utils/context'
+import getvxsrf from '../../../secure/getvxsrf'
+import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -10,12 +12,11 @@ import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
-import getvxsrf from '../../../secure/getvxsrf'
 
 const Order = () => {
 
-    const {vid} = useParams()
     const navigate = useNavigate()
+    const {vid} = useParams()
     const context = useContext(Context)
 
     const [data, setData] = useState([])
@@ -23,20 +24,25 @@ const Order = () => {
     const [email, setEmail] = useState(context.email ? context.email : '')
     const [phone, setPhone] = useState('')
     const [vxsrf, setVxsrf] = useState('')
+
+    const [loading, setLoading] = useState('')
     
     const getProducts = async () => {
         try {
+            setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
             setData(response.data)
         }   catch (error) {
             if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
             .then((res) => res.isDismissed && navigate('/'))
+        } finally {
+          setLoading(false)
         }
     }
     
     const checkout = async () => {
       try {
-        context.setLoading(true)
+        setLoading(true)
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
           vid     : vid,
           name    : name,
@@ -44,7 +50,6 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
-        context.setLoading(false)
         window.snap.pay(response.data, {
           onSuccess: (result) => {
             localStorage.setItem('result', result)
@@ -63,7 +68,7 @@ const Order = () => {
           })
         }
       }
-      finally { context.setLoading(false) }
+      finally { setLoading(false) }
     }
 
     useEffect(() => {
@@ -71,6 +76,8 @@ const Order = () => {
       getProducts()
       snap()
     }, [])
+
+    if (loading) return <Loading/>
 
     return (
         <div className='page-max' style={{gap:'30px'}}>
