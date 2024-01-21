@@ -1,6 +1,6 @@
 import axios from "axios"
 import swal from "sweetalert2"
-import convertPrice from "../../../utils/price"
+import convertPrice from "../utils/price"
 
 import { useState } from "react"
 import { useEffect } from "react"
