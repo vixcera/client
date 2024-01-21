@@ -1,5 +1,7 @@
 import axios from "axios"
 import swal from "sweetalert2"
+import alert from "../../../utils/alert"
+import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
 
 import { useState } from "react"
@@ -14,21 +16,44 @@ const Wetails = () => {
 
     const navigate = useNavigate()
     const { vid } = useParams()
-    const vxpwd = sessionStorage.getItem("vxpwd")
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const img = data.map((i) => { return i.img })
+    const vxpwd = sessionStorage.getItem("vxpwd")
 
     const confirm = async () => {
-        const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
+            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+        }   catch (error) {
+            if (error || error.response) return alert(error.response.data)
+        }   finally { setLoading(false) }
     }
 
     const reject = async () => {
-        const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: {"author" : vxpwd} })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: { "author" : vxpwd } })
+            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+        }   catch (error) {
+            if (error || error.response) return alert(error.response.data)
+        }   finally { setLoading(false) }
     }
 
     const checkAdmin = async () => {
+        if (vxpwd) {
+            try {
+                setLoading(true)
+                const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } })
+                if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
+                setData(response.data)
+            }   catch (error) {
+                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+            }   finally { setLoading(false) }
+        }
+
         const result = await swal.fire({
           title: 'verify your identity',
           input: 'password',
@@ -57,12 +82,12 @@ const Wetails = () => {
           },
         });
       
-        if (result.dismiss || result.isDenied) {
-          return location.href = '/';
-        }
+        if (result.dismiss || result.isDenied) return location.href = '/'
       };
       
     useEffect(() => checkAdmin(), [])
+    if (loading) return <Loading/>
+
     return (
         <div className='page-max'>
             <div className="back" onClick={() => navigate(-1)}>
