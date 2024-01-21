@@ -20,7 +20,7 @@ const Dashboard = () => {
             try {
                 setLoading(true)
                 const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : vxpwd } })
-                if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
+                if (!response.data.length) return alert("product data is empty!")
                 setData(response.data)
             } catch (error) {
                 if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
