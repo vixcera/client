@@ -44,7 +44,7 @@ const Dashboard = () => {
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
 
-    useEffect(() => checkAdmin())
+    useEffect(() => checkAdmin(), [])
     
     return (
         <div className='page-max'>
