@@ -1,21 +1,25 @@
 import axios from 'axios'
 import swal from "sweetalert2"
 import convertPrice from "../../../utils/price"
-import React, { useEffect, useState } from 'react'
+import getvxsrf from "../../../secure/getvxsrf"
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
     const navigate = useNavigate()
-    const [data, setData] = useState([])
-    const [password, setPassword] = useState('')
+    const [ data, setData ] = useState([])
+    const [ vxsrf, setVxsrf ] = useState('')
+    const [ password, setPassword ] = useState('')
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
-        const input = await swal.fire({input: 'password', inputValue: '' })
+        const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`,{password : input.value})
+            const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`,{password : input.value}, {
+                headers: { "xsrf-token" : vxsrf }
+            })
             setPassword(input.value)
             setData(response.data)
             sessionStorage.setItem("vxpwd", input.value)
@@ -41,7 +45,10 @@ const Dashboard = () => {
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
 
-    useEffect(() => {checkAdmin()}, [])
+    useEffect(() => {
+        getvxsrf().then((result) => setVxsrf(result.data))
+        checkAdmin()
+    }, [])
     
     return (
         <div className='page-max'>
