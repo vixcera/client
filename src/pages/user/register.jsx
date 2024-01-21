@@ -1,7 +1,6 @@
-import { useContext, useState, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import getvxsrf from '../../../secure/getvxsrf'
-import Context from "../../../utils/context"
 import Loading from "../../../utils/loading"
 import swal from "sweetalert2"
 import axios from "axios"
@@ -49,7 +48,7 @@ const Register = () => {
                     <div className="title"><span>Regis</span>ter</div>
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
-                <form onSubmit={createUser} className="login-input">
+                <form onSubmit={() => createUser()} className="login-input">
                     <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
                     <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
