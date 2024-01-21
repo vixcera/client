@@ -21,7 +21,13 @@ const Details = () => {
     useEffect(() => {
         setLoading(true)
         axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
-        .then((response) => setData(response.data))
+        .then((response) => {
+            if (!response.data.length) {
+                alert("product data not found!")
+                .then((res) => res.dismiss && navigate(-1))
+            }
+            setData(response.data)
+        })
         .catch((error) => {
             if (error.response) {
                 alert(error.response.data)
@@ -33,7 +39,6 @@ const Details = () => {
     }, [])
 
     if (loading) return <Loading/>
-    if (!data.length) return alert("product data not found!").then((res) => res.dismiss && navigate(-1))
 
     return (
         <div className='page-max'>
