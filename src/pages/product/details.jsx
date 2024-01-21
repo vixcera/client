@@ -33,6 +33,7 @@ const Details = () => {
     }, [])
 
     if (loading) return <Loading/>
+    if (!data.length) return alert("product data not found!").then((res) => res.dismiss && navigate(-1))
 
     return (
         <div className='page-max'>
