@@ -24,7 +24,7 @@ const Register = () => {
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, background: 'var(--primary)', color: 'var(--blue)'})
-            .then((res) => res.dismiss && navigate('/'))
+            .then((res) => res.dismiss ? location.href = '' : '')
         } 
         catch (error) {
             swal.fire({icon: 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})
