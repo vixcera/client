@@ -40,7 +40,7 @@ const Wetails = () => {
               return true;
             } catch (error) {
                 if (error || error.response) {
-                    swal.showValidationMessage('Invalid password');
+                    swal.showValidationMessage('invalid password');
                     return false;
                 }
             }
@@ -48,7 +48,7 @@ const Wetails = () => {
         });
       
         if (result.dismiss || result.isDenied) {
-          return navigate('/');
+          return location.href = '/';
         }
       };
       

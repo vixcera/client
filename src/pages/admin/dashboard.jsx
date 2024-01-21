@@ -35,7 +35,7 @@ const Dashboard = () => {
               return true;
             } catch (error) {
                 if (error || error.response) {
-                    swal.showValidationMessage('Invalid password');
+                    swal.showValidationMessage('invalid password');
                     return false;
                 }
             }
@@ -43,7 +43,7 @@ const Dashboard = () => {
         });
       
         if (result.isDenied || result.dismiss) {
-          return navigate('/');
+          return location.href = '/';
         }
     };
 
