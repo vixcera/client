@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import getvxsrf from '../../../secure/getvxsrf'
 import Context from "../../../utils/context"
+import Loading from "../../../utils/loading"
 import swal from "sweetalert2"
 import axios from "axios"
 
@@ -10,17 +11,17 @@ import "../../style/login.css"
 const Register = () => {
 
     const navigate = useNavigate()
-    const context = useContext(Context)
 
     const [vxsrf, setVxsrf] = useState('')
     const [email, setEmail] = useState('')
+    const [loading, setLoading] = useState(false)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const createUser = async (e) => {
         e.preventDefault()
-        context.setLoading(true)
         try {
+            setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, background: 'var(--primary)', color: 'var(--blue)'})
@@ -29,10 +30,11 @@ const Register = () => {
         catch (error) {
             swal.fire({icon: 'error', showConfirmButton: false, timer: 1500, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})
         }
-        finally {context.setLoading(false)}
+        finally {setLoading(false)}
     }
 
     useEffect(() => getvxsrf().then((data) => setVxsrf(data)), [])
+    if (loading) return <Loading/>
 
     return (
         <div className="page">
