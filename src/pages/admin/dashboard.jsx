@@ -1,30 +1,14 @@
 import axios from 'axios'
 import swal from "sweetalert2"
 import convertPrice from "../../../utils/price"
-import getvxsrf from "../../../secure/getvxsrf"
 import { useEffect, useState } from 'react'
-import { Form, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
     const navigate = useNavigate()
     const [ data, setData ] = useState([])
     const [ password, setPassword ] = useState('')
-    const vxpwd = sessionStorage.getItem("vxpwd")
-    
-    const checkAdmin = async () => {
-        const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
-        if (!input.value) return navigate('/')
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`)
-            setPassword(input.value)
-            setData(response.data)
-            sessionStorage.setItem("vxpwd", input.value)
-        } 
-            catch (error) {
-            if (error) return navigate('/') 
-        }
-    }
     
     const confirm = async () => {
         const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
@@ -42,7 +26,10 @@ const Dashboard = () => {
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
 
-    useEffect(() => checkAdmin(), [])
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API}/products/waitinglist`)
+        .then((res) => setData(res.data))
+    }, [])
     
     return (
         <div className='page-max'>
