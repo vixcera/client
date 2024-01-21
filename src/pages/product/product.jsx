@@ -28,7 +28,8 @@ const Product = () => {
                 alert("server maintenance, please comeback later!")
                 .then((res) => res.dismiss && navigate('/'))
             } else {
-                setError(error)
+                alert("server maintenance, please comeback later!")
+                .then((res) => res.dismiss && navigate('/'))
             }
         }
         finally { setLoading(false) }
@@ -37,10 +38,6 @@ const Product = () => {
     useEffect(() => { getProducts() }, [ctg])
     
     if (loading) return <Loading/>
-    if (error) {
-        alert("server maintenance, please comeback later!")
-        .then((res) => res.dismiss && navigate('/'))
-    }
 
     return (
         <div className='page-max'>
