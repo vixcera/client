@@ -33,7 +33,9 @@ const Wetails = () => {
             }
       
             try {
-              const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`, { password });
+              const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`,{
+                headers: { "author" : password }
+              });
               setData(response.data);
               sessionStorage.setItem('vxpwd', password);
               return true;
