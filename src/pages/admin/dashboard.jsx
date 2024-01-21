@@ -9,10 +9,11 @@ import {LazyLoadImage} from "react-lazy-load-image-component"
 const Dashboard = () => {
     const navigate = useNavigate()
     const [ data, setData ] = useState([])
+    const [ vxsrf, setVxsrf ] = useState('')
     const [ password, setPassword ] = useState('')
     const vxpwd = sessionStorage.getItem("vxpwd")
     
-    const checkAdmin = async (vxsrf) => {
+    const checkAdmin = async () => {
         const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
@@ -47,9 +48,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        getvxsrf().then((result) => {
-            checkAdmin(result.data)
-        })
+        getvxsrf().then((result) => {setVxsrf(result.data)})
     }, [])
     
     return (
@@ -85,6 +84,7 @@ const Dashboard = () => {
                     }
                 </div>
             </div>
+            <div className="button-max" style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
         </div>
     )
 }

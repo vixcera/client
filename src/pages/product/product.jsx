@@ -34,7 +34,7 @@ const Product = () => {
         finally { setLoading(false) }
     }
 
-    useEffect(() => { getProducts() }, [ctg])
+    useEffect(() => { getProducts() }, [])
     
     if (loading) return <Loading/>
 
