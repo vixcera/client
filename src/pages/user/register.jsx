@@ -48,7 +48,7 @@ const Register = () => {
                     <div className="title"><span>Regis</span>ter</div>
                     <p className="desc">Free assets to make your <span>work easier.</span></p>
                 </div>
-                <form onSubmit={() => createUser()} className="login-input">
+                <form onSubmit={createUser} className="login-input">
                     <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
                     <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
