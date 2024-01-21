@@ -46,7 +46,7 @@ const Wetails = () => {
         if (vxpwd) {
             try {
                 setLoading(true)
-                const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } })
+                const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : vxpwd } })
                 if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
                 setData(response.data)
             }   catch (error) {
