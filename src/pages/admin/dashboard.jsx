@@ -1,6 +1,7 @@
 import axios from 'axios'
 import swal from "sweetalert2"
 import alert from "../../../utils/alert"
+import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,9 +11,21 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
     const [ data, setData ] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
+        if (vxpwd) {
+            try {
+                setLoading(true)
+                const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : vxpwd } })
+                if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
+                setData(response.data)
+            } catch (error) {
+                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+            } finally { setLoading(false) }
+        }
         const result = await swal.fire({
           title: 'verify your identity',
           input: 'password',
@@ -51,6 +64,7 @@ const Dashboard = () => {
     };
 
     useEffect(() => { checkAdmin() }, [])
+    if (loading) return <Loading/>
 
     return (
         <div className='page-max'>
