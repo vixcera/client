@@ -25,41 +25,42 @@ const Dashboard = () => {
             } catch (error) {
                 if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
             } finally { setLoading(false) }
-        }
-        const result = await swal.fire({
-          title: 'verify your identity',
-          input: 'password',
-          inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'enter your password',
-          showCancelButton: true,
-          background: 'var(--primary)',
-          color: 'var(--blue)',
-          preConfirm: async (password) => {
-            if (!password) {
-              swal.showValidationMessage('password is required');
-              return false;
-            }
-      
-            try {
-              const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
-              if (!response.data.length) {
-                alert("product data is empty!")
-                .then((res) => res.dismiss && navigate('/'))
-              }
-              setData(response.data);
-              sessionStorage.setItem('vxpwd', password);
-              return true;
-            } catch (error) {
-                if (error || error.response) {
-                    swal.showValidationMessage('invalid password');
-                    return false;
+        } else {
+            const result = await swal.fire({
+              title: 'verify your identity',
+              input: 'password',
+              inputValue : vxpwd? vxpwd : '',
+              inputPlaceholder: 'enter your password',
+              showCancelButton: true,
+              background: 'var(--primary)',
+              color: 'var(--blue)',
+              preConfirm: async (password) => {
+                if (!password) {
+                  swal.showValidationMessage('password is required');
+                  return false;
                 }
+          
+                try {
+                  const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
+                  if (!response.data.length) {
+                    alert("product data is empty!")
+                    .then((res) => res.dismiss && navigate('/'))
+                  }
+                  setData(response.data);
+                  sessionStorage.setItem('vxpwd', password);
+                  return true;
+                } catch (error) {
+                    if (error || error.response) {
+                        swal.showValidationMessage('invalid password');
+                        return false;
+                    }
+                }
+              },
+            });
+          
+            if (result.isDenied || result.dismiss) {
+              return location.href = '/';
             }
-          },
-        });
-      
-        if (result.isDenied || result.dismiss) {
-          return location.href = '/';
         }
     };
 

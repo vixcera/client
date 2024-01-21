@@ -52,37 +52,37 @@ const Wetails = () => {
             }   catch (error) {
                 if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
             }   finally { setLoading(false) }
+        } else {
+            const result = await swal.fire({
+              title: 'verify your identity',
+              input: 'password',
+              inputValue : vxpwd? vxpwd : '',
+              inputPlaceholder: 'enter your password',
+              showCancelButton: true,
+              background: 'var(--primary)',
+              color: 'var(--blue)',
+              preConfirm: async (password) => {
+                if (!password) {
+                  swal.showValidationMessage('password is required');
+                  return false;
+                }
+          
+                try {
+                  const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
+                  setData(response.data);
+                  sessionStorage.setItem('vxpwd', password);
+                  return true;
+                } catch (error) {
+                    if (error || error.response) {
+                        swal.showValidationMessage('invalid password');
+                        return false;
+                    }
+                }
+              },
+            });
+            if (result.dismiss || result.isDenied) return location.href = '/'
         }
 
-        const result = await swal.fire({
-          title: 'verify your identity',
-          input: 'password',
-          inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'enter your password',
-          showCancelButton: true,
-          background: 'var(--primary)',
-          color: 'var(--blue)',
-          preConfirm: async (password) => {
-            if (!password) {
-              swal.showValidationMessage('password is required');
-              return false;
-            }
-      
-            try {
-              const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
-              setData(response.data);
-              sessionStorage.setItem('vxpwd', password);
-              return true;
-            } catch (error) {
-                if (error || error.response) {
-                    swal.showValidationMessage('invalid password');
-                    return false;
-                }
-            }
-          },
-        });
-      
-        if (result.dismiss || result.isDenied) return location.href = '/'
       };
       
     useEffect(() => checkAdmin(), [])
