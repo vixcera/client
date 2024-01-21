@@ -43,6 +43,8 @@ const Dashboard = () => {
         })
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
+
+    useEffect(() => checkAdmin())
     
     return (
         <div className='page-max'>
@@ -75,7 +77,6 @@ const Dashboard = () => {
                             )
                         })
                     }
-                    <div className="button-max" onClick={() => checkAdmin()} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
                 </div>
             </div>
         </div>
