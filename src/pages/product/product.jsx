@@ -8,10 +8,9 @@ import axios from "axios"
 import "../../style/product.css"
 
 const Product = () => {
-    const { ctg } = useParams()
     const navigate = useNavigate()
+    const { ctg } = useParams()
     const [ data, setData ] = useState([])
-    const [ error, setError ] = useState('')
     const [ loading, setLoading ] = useState(false)
     
     const getProducts = async () => {

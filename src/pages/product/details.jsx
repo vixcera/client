@@ -11,10 +11,9 @@ import "../../style/create.css"
 
 const Details = () => {
 
-    const { vid } = useParams()
     const navigate = useNavigate()
+    const { vid } = useParams()
     const [ data, setData ] = useState([])
-    const [ error, setError ] = useState('')
     const [ loading, setLoading ] = useState(false)
     const img = data.map((i) => { return i.img })
 

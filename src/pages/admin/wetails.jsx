@@ -12,18 +12,45 @@ import "../../style/create.css"
 
 const Wetails = () => {
 
-    const { vid } = useParams()
     const navigate = useNavigate()
+    const { vid } = useParams()
+    const vxpwd = sessionStorage.getItem("vxpwd")
     const [data, setData] = useState([])
     const img = data.map((i) => { return i.img })
     const width = window.innerWidth;
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`)
-        .then((response) => setData(response.data))
-        .catch((error) => console.log(error))
-    }, [])
-
+    const checkAdmin = async () => {
+        const result = await swal.fire({
+          title: 'Admin Password',
+          input: 'password',
+          inputValue : vxpwd? vxpwd : '',
+          inputPlaceholder: 'Enter your password',
+          showCancelButton: true,
+          preConfirm: async (password) => {
+            if (!password) {
+              swal.showValidationMessage('Password is required');
+              return false;
+            }
+      
+            try {
+              const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`, { password });
+              setData(response.data);
+              sessionStorage.setItem('vxpwd', password);
+              return true;
+            } catch (error) {
+              swal.showValidationMessage('Invalid password');
+              return false;
+            }
+          },
+        });
+      
+        if (result.isDismissed || !result.value) {
+          // Jika dibatalkan atau password tidak diisi, arahkan ke halaman lain
+          navigate('/');
+        }
+      };
+      
+    useEffect(() => checkAdmin())
     return (
         <div className='page-max'>
             <div className="back" onClick={() => navigate(-1)}>
