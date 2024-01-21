@@ -10,6 +10,7 @@ const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
     const [data, setData] = useState([])
+    const [ctgo, setCtgo] = useState(ctg)
     
     const getProducts = async () => {
         try {
@@ -27,7 +28,7 @@ const Product = () => {
         }
     }
 
-    useEffect(() => { getProducts() }, [])
+    useEffect(() => { getProducts() }, [ctgo])
 
     return (
         <div className='page-max'>
