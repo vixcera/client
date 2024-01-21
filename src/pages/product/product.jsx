@@ -20,13 +20,13 @@ const Product = () => {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
             if (!response.data.length) {
                 alert("product data is empty")
-                .then((res) => res.isDismissed && navigate('/products'))
+                .then((res) => res.dismiss && navigate('/products'))
             }
             setData(response.data)
         }   catch (error) {
             if (error.response) {
                 alert("server maintenance, please comeback later!")
-                .then((res) => res.isDismissed && navigate('/'))
+                .then((res) => res.dismiss && navigate('/'))
             } else {
                 setError(error)
             }
@@ -35,9 +35,12 @@ const Product = () => {
     }
 
     useEffect(() => { getProducts() }, [ctg])
-
-    if (error) { alert("server maintenance, please comeback later!") }
+    
     if (loading) { return <Loading/> }
+    if (error) {
+        alert("server maintenance, please comeback later!")
+        .then((res) => res.dismiss && navigate('/'))
+    }
 
     return (
         <div className='page-max'>
