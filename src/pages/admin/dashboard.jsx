@@ -27,10 +27,11 @@ const Dashboard = () => {
             } finally { setLoading(false) }
         } else {
             const result = await swal.fire({
-              title: 'verify your identity',
+              icon : 'question',
               input: 'password',
               inputValue : vxpwd? vxpwd : '',
               inputPlaceholder: 'enter your password',
+              cancelButtonText : "confirm",
               showCancelButton: true,
               background: 'var(--primary)',
               color: 'var(--blue)',
