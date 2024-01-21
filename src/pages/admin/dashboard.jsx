@@ -47,8 +47,12 @@ const Dashboard = () => {
 
     useEffect(() => {
         getvxsrf().then((result) => setVxsrf(result.data))
-        .then(() => checkAdmin())
     }, [])
+
+    if (vxsrf) {
+        console.log(vxsrf)
+        checkAdmin()
+    }
     
     return (
         <div className='page-max'>
