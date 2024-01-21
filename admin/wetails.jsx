@@ -17,40 +17,42 @@ const Wetails = () => {
     const vxpwd = sessionStorage.getItem("vxpwd")
     const [data, setData] = useState([])
     const img = data.map((i) => { return i.img })
-    const width = window.innerWidth;
 
     const checkAdmin = async () => {
         const result = await swal.fire({
-          title: 'Admin Password',
+          title: 'verify your identity',
           input: 'password',
           inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'Enter your password',
+          inputPlaceholder: 'enter your password',
           showCancelButton: true,
+          background: 'var(--primary)',
+          color: 'var(--blue)',
           preConfirm: async (password) => {
             if (!password) {
-              swal.showValidationMessage('Password is required');
+              swal.showValidationMessage('password is required');
               return false;
             }
       
             try {
-              const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`, { password });
+              const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
               setData(response.data);
               sessionStorage.setItem('vxpwd', password);
               return true;
             } catch (error) {
-              swal.showValidationMessage('Invalid password');
-              return false;
+                if (error || error.response) {
+                    swal.showValidationMessage('invalid password');
+                    return false;
+                }
             }
           },
         });
       
-        if (result.isDismissed || !result.value) {
-          // Jika dibatalkan atau password tidak diisi, arahkan ke halaman lain
-          navigate('/');
+        if (result.dismiss || result.isDenied) {
+          return location.href = '/';
         }
       };
       
-    useEffect(() => checkAdmin())
+    useEffect(() => checkAdmin(), [])
     return (
         <div className='page-max'>
             <div className="back" onClick={() => navigate(-1)}>
@@ -61,7 +63,7 @@ const Wetails = () => {
                 <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
                     <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                        <LazyLoadImage style={{ width: '100%' }} onClick={() => (width) <= 530 && swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+                        <LazyLoadImage style={{ width: '100%' }} className='product-img' src={img} loading='lazy' effect='blur'/>
                     </div>
                 {data.map((i,k) => {
                     return(

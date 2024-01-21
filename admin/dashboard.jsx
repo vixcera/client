@@ -1,33 +1,52 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import convertPrice from "../../../utils/price"
-import getvxsrf from "../../../secure/getvxsrf"
+import convertPrice from "../utils/price"
 import { useEffect, useState } from 'react'
-import { Form, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
     const navigate = useNavigate()
+
     const [ data, setData ] = useState([])
     const [ password, setPassword ] = useState('')
+
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
-        const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
-        if (!input.value) return navigate('/')
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`, {
-                headers: { "author" : input.value }
-            })
-            setPassword(input.value)
-            setData(response.data)
-            sessionStorage.setItem("vxpwd", input.value)
-        } 
-            catch (error) {
-            if (error) return navigate('/') 
+        const result = await swal.fire({
+          title: 'verify your identity',
+          input: 'password',
+          inputValue : vxpwd? vxpwd : '',
+          inputPlaceholder: 'enter your password',
+          showCancelButton: true,
+          background: 'var(--primary)',
+          color: 'var(--blue)',
+          preConfirm: async (password) => {
+            if (!password) {
+              swal.showValidationMessage('password is required');
+              return false;
+            }
+      
+            try {
+              const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
+              setData(response.data);
+              sessionStorage.setItem('vxpwd', password);
+              return true;
+            } catch (error) {
+                if (error || error.response) {
+                    swal.showValidationMessage('invalid password');
+                    return false;
+                }
+            }
+          },
+        });
+      
+        if (result.isDenied || result.dismiss) {
+          return location.href = '/';
         }
-    }
-    
+    };
+
     const confirm = async () => {
         const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
             password: password,
@@ -44,11 +63,11 @@ const Dashboard = () => {
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
 
-    useEffect(() => checkAdmin(), [])
-    
+    useEffect(() => { checkAdmin() }, [])
+
     return (
         <div className='page-max'>
-            <div className="back" onClick={() => navigate('/')}>
+            <div className="back" onClick={() => location.href = '/'}>
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>

@@ -27,7 +27,7 @@ const Product = () => {
                 alert("server maintenance, please comeback later!")
                 .then((res) => res.dismiss && navigate('/'))
             } else {
-                alert("server maintenance, please comeback later!")
+                alert("server maintenance, please come back later!")
                 .then((res) => res.dismiss && navigate('/'))
             }
         }
