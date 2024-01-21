@@ -60,7 +60,7 @@ const Wetails = () => {
                 input: 'password',
                 inputValue : vxpwd? vxpwd : '',
                 inputPlaceholder: 'enter your password',
-                cancelButtonText : "confirm",
+                confirmButtonText : "confirm",
                 showCancelButton: true,
                 background: 'var(--primary)',
                 color: 'var(--blue)',
