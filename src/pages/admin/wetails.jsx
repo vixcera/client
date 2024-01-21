@@ -27,6 +27,7 @@ const Wetails = () => {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
             swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            .then(() => location.href = '/dashboard')
         }   catch (error) {
             if (error || error.response) return alert(error.response.data)
         }   finally { setLoading(false) }
@@ -37,6 +38,7 @@ const Wetails = () => {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: { "author" : vxpwd } })
             swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            .then(() => location.href = '/dashboard')
         }   catch (error) {
             if (error || error.response) return alert(error.response.data)
         }   finally { setLoading(false) }
