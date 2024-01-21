@@ -1,5 +1,7 @@
 import axios from "axios"
 import swal from "sweetalert2"
+import alert from "../utils/alert"
+import Loading from "../utils/loading"
 import convertPrice from "../utils/price"
 
 import { useState } from "react"
@@ -14,48 +16,84 @@ const Wetails = () => {
 
     const navigate = useNavigate()
     const { vid } = useParams()
-    const vxpwd = sessionStorage.getItem("vxpwd")
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const img = data.map((i) => { return i.img })
+    const vxpwd = sessionStorage.getItem("vxpwd")
+
+    const confirm = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
+            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            .then(() => location.href = '/dashboard')
+        }   catch (error) {
+            if (error || error.response) return alert(error.response.data)
+        }   finally { setLoading(false) }
+    }
+
+    const reject = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: { "author" : vxpwd } })
+            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            .then(() => location.href = '/dashboard')
+        }   catch (error) {
+            if (error || error.response) return alert(error.response.data)
+        }   finally { setLoading(false) }
+    }
 
     const checkAdmin = async () => {
-        const result = await swal.fire({
-          title: 'verify your identity',
-          input: 'password',
-          inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'enter your password',
-          showCancelButton: true,
-          background: 'var(--primary)',
-          color: 'var(--blue)',
-          preConfirm: async (password) => {
-            if (!password) {
-              swal.showValidationMessage('password is required');
-              return false;
-            }
-      
+        if (vxpwd) {
             try {
-              const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
-              setData(response.data);
-              sessionStorage.setItem('vxpwd', password);
-              return true;
-            } catch (error) {
-                if (error || error.response) {
-                    swal.showValidationMessage('invalid password');
-                    return false;
+                setLoading(true)
+                const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : vxpwd } })
+                if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
+                setData(response.data)
+            }   catch (error) {
+                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+            }   finally { setLoading(false) }
+        } else {
+            const result = await swal.fire({
+                icon : 'question',
+                input: 'password',
+                inputValue : vxpwd? vxpwd : '',
+                inputPlaceholder: 'enter your password',
+                confirmButtonText : "confirm",
+                showCancelButton: true,
+                background: 'var(--primary)',
+                color: 'var(--blue)',
+                preConfirm: async (password) => {
+                if (!password) {
+                  swal.showValidationMessage('password is required');
+                  return false;
                 }
-            }
-          },
-        });
-      
-        if (result.dismiss || result.isDenied) {
-          return location.href = '/';
+          
+                try {
+                  const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
+                  setData(response.data);
+                  sessionStorage.setItem('vxpwd', password);
+                  return true;
+                } catch (error) {
+                    if (error || error.response) {
+                        swal.showValidationMessage('invalid password');
+                        return false;
+                    }
+                }
+              },
+            });
+            if (result.dismiss || result.isDenied) return location.href = '/'
         }
+
       };
       
     useEffect(() => checkAdmin(), [])
+    if (loading) return <Loading/>
+
     return (
         <div className='page-max'>
-            <div className="back" onClick={() => navigate(-1)}>
+            <div className="back" onClick={() => location.href = '/dashboard'}>
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
             </div>
@@ -92,8 +130,8 @@ const Wetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
-                        <div className="button-max" style={{ marginTop: '5px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
+                        <div className="button-max" onClick={() => confirm()} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
+                        <div className="button-max" onClick={() => reject()} style={{ marginTop: '5px', fontWeight: 'bold', backgroundColor: '#aaa' }}>Reject</div>
                         </>
                         )
                     })}

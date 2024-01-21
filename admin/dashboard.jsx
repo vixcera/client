@@ -1,69 +1,72 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import convertPrice from "../utils/price"
+import alert from '../utils/alert'
+import Loading from '../utils/loading'
+import convertPrice from '../utils/price'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
     const [ data, setData ] = useState([])
-    const [ password, setPassword ] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
-        const result = await swal.fire({
-          title: 'verify your identity',
-          input: 'password',
-          inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'enter your password',
-          showCancelButton: true,
-          background: 'var(--primary)',
-          color: 'var(--blue)',
-          preConfirm: async (password) => {
-            if (!password) {
-              swal.showValidationMessage('password is required');
-              return false;
-            }
-      
+        if (vxpwd) {
             try {
-              const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
-              setData(response.data);
-              sessionStorage.setItem('vxpwd', password);
-              return true;
+                setLoading(true)
+                const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : vxpwd } })
+                if (!response.data.length) return alert("product data is empty!")
+                setData(response.data)
             } catch (error) {
-                if (error || error.response) {
-                    swal.showValidationMessage('invalid password');
-                    return false;
+                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+            } finally { setLoading(false) }
+        } else {
+            const result = await swal.fire({
+              icon : 'question',
+              input: 'password',
+              inputValue : vxpwd? vxpwd : '',
+              inputPlaceholder: 'enter your password',
+              confirmButtonText : "confirm",
+              showCancelButton: true,
+              background: 'var(--primary)',
+              color: 'var(--blue)',
+              preConfirm: async (password) => {
+                if (!password) {
+                  swal.showValidationMessage('password is required');
+                  return false;
                 }
+          
+                try {
+                  const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
+                  if (!response.data.length) {
+                    alert("product data is empty!")
+                    .then((res) => res.dismiss && navigate('/'))
+                  }
+                  setData(response.data);
+                  sessionStorage.setItem('vxpwd', password);
+                  return true;
+                } catch (error) {
+                    if (error || error.response) {
+                        swal.showValidationMessage('invalid password');
+                        return false;
+                    }
+                }
+              },
+            });
+          
+            if (result.isDenied || result.dismiss) {
+              return location.href = '/';
             }
-          },
-        });
-      
-        if (result.isDenied || result.dismiss) {
-          return location.href = '/';
         }
     };
 
-    const confirm = async () => {
-        const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
-            password: password,
-            vid: data.map((i) => {return i.vid})
-        })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
-    }
-
-    const reject = async () => {
-        const response = await axios.post(`${import.meta.env.VITE_API}/product/reject`,{
-            password: password,
-            vid: data.map((i) => {return i.vid})
-        })
-        swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
-    }
-
     useEffect(() => { checkAdmin() }, [])
+    if (loading) return <Loading/>
 
     return (
         <div className='page-max'>

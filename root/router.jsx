@@ -13,10 +13,10 @@ import Create from "../src/pages/product/create"
 import Details from "../src/pages/product/details"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
-import Wetails from "../src/pages/admin/wetails"
-import Dashboard from "../src/pages/admin/dashboard"
-import UserConfirm from "../auth/userConfirm"
+import Wetails from "../admin/wetails"
+import Dashboard from "../admin/dashboard"
 import checkvxsrf from "../secure/checkvxsrf"
+import UserConfirm from "../src/pages/auth/userConfirm"
 
 const Routing = () => {
 
