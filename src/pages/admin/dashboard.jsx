@@ -3,7 +3,7 @@ import swal from "sweetalert2"
 import convertPrice from "../../../utils/price"
 import getvxsrf from "../../../secure/getvxsrf"
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
@@ -16,7 +16,9 @@ const Dashboard = () => {
         const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`,{password : input.value}, {
+            let form = new FormData()
+            form.append("password", input.value)
+            const response = await axios.post(`${import.meta.env.VITE_API}/products/waitinglist`, form , {
                 headers: { "xsrf-token" : vxsrf }
             })
             setPassword(input.value)

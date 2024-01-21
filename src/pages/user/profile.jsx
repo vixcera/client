@@ -27,7 +27,7 @@ const Profile = () => {
             context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
-            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 2000, background: 'var(--primary)', color: 'var(--blue)'})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1500, background: 'var(--primary)', color: 'var(--blue)'})
             .then((res) => location.href = '/')
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
@@ -44,7 +44,7 @@ const Profile = () => {
                 headers : {"Content-Type" : "multipart/form-data", "xsrf-token" : vxsrf}, 
                 withCredentials : true
             })
-            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, timer: 2000 , background: 'var(--primary)', color: 'var(--blue)'})
+            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, timer: 1500 , background: 'var(--primary)', color: 'var(--blue)'})
             .then(res => res.isDismissed && location.reload())
         } 
         catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})}
