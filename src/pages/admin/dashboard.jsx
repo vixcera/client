@@ -45,8 +45,7 @@ const Dashboard = () => {
           },
         });
       
-        if (result.isDismissed || !result.value) {
-          // Jika dibatalkan atau password tidak diisi, arahkan ke halaman lain
+        if (result.isDenied || result.dismiss) {
           navigate('/');
         }
     };
