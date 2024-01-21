@@ -2,6 +2,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import convertPrice from "../../../utils/price"
+import Loading from "../../../utils/loading"
 import alert from "../../../utils/alert"
 import axios from "axios"
 import "../../style/product.css"
@@ -9,11 +10,13 @@ import "../../style/product.css"
 const Product = () => {
     const { ctg } = useParams()
     const navigate = useNavigate()
-    const [data, setData] = useState([])
-    const [ctgo, setCtgo] = useState(ctg)
+    const [ data, setData ] = useState([])
+    const [ error, setError ] = useState('')
+    const [ loading, setLoading ] = useState(false)
     
     const getProducts = async () => {
         try {
+            setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
             if (!response.data.length) {
                 alert("product data is empty")
@@ -21,14 +24,19 @@ const Product = () => {
             }
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) {
+            if (error.response) {
                 alert("server maintenance, please comeback later!")
                 .then((res) => res.isDismissed && navigate('/'))
+            } else {
+                setError(error)
             }
         }
+        finally { setLoading(false) }
     }
 
-    useEffect(() => { getProducts() }, [ctgo])
+    useEffect(() => { getProducts() }, [ctg])
+
+    if (loading) { return <Loading/> }
 
     return (
         <div className='page-max'>
