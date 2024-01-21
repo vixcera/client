@@ -24,10 +24,10 @@ const Register = () => {
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
             swal.fire({icon: 'success', text: response.data, showConfirmButton: false, background: 'var(--primary)', color: 'var(--blue)'})
-            .then(() => navigate('/'))
+            .then((res) => res.dismiss && navigate('/'))
         } 
         catch (error) {
-            swal.fire({icon: 'error', showConfirmButton: false, timer: 1500, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})
+            swal.fire({icon: 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})
         }
         finally {setLoading(false)}
     }
