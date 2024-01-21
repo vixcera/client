@@ -17,7 +17,6 @@ const Wetails = () => {
     const vxpwd = sessionStorage.getItem("vxpwd")
     const [data, setData] = useState([])
     const img = data.map((i) => { return i.img })
-    const width = window.innerWidth;
 
     const checkAdmin = async () => {
         const result = await swal.fire({
@@ -26,6 +25,8 @@ const Wetails = () => {
           inputValue : vxpwd? vxpwd : '',
           inputPlaceholder: 'Enter your password',
           showCancelButton: true,
+          background: 'var(--primary)',
+          color: 'var(--blue)',
           preConfirm: async (password) => {
             if (!password) {
               swal.showValidationMessage('Password is required');
@@ -33,15 +34,15 @@ const Wetails = () => {
             }
       
             try {
-              const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`,{
-                headers: { "author" : password }
-              });
+              const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : password } });
               setData(response.data);
               sessionStorage.setItem('vxpwd', password);
               return true;
             } catch (error) {
-              swal.showValidationMessage('Invalid password');
-              return false;
+                if (error || error.response) {
+                    swal.showValidationMessage('Invalid password');
+                    return false;
+                }
             }
           },
         });
@@ -52,7 +53,7 @@ const Wetails = () => {
         }
       };
       
-    useEffect(() => checkAdmin())
+    useEffect(() => checkAdmin(), [])
     return (
         <div className='page-max'>
             <div className="back" onClick={() => navigate(-1)}>
@@ -63,7 +64,7 @@ const Wetails = () => {
                 <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
                     <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                        <LazyLoadImage style={{ width: '100%' }} onClick={() => (width) <= 530 && swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+                        <LazyLoadImage style={{ width: '100%' }} className='product-img' src={img} loading='lazy' effect='blur'/>
                     </div>
                 {data.map((i,k) => {
                     return(

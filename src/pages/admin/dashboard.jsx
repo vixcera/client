@@ -1,5 +1,6 @@
 import axios from 'axios'
 import swal from "sweetalert2"
+import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,26 +8,49 @@ import {LazyLoadImage} from "react-lazy-load-image-component"
 
 const Dashboard = () => {
     const navigate = useNavigate()
+
     const [ data, setData ] = useState([])
     const [ password, setPassword ] = useState('')
+    const [ loading, setLoading ] = useState(false)
+
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
-        const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
-        if (!input.value) return navigate('/')
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{
-                headers: {"author" : input.value}
-            })
-            setPassword(input.value)
-            setData(response.data)
-            sessionStorage.setItem("vxpwd", input.value)
-        } 
-            catch (error) {
-            if (error) return navigate('/') 
+        const result = await swal.fire({
+          title: 'Admin Password',
+          input: 'password',
+          inputValue : vxpwd? vxpwd : '',
+          inputPlaceholder: 'Enter your password',
+          showCancelButton: true,
+          background: 'var(--primary)',
+          color: 'var(--blue)',
+          preConfirm: async (password) => {
+            if (!password) {
+              swal.showValidationMessage('Password is required');
+              return false;
+            }
+      
+            try {
+              setLoading(true)
+              const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
+              setData(response.data);
+              sessionStorage.setItem('vxpwd', password);
+              return true;
+            } catch (error) {
+                if (error || error.response) {
+                    swal.showValidationMessage('Invalid password');
+                    return false;
+                }
+            } finally { setLoading(false) }
+          },
+        });
+      
+        if (result.isDismissed || !result.value) {
+          // Jika dibatalkan atau password tidak diisi, arahkan ke halaman lain
+          navigate('/');
         }
-    }
-    
+    };
+
     const confirm = async () => {
         const response = await axios.post(`${import.meta.env.VITE_API}/product/confirm`,{
             password: password,
@@ -43,8 +67,8 @@ const Dashboard = () => {
         swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
     }
 
-    useEffect(() => checkAdmin(), [])
-    
+    useEffect(() => { checkAdmin() }, [])
+    if (loading) return <Loading/>
     return (
         <div className='page-max'>
             <div className="back" onClick={() => location.href = '/'}>
