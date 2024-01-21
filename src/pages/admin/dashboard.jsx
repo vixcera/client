@@ -16,9 +16,7 @@ const Dashboard = () => {
         const input = await swal.fire({input: 'password', inputValue: vxpwd ? vxpwd : '' })
         if (!input.value) return navigate('/')
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`, {
-                headers: { "author" : input.value }
-            })
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/waitinglist`)
             setPassword(input.value)
             setData(response.data)
             sessionStorage.setItem("vxpwd", input.value)
