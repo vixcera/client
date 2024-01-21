@@ -36,6 +36,7 @@ const Product = () => {
 
     useEffect(() => { getProducts() }, [ctg])
 
+    if (error) { alert("server maintenance, please comeback later!") }
     if (loading) { return <Loading/> }
 
     return (
