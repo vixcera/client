@@ -47,7 +47,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         getvxsrf().then((result) => setVxsrf(result.data))
-        checkAdmin()
+        .then(() => checkAdmin())
     }, [])
     
     return (
