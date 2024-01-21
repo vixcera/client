@@ -27,7 +27,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API}/products/waitinglist`)
+        axios.get(`${import.meta.env.VITE_API}/products`)
         .then((res) => setData(res.data))
     }, [])
     
