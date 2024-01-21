@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
-import "../../style/create.css"
+import "../src/style/create.css"
 
 const Wetails = () => {
 
