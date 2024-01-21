@@ -1,6 +1,6 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import convertPrice from "../utils/price"
+import convertPrice from '../../../utils/price'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {LazyLoadImage} from "react-lazy-load-image-component"
