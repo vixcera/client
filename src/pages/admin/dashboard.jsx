@@ -82,9 +82,9 @@ const Dashboard = () => {
                             )
                         })
                     }
+                    <div className="button-max" onClick={() => checkAdmin()} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
                 </div>
             </div>
-            <div className="button-max" style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Approve</div>
         </div>
     )
 }
