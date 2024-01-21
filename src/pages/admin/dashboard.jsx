@@ -1,6 +1,5 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,27 +10,25 @@ const Dashboard = () => {
 
     const [ data, setData ] = useState([])
     const [ password, setPassword ] = useState('')
-    const [ loading, setLoading ] = useState(false)
 
     const vxpwd = sessionStorage.getItem("vxpwd")
     
     const checkAdmin = async () => {
         const result = await swal.fire({
-          title: 'Admin Password',
+          title: 'verify your identity',
           input: 'password',
           inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'Enter your password',
+          inputPlaceholder: 'enter your password',
           showCancelButton: true,
           background: 'var(--primary)',
           color: 'var(--blue)',
           preConfirm: async (password) => {
             if (!password) {
-              swal.showValidationMessage('Password is required');
+              swal.showValidationMessage('password is required');
               return false;
             }
       
             try {
-              setLoading(true)
               const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
               setData(response.data);
               sessionStorage.setItem('vxpwd', password);
@@ -41,12 +38,12 @@ const Dashboard = () => {
                     swal.showValidationMessage('Invalid password');
                     return false;
                 }
-            } finally { setLoading(false) }
+            }
           },
         });
       
         if (result.isDenied || result.dismiss) {
-          navigate('/');
+          return navigate('/');
         }
     };
 
@@ -67,7 +64,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => { checkAdmin() }, [])
-    if (loading) return <Loading/>
+
     return (
         <div className='page-max'>
             <div className="back" onClick={() => location.href = '/'}>

@@ -20,16 +20,16 @@ const Wetails = () => {
 
     const checkAdmin = async () => {
         const result = await swal.fire({
-          title: 'Admin Password',
+          title: 'verify your identity',
           input: 'password',
           inputValue : vxpwd? vxpwd : '',
-          inputPlaceholder: 'Enter your password',
+          inputPlaceholder: 'enter your password',
           showCancelButton: true,
           background: 'var(--primary)',
           color: 'var(--blue)',
           preConfirm: async (password) => {
             if (!password) {
-              swal.showValidationMessage('Password is required');
+              swal.showValidationMessage('password is required');
               return false;
             }
       
@@ -48,7 +48,7 @@ const Wetails = () => {
         });
       
         if (result.dismiss || result.isDenied) {
-          navigate('/');
+          return navigate('/');
         }
       };
       
