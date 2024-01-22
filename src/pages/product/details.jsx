@@ -56,7 +56,7 @@ const Details = () => {
                         </div>
                         <div className="button-max" style={{ color: "var(--text)", backgroundColor: "var(--primary)"}} onClick={() => window.open(i.link)}>
                             <div className="i fa-solid fa-globe fa-xl"/>
-                            Live Preview
+                            Live preview
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }} key={k}>
                             <div className='wrapped-text'>
@@ -84,7 +84,7 @@ const Details = () => {
                         </div>
                         <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', backgroundColor: 'var(--yellow)' }}>
                             <div className="i fa-solid fa-cart-shopping fa-xl" style={{color: 'var(--background)'}}/>
-                            Order Now
+                            Order now
                         </div>
                         </>
                         )
