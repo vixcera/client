@@ -87,7 +87,7 @@ const Create = () => {
               <div>Category :</div>
               <select style={{width: '100%'}} value={ctg} onChange={(e) => setCtg(e.target.value)} required>
                 <option value=""></option>
-                <option value="web">Web</option>
+                <option style={{ textAlign: 'center' }}  value="web">Web</option>
                 <option value="vector">Vector</option>
                 <option value="video">Video</option>
               </select>
