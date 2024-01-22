@@ -17,10 +17,10 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
-  const selectStyle = { container: (prop) => ({ ...prop, width: "100%", height: "40px" }) }
+  const selectStyle = { container: (prop) => ({ ...prop, width: "100%", height: "20px" }) }
 
   const frameworkoptions = [
-    { value: '', label: 'Pilih framework...', isDisabled: true },
+    { value: '', label: 'Choose Framework', isDisabled: true },
     { value: 'html & css', label: 'HTML & CSS' },
     { value: 'angular', label: 'Angular JS' },
     { value: 'svelte', label: 'Svelte JS' },

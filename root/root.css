@@ -61,14 +61,14 @@ html { background-color: var(--background);}
     background-color: #aaa;
 }
 
-select {
+/* select {
     width: 110px;
     height: 37px;
     border: none;
     font-weight: bold;
     color: var(--second);
     appearance: menu;
-}
+} */
 
 .i {
     color: var(--text);
