@@ -24,22 +24,24 @@ const Create = () => {
   const [ctg, setCtg] = useState((inputHistory) ? inputHistory.ctg : '')
   const [tech, setTech] = useState((inputHistory) ? inputHistory.tech : '')
   const [desc, setDesc] = useState((inputHistory) ? inputHistory.desc : '')
+  const [link, setLink] = useState((inputHistory) ? inputHistory.link : '')
   const [title, setTitle] = useState((inputHistory) ? inputHistory.title : '')
   const [price, setPrice] = useState((inputHistory) ? inputHistory.price : '')
 
-  if (title || price || desc || ctg || file || image) {
-    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg, tech }))
+  if (title || price || desc || ctg || file || image || link) {
+    localStorage.setItem('inputHistory', JSON.stringify({title, price, desc, ctg, tech, link }))
   }
 
   const createProduct = async () => {
     
-    if (file && title && image && desc && price && ctg && tech) {
+    if (file && title && image && desc && price && ctg && tech && link) {
       context.setLoading(true)
       try {
         let formData = new FormData()
         formData.append('ctg', ctg);
         formData.append('img', image);
         formData.append('desc', desc);
+        formData.append('link', link);
         formData.append('file', file);
         formData.append('tech', tech);
         formData.append('title', title);
@@ -104,12 +106,16 @@ const Create = () => {
                   <option value="Vue">Vue JS</option>
                 </select>
             </div>
+            <div>
+              <div>Link Preview :</div>
+              <input className='productinput' value={link} type="text" placeholder='e.g. https://my-website.com' onChange={(e) => setLink(e.target.value)} required/>
+            </div>
           </>
           }
           
           <div className='wrap-file'>
             <div>
-              <div>Preview : </div>
+              <div>Image : </div>
               <div className='prevfile' onClick={() => imgref.current.click()}>
                 <div className={(image) ? 'fa-solid fa-check fa-xl' : 'fa-solid fa-image fa-xl'} style={{color: '#aaa', fontSize: '2rem'}}/>
                 <div style={{ color: '#aaa', fontSize: '0.7rem' }}>{'(JPEG, JPG, PNG, MP4)'}</div>
