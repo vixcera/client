@@ -5,7 +5,6 @@ import convertPrice from '../../../utils/price'
 import getvxsrf from "../../../secure/getvxsrf"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
-import Select from "react-select"
 import swal from "sweetalert2"
 import axios from "axios"
 import "../../style/create.css"
@@ -17,17 +16,6 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
-  const selectStyle = { container: (p) => ({height: "37px", overflow: 'hidden'}) }
-
-  const frameworkoptions = [
-    { value: '', label: 'Choose Framework', isDisabled: true },
-    { value: 'html & css', label: 'HTML & CSS' },
-    { value: 'angular', label: 'Angular JS' },
-    { value: 'svelte', label: 'Svelte JS' },
-    { value: 'react', label: 'React JS' },
-    { value: 'next', label: 'Next JS' },
-    { value: 'vue', label: 'Vue JS' },
-  ];
 
   const [file, setFile] = useState('')
   const [vxsrf, setVxsrf] = useState('')
@@ -108,7 +96,15 @@ const Create = () => {
           <>
             <div>
                 <div>Framework :</div>
-                <Select options={frameworkoptions} styles={selectStyle} value={tech} onChange={(e) => setTech(e)}/>
+                <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
+                  <option value=""></option>
+                  <option value="html & css">HTML & CSS</option>
+                  <option value="Angular">Angular JS</option>
+                  <option value="Svelte">Svelte JS</option>
+                  <option value="React">React JS</option>
+                  <option value="Next">Next JS</option>
+                  <option value="Vue">Vue JS</option>
+                </select>
             </div>
             <div>
               <div>Link Preview :</div>
