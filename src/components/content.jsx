@@ -32,7 +32,7 @@ const Content = () => {
                     <img src="/img/pi.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
                     <div>Welcome to Vixcera</div>
-                    <div>Let's survive with us.</div>
+                    <div>Let's explore with us.</div>
                     <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
                     </div>
                 </div>}
