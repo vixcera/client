@@ -17,7 +17,7 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
-  const selectStyle = { container: (prop) => ({ ...prop, width: "100%", height: "20px" }) }
+  const selectStyle = { menu: (p) => ({height: "37px", overflow: 'hidden'}) }
 
   const frameworkoptions = [
     { value: '', label: 'Choose Framework', isDisabled: true },
@@ -108,7 +108,7 @@ const Create = () => {
           <>
             <div>
                 <div>Framework :</div>
-                <Select options={frameworkoptions} classNamePrefix={"select"} value={tech} onChange={(e) => setTech(e)}/>
+                <Select options={frameworkoptions} styles={selectStyle} value={tech} onChange={(e) => setTech(e)}/>
             </div>
             <div>
               <div>Link Preview :</div>
