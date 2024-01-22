@@ -57,7 +57,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '1.15rem', marginTop: '10px' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1.15rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
@@ -78,7 +78,10 @@ const Details = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>Order & Download</div>
+                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', fontWeight: 'bold', backgroundColor: 'var(--yellow)' }}>
+                            <div className="i fa-solid fa-cart-shopping fa-xl"></div>
+                            <div>Buy now</div>
+                        </div>
                         </>
                         )
                     })}
