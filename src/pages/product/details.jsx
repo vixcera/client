@@ -57,7 +57,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '1.15rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1.05rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>

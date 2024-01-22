@@ -59,7 +59,7 @@ html { background-color: var(--background);}
     cursor: pointer;
     color: var(--background);
     background-color: #aaa;
-    gap: 15px;
+    gap: 10px;
 }
 
 select {
