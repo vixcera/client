@@ -54,12 +54,12 @@ html { background-color: var(--background);}
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 10px;
     cursor: pointer;
     color: var(--background);
     background-color: #aaa;
-    gap: 10px;
+    gap: 15px;
 }
 
 select {
