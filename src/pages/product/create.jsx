@@ -17,7 +17,7 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
-  const selectStyle = { container: (prop) => ({ ...prop, width: "100%" }) }
+  const selectStyle = { container: (prop) => ({ ...prop, width: "100%", height: "40px" }) }
 
   const frameworkoptions = [
     { value: '', label: 'Pilih framework...', isDisabled: true },
