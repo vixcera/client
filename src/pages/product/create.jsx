@@ -17,7 +17,7 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
-  const selectStyle = { menu: (p) => ({height: "37px", overflow: 'hidden'}) }
+  const selectStyle = { container: (p) => ({height: "37px", overflow: 'hidden'}) }
 
   const frameworkoptions = [
     { value: '', label: 'Choose Framework', isDisabled: true },
