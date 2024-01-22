@@ -50,10 +50,10 @@ const Details = () => {
                 {data.map((i,k) => {
                     return(
                         <>
-                        <div className="product-card" key={k} style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                            <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+                        <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
+                            <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={i.img} loading='lazy' effect='blur'/>
                         </div>
-                        <div className='product-card' style={{ height: 'max-content', width: '100%' }} >
+                        <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
                                 <div className='product-desc' style={{ display: "block", fontSize: '1rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
