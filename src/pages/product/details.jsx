@@ -54,7 +54,7 @@ const Details = () => {
                         <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
                             <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={i.img} loading='lazy' effect='blur'/>
                         </div>
-                        <div className="button-max" style={{marginBottom: '30px', color: "var(--yellow)", backgroundColor: "var(--primary)"}} onClick={() => window.open(i.link)}>
+                        <div className="button-max" style={{marginBottom: '30px', color: "var(--text)", backgroundColor: "var(--primary)"}} onClick={() => window.open(i.link)}>
                             <div className="i fa-solid fa-globe fa-xl"/>
                             Live Preview
                         </div>
