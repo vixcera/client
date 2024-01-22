@@ -50,8 +50,8 @@ const Product = () => {
                 <input type="text" className='search'/>
                     {data.map((i, k) => {
                             return(
-                            <div className='product-card' key={k}>
-                                <LazyLoadImage className='product-img' onClick={() => navigate(`/product/details/${i.vid}`)} src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
+                            <div className='product-card' key={k} onClick={() => navigate(`/product/details/${i.vid}`)}>
+                                <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
                                     <div className='product-title'>{i.title}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
@@ -63,7 +63,7 @@ const Product = () => {
                                     </div>
                                     <div className='wrapped-details'>
                                         <div className='button price'>{convertPrice(i.price)}</div>
-                                        <div style={{ color : 'var(--text)', cursor: 'pointer'}} onClick={() => navigate(`/order/${i.vid}`)} className='fa-solid fa-cart-plus fa-xl' />
+                                        <div style={{ color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
                                     </div>
                                 </div>
                             </div>
