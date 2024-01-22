@@ -73,8 +73,8 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product"><span>Created By</span>  : {i.by}</div>
-                                    <div className="product-desc-product"><span>Created At</span>  : {i.createdAt.slice(0, 10)}</div>
+                                    <div className="product-desc-product"><span>Created by</span>  : {i.by}</div>
+                                    <div className="product-desc-product"><span>Created at</span>  : {i.createdAt.slice(0, 10)}</div>
                                 </div>
                             </div>
                         </div>
