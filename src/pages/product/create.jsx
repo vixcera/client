@@ -108,7 +108,7 @@ const Create = () => {
           <>
             <div>
                 <div>Framework :</div>
-                <Select options={frameworkoptions} styles={{control: (props) => ({height: '30px'})}} value={tech} onChange={(e) => setTech(e)}/>
+                <Select options={frameworkoptions} styles={{container: (props) => ({...props, height: '30px'})}} value={tech} onChange={(e) => setTech(e)}/>
             </div>
             <div>
               <div>Link Preview :</div>
