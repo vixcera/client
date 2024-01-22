@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from "sweetalert2"
 import alert from "../../../utils/alert"
 import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
