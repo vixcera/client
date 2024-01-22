@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {LazyLoadImage} from "react-lazy-load-image-component"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
 import getvxsrf from "../../../secure/getvxsrf"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
+import Select from "react-select"
 import swal from "sweetalert2"
 import axios from "axios"
 import "../../style/create.css"
@@ -16,6 +17,17 @@ const Create = () => {
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
+  const selectStyle = { container: (prop) => ({ ...prop, width: "100%" }) }
+
+  const frameworkoptions = [
+    { value: '', label: 'Pilih framework...', isDisabled: true },
+    { value: 'html & css', label: 'HTML & CSS' },
+    { value: 'angular', label: 'Angular JS' },
+    { value: 'svelte', label: 'Svelte JS' },
+    { value: 'react', label: 'React JS' },
+    { value: 'next', label: 'Next JS' },
+    { value: 'vue', label: 'Vue JS' },
+  ];
 
   const [file, setFile] = useState('')
   const [vxsrf, setVxsrf] = useState('')
@@ -96,15 +108,7 @@ const Create = () => {
           <>
             <div>
                 <div>Framework :</div>
-                <select style={{width: '100%'}} value={tech} onChange={(e) => setTech(e.target.value)} required>
-                  <option value=""></option>
-                  <option value="html & css">HTML & CSS</option>
-                  <option value="Angular">Angular JS</option>
-                  <option value="Svelte">Svelte JS</option>
-                  <option value="React">React JS</option>
-                  <option value="Next">Next JS</option>
-                  <option value="Vue">Vue JS</option>
-                </select>
+                <Select options={frameworkoptions} styles={selectStyle} value={tech} onChange={(e) => setTech(e)}/>
             </div>
             <div>
               <div>Link Preview :</div>
