@@ -5,7 +5,6 @@ import convertPrice from '../../../utils/price'
 import getvxsrf from "../../../secure/getvxsrf"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
-import Creatable from "react-select/creatable"
 import Select from "react-select"
 import swal from "sweetalert2"
 import axios from "axios"
@@ -109,7 +108,7 @@ const Create = () => {
           <>
             <div>
                 <div>Framework :</div>
-                <Creatable options={frameworkoptions} onChange={(e) => setTech(e.value)} />
+                <Select options={frameworkoptions} classNamePrefix={"select"} value={tech} onChange={(e) => setTech(e)}/>
             </div>
             <div>
               <div>Link Preview :</div>

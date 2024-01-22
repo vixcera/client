@@ -63,6 +63,7 @@ html { background-color: var(--background);}
 
 select {
     width: 110px;
+    height: 37px;
     border: none;
     font-weight: bold;
     color: var(--second);
