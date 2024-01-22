@@ -60,6 +60,7 @@ html { background-color: var(--background);}
     color: var(--background);
     background-color: #aaa;
     gap: 10px;
+    font-family: var(--poppins);
 }
 
 select {
