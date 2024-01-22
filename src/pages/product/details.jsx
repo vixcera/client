@@ -15,7 +15,6 @@ const Details = () => {
     const { vid } = useParams()
     const [ data, setData ] = useState([])
     const [ loading, setLoading ] = useState(false)
-    const img = data.map((i) => { return i.img })
 
     useEffect(() => {
         setLoading(true)
@@ -52,7 +51,7 @@ const Details = () => {
                     return(
                         <>
                         <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                            <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
+                            <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={img} loading='lazy' effect='blur'/>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }} key={k}>
                             <div className='wrapped-text'>
