@@ -21,8 +21,8 @@ const products =
             {
                 title : "Motion graphic",
                 text : "Motion logo templates",
-                img : "img/motiong.png",
-                color : "var(--yellow)",
+                img : "img/motion.png",
+                color : "var(--text)",
                 pricing : ["paid", "free"],
                 ctg : "motion"
             },
