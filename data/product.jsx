@@ -27,18 +27,18 @@ const products =
                 ctg : "motion"
             },
             {
-                title : "Vector design",
-                text : "find vector assets template",
-                img : "img/vector.png",
-                color : "#FF4B63",
-                pricing : ["paid", "free"]
-            },
-            {
                 title : "3D design",
                 text : "assets 3d for your projects",
                 img : "img/3d.png",
                 color : "var(--yellow)",
                 pricing : ["paid"]
+            },
+            {
+                title : "Vector design",
+                text : "find vector assets template",
+                img : "img/vector.png",
+                color : "#FF4B63",
+                pricing : ["paid", "free"]
             },
         ]
     }
