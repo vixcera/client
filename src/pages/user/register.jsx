@@ -32,12 +32,12 @@ const Register = () => {
         finally {setLoading(false)}
     }
 
-    useEffect(() => getvxsrf().then((data) => setVxsrf(data)), [])
+    useEffect(() => { getvxsrf().then((result) => setVxsrf(result)) }, [])
     if (loading) return <Loading/>
 
     return (
         <div className="page">
-            <div className="back" onClick={() => navigate(-1)}>
+            <div className="back" onClick={() => navigate('/')}>
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo">
                     <p style={{fontFamily : "var(--caveat)"}}>Vixcera</p>
