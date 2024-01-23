@@ -3,6 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
 import getvxsrf from "../../../secure/getvxsrf"
 import Context from '../../../utils/context'
+import Loading from "../../../utils/loading"
 import swal from "sweetalert2"
 import axios from "axios"
 
@@ -15,6 +16,7 @@ const Profile = () => {
     const [file, setFile] = useState(null)
     const [email, setEmail] = useState('')
     const [vxsrf, setVxsrf] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const edit = () => {
         const mail = document.getElementById('changemail')
@@ -24,19 +26,19 @@ const Profile = () => {
 
     const logout = async() => {
         try {
-            context.setLoading(true)
+            setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
             swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1500, background: 'var(--primary)', color: 'var(--blue)'})
             .then((res) => location.href = '/')
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
-        finally{context.setLoading(false)}
+        finally{setLoading(false)}
     }
 
     const updateImage = async(e) => {
         e.preventDefault()
-        context.setLoading(true)
+        setLoading(true)
         let formData = new FormData();
         formData.append('img', file);
         try {
@@ -48,10 +50,11 @@ const Profile = () => {
             .then(res => res.isDismissed && location.reload())
         } 
         catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})}
-        finally {context.setLoading(false)}
+        finally {setLoading(false)}
     }
 
     useEffect(() => { getvxsrf().then((result) => setVxsrf(result)) }, [])
+    if (loading) return <Loading/>
 
     return (
         <div className='page' style={{flexDirection: 'column', gap : '10px'}}>
