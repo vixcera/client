@@ -7,10 +7,8 @@ const Navbar = () => {
 
   const context = useContext(Context)
   const navigate = useNavigate()
-  const path = location.pathname
 
   window.onscroll = () => {
-    if (path === '/') {
       let y = window.scrollY
       let w = window.innerWidth
       let nav = document.querySelector('.navbar-container')
@@ -26,7 +24,6 @@ const Navbar = () => {
         nav.classList.remove('fix')
         grep.classList.remove('block')
       }
-    }
   }
 
   const handleSidebar = () => {
