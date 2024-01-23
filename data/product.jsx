@@ -19,19 +19,19 @@ const products =
         data : 
         [
             {
+                title : "3D design",
+                text : "assets 3d for your projects",
+                img : "img/3d.png",
+                color : "var(--yellow)",
+                pricing : ["paid"]
+            },
+            {
                 title : "Motion graphic",
                 text : "Motion logo templates",
                 img : "img/motions.png",
                 color : "#FAEDCA",
                 pricing : ["paid", "free"],
                 ctg : "motion"
-            },
-            {
-                title : "3D design",
-                text : "assets 3d for your projects",
-                img : "img/3d.png",
-                color : "var(--yellow)",
-                pricing : ["paid"]
             },
             {
                 title : "Vector design",
