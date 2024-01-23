@@ -81,7 +81,7 @@ const Create = () => {
           </div>
           <div>
             <div>Price :</div>
-            <input className='productinput' value={price} type="number" placeholder='e.g. 350000' onChange={(e) => setPrice(e.target.value)} required/>
+            <input className='productinput' value={price} type="text" placeholder='e.g. 350000' onChange={(e) => setPrice(e.target.value)} required/>
           </div>
           <div>
               <div>Category :</div>
