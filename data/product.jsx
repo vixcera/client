@@ -19,12 +19,12 @@ const products =
         data : 
         [
             {
-                title : "Movie reference",
-                text : "Search any movies details",
-                img : "img/cinema.png",
+                title : "Motion graphic",
+                text : "Motion logo templates",
+                img : "img/motion.png",
                 color : "var(--yellow)",
                 pricing : ["free"],
-                ctg : "movie"
+                ctg : "motion"
             },
             {
                 title : "Vector design",
