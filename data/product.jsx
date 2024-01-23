@@ -37,7 +37,7 @@ const products =
                 title : "3D design",
                 text : "assets 3d for your projects",
                 img : "img/3d.png",
-                color : "var(--text)",
+                color : "var(--yellow)",
                 pricing : ["paid"]
             },
         ]
