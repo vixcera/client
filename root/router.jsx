@@ -6,7 +6,6 @@ import axios from "axios"
 import Main from "../src/pages/user/main"
 import Login from "../src/pages/user/login"
 import Context from "../utils/context"
-import Loading from "../utils/loading"
 import Order from "../src/pages/product/order"
 import Profile from "../src/pages/user/profile"
 import Create from "../src/pages/product/create"
@@ -28,7 +27,6 @@ const Routing = () => {
   const [email, setEmail] = useState('')
   const [expires, setExpires] = useState('')
   const [username, setUsername] = useState('')
-  const [loading, setLoading] = useState(false)
 
   axtoken.interceptors.request.use(async (config) => {
     const current = new Date().getTime()
@@ -58,8 +56,7 @@ const Routing = () => {
       .catch((error) => {console.log(error.message)})
   }, [])
 
-  if (loading) return (<Loading/>)
-  const context = {vid, img, email, username, token, setLoading, setToken, axtoken}
+  const context = {vid, img, email, username, token, setToken, axtoken}
 
   return (
     <Context.Provider value={context}>

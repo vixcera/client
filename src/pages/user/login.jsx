@@ -1,9 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
-import Context from "../../../utils/context"
-import alert from "../../../utils/alert"
-import getvxsrf from "../../../secure/getvxsrf"
 import axios from "axios"
+import alert from "../../../utils/alert"
+import Context from "../../../utils/context"
+import Loading from "../../../utils/loading"
+import getvxsrf from "../../../secure/getvxsrf"
+import { useContext, useEffect, useState } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
 import "../../style/login.css"
 
 const Login = () => {
@@ -12,23 +13,18 @@ const Login = () => {
     const context = useContext(Context)
     const refemail = localStorage.getItem('email')
 
-    const [vxsrf, setVxsrf] = useState('')
-    const [url, setUrl] = useState('')
-    const [as, setAs] = useState('user')
+    const [as, setAs]             = useState('user')
+    const [url, setUrl]           = useState('')
+    const [vxsrf, setVxsrf]       = useState('')
+    const [email, setEmail]       = useState((refemail) ? refemail : '')
+    const [loading, setLoading]   = useState(false)
     const [password, setPassword] = useState('')
-    const [email, setEmail] = useState((refemail) ? refemail : '')
-
-
-    useEffect(() => {
-        if (as == 'user') return setUrl(`${import.meta.env.VITE_API}/login`)
-        else return setUrl(`${import.meta.env.VITE_API}/login/contributor`)
-    }, [as])
 
     const handleLogin = async (event) => {
         event.preventDefault()
         localStorage.setItem('email', email)
-        context.setLoading(true)
         try {
+            setLoading(true)
             const response = await axios.post(url, { email, password }, { headers: {'xsrf-token' : vxsrf} })
             context.setToken(response.data.token)
             localStorage.removeItem('email')
@@ -38,10 +34,16 @@ const Login = () => {
             alert("server maintenance!")
             error.response && alert(error.response.data)  
         }
-        finally{context.setLoading(false)}
+        finally{setLoading(false)}
     }
 
     useEffect(() => { getvxsrf().then((result) => setVxsrf(result)) }, [])
+    useEffect(() => {
+        if (as == 'user') return setUrl(`${import.meta.env.VITE_API}/login`)
+        else return setUrl(`${import.meta.env.VITE_API}/login/contributor`)
+    }, [as])
+
+    if (loading) return <Loading/>
 
     return(
         <div className="page">
