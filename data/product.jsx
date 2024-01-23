@@ -23,7 +23,7 @@ const products =
                 text : "Motion logo templates",
                 img : "img/motion.png",
                 color : "var(--yellow)",
-                pricing : ["free"],
+                pricing : ["paid", "free"],
                 ctg : "motion"
             },
             {
