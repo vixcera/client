@@ -9,7 +9,7 @@ const donwloadProduct = async (order_id) => {
         { headers : { 'xsrf-token' : vxsrf }})
 
         // Membuat tautan untuk mengunduh Blob
-        const url = window.URL.createObjectURL(response.data.file);
+        const url = response.data.file;
         const link = document.createElement('a');
         link.href = url;
 
