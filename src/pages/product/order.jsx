@@ -18,7 +18,6 @@ const Order = () => {
     const history = JSON.parse(localStorage.getItem("inputOrder"))
     const navigate = useNavigate()
     const {vid} = useParams()
-    const context = useContext(Context)
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
@@ -61,6 +60,7 @@ const Order = () => {
           },
           onPending: (result) => {
             sessionStorage.setItem('transaction', JSON.stringify(result))
+            sessionStorage.setItem('transaction_token', response.data)
           }
         })
       } 
