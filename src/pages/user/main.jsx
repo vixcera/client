@@ -12,7 +12,7 @@ const Main = () => {
     const transaction_token = sessionStorage.getItem('transaction_token')
     
     useEffect(() => {
-        if (transaction.transaction_status === 'pending') {
+        if (transaction === 'pending') {
             snap()
             swal.fire({
                 icon: 'question',
