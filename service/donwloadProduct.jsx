@@ -20,7 +20,8 @@ const donwloadProduct = async (order_id) => {
         link.click();
         document.body.removeChild(link);
     } catch (error) {
-        if (error || error.response) {
+        alert(error.message)
+        if (error.response) {
             alert(error.response.data)
             .then((res) => res.dismiss ? location.href = '/' : '')
         }
