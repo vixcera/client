@@ -15,17 +15,21 @@ import "../../style/create.css"
 
 const Order = () => {
 
+    const history = JSON.parse(localStorage.getItem("inputOrder"))
     const navigate = useNavigate()
     const {vid} = useParams()
     const context = useContext(Context)
-
-    const [data, setData] = useState([])
-    const [name, setName] = useState(context.username ? context.username : '')
-    const [email, setEmail] = useState(context.email ? context.email : '')
-    const [phone, setPhone] = useState('')
-    const [vxsrf, setVxsrf] = useState('')
-
+    
     const [loading, setLoading] = useState('')
+    const [vxsrf, setVxsrf] = useState('')
+    const [data, setData] = useState([])
+    const [name, setName] = useState(history ? history.name : '')
+    const [email, setEmail] = useState(history ? history.email : '')
+    const [phone, setPhone] = useState(history ? history.phone : '')
+    
+    if (name || email || phone) {
+      localStorage.setItem('inputOrder', JSON.stringify({ name, email, phone }))
+    }
     
     const getProducts = async () => {
         try {
@@ -55,8 +59,8 @@ const Order = () => {
             localStorage.setItem('result', result)
             console.log(localStorage.getItem('result'))
           },
-          onPending : (result) => {
-            console.log(result)
+          onPending: (result) => {
+            sessionStorage.setItem('transaction', result)
           }
         })
       } 
