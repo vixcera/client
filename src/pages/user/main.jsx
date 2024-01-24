@@ -8,7 +8,7 @@ import "../../style/main.css"
 
 const Main = () => {
 
-    const transaction = sessionStorage.getItem('transaction')
+    const transaction = JSON.parse(sessionStorage.getItem('transaction'))
     const transaction_token = sessionStorage.getItem('transaction_token')
     
     useEffect(() => {
