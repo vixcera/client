@@ -2,13 +2,12 @@ import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
-import Context from '../../../utils/context'
 import getvxsrf from '../../../secure/getvxsrf'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
+import donwloadProduct from '../../../service/donwloadProduct'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
@@ -56,7 +55,7 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         window.snap.pay(response.data, {
           onSuccess: (result) => {
-            sessionStorage.setItem('success_transaction', JSON.stringify(result))
+            donwloadProduct(result.order_id)
           },
           onPending: (result) => {
             sessionStorage.setItem('transaction', JSON.stringify(result))
