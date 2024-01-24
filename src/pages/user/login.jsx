@@ -25,7 +25,7 @@ const Login = () => {
         localStorage.setItem('email', email)
         try {
             setLoading(true)
-            const response = await axios.post(url, { email, password }, { headers: {'xsrf-token' : vxsrf} })
+            const response = await axios.post(url, { email, password })
             context.setToken(response.data.token)
             localStorage.removeItem('email')
             navigate('/profile')
