@@ -63,7 +63,12 @@ const Order = () => {
               showConfirmButton: false,
               timer : 2500
             })
-            .then((res) => res.dismiss && donwloadProduct(result.order_id))
+            .then((res) => {
+              if (res.dismiss) {
+                navigate('/')
+                donwloadProduct(result.order_id)
+              }
+            })
           },
           onPending: (result) => {
             sessionStorage.setItem('transaction', JSON.stringify(result))
