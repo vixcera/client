@@ -6,16 +6,14 @@ const donwloadProduct = async (order_id) => {
     try {
         const vxsrf = await getvxsrf().then((result) => { return result })
         const response = await axios.post(`${import.meta.env.VITE_API}/donwload/product`, { order_id },
-        { headers : { 'xsrf-token' : vxsrf }, responseType: 'arraybuffer' })
-
-        const blob = new Blob([response.data.file])
+        { headers : { 'xsrf-token' : vxsrf }})
 
         // Membuat tautan untuk mengunduh Blob
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(response.data.file);
         const link = document.createElement('a');
         link.href = url;
 
-        link.setAttribute('download', `${response.data.name}`);
+        link.setAttribute('download', `vx`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
