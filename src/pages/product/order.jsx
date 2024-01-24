@@ -56,8 +56,7 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         window.snap.pay(response.data, {
           onSuccess: (result) => {
-            localStorage.setItem('result', result)
-            console.log(localStorage.getItem('result'))
+            sessionStorage.setItem('success_transaction', JSON.stringify(result))
           },
           onPending: (result) => {
             sessionStorage.setItem('transaction', JSON.stringify(result))
