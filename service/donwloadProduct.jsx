@@ -8,14 +8,23 @@ const donwloadProduct = async (order_id) => {
         const response = await axios.post(`${import.meta.env.VITE_API}/donwload/product`, { order_id },
         { headers : { 'xsrf-token' : vxsrf }})
 
+        const blob = new Blob([response.data], { type: 'application/zip' });
+
         // Membuat tautan untuk mengunduh Blob
-        const url = response.data.file;
+        const url = window.URL.createObjectURL(blob);
+
+        // Membuat elemen anchor dan menyimpan file lokal
         const link = document.createElement('a');
         link.href = url;
 
-        link.setAttribute('download', `vx`);
+        // Mendapatkan nama file dari respons server
+        const suggestedFilename = response.data.name || 'nama_file_yang_diinginkan.zip';
+
+        link.setAttribute('download', suggestedFilename);
         document.body.appendChild(link);
         link.click();
+
+        // Membersihkan elemen anchor setelah unduhan selesai
         document.body.removeChild(link);
     } catch (error) {
         alert(error.message)
