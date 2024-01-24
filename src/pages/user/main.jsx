@@ -27,7 +27,7 @@ const Main = () => {
                 })
                 .then((res) => {
                     if (res.isConfirmed) return window.snap.pay(transaction_token)
-                    if (res.isDenied) return sessionStorage.removeItem('transaction' && 'transactionToken')
+                    if (res.isDenied) return sessionStorage.removeItem('transaction', 'transactionToken')
                 })
             }
             
