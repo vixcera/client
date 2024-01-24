@@ -4,7 +4,7 @@ import getvxsrf from "../secure/getvxsrf"
 
 const donwloadProduct = async (order_id) => {
     try {
-        const vxsrf = getvxsrf().then((result) => { return result })
+        const vxsrf = await getvxsrf().then((result) => { return result })
         const response = await axios.post(`${import.meta.env.VITE_API}/donwload/product`, {
             order_id : order_id
         },{ headers : { 'xsrf-token' : vxsrf }
