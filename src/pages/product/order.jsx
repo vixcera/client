@@ -60,7 +60,7 @@ const Order = () => {
             console.log(localStorage.getItem('result'))
           },
           onPending: (result) => {
-            sessionStorage.setItem('transaction', result)
+            sessionStorage.setItem('transaction', JSON.parse(result))
           }
         })
       } 
