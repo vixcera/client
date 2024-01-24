@@ -11,7 +11,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
-import alert from '../../../utils/alert'
 
 const Order = () => {
 
@@ -56,7 +55,14 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         window.snap.pay(response.data, {
           onSuccess: (result) => {
-            alert("Thanks for your order, have a nice day!")
+            Swal.fire({
+              icon: 'success',
+              text: 'Thanks for your order, have a nice day!',
+              background: 'var(--primary)',
+              color: 'var(--blue)',
+              showConfirmButton: false,
+              timer : 2500
+            })
             .then((res) => res.dismiss && donwloadProduct(result.order_id))
           },
           onPending: (result) => {
