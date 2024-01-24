@@ -13,21 +13,24 @@ const Main = () => {
     
     useEffect(() => {
         if (transaction) {
-            snap()
-            swal.fire({
-                icon: 'question',
-                title: `Pending order`,
-                text: 'You have an unpaid order, want to pay now?',
-                background: 'var(--primary)',
-                color: "var(--blue)",
-                confirmButtonText: 'Pay now',
-                showDenyButton: true,
-                denyButtonText: 'Cancel'
-            })
-            .then((res) => {
-                if (res.isConfirmed) return window.snap.pay(transaction_token)
-                if (res.isDenied) return sessionStorage.removeItem('transaction' && 'transactionToken')
-            })
+            if (transaction.transaction_status.toLowerCase() == 'pending') {
+                snap()
+                swal.fire({
+                    icon: 'question',
+                    title: `Pending order`,
+                    text: 'You have an unpaid order, want to pay now?',
+                    background: 'var(--primary)',
+                    color: "var(--blue)",
+                    confirmButtonText: 'Pay now',
+                    showDenyButton: true,
+                    denyButtonText: 'Cancel'
+                })
+                .then((res) => {
+                    if (res.isConfirmed) return window.snap.pay(transaction_token)
+                    if (res.isDenied) return sessionStorage.removeItem('transaction' && 'transactionToken')
+                })
+            }
+            
         }
     } ,[])
 
