@@ -54,6 +54,9 @@ const Order = () => {
           onSuccess: (result) => {
             localStorage.setItem('result', result)
             console.log(localStorage.getItem('result'))
+          },
+          onPending : (result) => {
+            console.log(result)
           }
         })
       } 
