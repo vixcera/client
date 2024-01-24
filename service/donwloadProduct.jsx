@@ -8,14 +8,14 @@ const donwloadProduct = async (order_id) => {
         const response = await axios.post(`${import.meta.env.VITE_API}/donwload/product`, { order_id },
         { headers : { 'xsrf-token' : vxsrf }, responseType: 'arraybuffer' })
 
-        const blob = new Blob([response.data], { type: 'application/zip' });
+        const blob = new Blob([response.data.file])
 
         // Membuat tautan untuk mengunduh Blob
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
 
-        link.setAttribute('download', response.data.name);
+        link.setAttribute('download', `${response.data.name}`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
