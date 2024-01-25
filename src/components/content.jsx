@@ -18,6 +18,11 @@ const Content = () => {
             <div className="grep"/>
             {(path == '/') && 
             <div>
+                <div className="notification-panel">
+                    <div className="notification-wrap">
+                        <div>No recent notification.</div>
+                    </div>
+                </div>
                 {(context.token) ? 
                 <div className="developer">
                     <img src="/img/pi.png" className="dimasputra" alt="" />

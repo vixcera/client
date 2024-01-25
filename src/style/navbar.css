@@ -81,7 +81,25 @@
     .nav-user-mobile {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 20px;
+    }
+
+    .count {
+        background-color: var(--yellow);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: -13px;
+        right: -3px;
+        width: 17px;
+        height: 17px;
+        font-weight: bolder;
+        font-size: 0.77rem;
+        border-radius: 50%;
+        box-shadow: 3px 3px 7px var(--second);
+        cursor: pointer;
     }
 }
 

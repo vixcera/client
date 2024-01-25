@@ -1,12 +1,19 @@
 import { NavLink, useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from "react"
 import Context from "../../utils/context"
-import { useContext } from "react"
 import "../style/navbar.css"
 
 const Navbar = () => {
 
+  const pendingOrder = sessionStorage.getItem('transaction_token')
   const context = useContext(Context)
   const navigate = useNavigate()
+
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (pendingOrder) return setCount(count + 1)
+  }, [pendingOrder])
 
   window.onscroll = () => {
       let y = window.scrollY
@@ -14,7 +21,7 @@ const Navbar = () => {
       let nav = document.querySelector('.navbar-container')
       let grep = document.querySelector('.grep')
   
-      if (w > 420 && nav && grep) {
+      if (w > 530 && nav && grep) {
         if (y > 170) {
           nav.classList.add('fix');
           grep.classList.add('block');
@@ -25,6 +32,17 @@ const Navbar = () => {
         nav.classList.remove('fix');
         grep.classList.remove('block');
       }
+  }
+
+  const showNotification = () => {
+    const panel = document.querySelector('.notification-panel')
+    const wrap = document.querySelector('.notification-wrap')
+    panel.classList.toggle('show')
+    if (panel.classList.contains('show')) {
+      wrap.classList.add('show')
+    } else {
+      wrap.classList.remove('show')
+    }
   }
 
   const handleSidebar = () => {
@@ -52,7 +70,10 @@ const Navbar = () => {
           }
         </div>  
         <div className="nav-user-mobile">
-          <div className="i fa-solid fa-bell fa-xl"/>
+          <div style={{ position: 'relative' }}>
+            <div className="i fa-solid fa-bell fa-xl" onClick={() => showNotification()}/>
+            {(count != 0) && <div className="count">{count}</div>}
+          </div>
           <div className="i fa-solid fa-qrcode fa-xl" onClick={() => handleSidebar()} style={{fontSize : "28px"}}/>
         </div>
       </div>
