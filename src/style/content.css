@@ -48,11 +48,8 @@
     box-shadow: var(--boxshadow);
     position: relative;
     transition: 0.5s ease-in-out all;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: var(--poppins);
-    color: #faedca;
+    color: var(--text);
     overflow: hidden;
 }
 .notification-panel.show {
