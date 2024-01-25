@@ -1,7 +1,7 @@
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import getvxsrf from '../../../secure/getvxsrf'
 import Loading from "../../../utils/loading"
+import getvxsrf from '../../../service/getvxsrf'
 import swal from "sweetalert2"
 import axios from "axios"
 

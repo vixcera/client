@@ -1,7 +1,7 @@
 import { useContext, useRef, useState, useEffect } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate } from 'react-router-dom'
-import getvxsrf from "../../../secure/getvxsrf"
+import getvxsrf from '../../../service/getvxsrf'
 import Context from '../../../utils/context'
 import Loading from "../../../utils/loading"
 import swal from "sweetalert2"

@@ -14,7 +14,7 @@ import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
 import Wetails from "../admin/wetails"
 import Dashboard from "../admin/dashboard"
-import checkvxsrf from "../secure/checkvxsrf"
+import checkvxsrf from "../service/checkvxsrf"
 import UserConfirm from "../src/pages/auth/userConfirm"
 
 const Routing = () => {

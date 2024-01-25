@@ -2,7 +2,7 @@ import axios from "axios"
 import alert from "../../../utils/alert"
 import Context from "../../../utils/context"
 import Loading from "../../../utils/loading"
-import getvxsrf from "../../../secure/getvxsrf"
+import getvxsrf from '../../../service/getvxsrf'
 import { useContext, useEffect, useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import "../../style/login.css"

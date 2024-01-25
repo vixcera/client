@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
-import getvxsrf from "../../../secure/getvxsrf"
+import getvxsrf from "../../../service/getvxsrf"
 import Context from "../../../utils/context"
 import alert from "../../../utils/alert"
 import swal from "sweetalert2"

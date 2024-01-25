@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
-import getvxsrf from '../../../secure/getvxsrf'
+import getvxsrf from '../../../service/getvxsrf'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import donwloadProduct from '../../../service/donwloadProduct'
