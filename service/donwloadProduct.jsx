@@ -1,6 +1,6 @@
 import axios from "axios"
 import alert from "../utils/alert"
-import getvxsrf from "../secure/getvxsrf"
+import getvxsrf from "./getvxsrf"
 
 const donwloadProduct = async (order_id) => {
     try {
