@@ -52,7 +52,7 @@ const Navbar = () => {
           }
         </div>  
         <div className="nav-user-mobile">
-          <div className="i fa-solid fa-magnifying-glass fa-xl"/>
+          <div className="i fa-solid fa-cart-shopping fa-xl"/>
           <div className="i fa-solid fa-qrcode fa-xl" onClick={() => handleSidebar()} style={{fontSize : "28px"}}/>
         </div>
       </div>
