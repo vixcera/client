@@ -53,10 +53,11 @@
 }
 
 .product-desc-product {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: rgb(152, 148, 160);
     margin-left: 5px;
     line-height: 23px;
+    font-family: var(--poppins);
 }
 
 .wrapped-text {
