@@ -14,15 +14,16 @@ const Navbar = () => {
       let nav = document.querySelector('.navbar-container')
       let grep = document.querySelector('.grep')
   
-      if (w > 420) {
-        if (y > 170) { 
-          nav.classList.add('fix') 
-          grep.classList.add('block')
+      if (w > 420 && nav && grep) {
+        if (y > 170) {
+          nav.classList.add('fix');
+          grep.classList.add('block');
         }
       }
-      if (nav.classList.contains('fix') && y < 5) {
-        nav.classList.remove('fix')
-        grep.classList.remove('block')
+    
+      if (nav && grep && nav.classList.contains('fix') && y < 5) {
+        nav.classList.remove('fix');
+        grep.classList.remove('block');
       }
   }
 
