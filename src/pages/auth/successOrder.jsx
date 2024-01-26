@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import Loading from '../../../utils/loading'
 import alert from '../../../utils/alert'
 import axios from 'axios'
@@ -21,6 +20,7 @@ const SuccessOrder = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            location.href = '/'
         } catch (error) {
             alert("server maintenance!")
             if(error.response) alert(error.response.data)
