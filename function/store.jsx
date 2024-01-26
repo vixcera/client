@@ -2,7 +2,7 @@ export const createStorage = async (key, token, id, exp) => {
     let index = 1;
     let currentKey = `${key}${index}`;
     const found = sessionStorage.getItem(currentKey);
-    const expire = new Date(exp).getTime()
+    const expire = new Date().getTime() + exp * 60 * 1000
     if (!found) return sessionStorage.setItem(currentKey, JSON.stringify({ token, id, expire }));
     
     while (sessionStorage.getItem(currentKey)) {

@@ -72,8 +72,7 @@ const Order = () => {
             })
           },
           onPending: (result) => {
-            createStorage('transaction', response.data, result.order_id ,result.expiry_time)
-            console.log(result)
+            createStorage('transaction', response.data, result.order_id , 15)
           }
         })
       } 
