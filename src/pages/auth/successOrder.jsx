@@ -6,13 +6,14 @@ import axios from 'axios'
 
 const SuccessOrder = () => {
 
-    const { order_id } = useParams()
+    const orderID = new URLSearchParams(location.search).get('order_id')
+    console.log(orderID)
     const [ loading, setLoading ] = useState(false)
 
     const donwloadProduct = async() => {
         try {
             setLoading(true)
-            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${order_id}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
             const url = response.data.file;
             const link = document.createElement('a');
             link.href = url;
