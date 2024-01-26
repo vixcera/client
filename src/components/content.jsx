@@ -23,11 +23,11 @@ const Content = () => {
     }
 
     const repay = (token, key) => {
-        window.snap.pay(token, {
-            onSuccess : () => { window.snap.show() },
-            onClose   : () => { location.reload() },
-            onPending : () => { window.snap.hide() }
-        })
+        window.snap.show()
+        // window.snap.pay(token, {
+        //     onClose   : () => { location.reload() },
+        //     onPending : () => { window.snap.hide() }
+        // })
     }
 
     useEffect(() => {
