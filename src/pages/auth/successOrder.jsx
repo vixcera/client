@@ -20,7 +20,6 @@ const SuccessOrder = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            location.href = '/'
         } catch (error) {
             alert("server maintenance!")
             if(error.response) alert(error.response.data)
