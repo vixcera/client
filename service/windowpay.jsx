@@ -1,6 +1,6 @@
 import snap from "../utils/snap"
 
-const windowpay = (token) => {
+const windowpay = async (token) => {
     snap()
     window.snap.pay(token, {
         onPending: (result) => {
