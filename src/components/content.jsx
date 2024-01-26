@@ -24,10 +24,10 @@ const Content = () => {
 
     const repay = (token, key) => {
         window.snap.show()
-        // window.snap.pay(token, {
-        //     onClose   : () => { location.reload() },
-        //     onPending : () => { window.snap.hide() }
-        // })
+        window.snap.pay(token, {
+            onClose   : () => { window.snap.hide() },
+            onPending : () => { window.snap.hide() }
+        })
     }
 
     useEffect(() => {
@@ -40,8 +40,6 @@ const Content = () => {
         const interval = setInterval(fetchData, 3000);
         return () => clearInterval(interval);
     }, [click])
-
-    useEffect(() => { snap() }, [])
 
     return (
         <div className="content">
