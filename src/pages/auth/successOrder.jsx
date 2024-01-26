@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import Loading from '../../../utils/loading'
 import alert from '../../../utils/alert'
 import axios from 'axios'
@@ -6,7 +7,7 @@ import axios from 'axios'
 const SuccessOrder = () => {
 
     const orderID = new URLSearchParams(location.search).get('order_id')
-    console.log(orderID)
+    const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
 
     const donwloadProduct = async() => {
@@ -22,7 +23,8 @@ const SuccessOrder = () => {
             document.body.removeChild(link);
         } catch (error) {
             alert("server maintenance!")
-            if(error.response) location.reload()
+            if(error.response) alert(error.response.data)
+            .then((res) => { if(res.dismiss) { location.href = '/' } })
         } finally {
             setLoading(false)
         }
