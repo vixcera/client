@@ -67,7 +67,7 @@ const Order = () => {
             })
             .then((res) => {
               if (res.dismiss) {
-                navigate(result.finsih_redirect_url)
+                location.href = result.finish_redirect_url
               }
             })
           },
