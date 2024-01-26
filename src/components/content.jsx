@@ -7,6 +7,7 @@ import about from "../../data/about"
 import { validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import "../style/content.css"
+import windowpay from "../../service/windowpay"
 
 const Content = () => {
 
@@ -44,7 +45,7 @@ const Content = () => {
                     <div className="notification-wrap" style={{ justifyContent: 'unset' }}>
                         {data.map((i, k) => {
                             return (
-                                <div className="notification-box" key={k}>
+                                <div className="notification-box" onClick={() => windowpay(i.token)} key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
                                     <div className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
                                         <div className="text">{i.status} transaction</div>
