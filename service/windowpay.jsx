@@ -3,13 +3,17 @@ import { createStorage } from "../function/store"
 const windowpay = (token) => {
     window.snap.pay(token, {
         onSuccess: (result) => {
-          location.href = result.finish_redirect_url
           createStorage('transaction', token, result.order_id, result.transaction_status, 5)
+          location.href = result.finish_redirect_url
         },
         onPending: (result) => {
-          window.snap.hide()
           createStorage('transaction', token, result.order_id, result.transaction_status, 5)
+          window.snap.hide()
         },
+        onClose: (result) => {
+          createStorage('transaction', token, result.order_id, result.transaction_status, 5)
+          window.snap.hide()
+        }
     })
 } 
 
