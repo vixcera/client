@@ -56,6 +56,7 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         window.snap.pay(response.data, {
           onSuccess: (result) => {
+            console.log(result)
             Swal.fire({
               icon: 'success',
               text: 'Thanks for your order, have a nice day!',
