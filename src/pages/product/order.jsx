@@ -2,12 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
-import getvxsrf from '../../../service/getvxsrf'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
+import getvxsrf from '../../../service/getvxsrf'
 import donwloadProduct from '../../../service/donwloadProduct'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { createStorage } from "../../../function/store"
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
@@ -71,8 +72,7 @@ const Order = () => {
             })
           },
           onPending: (result) => {
-            sessionStorage.setItem('transaction', JSON.stringify(result))
-            sessionStorage.setItem('transaction_token', response.data)
+            createStorage('transaction', response.data, result.order_id ,result.expiry_time)
           }
         })
       } 

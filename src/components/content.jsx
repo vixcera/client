@@ -4,7 +4,8 @@ import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
-import { useContext } from "react"
+import { validStorage } from "../../function/store"
+import { useContext, useEffect, useState } from "react"
 import "../style/content.css"
 
 const Content = () => {
@@ -12,14 +13,51 @@ const Content = () => {
     const path = location.pathname
     const navigate = useNavigate()
     const context = useContext(Context)
+    const [data, setData] = useState([])
+    const [click, setClick] = useState(false)
+
+    const handleClick = (key) => {
+        sessionStorage.removeItem(key)
+        setClick(true)
+    }
+
+    useEffect(() => {
+        const fetchData = () => {
+            const newData = validStorage();
+            setData(newData);
+        };
+        fetchData();
+        setClick(false)
+        const interval = setInterval(fetchData, 3000);
+        return () => clearInterval(interval);
+    }, [click])
 
     return (
         <div className="content">
             <div className="grep"/>
             <div className="notification-panel">
-                <div className="notification-wrap">
-                    <div>No recent notification.</div>
-                </div>
+                {(!data.length) ? 
+                    <div className="notification-wrap" style={{ justifyContent: 'center', height: '100%'}}>
+                        <div>No recent notification.</div>
+                    </div>
+                :
+                    <div className="notification-wrap" style={{ justifyContent: 'unset' }}>
+                        {data.map((i, k) => {
+                            return (
+                                <div className="notification-box" key={k}>
+                                    <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
+                                    <div className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
+                                        <div className="text">Pending Transaction</div>
+                                        <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Your order ID : {i.id}</span></p>
+                                    </div>
+                                    <div className="close" onClick={() => handleClick(i.currentKey)}>
+                                        <div className="fa-solid fa-close fa-xl" style={{color: 'var(--second)'}}/>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                }
             </div>
             {(path == '/') && 
             <div>

@@ -1,19 +1,28 @@
 import { NavLink, useNavigate } from "react-router-dom"
+import { expireStorage, validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../utils/context"
 import "../style/navbar.css"
 
 const Navbar = () => {
-
-  const pendingOrder = sessionStorage.getItem('transaction_token')
-  const context = useContext(Context)
+  
   const navigate = useNavigate()
-
+  const context = useContext(Context)
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    if (pendingOrder) return setCount(count + 1)
-  }, [pendingOrder])
+    const setTotal = () => {
+      const valid =  validStorage()
+      const expire = expireStorage()
+      if (!valid.length) { 
+        setCount(0)
+        expire.map((i) => sessionStorage.removeItem(`${i.currentKey}`))
+      } else { setCount(valid.length) }
+    }
+    setTotal();
+    const interval = setInterval(setTotal, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   window.onscroll = () => {
       let y = window.scrollY
@@ -70,8 +79,8 @@ const Navbar = () => {
           }
         </div>  
         <div className="nav-user-mobile">
-          <div style={{ position: 'relative' }}>
-            <div className="i fa-solid fa-bell fa-xl" onClick={() => showNotification()}/>
+          <div style={{ position: 'relative' }} onClick={() => showNotification()}>
+            <div className="i fa-solid fa-bell fa-xl"/>
             {(count != 0) && <div className="count">{count}</div>}
           </div>
           <div className="i fa-solid fa-qrcode fa-xl" onClick={() => handleSidebar()} style={{fontSize : "28px"}}/>
