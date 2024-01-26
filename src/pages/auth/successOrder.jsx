@@ -7,12 +7,14 @@ import axios from 'axios'
 const SuccessOrder = () => {
 
     const orderID = new URLSearchParams(location.search).get('order_id')
+    const status = new URLSearchParams(location.search).get('transaction_status')
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
 
-    const donwloadProduct = async() => {
+    const donwloadProduct = async () => {
         try {
             setLoading(true)
+            if (status.toLowerCase() === 'pending') return navigate('/')
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
             const url = response.data.file;
             const link = document.createElement('a');
