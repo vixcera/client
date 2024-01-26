@@ -67,7 +67,7 @@ const Order = () => {
             })
             .then((res) => {
               if (res.dismiss) {
-                location.href = result.finish_redirect_url
+                navigate(`/transaction/success/${result.order_id}`)
               }
             })
           },
