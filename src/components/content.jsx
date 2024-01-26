@@ -41,6 +41,8 @@ const Content = () => {
         return () => clearInterval(interval);
     }, [click])
 
+    useEffect(() => {snap()}, [])
+
     return (
         <div className="content">
             <div className="grep"/>
