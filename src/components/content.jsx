@@ -47,8 +47,8 @@ const Content = () => {
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
                                     <div className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
-                                        <div className="text">Pending Transaction</div>
-                                        <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Your order ID : {i.id}</span></p>
+                                        <div className="text">New Transaction</div>
+                                        <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
                                     </div>
                                     <div className="close" onClick={() => handleClick(i.currentKey)}>
                                         <div className="fa-solid fa-close fa-xl" style={{color: 'var(--second)'}}/>

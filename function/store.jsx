@@ -1,15 +1,15 @@
-export const createStorage = async (key, token, id, exp) => {
+export const createStorage = async (key, token, id, status, exp) => {
     let index = 1;
     let currentKey = `${key}${index}`;
     const found = sessionStorage.getItem(currentKey);
     const expire = new Date().getTime() + exp * 60 * 1000
-    if (!found) return sessionStorage.setItem(currentKey, JSON.stringify({ token, id, expire }));
+    if (!found) return sessionStorage.setItem(currentKey, JSON.stringify({ token, id, status, expire }));
     
     while (sessionStorage.getItem(currentKey)) {
         index++;
         currentKey = `${key}${index}`;
     }
-    return sessionStorage.setItem(currentKey, JSON.stringify({ token, id, expire }));
+    return sessionStorage.setItem(currentKey, JSON.stringify({ token, id, status, expire }));
 };
 
 export const allStorage = () => {
@@ -19,7 +19,7 @@ export const allStorage = () => {
     while (i <= 10) {
         const currentKey = `transaction${i}`;
         const item = JSON.parse(sessionStorage.getItem(currentKey));
-        const defaultValues = { currentKey, token: null, id: null, expire: null };
+        const defaultValues = { currentKey, token: null, id: null, status: null, expire: null };
         allTransactionData.push(item ? { ...defaultValues, ...item } : defaultValues);
     
         i++;
