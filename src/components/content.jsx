@@ -8,6 +8,7 @@ import { validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import "../style/content.css"
 import windowpay from "../../service/windowpay"
+import snap from "../../utils/snap"
 
 const Content = () => {
 
