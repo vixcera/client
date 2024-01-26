@@ -349,12 +349,8 @@
         height: 180px;
     }
 
-    .notification-box {
-        font-size: 0.8rem;
-    }
-
     .close {
-        width: 45px;
+        width: 37px;
     }
 
     .notification-panel.show {
