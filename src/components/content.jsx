@@ -24,8 +24,8 @@ const Content = () => {
 
     const repay = (token, key) => {
         window.snap.pay(token, {
-            onClose: () => { sessionStorage.removeItem(key)},
-            onPending: () => { sessionStorage.removeItem(key)}
+            onClose   : () => { handleClick(key) },
+            onPending : () => { handleClick(key) }
         })
     }
 
