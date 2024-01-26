@@ -24,6 +24,7 @@ const Content = () => {
 
     const repay = (token, key) => {
         window.snap.pay(token, {
+            onSuccess : () => { handleClick(key) },
             onClose   : () => { location.reload() },
             onPending : () => { location.reload() }
         })
@@ -40,11 +41,7 @@ const Content = () => {
         return () => clearInterval(interval);
     }, [click])
 
-    useEffect(() => {
-        if (data.length) {
-            snap()
-        }
-    }, [])
+    useEffect(() => { snap() }, [])
 
     return (
         <div className="content">
