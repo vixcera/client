@@ -22,8 +22,7 @@ const SuccessOrder = () => {
             document.body.removeChild(link);
         } catch (error) {
             alert("server maintenance!")
-            if(error.response) alert(error.response.data)
-            .then((res) => { if(res.dismiss) { location.href = '/' } })
+            if(error.response) location.reload()
         } finally {
             setLoading(false)
         }
