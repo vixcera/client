@@ -1,3 +1,5 @@
+import { createStorage } from "../function/store"
+
 const windowpay = (token) => {
     window.snap.pay(token, {
         onPending: (result) => {
