@@ -1,8 +1,8 @@
 import snap from "../utils/snap"
 
-const windowpay = async (token) => {
+const windowpay = (token) => {
     snap()
-    window.snap.pay(token, {
+    return window.snap.pay(token, {
         onPending: (result) => {
           createStorage('transaction', response.data, result.order_id, result.transaction_status, 15)
         },
