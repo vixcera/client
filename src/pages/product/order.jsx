@@ -11,6 +11,7 @@ import { createStorage } from "../../../function/store"
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
+import windowpay from '../../../service/windowpay'
 
 const Order = () => {
 
@@ -44,7 +45,6 @@ const Order = () => {
     
     const checkout = async () => {
       try {
-        snap()
         setLoading(true)
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
           vid     : vid,
@@ -53,17 +53,7 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
-        window.snap.pay(response.data, {
-          onPending: (result) => {
-            createStorage('transaction', response.data, result.order_id, result.transaction_status, 15)
-          },
-          onClose: (result) => {
-            createStorage('transaction', response.data, result.order_id, result.transaction_status, 15)
-          },
-          onError: (result) => {
-            createStorage('transaction', response.data, result.order_id, result.transaction_status, 15)
-          }
-        })
+        windowpay(response.data)
       } 
       catch (error) {
         if (error || error.response) {
