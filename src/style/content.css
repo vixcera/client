@@ -349,8 +349,12 @@
         height: 180px;
     }
 
+    .notification-box {
+        font-size: 0.8r;
+    }
+
     .close {
-        width: 35px;
+        width: 45px;
     }
 
     .notification-panel.show {
