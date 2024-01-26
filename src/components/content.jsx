@@ -23,8 +23,8 @@ const Content = () => {
     }
 
     const repay = (token, key) => {
-        window.snap.show()
         window.snap.pay(token, {
+            onSuccess : () => { window.snap.hide() },
             onClose   : () => { window.snap.hide() },
             onPending : () => { window.snap.hide() }
         })

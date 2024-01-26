@@ -4,10 +4,11 @@ const windowpay = (token) => {
     window.snap.pay(token, {
         onSuccess: (result) => {
           location.href = result.finish_redirect_url
-          createStorage('transaction', token, result.order_id, result.transaction_status, 15)
+          createStorage('transaction', token, result.order_id, result.transaction_status, 5)
         },
         onPending: (result) => {
-          createStorage('transaction', token, result.order_id, result.transaction_status, 15)
+          window.snap.hide()
+          createStorage('transaction', token, result.order_id, result.transaction_status, 5)
         },
     })
 } 
