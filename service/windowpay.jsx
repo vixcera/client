@@ -8,12 +8,6 @@ const windowpay = (token) => {
         onPending: (result) => {
           createStorage('transaction', token, result.order_id, result.transaction_status, 15)
         },
-        onClose: (result) => {
-          createStorage('transaction', token, result.order_id, result.transaction_status, 15)
-        },
-        onError: (result) => {
-          createStorage('transaction', token, result.order_id, result.transaction_status, 15)
-        }
     })
 } 
 

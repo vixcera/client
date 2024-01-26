@@ -4,11 +4,10 @@ import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
+import snap from "../../utils/snap"
 import { validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import "../style/content.css"
-import windowpay from "../../service/windowpay"
-import snap from "../../utils/snap"
 
 const Content = () => {
 
@@ -23,6 +22,10 @@ const Content = () => {
         setClick(true)
     }
 
+    const repay = () => {
+        snap()
+    }
+
     useEffect(() => {
         const fetchData = () => {
             const newData = validStorage();
@@ -34,7 +37,6 @@ const Content = () => {
         return () => clearInterval(interval);
     }, [click])
 
-    useEffect(() => {snap()}, [path])
 
     return (
         <div className="content">
@@ -48,7 +50,7 @@ const Content = () => {
                     <div className="notification-wrap" style={{ justifyContent: 'unset' }}>
                         {data.map((i, k) => {
                             return (
-                                <div className="notification-box" onClick={() => windowpay(i.token)} key={k}>
+                                <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
                                     <div className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
                                         <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
