@@ -1,8 +1,6 @@
 import { createStorage } from "../function/store"
-import snap from "../utils/snap"
 
 const windowpay = (token) => {
-  snap().then(() => {
     window.snap.pay(token, {
         onSuccess: (result) => {
           createStorage('transaction', token, result.order_id, result.transaction_status, 15)
@@ -17,7 +15,6 @@ const windowpay = (token) => {
           createStorage('transaction', token, result.order_id, result.transaction_status, 15)
         }
     })
-  })
 } 
 
 export default windowpay;
