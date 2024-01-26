@@ -22,9 +22,9 @@ const Content = () => {
         setClick(true)
     }
 
-    const repay = (token, key) => {
+    const repay = (token, url) => {
         window.snap.pay(token, {
-            onSuccess : () => { window.snap.hide() },
+            onSuccess : () => { navigate(`${url}`) },
             onClose   : () => { window.snap.hide() },
             onPending : () => { window.snap.hide() }
         })
@@ -57,7 +57,7 @@ const Content = () => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
-                                    <div onClick={() => repay(i.token, i.currentKey)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
+                                    <div onClick={() => repay(i.token, i.url)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
                                         <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
                                         <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
                                     </div>
