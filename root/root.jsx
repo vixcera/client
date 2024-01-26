@@ -3,6 +3,7 @@ import axios from 'axios'
 import Routing from './router'
 import ReactDOM from 'react-dom/client'
 axios.defaults.withCredentials = true
+axios.defaults.headers.common['VXkey'] = `${import.meta.env.VITE_ACCESS_KEY}`
 
 import "react-lazy-load-image-component/src/effects/blur.css"
 import "@fortawesome/fontawesome-free/css/all.css"
