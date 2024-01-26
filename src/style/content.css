@@ -349,6 +349,10 @@
         height: 180px;
     }
 
+    .close {
+        width: ;
+    }
+
     .notification-panel.show {
         height: 180px;
     }
