@@ -22,8 +22,12 @@ const Content = () => {
         setClick(true)
     }
 
-    const repay = () => {
-        snap()
+    const repay = (token, key) => {
+        window.snap.pay(token, {
+            onClose: () => {
+                sessionStorage.removeItem(key)
+            }
+        })
     }
 
     useEffect(() => {
@@ -37,6 +41,11 @@ const Content = () => {
         return () => clearInterval(interval);
     }, [click])
 
+    useEffect(() => {
+        if (data.length) {
+            snap()
+        }
+    }, [])
 
     return (
         <div className="content">
@@ -52,7 +61,7 @@ const Content = () => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
-                                    <div className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
+                                    <div onClick={() => repay(i.token, i.currentKey)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
                                         <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
                                         <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
                                     </div>
