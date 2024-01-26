@@ -67,8 +67,7 @@ const Order = () => {
             })
             .then((res) => {
               if (res.dismiss) {
-                navigate('/')
-                donwloadProduct(result.order_id)
+                navigate(result.finsih_redirect_url)
               }
             })
           },
