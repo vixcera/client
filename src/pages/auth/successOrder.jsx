@@ -15,7 +15,7 @@ const SuccessOrder = () => {
     const { order_id } = useParams()
     
     const donwloadProduct = async () => {
-        if (!order_id) return alert("transaction not found")
+        if (!order_id) return (await alert("transaction not found")).dismiss && navigate('/')
         try {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/transaction/success`,{
@@ -31,12 +31,12 @@ const SuccessOrder = () => {
                 icon: 'success',
                 background: 'var(--primary)',
                 color: 'var(--blue)',
-                text: 'Thanks for your order on vixcera, have a nice day.',
-                confirmButtonText: 'Download product',
-                confirmButtonColor : 'var(--background)',
+                text: 'Transaction complete!, thanks for your order on vixcera.',
+                confirmButtonText: 'download product',
+                footer : 'have a nice day!'
             })
             .then((res) => {
-                res.isConfirmed ? link.click() : link.click()
+                res.isConfirmed && link.click()
             })
 
         } catch (error) {
