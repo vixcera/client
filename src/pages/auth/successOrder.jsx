@@ -35,13 +35,7 @@ const SuccessOrder = () => {
                 confirmButtonText: 'Download product'
             })
             .then((res) => {
-                if (res.isConfirmed) {
-                    link.click()
-                    window.location.href = '/'
-                } else {
-                    link.click()
-                    window.location.href = '/'
-                }
+                res.isConfirmed ? link.click() : link.click()
             })
 
         } catch (error) {
