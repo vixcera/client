@@ -32,7 +32,8 @@ const SuccessOrder = () => {
                 background: 'var(--primary)',
                 color: 'var(--blue)',
                 text: 'Thanks for your order on vixcera, have a nice day.',
-                confirmButtonText: 'Download product'
+                confirmButtonText: 'Download product',
+                confirmButtonColor : 'var(--yellow)'
             })
             .then((res) => {
                 res.isConfirmed ? link.click() : link.click()
@@ -58,8 +59,8 @@ const SuccessOrder = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px'}}>
-            <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Result</div>
-            <LazyLoadImage src="/img/200page.png" effect="blur" loading="lazy" style={{ width: '300px' }}/>
+            <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Check transaction</div>
+            <LazyLoadImage src="/img/200page.png" effect="blur" loading="lazy" style={{ width: '250px' }}/>
           </div>
         </div>
     )
