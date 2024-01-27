@@ -8,7 +8,7 @@ import "../../style/main.css"
 
 const Main = () => {
 
-    const transaction_mode = sessionStorage.getItem('transacton_mode')
+    const transaction_mode = sessionStorage.getItem('transaction_mode')
     const [ data, setData ] = useState([])
     const [ count, setCount ] = useState(0)
 
