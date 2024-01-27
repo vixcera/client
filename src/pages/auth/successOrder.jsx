@@ -6,13 +6,13 @@ import axios from 'axios'
 
 const SuccessOrder = () => {
 
-    const orderID = new URLSearchParams(location.search).get('order_id')
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
-
+    
     const donwloadProduct = async () => {
         try {
             setLoading(true)
+            const orderID = new URLSearchParams(location.search).get('order_id')
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
             if (response.data) {
                 const url = response.data.file;
