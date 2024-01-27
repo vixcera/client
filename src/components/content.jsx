@@ -25,7 +25,6 @@ const Content = () => {
     const repay = (token, url) => {
         console.log(url)
         window.snap.pay(token, {
-            onSuccess : () => { location.href = url },
             onClose   : () => { window.snap.hide() },
             onPending : () => { window.snap.hide() }
         })

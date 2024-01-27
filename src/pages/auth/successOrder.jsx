@@ -14,7 +14,7 @@ const SuccessOrder = () => {
         try {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
-            if (response.data.length) {
+            if (response.data) {
                 const url = response.data.file;
                 const link = document.createElement('a');
                 link.href = url;

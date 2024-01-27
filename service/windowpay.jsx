@@ -6,6 +6,7 @@ const windowpay = (token) => {
           createStorage('transaction',token, result.order_id, result.transaction_status, 5)
         },
         onPending: (result) => {
+          window.snap.hide()
           createStorage('transaction',token, result.order_id, result.transaction_status, 5)
         },
     })
