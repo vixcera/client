@@ -63,6 +63,22 @@ html { background-color: var(--background);}
     font-family: var(--poppins);
 }
 
+.button-max-alert {
+    width: 100%;
+    height: 47px;
+    color: var(--second);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--background);
+    background-color: var(--yellow);
+    gap: 10px;
+    font-family: var(--poppins);
+}
+
 select {
     width: 110px;
     height: 37px;
