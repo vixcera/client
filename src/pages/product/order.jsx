@@ -59,6 +59,7 @@ const Order = () => {
             window.location.href = `/transaction/success/${result.order_id}`
           },
           onPending: (result) => {
+            window.snap.hide()
             createStorage('transaction',response.data, result.order_id, result.transaction_status, 5)
           },
       })
