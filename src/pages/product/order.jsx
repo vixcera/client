@@ -5,6 +5,7 @@ import snap from "../../../utils/snap"
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import getvxsrf from '../../../service/getvxsrf'
+import { createStorage } from '../../../function/store'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
@@ -52,7 +53,11 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
-        window.snap.pay(response.data, {
+        snap.pay(response.data, {
+          onSuccess: (result) => {
+            createStorage('transaction', response.data, result.order_id, result.transaction_status, 5)
+            navigate(`/transaction/success/${result.order_id}`)
+          },
           onPending: (result) => {
             createStorage('transaction',response.data, result.order_id, result.transaction_status, 5)
           },

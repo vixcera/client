@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import getvxsrf from "../../../service/getvxsrf"
 import Loading from '../../../utils/loading'
 import alert from '../../../utils/alert'
@@ -12,14 +12,14 @@ const SuccessOrder = () => {
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
     const [ vxsrf, setVxsrf] = useState('')
-    const orderID = new URLSearchParams(location.search).get('order_id')
+    const { order_id } = useParams()
     
     const donwloadProduct = async () => {
-        if (!orderID) return alert("transaction not found")
+        if (!order_id) return alert("transaction not found")
         try {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/transaction/success`,{
-                order_id : orderID
+                order_id : order_id
             }, { headers: { 'xsrf-token' : vxsrf }})
             const url = response.data.file;
             const link = document.createElement('a');
@@ -58,7 +58,7 @@ const SuccessOrder = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px'}}>
-            <div className='button-max' onClick={() => { donwloadProduct() }} style={orderID? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Result</div>
+            <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Result</div>
             <LazyLoadImage src="/img/200page.png" effect="blur" loading="lazy" style={{ width: '300px' }}/>
           </div>
         </div>

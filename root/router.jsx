@@ -78,7 +78,7 @@ const Routing = () => {
           <Route path="/waiting/details/:vid" element={<Wetails/>}/>
           <Route path="/confirm/user/:token" element={<UserConfirm/>}/>
 
-          <Route path="/transaction/success" element={<SuccessOrder/>}/>
+          <Route path="/transaction/success/:order_id" element={<SuccessOrder/>}/>
         </Routes>
       </Router>
     </Context.Provider>
