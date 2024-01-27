@@ -1,12 +1,13 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
+import { useContext, useState } from "react"
 import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import alert from "../../utils/alert"
 import about from "../../data/about"
-import { useContext } from "react"
 import axios from "axios"
+import swal from "sweetalert2"
 import "../style/content.css"
 
 const Content = ({data}) => {
@@ -15,19 +16,29 @@ const Content = ({data}) => {
     const navigate = useNavigate()
     const context = useContext(Context)
 
+    const [ notif, setNotif ] = useState(data)
+
     const repay = (token, id, status) => {
+        if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
         if (status !== "expire" && status !== 'settlement') {
             window.snap.pay(token, {
                 onSuccess : () => { window.location.href = `/transaction/success/${id}`}
             })
         }
-        if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
     }
 
     const deleteNotification = async (id) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
-            alert(response.data)
+            setNotif((prev) => prev.filter((notif) => notif.id !== id))
+            swal.fire({
+                icon                : 'success',
+                text                : response.data,
+                color               : 'var(--blue)',
+                background          : 'var(--primary)',
+                showConfirmButton   : false,
+                timer               : 1500,
+            })
         } catch (error) {
             if (error || error.response) {
                 alert(error.response.data || "server maintenance!")
@@ -47,7 +58,7 @@ const Content = ({data}) => {
                     </div>
                 :
                     <div className="notification-wrap" style={{ justifyContent: 'unset' }}>
-                        {data.map((i, k) => {
+                        {notif.map((i, k) => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
