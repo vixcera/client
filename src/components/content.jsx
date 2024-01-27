@@ -44,6 +44,7 @@ const Content = () => {
 
     return (
         <div className="content">
+            <div className="snap-container"></div>
             <div className="grep"/>
             <div className="notification-panel">
                 {(!data.length) ? 
