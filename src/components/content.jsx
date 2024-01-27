@@ -28,7 +28,7 @@ const Content = ({data, setData}) => {
     const deleteNotification = async (id) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
-            setData((prev) => prev.filter((data) => data.id !== id))
+            setData((prev) => prev.filter((data) => data.order_id !== id))
             swal.fire({
                 icon                : 'success',
                 text                : response.data,
