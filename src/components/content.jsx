@@ -10,7 +10,7 @@ import axios from "axios"
 import swal from "sweetalert2"
 import "../style/content.css"
 
-const Content = ({data, setData}) => {
+const Content = ({data, setData, setCount}) => {
 
     const path = location.pathname
     const navigate = useNavigate()
@@ -28,15 +28,17 @@ const Content = ({data, setData}) => {
     const deleteNotification = async (id) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
-            setData((prev) => prev.filter((data) => data.order_id !== id))
+            const update = setData((prev) => prev.filter((data) => data.order_id !== id))
+            setCount(update)
             swal.fire({
                 icon                : 'success',
                 text                : response.data,
                 color               : 'var(--blue)',
                 background          : 'var(--primary)',
                 showConfirmButton   : false,
-                timer               : 1500,
+                timer               : 1000,
             })
+            return update
         } catch (error) {
             if (error || error.response) {
                 alert(error.response.data || "server maintenance!")

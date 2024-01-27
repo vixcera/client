@@ -28,7 +28,7 @@ const Main = () => {
     return (
         <div className="main">
             <Navbar count={count}/>
-            <Content data={data} setData={setData}/>
+            <Content data={data} setData={setData} setCount={setCount}/>
             <Sidebar/>
         </div>
     )
