@@ -33,7 +33,7 @@ const SuccessOrder = () => {
                 color: 'var(--blue)',
                 confirmButtonColor: "none",
                 text: 'Transaction complete!, thanks for your order on vixcera.',
-                customClass: { container: "alertext", actions: 'button-max-alert' },
+                customClass: { container: "alertext" },
                 confirmButtonText: 'download product',
             })
             .then((res) => {
