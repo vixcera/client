@@ -5,7 +5,7 @@ import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
 import snap from "../../utils/snap"
-import { validStorage } from "../../function/store"
+import { createStorage, validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import "../style/content.css"
 
@@ -22,10 +22,13 @@ const Content = () => {
         setClick(true)
     }
 
-    const repay = (token, url) => {
-        console.log(url)
+    const repay = (token, id, key) => {
         window.snap.pay(token, {
-            onPending : (result) => console.log(result) 
+            onSuccess : (result) => { 
+                sessionStorage.removeItem(key)
+                createStorage('transaction', token, id, result.transaction_status, 5)
+                window.location.href = `/transaction/success/${id}` 
+            }
         })
     }
 
@@ -57,7 +60,7 @@ const Content = () => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
-                                    <div onClick={() => repay(i.token, i.url)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px', width: '90%', cursor: 'pointer' }}>
+                                    <div onClick={() => repay(i.token, i.id, i.currentKey)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px', width: '90%', cursor: 'pointer' }}>
                                         <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
                                         <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
                                     </div>
