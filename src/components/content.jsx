@@ -28,8 +28,11 @@ const Content = ({data, setData, setCount}) => {
     const deleteNotification = async (id) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
-            const update = setData((prev) => prev.filter((data) => data.order_id !== id))
-            setCount(update.length)
+            setData((prev) => {
+                const update = prev.filter((data) => data.order_id !== id)
+                setCount(update.length)
+                return update
+            })
             swal.fire({
                 icon                : 'success',
                 text                : response.data,
@@ -38,7 +41,6 @@ const Content = ({data, setData, setCount}) => {
                 showConfirmButton   : false,
                 timer               : 1000,
             })
-            return update
         } catch (error) {
             if (error || error.response) {
                 alert(error.response.data || "server maintenance!")
