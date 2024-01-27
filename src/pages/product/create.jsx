@@ -1,21 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
 import getvxsrf from "../../../service/getvxsrf"
-import Context from "../../../utils/context"
+import Loading from "../../../utils/loading"
 import alert from "../../../utils/alert"
 import swal from "sweetalert2"
 import axios from "axios"
 import "../../style/create.css"
 
 const Create = () => {
-  const context = useContext(Context)
   const navigate = useNavigate()
   const fileref = useRef(null)
   const imgref = useRef(null)
 
   const inputHistory = JSON.parse(localStorage.getItem('inputHistory'))
+
+  const [loading, setLoading] = useState(false)
 
   const [file, setFile] = useState('')
   const [vxsrf, setVxsrf] = useState('')
@@ -35,7 +36,7 @@ const Create = () => {
   const createProduct = async () => {
     
     if (file && title && image && desc && price && ctg && tech && link) {
-      context.setLoading(true)
+      setLoading(true)
       try {
         let formData = new FormData()
         formData.append('ctg', ctg);
@@ -55,13 +56,14 @@ const Create = () => {
       } catch (error) {
         alert("server maintenance!")
         if (error.response) { alert(error.response.data) }
-      } finally { context.setLoading(false) }
+      } finally { setLoading(false) }
     } else {
       alert("please complete the form data!")
     }
   }
 
   useEffect(() => { getvxsrf().then((data) => setVxsrf(data)) }, [])
+  if (loading) return <Loading/>
 
   return (
     <div className='page-max' style={{gap:'30px', paddingBottom: '5px'}}>

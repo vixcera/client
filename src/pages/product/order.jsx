@@ -45,7 +45,7 @@ const Order = () => {
     const checkout = async () => {
       try {
         setLoading(true)
-        const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
+        const response = await axios.post(`${import.meta.env.VITE_API}/transaction/create`,{
           vid     : vid,
           name    : name,
           email   : email,
