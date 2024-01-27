@@ -54,11 +54,12 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         window.snap.pay(response.data, {
           onSuccess: (result) => {
-            createStorage('transaction', response.data, result.order_id, result.transaction_status, 5)
+            createStorage('transaction', null, result.order_id, result.transaction_status, 5)
             window.location.href = `/transaction/success/${result.order_id}`
           },
           onPending: (result) => {
             createStorage('transaction',response.data, result.order_id, result.transaction_status, 5)
+            window.location.href = `/`
           },
       })
       } 
