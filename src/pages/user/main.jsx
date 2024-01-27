@@ -19,10 +19,8 @@ const Main = () => {
     }
 
     useEffect(() => {
-        if (transaction_mode && data.length) {
-            snap()
-            getTransaction()
-        }
+        if (transaction_mode && data.length) { snap() }
+        if (transaction_mode) { getTransaction() }
     }, [])
 
     return (
