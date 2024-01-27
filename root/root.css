@@ -105,7 +105,7 @@ i.active {
 .alertext {
     font-family: var(--poppins);
     color: var(--blue);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-shadow: 5px 5px 7px var(--background);
 }
 
