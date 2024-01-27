@@ -10,13 +10,11 @@ import axios from "axios"
 import swal from "sweetalert2"
 import "../style/content.css"
 
-const Content = ({data}) => {
+const Content = ({data, setData}) => {
 
     const path = location.pathname
     const navigate = useNavigate()
     const context = useContext(Context)
-
-    const [ notif, setNotif ] = useState([data])
 
     const repay = (token, id, status) => {
         if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
@@ -30,7 +28,7 @@ const Content = ({data}) => {
     const deleteNotification = async (id) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
-            setNotif((prev) => prev.filter((notif) => notif.id !== id))
+            setData((prev) => prev.filter((data) => data.id !== id))
             swal.fire({
                 icon                : 'success',
                 text                : response.data,
@@ -52,13 +50,13 @@ const Content = ({data}) => {
             <div className="snap-container"></div>
             <div className="grep"/>
             <div className="notification-panel">
-                {(!notif.length) ? 
+                {(!data.length) ? 
                     <div className="notification-wrap" style={{ justifyContent: 'center', height: '100%'}}>
                         <div>No recent notification.</div>
                     </div>
                 :
                     <div className="notification-wrap" style={{ justifyContent: 'unset' }}>
-                        {notif.map((i, k) => {
+                        {data.map((i, k) => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
