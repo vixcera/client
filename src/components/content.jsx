@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom"
 import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
+import alert from "../../utils/alert"
 import about from "../../data/about"
 import { useContext } from "react"
+import axios from "axios"
 import "../style/content.css"
 
 const Content = ({data}) => {
@@ -19,6 +21,19 @@ const Content = ({data}) => {
                 onSuccess : () => { window.location.href = `/transaction/success/${id}`}
             })
         }
+        if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
+    }
+
+    const deleteNotification = async (id) => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
+            alert(response.data)
+        } catch (error) {
+            if (error || error.response) {
+                alert(error.response.data || "server maintenance!")
+            }
+        }
+            
     }
 
     return (
@@ -40,7 +55,7 @@ const Content = ({data}) => {
                                         <div className="text">{i.transaction_status == "settlement" ? 'success' : i.transaction_status} transaction</div>
                                         <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.order_id}</span></p>
                                     </div>
-                                    <div className="close">
+                                    <div className="close" onClick={() => deleteNotification(i.order_id)}>
                                         <div className="fa-solid fa-close fa-xl" style={{color: 'var(--second)'}}/>
                                     </div>
                                 </div>
