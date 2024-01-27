@@ -23,13 +23,15 @@ const Content = () => {
     }
 
     const repay = (token, id, key) => {
-        window.snap.pay(token, {
-            onSuccess : (result) => { 
-                sessionStorage.removeItem(key)
-                createStorage('transaction', token, id, result.transaction_status, 5)
-                window.location.href = `/transaction/success/${id}` 
-            }
-        })
+        if (token) {
+            window.snap.pay(token, {
+                onSuccess : (result) => { 
+                    sessionStorage.removeItem(key)
+                    createStorage('transaction', null, id, result.transaction_status, 5)
+                    window.location.href = `/transaction/success/${id}` 
+                }
+            })
+        }
     }
 
     useEffect(() => {
