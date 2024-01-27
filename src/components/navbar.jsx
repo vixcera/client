@@ -16,8 +16,10 @@ const Navbar = () => {
       const expire = expireStorage()
       if (!valid.length) { 
         setCount(0)
+      } else { 
+        setCount(valid.length) 
         expire.map((i) => sessionStorage.removeItem(`${i.currentKey}`))
-      } else { setCount(valid.length) }
+      }
     }
     setTotal();
     const interval = setInterval(setTotal, 3000);
