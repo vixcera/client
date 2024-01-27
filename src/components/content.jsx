@@ -29,7 +29,7 @@ const Content = ({data, setData, setCount}) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
             const update = setData((prev) => prev.filter((data) => data.order_id !== id))
-            setCount(update)
+            setCount(update.length)
             swal.fire({
                 icon                : 'success',
                 text                : response.data,
