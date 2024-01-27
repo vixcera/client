@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
-import { expireStorage, validStorage } from "../../function/store"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../utils/context"
+import axios from "axios"
 import "../style/navbar.css"
 
 const Navbar = () => {
@@ -11,17 +11,8 @@ const Navbar = () => {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const setTotal = () => {
-      const valid =  validStorage()
-      const expire = expireStorage()
-      if (!valid.length) { 
-        setCount(0)
-        expire.map((i) => sessionStorage.removeItem(`${i.currentKey}`))
-      } else { setCount(valid.length) }
-    }
-    setTotal();
-    const interval = setInterval(setTotal, 3000);
-    return () => clearInterval(interval);
+    axios.get(`${import.meta.env.VITE_API}/transaction/show`)
+    .then((response) => setCount(response.data.length))
   }, []);
 
   window.onscroll = () => {
