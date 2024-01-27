@@ -31,6 +31,7 @@ const SuccessOrder = () => {
                 icon: 'success',
                 background: 'var(--primary)',
                 color: 'var(--blue)',
+                confirmButtonColor: "none",
                 text: 'Transaction complete!, thanks for your order on vixcera.',
                 customClass: { container: "alertext", actions: 'button-max-alert' },
                 confirmButtonText: 'download product',
