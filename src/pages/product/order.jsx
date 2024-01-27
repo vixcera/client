@@ -53,7 +53,7 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
-        snap.pay(response.data, {
+        window.snap.pay(response.data, {
           onSuccess: (result) => {
             createStorage('transaction', response.data, result.order_id, result.transaction_status, 5)
             navigate(`/transaction/success/${result.order_id}`)
