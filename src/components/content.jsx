@@ -57,7 +57,7 @@ const Content = () => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
-                                    <div onClick={() => repay(i.token, i.url)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px' }}>
+                                    <div onClick={() => repay(i.token, i.url)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px', height: '100%', width: '40%', cursor: 'pointer' }}>
                                         <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
                                         <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
                                     </div>
