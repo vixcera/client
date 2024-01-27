@@ -33,7 +33,7 @@ const SuccessOrder = () => {
                 color: 'var(--blue)',
                 text: 'Thanks for your order on vixcera, have a nice day.',
                 confirmButtonText: 'Download product',
-                confirmButtonColor : 'var(--yellow)'
+                confirmButtonColor : 'var(--background)',
             })
             .then((res) => {
                 res.isConfirmed ? link.click() : link.click()
