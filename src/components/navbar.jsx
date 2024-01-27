@@ -1,5 +1,5 @@
-import { NavLink, useNavigate } from "react-router-dom"
 import { expireStorage, validStorage } from "../../function/store"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import Context from "../../utils/context"
 import "../style/navbar.css"
@@ -16,10 +16,8 @@ const Navbar = () => {
       const expire = expireStorage()
       if (!valid.length) { 
         setCount(0)
-      } else { 
-        setCount(valid.length) 
         expire.map((i) => sessionStorage.removeItem(`${i.currentKey}`))
-      }
+      } else { setCount(valid.length) }
     }
     setTotal();
     const interval = setInterval(setTotal, 3000);
