@@ -16,14 +16,10 @@ const Main = () => {
         const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
         setData(response.data)
         setCount(response.data.length)
+        if (response.data.length !== 0) { snap() }
     }
 
-    useEffect(() => {
-        if (transaction_mode) {
-            getTransaction()
-            .then((response) => console.log(response.data.length))
-        }
-    }, [])
+    useEffect(() => { if (transaction_mode) { getTransaction() }}, [])
 
     return (
         <div className="main">
