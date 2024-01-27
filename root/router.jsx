@@ -52,10 +52,12 @@ const Routing = () => {
   }, [token])
 
   useEffect(() => {
+      context.setLoading(true)
       axios.get(`${import.meta.env.VITE_API}/vxrft`)
       .then((response) => setToken(response.data.token))
       .then(() => checkvxsrf())
       .catch((error) => {console.log(error.message)})
+      .finally(() => {context.setLoading(false)})
   }, [])
 
   const context = {vid, img, email, username, token, setToken, axtoken, loading, setLoading}
