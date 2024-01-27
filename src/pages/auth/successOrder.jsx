@@ -26,19 +26,22 @@ const SuccessOrder = () => {
             link.href = url;
             link.setAttribute('download', `${response.data.name}`);
             document.body.appendChild(link);
-            link.onclick = () => {
-                document.body.removeChild(link);
-                location.href = '/'
-            }
+            link.onclick = () => { document.body.removeChild(link) }
             swal.fire({
                 icon: 'success',
                 background: 'var(--primary)',
                 color: 'var(--blue)',
-                title: 'Thanks for your order on vixcera, have a nice day.',
+                text: 'Thanks for your order on vixcera, have a nice day.',
                 confirmButtonText: 'Download product'
             })
             .then((res) => {
-                res.isConfirmed ? link.click() : link.click()
+                if (res.isConfirmed) {
+                    link.click()
+                    window.location.href = '/'
+                } else {
+                    link.click()
+                    window.location.href = '/'
+                }
             })
 
         } catch (error) {
@@ -61,7 +64,7 @@ const SuccessOrder = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px'}}>
-            <div className='button-max' onClick={() => { donwloadProduct() }} style={orderID? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download</div>
+            <div className='button-max' onClick={() => { donwloadProduct() }} style={orderID? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Result</div>
             <LazyLoadImage src="/img/200page.png" effect="blur" loading="lazy" style={{ width: '300px' }}/>
           </div>
         </div>
