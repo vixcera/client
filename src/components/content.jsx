@@ -23,7 +23,6 @@ const Content = () => {
     }
 
     const repay = (token, id, key) => {
-        snap()
         if (token) {
             window.snap.pay(token, {
                 onSuccess : (result) => { 
@@ -45,6 +44,8 @@ const Content = () => {
         const interval = setInterval(fetchData, 3000);
         return () => clearInterval(interval);
     }, [click])
+
+    useEffect(() => {snap()}, [])
 
     return (
         <div className="content">
