@@ -32,9 +32,8 @@ const SuccessOrder = () => {
                 background: 'var(--primary)',
                 color: 'var(--blue)',
                 text: 'Transaction complete!, thanks for your order on vixcera.',
+                customClass: { confirmButton: "button", container: "itext" },
                 confirmButtonText: 'download product',
-                footer : 'have a nice day!',
-                customClass: { confirmButton: 'button-max', container: "itext" }
             })
             .then((res) => {
                 res.isConfirmed && link.click()
