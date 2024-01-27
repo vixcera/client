@@ -51,13 +51,9 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
+        sessionStorage.setItem('transaction_mode', "true")
         window.snap.pay(response.data, {
-          onSuccess: (result) => {
-            window.location.href = `/transaction/success/${result.order_id}`
-          },
-          onPending: () => {
-            sessionStorage.setItem('transaction_mode', "true")
-          },
+          onSuccess: (result) => { window.location.href = `/transaction/success/${result.order_id}`}
       })
       } 
       catch (error) {
@@ -75,9 +71,9 @@ const Order = () => {
     }
 
     useEffect(() => {
-      getvxsrf().then((result) => setVxsrf(result))
-      getProducts()
       snap()
+      getProducts()
+      getvxsrf().then((result) => setVxsrf(result))
     }, [])
 
     if (loading) return <Loading/>
