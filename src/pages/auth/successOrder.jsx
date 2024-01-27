@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import getvxsrf from "../../../service/getvxsrf"
 import Loading from '../../../utils/loading'
 import alert from '../../../utils/alert'
+import swal from "sweetalert2"
 import axios from 'axios'
 
 const SuccessOrder = () => {
@@ -18,15 +19,28 @@ const SuccessOrder = () => {
         try {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/transaction/success`,{
-                 order_id : orderID
+                order_id : orderID
             }, { headers: { 'xsrf-token' : vxsrf }})
             const url = response.data.file;
             const link = document.createElement('a');
             link.href = url;
             link.setAttribute('download', `${response.data.name}`);
             document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.onclick = () => {
+                document.body.removeChild(link);
+                location.href = '/'
+            }
+            swal.fire({
+                icon: 'success',
+                background: 'var(--primary)',
+                color: 'var(--blue)',
+                title: 'Thanks for your order on vixcera, have a nice day.',
+                confirmButtonText: 'Download product'
+            })
+            .then((res) => {
+                res.isConfirmed ? link.click() : link.click()
+            })
+
         } catch (error) {
             alert("server maintenance!")
             if(error.response) alert(error.response.data)
