@@ -11,7 +11,7 @@ const Main = () => {
     const transaction_mode = localStorage.getItem('transaction_mode')
     const [ data, setData ] = useState([])
     const [ count, setCount ] = useState(0)
-    console.log(data.length)
+    console.log(!data.length)
 
     const getTransaction = async () => {
         const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
@@ -20,7 +20,7 @@ const Main = () => {
     }
 
     useEffect(() => {
-        if (transaction_mode && data.length) { snap() }
+        if (transaction_mode && data.length !== 0) { snap() }
         if (transaction_mode) { getTransaction() }
     }, [])
 
