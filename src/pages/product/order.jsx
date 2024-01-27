@@ -4,7 +4,6 @@ import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
-import windowpay from '../../../service/windowpay'
 import getvxsrf from '../../../service/getvxsrf'
 import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -53,7 +52,14 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
-        windowpay(response.data)
+        window.snap.pay(response.data, {
+          onSuccess: (result) => {
+            createStorage('transaction',response.data, result.order_id, result.transaction_status, 5)
+          },
+          onPending: (result) => {
+            createStorage('transaction',response.data, result.order_id, result.transaction_status, 5)
+          },
+      })
       } 
       catch (error) {
         if (error || error.response) {
