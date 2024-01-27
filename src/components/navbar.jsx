@@ -48,7 +48,7 @@ const Navbar = ({ count }) => {
     <div className="navbar-container">
       <div className='navbar'>
         <div className="nav-logo">
-          {context.loading ? <HashLoader size={30} color="color=#EBE76C"/> : 
+          {context.loading ? <HashLoader size={30} color="#EBE76C"/> : 
           <>
             <img src="/img/vixcera.png"/>
             <div>VI | X</div>
