@@ -44,7 +44,6 @@ const Order = () => {
     
     const checkout = async () => {
       try {
-        snap()
         setLoading(true)
         const response = await axios.post(`${import.meta.env.VITE_API}/payments`,{
           vid     : vid,
@@ -80,6 +79,7 @@ const Order = () => {
     useEffect(() => {
       getvxsrf().then((result) => setVxsrf(result))
       getProducts()
+      snap()
     }, [])
 
     if (loading) return <Loading/>
