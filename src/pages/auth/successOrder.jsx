@@ -7,22 +7,23 @@ import axios from 'axios'
 const SuccessOrder = () => {
 
     const orderID = new URLSearchParams(location.search).get('order_id')
-    const status = new URLSearchParams(location.search).get('transaction_status')
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
 
     const donwloadProduct = async () => {
         try {
             setLoading(true)
-            if (status.toLowerCase() === 'pending') return navigate('/')
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
-            const url = response.data.file;
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${response.data.name}`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (response.data.length) {
+                const url = response.data.file;
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', `${response.data.name}`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            location.href = '/'
         } catch (error) {
             alert("server maintenance!")
             if(error.response) alert(error.response.data)
