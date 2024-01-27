@@ -1,4 +1,4 @@
-const snap =  async () => {
+const snap = () => {
         const midtransScriptUrl = 'https://app.sandbox.midtrans.com/snap/snap.js';  
         let scriptTag = document.createElement('script');
         scriptTag.src = midtransScriptUrl;
