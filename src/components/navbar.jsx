@@ -1,19 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import Context from "../../utils/context"
-import axios from "axios"
 import "../style/navbar.css"
 
-const Navbar = () => {
+const Navbar = ({ count }) => {
   
   const navigate = useNavigate()
   const context = useContext(Context)
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API}/transaction/show`)
-    .then((response) => setCount(response.data.length))
-  }, []);
 
   window.onscroll = () => {
       let y = window.scrollY

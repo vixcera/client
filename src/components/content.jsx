@@ -4,48 +4,22 @@ import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
 import about from "../../data/about"
-import snap from "../../utils/snap"
-import { createStorage, validStorage } from "../../function/store"
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import "../style/content.css"
 
-const Content = () => {
+const Content = ({data}) => {
 
     const path = location.pathname
     const navigate = useNavigate()
     const context = useContext(Context)
-    const [data, setData] = useState([])
-    const [click, setClick] = useState(false)
 
-    const handleClick = (key) => {
-        sessionStorage.removeItem(key)
-        setClick(true)
-    }
-
-    const repay = (token, id, key) => {
+    const repay = (token, id) => {
         if (token) {
             window.snap.pay(token, {
-                onSuccess : (result) => { 
-                    sessionStorage.removeItem(key)
-                    createStorage('transaction', null, id, result.transaction_status, 5)
-                    window.location.href = `/transaction/success/${id}` 
-                }
+                onSuccess : () => { window.location.href = `/transaction/success/${id}`}
             })
         }
     }
-
-    useEffect(() => {
-        const fetchData = () => {
-            const newData = validStorage();
-            setData(newData);
-        };
-        fetchData();
-        setClick(false)
-        const interval = setInterval(fetchData, 3000);
-        return () => clearInterval(interval);
-    }, [click])
-
-    useEffect(() => {snap()}, [])
 
     return (
         <div className="content">
@@ -62,11 +36,11 @@ const Content = () => {
                             return (
                                 <div className="notification-box" key={k}>
                                     <LazyLoadImage src="/img/vixcera.png" className="nimg" style={{width: '30px'}} loading="lazy" effect="blur"/>
-                                    <div onClick={() => repay(i.token, i.id, i.currentKey)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px', width: '90%', cursor: 'pointer' }}>
-                                        <div className="text">{i.status == "settlement" ? 'success' : i.status} transaction</div>
-                                        <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.id}</span></p>
+                                    <div onClick={() => repay(i.transaction_token, i.order_id)} className="text-container" style={{ padding: '0', margin: '0', gap: '4px', width: '90%', cursor: 'pointer' }}>
+                                        <div className="text">{i.transaction_status == "settlement" ? 'success' : i.transaction_status} transaction</div>
+                                        <p style={{ fontSize: '0.8rem' }}><span style={{fontFamily: 'var(--poppins)'}}>Order ID : {i.order_id}</span></p>
                                     </div>
-                                    <div className="close" onClick={() => handleClick(i.currentKey)}>
+                                    <div className="close">
                                         <div className="fa-solid fa-close fa-xl" style={{color: 'var(--second)'}}/>
                                     </div>
                                 </div>
