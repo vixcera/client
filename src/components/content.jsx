@@ -1,6 +1,6 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import products from "../../data/product"
 import vixcera from "../../data/vixcera"
 import Context from "../../utils/context"
@@ -27,6 +27,7 @@ const Content = ({data, setData, setCount}) => {
 
     const deleteNotification = async (id) => {
         try {
+            context.setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/delete/${id}`)
             setData((prev) => {
                 const update = prev.filter((data) => data.order_id !== id)
@@ -45,6 +46,8 @@ const Content = ({data, setData, setCount}) => {
             if (error || error.response) {
                 alert(error.response.data || "server maintenance!")
             }
+        } finally {
+            context.setLoading(false)
         }
             
     }

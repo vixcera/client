@@ -1,5 +1,6 @@
+import { useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { useContext, useState } from "react"
+import HashLoader from 'react-spinners/HashLoader'
 import Context from "../../utils/context"
 import "../style/navbar.css"
 
@@ -47,8 +48,12 @@ const Navbar = ({ count }) => {
     <div className="navbar-container">
       <div className='navbar'>
         <div className="nav-logo">
-          <img src="/img/vixcera.png"/>
-          <div>VI | X</div>
+          {context.loading ? <HashLoader size={30} color="color='#EBE76C'"/> : 
+          <>
+            <img src="/img/vixcera.png"/>
+            <div>VI | X</div>
+          </>
+          }
         </div>
         <div className="nav-menu">
           <NavLink className="menu" to="/">Home</NavLink> 

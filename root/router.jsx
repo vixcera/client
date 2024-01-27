@@ -21,14 +21,15 @@ import SuccessOrder from "../src/pages/auth/successOrder"
 const Routing = () => {
 
   const axtoken = axios.create()
-
+  
   const [vid, setVid] = useState('')
   const [img, setImg] = useState('')
   const [token, setToken] = useState('')
   const [email, setEmail] = useState('')
   const [expires, setExpires] = useState('')
   const [username, setUsername] = useState('')
-
+  const [loading, setLoading] = useState(false)
+  
   axtoken.interceptors.request.use(async (config) => {
     const current = new Date().getTime()
     if (expires * 1000 < current) {
@@ -57,7 +58,7 @@ const Routing = () => {
       .catch((error) => {console.log(error.message)})
   }, [])
 
-  const context = {vid, img, email, username, token, setToken, axtoken}
+  const context = {vid, img, email, username, token, setToken, axtoken, loading, setLoading}
 
   return (
     <Context.Provider value={context}>
