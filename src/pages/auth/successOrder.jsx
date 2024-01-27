@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
+import getvxsrf from "../../../service/getvxsrf"
 import Loading from '../../../utils/loading'
 import alert from '../../../utils/alert'
 import axios from 'axios'
@@ -9,13 +10,16 @@ const SuccessOrder = () => {
 
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
+    const [ vxsrf, setVxsrf] = useState('')
     const orderID = new URLSearchParams(location.search).get('order_id')
     
     const donwloadProduct = async () => {
         if (!orderID) return alert("transaction not found")
         try {
             setLoading(true)
-            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/success/${orderID}`)
+            const response = await axios.post(`${import.meta.env.VITE_API}/transaction/success`,{
+                 order_id : orderID
+            }, { headers: { 'xsrf-token' : vxsrf }})
             const url = response.data.file;
             const link = document.createElement('a');
             link.href = url;
@@ -32,7 +36,7 @@ const SuccessOrder = () => {
         }
     }
 
-
+    useEffect(() => {getvxsrf().then((result) => setVxsrf(result))} , [])
 
     if (loading) return <Loading/>
 
