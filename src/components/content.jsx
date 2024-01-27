@@ -16,7 +16,7 @@ const Content = ({data}) => {
     const navigate = useNavigate()
     const context = useContext(Context)
 
-    const [ notif, setNotif ] = useState(data)
+    const [ notif, setNotif ] = useState([data])
 
     const repay = (token, id, status) => {
         if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
@@ -52,7 +52,7 @@ const Content = ({data}) => {
             <div className="snap-container"></div>
             <div className="grep"/>
             <div className="notification-panel">
-                {(!data.length) ? 
+                {(!notif.length) ? 
                     <div className="notification-wrap" style={{ justifyContent: 'center', height: '100%'}}>
                         <div>No recent notification.</div>
                     </div>
