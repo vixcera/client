@@ -15,8 +15,8 @@ import Register from "../src/pages/user/register"
 import Wetails from "../admin/wetails"
 import Dashboard from "../admin/dashboard"
 import checkvxsrf from "../service/checkvxsrf"
-import UserConfirm from "../src/pages/auth/userConfirm"
-import SuccessOrder from "../src/pages/auth/successOrder"
+import AuthTransaction from "../middleware/authTransaction"
+import { AuthRegisterCont, AuthRegisterUser } from "../middleware/authRegister"
 
 const Routing = () => {
 
@@ -79,9 +79,10 @@ const Routing = () => {
           
           <Route path="/product/details/:vid" element={<Details/>}/>
           <Route path="/waiting/details/:vid" element={<Wetails/>}/>
-          <Route path="/confirm/user/:token" element={<UserConfirm/>}/>
 
-          <Route path="/transaction/success/:order_id" element={<SuccessOrder/>}/>
+          <Route path="/confirm/user/:token" element={<AuthRegisterUser/>}/>
+          <Route path="/confirm/contributor/:token" element={<AuthRegisterCont/>}/>
+          <Route path="/transaction/success/:order_id" element={<AuthTransaction/>}/>
         </Routes>
       </Router>
     </Context.Provider>
