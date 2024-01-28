@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import convertPrice from "../../../utils/price"
 import swalert from '../../../utils/swalert'
-import Loader from '../../../utils/loader'
+import Swaload from '../../../utils/swaload'
 import axios from "axios"
 import "../../style/product.css"
 
@@ -47,7 +47,7 @@ const Product = () => {
                 <div className='product-container'>
                     <input type="text" className='search'/>
                     {(loading) ? (
-                    <Loader.Product/>
+                    <Swaload.Product/>
                     ) : (
                         data.map((i, index) => {
                             return(
