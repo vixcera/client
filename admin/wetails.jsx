@@ -1,7 +1,7 @@
 import axios from "axios"
 import swal from "sweetalert2"
-import alert from "../utils/alert"
 import Loading from "../utils/loading"
+import swalert from "../utils/swalert"
 import convertPrice from "../utils/price"
 
 import { useState } from "react"
@@ -26,10 +26,10 @@ const Wetails = () => {
         try {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/product/confirm/${vid}`,{ headers: { "author" : vxpwd } })
-            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            swalert(response.data, "success", 1500)
             .then(() => location.href = '/dashboard')
         }   catch (error) {
-            if (error || error.response) return alert(error.response.data)
+            if (error || error.response) return swalert(error.response.data, "error")
         }   finally { setLoading(false) }
     }
 
@@ -37,10 +37,10 @@ const Wetails = () => {
         try {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/product/reject/${vid}`,{ headers: { "author" : vxpwd } })
-            swal.fire({icon:'success', showConfirmButton:false,timer:1500,text:response.data})
+            swalert(response.data, "success", 1500)
             .then(() => location.href = '/dashboard')
         }   catch (error) {
-            if (error || error.response) return alert(error.response.data)
+            if (error || error.response) return swalert(error.response.data)
         }   finally { setLoading(false) }
     }
 
@@ -49,10 +49,10 @@ const Wetails = () => {
             try {
                 setLoading(true)
                 const response = await axios.get(`${import.meta.env.VITE_API}/waiting/vid/${vid}`,{ headers: { "author" : vxpwd } })
-                if (!response.data.length) return alert("product data is empty!").then(() => location.href = '/')
+                if (!response.data.length) return swalert("product data is empty!").then(() => location.href = '/')
                 setData(response.data)
             }   catch (error) {
-                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+                if (error || error.response) return swalert(error.response.data).then(() => location.href = '/')
             }   finally { setLoading(false) }
         } else {
             const result = await swal.fire({
