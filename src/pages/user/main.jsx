@@ -14,11 +14,9 @@ const Main = () => {
 
     const getTransaction = async () => {
         const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
-        if (response.data.length !== 0) { 
-            setData(response.data)
-            setCount(response.data.length)
-            snap() 
-        }
+        setData(response.data)
+        setCount(response.data.length)
+        if (response.data.length !== 0) { snap() }
     }
 
     useEffect(() => { if (transaction_mode) { getTransaction() }}, [])
