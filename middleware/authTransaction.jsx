@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate, useParams } from "react-router-dom"
 import getvxsrf from '../service/getvxsrf'
 import Loading from '../utils/loading'
-import alert from '../utils/alert'
+import swalert from "../utils/swalert"
 import swal from "sweetalert2"
 import axios from 'axios'
 
@@ -15,7 +15,7 @@ const AuthTransaction = () => {
     const { order_id } = useParams()
     
     const donwloadProduct = async () => {
-        if (!order_id) return (await alert("transaction not found")).dismiss && navigate('/')
+        if (!order_id) return (await swalert("transaction not found", "error")).dismiss && navigate('/')
         try {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/transaction/success`,{
@@ -41,8 +41,8 @@ const AuthTransaction = () => {
             })
 
         } catch (error) {
-            alert("server maintenance!")
-            if(error.response) alert(error.response.data)
+            swalert("server maintenance!")
+            if(error.response) swalert(error.response.data)
             .then((res) => { if(res.dismiss) { location.href = '/' } })
         } finally {
             setLoading(false)
