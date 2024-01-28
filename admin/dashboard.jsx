@@ -1,7 +1,7 @@
 import axios from 'axios'
 import swal from "sweetalert2"
-import alert from '../utils/alert'
 import Loading from '../utils/loading'
+import swalert from '../utils/swalert'
 import convertPrice from '../utils/price'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -20,10 +20,10 @@ const Dashboard = () => {
             try {
                 setLoading(true)
                 const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : vxpwd } })
-                if (!response.data.length) return alert("product data is empty!")
+                if (!response.data.length) return swalert("product data is empty!")
                 setData(response.data)
             } catch (error) {
-                if (error || error.response) return alert(error.response.data).then(() => location.href = '/')
+                if (error || error.response) return swalert(error.response.data).then(() => location.href = '/')
             } finally { setLoading(false) }
         } else {
             const result = await swal.fire({
@@ -44,7 +44,7 @@ const Dashboard = () => {
                 try {
                   const response = await axios.get(`${import.meta.env.VITE_API}/waitinglist`,{ headers: { "author" : password } });
                   if (!response.data.length) {
-                    alert("product data is empty!")
+                    swalert("product data is empty!")
                     .then((res) => res.dismiss && navigate('/'))
                   }
                   setData(response.data);
