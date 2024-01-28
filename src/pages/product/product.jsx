@@ -6,6 +6,8 @@ import convertPrice from "../../../utils/price";
 import Loading from "../../../utils/loading";
 import swalert from '../../../utils/swalert';
 import axios from "axios";
+
+import "react-loading-skeleton/dist/skeleton.css"
 import "../../style/product.css";
 
 const Product = () => {
