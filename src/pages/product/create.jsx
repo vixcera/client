@@ -50,7 +50,7 @@ const Create = () => {
           headers: {"Content-Type": 'multipart/form-data', "xsrf-token" : vxsrf}
         })
         localStorage.clear()
-        swalert(response.data, "success", false)
+        swalert(response.data, "success", 5000)
         .then((res) => { if(res.dismiss) {location.href = '/'} })
       } catch (error) {
         swalert("server maintenance!", "error", 1500)
