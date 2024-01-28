@@ -38,7 +38,6 @@ const Product = () => {
 
     useEffect(() => { getProducts() }, [])
     
-    if (loading) return <Skeleton count={5}/>
 
     return (
         <div className='page-max'>
@@ -55,16 +54,16 @@ const Product = () => {
                             <div className='product-card' key={k} onClick={() => navigate(`/product/details/${i.vid}`)}>
                                 <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                 <div className='wrapped-text'>
-                                    <div className='product-title'>{i.title}</div>
+                                    <div className='product-title'>{i.title || <Skeleton/>}</div>
                                     <div style={{ display: 'flex', flexWrap : 'wrap', flexDirection : 'column'}}>
-                                        <div className='product-desc'>{i.desc.length >= 40 ? i.desc.substring(0,40) + '...' : i.desc}</div>
+                                        <div className='product-desc'>{i.desc.length >= 40 ? i.desc.substring(0,40) + '...' : i.desc || <Skeleton/>}</div>
                                         <div className='wrapdet' style={{ position: 'unset', marginTop: '15px', marginLeft: '5px', gap: '5px' }}>
-                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech}</div>
-                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech.toLowerCase().includes('html') ? "only" : 'JS'}</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech || <Skeleton/>}</div>
+                                            <div style={{ backgroundColor: 'var(--background)', width: '95px', height: '30px' }}>{i.tech.toLowerCase().includes('html') ? "only" : 'JS' || <Skeleton/>}</div>
                                          </div>
                                     </div>
                                     <div className='wrapped-details'>
-                                        <div className='button price'>{convertPrice(i.price)}</div>
+                                        <div className='button price'>{convertPrice(i.price) || <Skeleton/>}</div>
                                         <div style={{ color : 'var(--text)', cursor: 'pointer'}} className='fa-solid fa-cart-plus fa-xl' />
                                     </div>
                                 </div>
