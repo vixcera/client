@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import BarLoader from "react-spinners/BarLoader"
+import ScaleLoader from "react-spinners/ScaleLoader"
 import Context from "../../utils/context"
 import "../style/navbar.css"
 
@@ -48,7 +48,7 @@ const Navbar = ({ count }) => {
     <div className="navbar-container">
       <div className='navbar'>
         <div className="nav-logo">
-          {context.loading ? <BarLoader height={5} color="#EBE76C"/> : 
+          {context.loading ? <ScaleLoader height={30} color="#EBE76C"/> : 
           <>
             <img src="/img/vixcera.png"/>
             <div>VI | X</div>
