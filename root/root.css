@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
 
 html { background-color: var(--background);}
 * {padding: 0; margin: 0;}
@@ -103,9 +104,10 @@ i.active {
 }
 
 .alertext {
-    font-family: var(--poppins);
+    font-family: var(--caveat);
     color: var(--blue);
     font-size: 1rem;
+    font-weight: 700;
     text-shadow: 5px 5px 7px var(--background);
 }
 
@@ -118,7 +120,7 @@ span {
         font-size: 1.2rem;
     }
 
-    .alertext { font-size: 0.8rem; }
+    .alertext { font-size: 0.9rem; }
     
     .button {
         height: 40px;
