@@ -4,8 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import convertPrice from '../../../utils/price'
 import getvxsrf from "../../../service/getvxsrf"
 import Loading from "../../../utils/loading"
-import alert from "../../../utils/alert"
-import swal from "sweetalert2"
+import swalert from "../../../utils/swalert"
 import axios from "axios"
 import "../../style/create.css"
 
@@ -51,14 +50,14 @@ const Create = () => {
           headers: {"Content-Type": 'multipart/form-data', "xsrf-token" : vxsrf}
         })
         localStorage.clear()
-        swal.fire({icon:'success',text:response.data,showConfirmButton:false, background: 'var(--primary)', color: 'var(--blue)'})
-        .then((res) => res.dismiss && location.reload())
+        swalert(response.data, "success", 2000)
+        .then((res) => { if(res.dismiss) {location.href = '/'} })
       } catch (error) {
-        alert("server maintenance!")
-        if (error.response) { alert(error.response.data) }
+        swalert("server maintenance!", "error", 1500)
+        if (error.response) { swalert(error.response.data, "error", 1500) }
       } finally { setLoading(false) }
     } else {
-      alert("please complete the form data!")
+      swalert("please complete the form data!", "error", 2000)
     }
   }
 

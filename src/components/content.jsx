@@ -2,12 +2,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import products from "../../data/product"
-import vixcera from "../../data/vixcera"
+import swalert from "../../utils/swalert"
 import Context from "../../utils/context"
-import alert from "../../utils/alert"
+import vixcera from "../../data/vixcera"
 import about from "../../data/about"
 import axios from "axios"
-import swal from "sweetalert2"
 import "../style/content.css"
 
 const Content = ({data, setData, setCount}) => {
@@ -34,17 +33,10 @@ const Content = ({data, setData, setCount}) => {
                 setCount(update.length)
                 return update
             })
-            swal.fire({
-                icon                : 'success',
-                text                : response.data,
-                color               : 'var(--blue)',
-                background          : 'var(--primary)',
-                showConfirmButton   : false,
-                timer               : 1000,
-            })
+            swalert(response.data, "success", 500)
         } catch (error) {
             if (error || error.response) {
-                alert(error.response.data || "server maintenance!")
+                swalert(error.response.data, "error", 500)
             }
         } finally {
             context.setLoading(false)

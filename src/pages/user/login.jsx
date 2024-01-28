@@ -1,7 +1,7 @@
 import axios from "axios"
-import alert from "../../../utils/alert"
 import Context from "../../../utils/context"
 import Loading from "../../../utils/loading"
+import swalert from "../../../utils/swalert"
 import getvxsrf from '../../../service/getvxsrf'
 import { useContext, useEffect, useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
@@ -31,8 +31,8 @@ const Login = () => {
             navigate('/profile')
         }
         catch (error) {
-            alert("server maintenance!")
-            error.response && alert(error.response.data)  
+            swalert("server maintenance!", "error")
+            error.response && swalert(error.response.data, "error")  
         }
         finally{setLoading(false)}
     }

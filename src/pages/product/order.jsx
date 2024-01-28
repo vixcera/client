@@ -10,6 +10,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
+import swalert from '../../../utils/swalert'
 
 const Order = () => {
 
@@ -34,8 +35,10 @@ const Order = () => {
             const response = await axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
             setData(response.data)
         }   catch (error) {
-            if (error || error.response) Swal.fire({icon: 'info', showConfirmButton: false, text:'belum ada data product',timer:1500,background: 'var(--primary)',color:'var(--text)'})
-            .then((res) => res.isDismissed && navigate('/'))
+            if (error || error.response) {
+              swalert(error.response.data, "error", 1500)
+              .then((res) => res.dismiss && navigate('/'))
+            }
         } finally {
           setLoading(false)
         }
@@ -58,13 +61,7 @@ const Order = () => {
       } 
       catch (error) {
         if (error || error.response) {
-          Swal.fire({
-            icon: 'warning',
-            color : 'var(--text)',
-            background: 'var(--primary)',
-            showConfirmButton: false,
-            text: `${error.response.data}`,
-          })
+          swalert(error.response.data, "error")
         }
       }
       finally { setLoading(false) }

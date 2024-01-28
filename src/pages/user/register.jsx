@@ -2,10 +2,10 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loading from "../../../utils/loading"
 import getvxsrf from '../../../service/getvxsrf'
-import swal from "sweetalert2"
 import axios from "axios"
 
 import "../../style/login.css"
+import swalert from '../../../utils/swalert'
 
 const Register = () => {
 
@@ -23,11 +23,11 @@ const Register = () => {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
-            swal.fire({icon: 'success', text: response.data, showConfirmButton: false, background: 'var(--primary)', color: 'var(--blue)'})
-            .then((res) => res.dismiss ? location.href = '/' : '')
+            swalert(response.data, "success", 1500)
+            .then((res) => {if (res.dismiss) {location.href = '/'}})
         } 
         catch (error) {
-            swal.fire({icon: 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})
+            swalert(error.response.data, "error", 1500)
         }
         finally {setLoading(false)}
     }

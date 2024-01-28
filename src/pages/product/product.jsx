@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import convertPrice from "../../../utils/price"
 import Loading from "../../../utils/loading"
-import alert from "../../../utils/alert"
+import swalert from '../../../utils/swalert'
 import axios from "axios"
 import "../../style/product.css"
 
@@ -18,16 +18,16 @@ const Product = () => {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
             if (!response.data.length) {
-                alert("product data is empty")
+                swalert("product is empty", "info")
                 .then((res) => res.dismiss && navigate('/products'))
             }
             setData(response.data)
         }   catch (error) {
             if (error.response) {
-                alert("server maintenance, please comeback later!")
+                swalert("server maintenance, please comeback later!")
                 .then((res) => res.dismiss && navigate('/'))
             } else {
-                alert("server maintenance, please come back later!")
+                swalert("server maintenance, please come back later!")
                 .then((res) => res.dismiss && navigate('/'))
             }
         }

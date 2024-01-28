@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import getvxsrf from '../../../service/getvxsrf'
 import Context from '../../../utils/context'
 import Loading from "../../../utils/loading"
-import swal from "sweetalert2"
+import swalert from '../../../utils/swalert'
 import axios from "axios"
 
 const Profile = () => {
@@ -29,8 +29,8 @@ const Profile = () => {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
             context.setToken('')
-            swal.fire({icon : 'success', text : response.data, showConfirmButton: false, timer : 1500, background: 'var(--primary)', color: 'var(--blue)'})
-            .then((res) => location.href = '/')
+            swalert(response.data, "success", 1500)
+            .then((res) =>  { if(res.dismiss) { location.href = '/' } })
         } 
         catch (error) {{error.response && console.log(error.response.data)}}
         finally{setLoading(false)}
@@ -46,10 +46,13 @@ const Profile = () => {
                 headers : {"Content-Type" : "multipart/form-data", "xsrf-token" : vxsrf}, 
                 withCredentials : true
             })
-            swal.fire({icon : 'success', text : response.data, showConfirmButton : false, timer: 1500 , background: 'var(--primary)', color: 'var(--blue)'})
-            .then(res => res.isDismissed && location.reload())
+           ;(await swalert(response.data, "success")).dismiss && location.reload()
         } 
-        catch (error) {return swal.fire({icon : 'error', showConfirmButton: false, text: error.response.data, background: 'var(--primary)', color: 'var(--blue)'})}
+        catch (error) {
+            if (error || error.response) {
+                swalert(error.response.data, "error", 1500)
+            }
+        }
         finally {setLoading(false)}
     }
 

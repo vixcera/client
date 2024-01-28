@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "../../style/create.css"
+import swalert from "../../../utils/swalert"
 
 const Details = () => {
 
@@ -22,14 +23,14 @@ const Details = () => {
         axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
         .then((response) => {
             if (!response.data.length) {
-                alert("product data not found!")
+                swalert("product data not found!")
                 .then((res) => res.dismiss && navigate(-1))
             }
             setData(response.data)
         })
         .catch((error) => {
             if (error.response) {
-                alert(error.response.data)
+                swalert(error.response.data, "error")
                 .then((res) => res.dismiss && navigate(-1))
             }
             setError(error)
