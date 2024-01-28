@@ -2,7 +2,6 @@ import axios from "axios"
 import swal from "sweetalert2"
 import swalert from "../../../utils/swalert"
 import Loading from "../../../utils/loading"
-import Swaload from "../../../utils/swaload"
 import convertPrice from "../../../utils/price"
 import { useState } from "react"
 import { useEffect } from "react"
@@ -38,6 +37,7 @@ const Details = () => {
         .finally(() => { setLoading(false) })
     }, [])
 
+    if (loading) return <Loading/>
 
     return (
         <div className='page-max'>
@@ -48,10 +48,9 @@ const Details = () => {
             <div className="form">
                 <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
-                {(loading) ? (<Swaload.Details/>) : (
-                    data.map((i, k) => {
-                        return(
-                            <>
+                {data.map((i,k) => {
+                    return(
+                        <>
                         <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
                             <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={i.img} loading='lazy' effect='blur'/>
                         </div>
@@ -89,8 +88,7 @@ const Details = () => {
                         </div>
                         </>
                         )
-                    })
-                )} 
+                    })}
                 </div>
             </div>
         </div>
