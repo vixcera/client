@@ -108,7 +108,7 @@ i.active {
 }
 
 .alertext {
-    font-family: var(--mono);
+    font-family: var(--quicksand);
     color: var(--blue);
 }
 
