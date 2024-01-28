@@ -27,7 +27,7 @@ const Swaload = {
         return(
             <>
             <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
-                <Skeleton style={{boxShadow: 'var(--softshadow)', width: '100%'}} height={400} className='product-img' baseColor='var(--primary)' highlightColor='var(--prime)'/>
+                <Skeleton style={{boxShadow: 'var(--softshadow)', width: '100%', height: '400px'}} className='product-img' baseColor='var(--primary)' highlightColor='var(--prime)'/>
             </div>
             <Skeleton className="button-max" style={{boxShadow: 'var(--softshadow)', backgroundColor: 'unset'}} baseColor='var(--primary)' highlightColor='var(--prime)'/>
             <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }}>
