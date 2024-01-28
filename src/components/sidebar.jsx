@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom"
 import Context from "../../utils/context"
+import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import "../style/sidebar.css"
 

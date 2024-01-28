@@ -1,6 +1,6 @@
 import axios from "axios"
 import swal from "sweetalert2"
-import alert from "../../../utils/alert"
+import swalert from "../../../utils/swalert"
 import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
 import { useState } from "react"
@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "../../style/create.css"
-import swalert from "../../../utils/swalert"
 
 const Details = () => {
 

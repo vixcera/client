@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import Swal from 'sweetalert2'
 import snap from "../../../utils/snap"
+import swalert from '../../../utils/swalert'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import getvxsrf from '../../../service/getvxsrf'
@@ -10,7 +10,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
-import swalert from '../../../utils/swalert'
 
 const Order = () => {
 

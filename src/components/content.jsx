@@ -33,10 +33,10 @@ const Content = ({data, setData, setCount}) => {
                 setCount(update.length)
                 return update
             })
-            swalert(response.data, "success", 500)
+            swalert(response.data, "success", 1200)
         } catch (error) {
             if (error || error.response) {
-                swalert(error.response.data, "error", 500)
+                swalert(error.response.data, "error", 1200)
             }
         } finally {
             context.setLoading(false)

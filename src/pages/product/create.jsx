@@ -57,7 +57,7 @@ const Create = () => {
         if (error.response) { swalert(error.response.data, "error", 1500) }
       } finally { setLoading(false) }
     } else {
-      swalert("please complete the form data!", "error", 2000)
+      swalert("please complete the form data!", "error", false)
     }
   }
 
