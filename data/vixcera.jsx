@@ -55,7 +55,7 @@ const vixcera =
             {
                 title : "Complete the form",
                 text : "after complete, click order button.",
-                img : "img/oform.png",
+                img : "img/tform.png",
                 color : "#FF4B63",
                 pricing : ["email", "phone"]
             },
