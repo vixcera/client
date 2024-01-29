@@ -38,6 +38,7 @@ const checkvxsrf = async () => {
                     showDenyButton: true,
                     denyButtonText: 'dismiss',
                     confirmButtonText: "how's that?",
+                    allowOutsideClick: false
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
@@ -48,7 +49,8 @@ const checkvxsrf = async () => {
                             color : 'var(--blue)',
                             title : name,
                             text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
-                            confirmButtonText: "check it out"
+                            confirmButtonText: "check it out",
+                            allowOutsideClick: false
                         })
                         .then((res) => {
                             if (res.isConfirmed) return window.open(endpoint, "_blank")
@@ -63,6 +65,7 @@ const checkvxsrf = async () => {
                             showDenyButton: true,
                             denyButtonText: "don't show again!",
                             confirmButtonText: "how's that?",
+                            allowOutsideClick: false
                         })
                         .then((res) => {
                             if (res.isDenied) {
@@ -76,7 +79,8 @@ const checkvxsrf = async () => {
                                     color : 'var(--blue)',
                                     title : name,
                                     text : `we detected you are using ${name}, let's configure and start exploring vixcera.`,
-                                    confirmButtonText: 'check it out'
+                                    confirmButtonText: 'check it out',
+                                    allowOutsideClick: false
                                 })
                                 .then((show) => {
                                     if (show.isConfirmed) return window.open(endpoint, "_blank")
