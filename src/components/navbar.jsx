@@ -63,7 +63,7 @@ const Navbar = ({ count }) => {
         </div>
         <div className="nav-user">
           {(transaction_mode) ? 
-          <NavLink className='button'><div style={{color: 'var(--background)'}} className="i fa-solid fa-cart-bell fa-xl"/></NavLink>
+          <NavLink className='button'><div style={{color: 'var(--background)'}} className="i fa-solid fa-bell fa-xl"/></NavLink>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
           }
