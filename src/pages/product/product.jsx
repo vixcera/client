@@ -21,7 +21,7 @@ const Product = () => {
             !response.data.length && setStatus(404)
             setData(response.data)
         }   catch (error) {
-            setStatus(error.response ? 404 : 500)
+            setStatus(error.response ? 404 : 404)
         }
         finally { setLoading(false) }
     }
