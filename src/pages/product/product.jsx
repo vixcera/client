@@ -2,7 +2,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import convertPrice from "../../../utils/price"
-import swalert from '../../../utils/swalert'
+import Handle from "../../../service/handle"
 import Swaload from '../../../utils/swaload'
 import axios from "axios"
 import "../../style/product.css"
@@ -11,30 +11,23 @@ const Product = () => {
     const navigate = useNavigate()
     const { ctg } = useParams()
     const [ data, setData ] = useState([])
+    const [ status, setStatus ] = useState(200)
     const [ loading, setLoading ] = useState(false)
     
     const getProducts = async () => {
         try {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
-            if (!response.data.length) {
-                swalert("product is empty", "info")
-                .then((res) => res.dismiss && navigate('/products'))
-            }
+            !response.data.length && setStatus(404)
             setData(response.data)
         }   catch (error) {
-            if (error.response) {
-                swalert("server maintenance, please comeback later!")
-                .then((res) => res.dismiss && navigate('/'))
-            } else {
-                swalert("server maintenance, please come back later!")
-                .then((res) => res.dismiss && navigate('/'))
-            }
+            setStatus(error.response ? 404 : 500)
         }
         finally { setLoading(false) }
     }
 
     useEffect(() => { getProducts() }, [])
+    if (status !== 200) return <Handle status={status}/> 
 
     return (
         <div className='page-max'>
