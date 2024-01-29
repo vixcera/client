@@ -7,7 +7,7 @@ const Handle = ({ status }) => {
             <Topback/>
             {(status == 404) ? (
                 <>
-                <LazyLoadImage src="/img/404page.png" effect="blur" loading="lazy" style={{width: '250px'}}/>
+                <img src="/img/404page.png" style={{width: '250px'}}/>
                 <div className="title" style={{fontSize: '1.4rem'}}>Products not found</div>
                 </>
             ) : (
