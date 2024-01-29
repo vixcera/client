@@ -19,7 +19,10 @@ const Main = () => {
         if (response.data.length !== 0) { snap() }
     }
 
-    useEffect(() => { if (transaction_mode) { getTransaction() }}, [])
+    useEffect(() => { 
+        if (transaction_mode) { getTransaction() }
+        if (data.length == 0) { localStorage.removeItem('transaction_mode') }
+    }, [])
 
     return (
         <div className="main">
