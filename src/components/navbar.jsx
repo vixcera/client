@@ -8,6 +8,7 @@ const Navbar = ({ count }) => {
   
   const navigate = useNavigate()
   const context = useContext(Context)
+  const transaction_mode = localStorage.getItem('transaction_mode')
 
   window.onscroll = () => {
       let y = window.scrollY
@@ -61,8 +62,8 @@ const Navbar = ({ count }) => {
           <NavLink className="menu" to="/about">About</NavLink> 
         </div>
         <div className="nav-user">
-          {(context.vid) ? 
-          <NavLink className='button'><div style={{color: 'var(--background)'}} className="i fa-solid fa-cart-shopping fa-xl"/></NavLink>
+          {(transaction_mode) ? 
+          <NavLink className='button'><div style={{color: 'var(--background)'}} className="i fa-solid fa-cart-bell fa-xl"/></NavLink>
           : 
           <NavLink className="button" to="/login">Sign in</NavLink>
           }
