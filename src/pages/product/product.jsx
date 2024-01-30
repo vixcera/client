@@ -66,10 +66,16 @@ const Product = () => {
                         })
                     )}
                 </div>
-                <div style={{ display: 'flex', gap: '20px', marginTop: '60px', alignItems: 'center', justifyContent: 'center' }}>
-                    {(page !== 1) && <div className='button' onClick={() => setPage(page -1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-left-long fa-xl'/></div>}
-                    <div className='button' onClick={() => setPage(page +1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-right-long fa-xl'/></div>
-                </div>
+                {(data.length >= 10) ? 
+                    <div style={{ display: 'flex', gap: '20px', marginTop: '50px', alignItems: 'center', justifyContent: 'center' }}>
+                        {(page !== 1) && <div className='button' onClick={() => setPage(page -1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-left-long fa-xl'/></div>}
+                        <div className='button' onClick={() => setPage(page +1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-right-long fa-xl'/></div>
+                    </div>
+                :
+                    <div style={{ display: 'flex', gap: '20px', marginTop: '50px', alignItems: 'center', justifyContent: 'center' }}>
+                        <div className='desc' style={{fontSize: '2rem'}}>already displays all products.</div>
+                    </div>
+                }
             </div>
         </div>
     )
