@@ -62,10 +62,14 @@ const Product = () => {
                                         </div>
                                     </div>
                                 </div>
-                                )
+                            )
                         })
                     )}
                 </div>
+            </div>
+            <div className='wrapped-details'>
+                <div className='button'><div className='fa-solid fa-right fa-xl'/></div>
+                <div className='button'><div className='fa-solid fa-left fa-xl'/></div>
             </div>
         </div>
     )
