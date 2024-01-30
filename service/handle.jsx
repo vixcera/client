@@ -11,7 +11,6 @@ const Handle = ({ status }) => {
                 </>
             ) : (
                 <>
-                <img src="/img/200page.png" style={{width: '250px'}}/>
                 <div className="title" style={{fontSize: '1.4rem'}}>Server maintenance</div>
                 </>
             )}
