@@ -66,7 +66,7 @@ const Product = () => {
                         })
                     )}
                 </div>
-                <div style={{ display: 'flex', gap: '20px', marginTop: '30px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '20px', marginTop: '30px', alignItems: 'center', justifyContent: 'center' }}>
                     <div className='button'><div className='fa-solid fa-left-long fa-xl'/></div>
                     <div className='button'><div className='fa-solid fa-right-long fa-xl'/></div>
                 </div>
