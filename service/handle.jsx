@@ -1,4 +1,5 @@
 import Topback from "../src/components/topback"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Handle = ({ status }) => {
     return(
@@ -11,7 +12,7 @@ const Handle = ({ status }) => {
                 </>
             ) : (
                 <>
-                <img src="/img/500.png" style={{width: '350px'}}/>
+                <LazyLoadImage src="/img/500.png" style={{width: '340px'}} effect="blur" loading="lazy"/>
                 </>
             )}
         </div>
