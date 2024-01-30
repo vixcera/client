@@ -27,7 +27,7 @@ const Product = () => {
         finally { setLoading(false) }
     }
 
-    useEffect(() => { getProducts() }, [])
+    useEffect(() => { getProducts() }, [page])
     if (status !== 200) return <Handle status={status}/> 
 
     return (
@@ -66,9 +66,9 @@ const Product = () => {
                         })
                     )}
                 </div>
-                <div style={{ display: 'flex', gap: '20px', marginTop: '70px', alignItems: 'center', justifyContent: 'center' }}>
-                    {(page !== 1) && <div className='button' style={{borderRadius: '10px'}}><div className='fa-solid fa-left-long fa-xl'/></div>}
-                    <div className='button' style={{borderRadius: '10px'}}><div className='fa-solid fa-right-long fa-xl'/></div>
+                <div style={{ display: 'flex', gap: '20px', marginTop: '60px', alignItems: 'center', justifyContent: 'center' }}>
+                    {(page !== 1) && <div className='button' onClick={() => setPage(page -1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-left-long fa-xl'/></div>}
+                    <div className='button' onClick={() => setPage(page +1)} style={{borderRadius: '10px'}}><div className='fa-solid fa-right-long fa-xl'/></div>
                 </div>
             </div>
         </div>
