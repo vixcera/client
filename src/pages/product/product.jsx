@@ -65,10 +65,10 @@ const Product = () => {
                             )
                         })
                     )}
-                    <div style={{ display: 'flex', gap: '30px' }}>
-                        <div className='button'><div className='fa-solid fa-left-long fa-xl'/></div>
-                        <div className='button'><div className='fa-solid fa-right-long fa-xl'/></div>
-                    </div>
+                </div>
+                <div style={{ display: 'flex', gap: '30px', margin: '20px auto' }}>
+                    <div className='button'><div className='fa-solid fa-left-long fa-xl'/></div>
+                    <div className='button'><div className='fa-solid fa-right-long fa-xl'/></div>
                 </div>
             </div>
         </div>
