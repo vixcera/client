@@ -16,12 +16,11 @@ const Main = () => {
         const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
         setData(response.data)
         setCount(response.data.length)
-        if (response.data.length !== 0) { snap() }
+        response.data.length !== 0 ? snap() : localStorage.removeItem('transaction_mode')
     }
 
     useEffect(() => { 
         if (transaction_mode) { getTransaction() }
-        if (data.length == 0) { localStorage.removeItem('transaction_mode') }
     }, [])
 
     return (
