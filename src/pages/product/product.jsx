@@ -65,7 +65,7 @@ const Product = () => {
                             )
                         })
                     )}
-                    <div className='wrapped-details'>
+                    <div style={{ display: 'flex', gap: '30px' }}>
                         <div className='button'><div className='fa-solid fa-left-long fa-xl'/></div>
                         <div className='button'><div className='fa-solid fa-right-long fa-xl'/></div>
                     </div>
