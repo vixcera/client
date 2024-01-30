@@ -13,11 +13,12 @@ const Product = () => {
     const [ data, setData ] = useState([])
     const [ status, setStatus ] = useState(200)
     const [ loading, setLoading ] = useState(false)
+    const [ page, setPage ] = useState(1)
     
     const getProducts = async () => {
         try {
             setLoading(true)
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}`)
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/${ctg}/${page}`)
             !response.data.length && setStatus(404)
             setData(response.data)
         }   catch (error) {
