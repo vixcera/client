@@ -5,9 +5,11 @@ import Content from "../../components/content"
 import Sidebar from "../../components/sidebar"
 import { useEffect, useState } from "react"
 import "../../style/main.css"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Main = () => {
+
+    const navigate = useNavigate()
 
     const register_mode_user = localStorage.getItem('register_mode_user')
     const transaction_mode = localStorage.getItem('transaction_mode')
@@ -23,7 +25,7 @@ const Main = () => {
 
     useEffect(() => { 
         if (transaction_mode) { getTransaction() 
-        if (register_mode_user) { Navigate({to : '/confirm/user'}) }
+        if (register_mode_user) { navigate('/confirm/user') }
     }
     }, [])
 
