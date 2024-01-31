@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export const AuthRegisterUser = () => {
 
-    const register_mode_user = localStorage.getItem('register_mode_user')
+    const register_mode_user = JSON.parse(localStorage.getItem('register_mode_user'))
     const navigate = useNavigate()
 
     const [ otp, setOtp ] = useState('')

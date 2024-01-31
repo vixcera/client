@@ -5,6 +5,7 @@ import Content from "../../components/content"
 import Sidebar from "../../components/sidebar"
 import { useEffect, useState } from "react"
 import "../../style/main.css"
+import { Navigate } from "react-router-dom"
 
 const Main = () => {
 
@@ -21,7 +22,9 @@ const Main = () => {
     }
 
     useEffect(() => { 
-        if (transaction_mode) { getTransaction() }
+        if (transaction_mode) { getTransaction() 
+        if (register_mode_user) { Navigate({to : '/confirm/user'}) }
+    }
     }, [])
 
     return (
