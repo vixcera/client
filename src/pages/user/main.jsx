@@ -8,6 +8,7 @@ import "../../style/main.css"
 
 const Main = () => {
 
+    const register_mode_user = localStorage.getItem('register_mode_user')
     const transaction_mode = localStorage.getItem('transaction_mode')
     const [ data, setData ] = useState([])
     const [ count, setCount ] = useState(0)

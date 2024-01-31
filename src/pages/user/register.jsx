@@ -23,6 +23,7 @@ const Register = () => {
             setLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_API}/register`,
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
+            localStorage.setItem('register_mode_user', JSON.stringify({ email, username }))
             swalert(response.data, "success", 7000)
             .then((res) => {if (res.dismiss) {location.href = '/'}})
         } 

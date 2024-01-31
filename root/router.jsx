@@ -80,8 +80,8 @@ const Routing = () => {
           <Route path="/product/details/:vid" element={<Details/>}/>
           <Route path="/waiting/details/:vid" element={<Wetails/>}/>
 
-          <Route path="/confirm/user/:token" element={<AuthRegisterUser/>}/>
-          <Route path="/confirm/contributor/:token" element={<AuthRegisterCont/>}/>
+          <Route path="/confirm/user" element={<AuthRegisterUser/>}/>
+          <Route path="/confirm/contributor" element={<AuthRegisterCont/>}/>
           <Route path="/transaction/success/:order_id" element={<AuthTransaction/>}/>
         </Routes>
       </Router>
