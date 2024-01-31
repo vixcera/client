@@ -30,8 +30,8 @@ const ConfirmUser = () => {
             }
         }
     }
-    if (loading) return <Loading/>
     useEffect(() => { register_mode_user? getvxsrf().then((data) => setVxsrf(data)) : navigate('/')}, [])
+    if (loading) return <Loading/>
     return(
         <div className="page">
             <div className="back" onClick={() => navigate('/')}>
