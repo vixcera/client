@@ -26,7 +26,6 @@ export const AuthRegisterUser = () => {
             } catch (error) {
                 if (error || error.response) {
                     swalert(error.response.data || "internal server error", "error", 1500)
-                    .then((res) => res.dismiss && navigate('/'))
                 }
             } finally {
                 setLoading(false)
