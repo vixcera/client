@@ -12,11 +12,11 @@ import Create from "../src/pages/product/create"
 import Details from "../src/pages/product/details"
 import Product from "../src/pages/product/product"
 import Register from "../src/pages/user/register"
+import Confirm from "../middleware/confirm"
 import Wetails from "../admin/wetails"
 import Dashboard from "../admin/dashboard"
 import checkvxsrf from "../service/checkvxsrf"
 import AuthTransaction from "../middleware/authTransaction"
-import ConfirmUser from "../middleware/confirm"
 
 const Routing = () => {
 
@@ -80,7 +80,7 @@ const Routing = () => {
           <Route path="/product/details/:vid" element={<Details/>}/>
           <Route path="/waiting/details/:vid" element={<Wetails/>}/>
 
-          <Route path="/confirm/user" element={<ConfirmUser/>}/>
+          <Route path="/confirm/user" element={<Confirm.user/>}/>
           {/* <Route path="/confirm/contributor" element={<AuthRegisterCont/>}/> */}
           <Route path="/transaction/success/:order_id" element={<AuthTransaction/>}/>
         </Routes>
