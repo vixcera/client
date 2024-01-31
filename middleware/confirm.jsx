@@ -41,12 +41,12 @@ const ConfirmUser = () => {
             <div className="form" style={{ textAlign: 'center', gap: '50px' }}>
                 <div style={{display: 'flex', gap: '20px', justifyContent: 'center'}}>
                     <div className="button" style={{width: '180px', backgroundColor: '#aaa'}}>Resend OTP</div>
-                    <div className="button" onClick={() => confirm()}>Verify</div>
+                    <div className="button" onClick={() => {confirm()}}>Verify</div>
                 </div>
                 <input type="text" onChange={(e) => setOtp(e.target.value)} placeholder="input your OTP number here" required/>
                 <div>
                     <div className="title">OTP <span>Verification</span></div>
-                    <div className="desc" style={{ fontFamily: 'var(--quicksand)', fontSize: '0.9rem', marginTop: '7px', letterSpacing: '1px' }}>Hi <span>{register_mode_user ? register_mode_user.username : 'dimas'}!</span>, your OTP number was successfully <br/> sent to <span>{register_mode_user? register_mode_user.email : 'd@gmail.com'}</span>. Let's check your email.</div>
+                    <div className="desc" style={{ fontFamily: 'var(--quicksand)', fontSize: '0.9rem', marginTop: '7px', letterSpacing: '1px' }}>Hi <span>{register_mode_user.username}!</span>, your OTP number was successfully <br/> sent to <span>{register_mode_user.email}</span>. Let's check your email.</div>
                 </div>
             </div>
         </div>

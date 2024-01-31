@@ -11,7 +11,6 @@ const Main = () => {
 
     const navigate = useNavigate()
 
-    const register_mode_user = localStorage.getItem('register_mode_user')
     const transaction_mode = localStorage.getItem('transaction_mode')
     const [ data, setData ] = useState([])
     const [ count, setCount ] = useState(0)
@@ -23,10 +22,7 @@ const Main = () => {
         response.data.length !== 0 ? snap() : localStorage.removeItem('transaction_mode')
     }
 
-    useEffect(() => { 
-        if (transaction_mode) { getTransaction() 
-        if (register_mode_user) { navigate('/confirm/user') }
-    }
+    useEffect(() => { if (transaction_mode) { getTransaction() }
     }, [])
 
     return (

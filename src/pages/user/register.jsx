@@ -25,7 +25,7 @@ const Register = () => {
             {email, username, password}, {headers: { "xsrf-token" : vxsrf }})
             localStorage.setItem('register_mode_user', JSON.stringify({ email, username }))
             swalert(response.data, "success", 7000)
-            .then((res) => {if (res.dismiss) {location.href = '/'}})
+            .then((res) => {if (res.dismiss) {location.href = '/confirm/user'}})
         } 
         catch (error) {
             swalert(error.response.data, "error", 1500)
