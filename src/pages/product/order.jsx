@@ -58,7 +58,7 @@ const Order = () => {
         localStorage.setItem('transaction_mode', "true")
         window.snap.pay(response.data, {
           onSuccess: (result) => { window.location.href = `/transaction/success/${result.order_id}`},
-          onsPending : () => {window.location.href = '/'}
+          onPending : () => {window.location.href = '/'}
       })
       } 
       catch (error) {
