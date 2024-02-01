@@ -21,12 +21,28 @@ const Order = () => {
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
+    const [data, setData] = useState([])
     const [name, setName] = useState(history ? history.name : '')
     const [email, setEmail] = useState(history ? history.email : '')
     const [phone, setPhone] = useState(history ? history.phone : '')
     
     if (name || email || phone) {
       localStorage.setItem('inputOrder', JSON.stringify({ name, email, phone }))
+    }
+    
+    const getProducts = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
+            setData(response.data)
+        }   catch (error) {
+            if (error || error.response) {
+              swalert(error.response.data, "error", 1500)
+              .then((res) => res.dismiss && navigate('/'))
+            }
+        } finally {
+          setLoading(false)
+        }
     }
     
     const checkout = async () => {
@@ -54,6 +70,7 @@ const Order = () => {
 
     useEffect(() => {
       snap()
+      i ? setData(i) : getProducts()
       getvxsrf().then((result) => setVxsrf(result))
     }, [])
 
@@ -84,16 +101,20 @@ const Order = () => {
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
-                <div className='product-card'>
-                    <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
-                    <div className='wrapped-text'>
-                        <div className='product-title'>{i.title}</div>
-                        <div className='product-desc'>{i.desc}</div>
-                        <div className='wrapped-details'>
-                          <div className='button price'>{convertPrice(i.price)}</div>
-                        </div>
-                    </div>
-                </div>
+              {data.map((i,k) => {
+                    return(
+                      <div className='product-card' key={k}>
+                          <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
+                          <div className='wrapped-text'>
+                              <div className='product-title'>{i.title}</div>
+                              <div className='product-desc'>{i.desc}</div>
+                              <div className='wrapped-details'>
+                                  <div className='button price'>{convertPrice(i.price)}</div>
+                              </div>
+                          </div>
+                      </div>
+                    )
+                })}
             </div>
           </div>
         </div>
