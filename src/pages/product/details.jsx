@@ -1,10 +1,5 @@
-import axios from "axios"
 import swal from "sweetalert2"
-import swalert from "../../../utils/swalert"
-import Loading from "../../../utils/loading"
 import convertPrice from "../../../utils/price"
-import { useState } from "react"
-import { useEffect } from "react"
 import { useLocation, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
@@ -12,34 +7,10 @@ import "../../style/create.css"
 
 const Details = () => {
 
+    const { vid } = useParams()
     const location = useLocation()
     const i = location.state
     const navigate = useNavigate()
-    const { vid } = useParams()
-    const [ data, setData ] = useState([])
-    const [ loading, setLoading ] = useState(false)
-
-    // useEffect(() => {
-    //     setLoading(true)
-    //     axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
-    //     .then((response) => {
-    //         if (!response.data.length) {
-    //             swalert("product data not found!")
-    //             .then((res) => res.dismiss && navigate(-1))
-    //         }
-    //         setData(response.data)
-    //     })
-    //     .catch((error) => {
-    //         if (error.response) {
-    //             swalert(error.response.data, "error")
-    //             .then((res) => res.dismiss && navigate(-1))
-    //         }
-    //         setError(error)
-    //     })
-    //     .finally(() => { setLoading(false) })
-    // }, [])
-
-    if (loading) return <Loading/>
 
     return (
         <div className='page-max'>
@@ -82,7 +53,7 @@ const Details = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', backgroundColor: 'var(--yellow)' }}>
+                        <div className="button-max" onClick={() => navigate(`/order/${vid}`, {state: i})} style={{ marginTop: '30px', backgroundColor: 'var(--yellow)' }}>
                             <div className="i fa-solid fa-cart-shopping fa-xl" style={{color: 'var(--background)'}}/>
                             Order now
                         </div>
