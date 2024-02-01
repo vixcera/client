@@ -45,7 +45,7 @@ const Product = () => {
                     ) : (
                         data.map((i, index) => {
                             return(
-                                <div className='product-card' key={index} onClick={() => navigate(`/product/details/${i.vid}`, {i})}>
+                                <div className='product-card' key={index} onClick={() => navigate(`/product/details/${i.vid}`, {i : data[index]})}>
                                     <LazyLoadImage className='product-img' src={(i.img) || ('img/img404.jpg')} loading='lazy' effect='blur'/>
                                     <div className='wrapped-text'>
                                         <div className='product-title'>{i.title}</div>
