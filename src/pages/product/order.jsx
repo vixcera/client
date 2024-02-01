@@ -5,7 +5,7 @@ import swalert from '../../../utils/swalert'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import getvxsrf from '../../../service/getvxsrf'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -13,11 +13,9 @@ import "../../style/create.css"
 
 const Order = () => {
 
-    const location = useLocation()
     const history = JSON.parse(localStorage.getItem("inputOrder"))
     const navigate = useNavigate()
     const {vid} = useParams()
-    const i = location.state
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
@@ -70,7 +68,7 @@ const Order = () => {
 
     useEffect(() => {
       snap()
-      i ? setData(i) : getProducts()
+      getProducts()
       getvxsrf().then((result) => setVxsrf(result))
     }, [])
 
