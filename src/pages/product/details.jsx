@@ -58,7 +58,7 @@ const Details = () => {
                             <div className="i fa-solid fa-globe fa-xl"/>
                             Live Preview
                         </div>
-                        <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }} key={k}>
+                        <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
                                 <div className='product-desc' style={{ display: "block", fontSize: '1rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
