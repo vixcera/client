@@ -23,7 +23,7 @@ const Confirm = {
                     .then((res) => res.dismiss && navigate('/login'))
                 } catch (error) {
                     if (error || error.response) {
-                        swalert(error.response.data || "internal server error", "error", 1500)
+                        swalert(error.response.data || "internal server error", "error", 5000)
                     }
                 } finally {
                     setLoading(false)

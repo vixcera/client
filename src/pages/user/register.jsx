@@ -28,7 +28,7 @@ const Register = () => {
             .then((res) => {if (res.dismiss) {location.href = '/confirm/user'}})
         } 
         catch (error) {
-            swalert(error.response.data, "error", 1500)
+            swalert(error.response.data, "error", 5000)
         }
         finally {setLoading(false)}
     }
