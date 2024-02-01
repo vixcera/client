@@ -53,7 +53,7 @@ const Details = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="button-max" onClick={() => navigate(`/order/${vid}`)} style={{ marginTop: '30px', backgroundColor: 'var(--yellow)' }}>
+                        <div className="button-max" onClick={() => navigate(`/order/${vid}`, {state: i})} style={{ marginTop: '30px', backgroundColor: 'var(--yellow)' }}>
                             <div className="i fa-solid fa-cart-shopping fa-xl" style={{color: 'var(--background)'}}/>
                             Order now
                         </div>
