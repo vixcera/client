@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "../../style/create.css"
 
-const Details = () => {
+const Details = ({i}) => {
 
+    console.log(i)
     const navigate = useNavigate()
     const { vid } = useParams()
     const [ data, setData ] = useState([])
