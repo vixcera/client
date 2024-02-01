@@ -57,7 +57,8 @@ const Order = () => {
         { headers : { "xsrf-token" : vxsrf } })
         localStorage.setItem('transaction_mode', "true")
         window.snap.pay(response.data, {
-          onSuccess: (result) => { window.location.href = `/transaction/success/${result.order_id}`}
+          onSuccess: (result) => { window.location.href = `/transaction/success/${result.order_id}`},
+          onsPending : () => {window.location.href = '/'}
       })
       } 
       catch (error) {
