@@ -13,31 +13,31 @@ import "../../style/create.css"
 const Details = () => {
 
     const location = useLocation()
-    console.log(location.state)
+    const i = location.state
     const navigate = useNavigate()
     const { vid } = useParams()
     const [ data, setData ] = useState([])
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => {
-        setLoading(true)
-        axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
-        .then((response) => {
-            if (!response.data.length) {
-                swalert("product data not found!")
-                .then((res) => res.dismiss && navigate(-1))
-            }
-            setData(response.data)
-        })
-        .catch((error) => {
-            if (error.response) {
-                swalert(error.response.data, "error")
-                .then((res) => res.dismiss && navigate(-1))
-            }
-            setError(error)
-        })
-        .finally(() => { setLoading(false) })
-    }, [])
+    // useEffect(() => {
+    //     setLoading(true)
+    //     axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
+    //     .then((response) => {
+    //         if (!response.data.length) {
+    //             swalert("product data not found!")
+    //             .then((res) => res.dismiss && navigate(-1))
+    //         }
+    //         setData(response.data)
+    //     })
+    //     .catch((error) => {
+    //         if (error.response) {
+    //             swalert(error.response.data, "error")
+    //             .then((res) => res.dismiss && navigate(-1))
+    //         }
+    //         setError(error)
+    //     })
+    //     .finally(() => { setLoading(false) })
+    // }, [])
 
     if (loading) return <Loading/>
 
@@ -50,8 +50,6 @@ const Details = () => {
             <div className="form">
                 <div className='prev-form' style={{ marginTop: '10px', paddingBottom: '0', gap: '20px' }}>
                     <div className='itext'>Product Details</div>
-                {data.map((i,k) => {
-                    return(
                         <>
                         <div className="product-card" style={{ height: 'max-content', width: '100%', marginTop: '0px', justifyContent: 'center' }}>
                             <LazyLoadImage style={{ width: '100%' }} onClick={() => swal.fire({ imageUrl: i.img, showConfirmButton: false })} className='product-img' src={i.img} loading='lazy' effect='blur'/>
@@ -89,8 +87,6 @@ const Details = () => {
                             Order now
                         </div>
                         </>
-                        )
-                    })}
                 </div>
             </div>
         </div>
