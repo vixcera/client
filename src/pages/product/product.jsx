@@ -73,7 +73,7 @@ const Product = () => {
                     </div>
                 :
                     <div style={{ display: 'flex', gap: '20px', marginTop: '50px', alignItems: 'center', justifyContent: 'center' }}>
-                        <div className='desc' style={{fontSize: '1.3', color: 'var(--yellow)'}}>already displays all products.</div>
+                        <div className='desc' style={{fontFamily: 'var(--mono)',fontSize: '1.1', color: 'var(--yellow)'}}>already displays all products.</div>
                     </div>
                 }
             </div>
