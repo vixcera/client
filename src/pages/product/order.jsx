@@ -84,7 +84,7 @@ const Order = () => {
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
-                <div className='product-card' key={k}>
+                <div className='product-card'>
                     <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
                     <div className='wrapped-text'>
                         <div className='product-title'>{i.title}</div>
