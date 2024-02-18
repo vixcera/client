@@ -14,6 +14,7 @@ const AuthTransaction = () => {
     const [ vxsrf, setVxsrf] = useState('')
     const [ data, setData ] = useState(null)
     const { order_id } = useParams()
+    console.log(data)
 
     const getData = async () => {
         try {
@@ -61,7 +62,7 @@ const AuthTransaction = () => {
     }
 
     useEffect(() => {
-        getData().then((res) => console.log(res))
+        getData()
         getvxsrf().then((result) => setVxsrf(result))
     } , [])
 
@@ -76,7 +77,6 @@ const AuthTransaction = () => {
           <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Check transaction</div>
             <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
-            <h3>Status : {data.transaction_status}</h3>
           </div>
         </div>
     )
