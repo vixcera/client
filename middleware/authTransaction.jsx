@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
 import convertPrice from '../utils/price'
-import html2pdf from "html2pdf"
+import html2canvas from "html2canvas"
+import jspdf from "jspdf"
 import getvxsrf from '../service/getvxsrf'
 import Loading from '../utils/loading'
 import swalert from "../utils/swalert"
@@ -64,17 +65,15 @@ const AuthTransaction = () => {
 
     const downloadInvoice = () => {
         const content = document.querySelector('.form.invoice');
-        const filename = `invoice-${data.name}.pdf`
-        const blob = new Blob([content], {type: 'application/pdf'})
-        const url = URL.createObjectURL(blob)
-
-        let a = document.createElement('a')
-        a.href = url
-        a.download = filename
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        URL.revokeObjectURL(url)
+        html2canvas(content).then((canvas) => {
+            const img = canvas.toDataURL('image/png')
+            const pdf = new jspdf();
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('invoice.pdf');
+        })
     }
 
     useEffect(() => {
