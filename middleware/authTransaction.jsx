@@ -12,7 +12,20 @@ const AuthTransaction = () => {
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
     const [ vxsrf, setVxsrf] = useState('')
+    const [ data, setData ] = useState(null)
     const { order_id } = useParams()
+
+    const getData = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/result/${order_id}`)
+            if (!response.data.lenght) return swalert("transaction data not found", 'info', 2000)
+            setData(response.data)
+        } catch (error) {
+            if (error.response || error) {
+                swalert(error.response.data || "internal server error", 'error', 2000)
+            }
+        }
+    }
     
     const donwloadProduct = async () => {
         if (!order_id) return (await swalert("transaction not found", "error")).dismiss && navigate('/')
@@ -49,7 +62,10 @@ const AuthTransaction = () => {
         }
     }
 
-    useEffect(() => {getvxsrf().then((result) => setVxsrf(result))} , [])
+    useEffect(() => {
+        getData().then((res) => console.log(res))
+        getvxsrf().then((result) => setVxsrf(result))
+    } , [])
 
     if (loading) return <Loading/>
 
