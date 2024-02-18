@@ -72,7 +72,7 @@ const AuthTransaction = () => {
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
             pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('invoice.pdf');
+            pdf.save(`invoice-${data.name}.pdf`);
         })
     }
 
