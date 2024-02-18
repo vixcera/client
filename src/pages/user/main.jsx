@@ -19,7 +19,7 @@ const Main = () => {
         const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
         setData(response.data)
         setCount(response.data.length)
-        response.data.length !== 0 ? snap() : localStorage.removeItem('transaction_mode')
+        response.data.length === 0 && localStorage.removeItem('transaction_mode')
     }
 
     useEffect(() => { if (transaction_mode) { getTransaction() }

@@ -64,7 +64,9 @@ const AuthTransaction = () => {
         }
     }
 
-    const repay = () => { window.snap.pay(data.transaction_token)}
+    const repay = () => { window.snap.pay(data.transaction_token, {
+        onPending : () => { window.location.reload() }
+    })}
 
     useEffect(() => {
         getData().then((res) => setData(res.data))
@@ -104,7 +106,7 @@ const AuthTransaction = () => {
                 </div>
             </div>
             {data.transaction_status == 'settlement' && 
-                <div style={{textAlign: 'center', lineHeight: '32px'}}>
+                <div style={{textAlign: 'center', lineHeight: '35px'}}>
                     <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
                     <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
                 </div>
