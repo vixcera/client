@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import convertPrice from '../utils/price'
 import { useNavigate, useParams } from "react-router-dom"
 import getvxsrf from '../service/getvxsrf'
 import Loading from '../utils/loading'
@@ -90,8 +90,8 @@ const AuthTransaction = () => {
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_status}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.order_id}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_id}</h3>
-                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_amount}</h3>
-                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_token}</h3>
+                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{convertPrice(data.product_amount)}</h3>
+                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_token.substring(0, 10) + '***'}</h3>
                 </div>
             </div>
             <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
