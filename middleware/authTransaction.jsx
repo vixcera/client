@@ -18,7 +18,6 @@ const AuthTransaction = () => {
     const getData = async () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/result/${order_id}`)
-            if (!response.data.lenght) return swalert("transaction data not found", 'info', 2000)
             setData(response.data)
         } catch (error) {
             if (error.response || error) {
@@ -56,7 +55,6 @@ const AuthTransaction = () => {
         } catch (error) {
             swalert("server maintenance!")
             if(error.response) swalert(error.response.data)
-            .then((res) => { if(res.dismiss) { location.href = '/' } })
         } finally {
             setLoading(false)
         }
@@ -75,9 +73,10 @@ const AuthTransaction = () => {
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
-          <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px'}}>
+          <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Check transaction</div>
-            <LazyLoadImage src="/img/200page.png" effect="blur" loading="lazy" style={{ width: '250px' }}/>
+            <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
+            <h3>Status : {data.transaction_status}</h3>
           </div>
         </div>
     )
