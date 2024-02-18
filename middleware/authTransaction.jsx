@@ -65,7 +65,7 @@ const AuthTransaction = () => {
 
     const downloadInvoice = () => {
         const content = document.querySelector('.form.invoice');
-        html2canvas(content, {scale: 2, backgroundColor: 'var(--background)'}).then((canvas) => {
+        html2canvas(content, {scale: 2, backgroundColor: '#1f1d25'}).then((canvas) => {
             const img = canvas.toDataURL('image/png')
             const pdf = new jspdf();
             const imgProps = pdf.getImageProperties(img);
