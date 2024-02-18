@@ -78,20 +78,20 @@ const AuthTransaction = () => {
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Customer :</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Status :</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Order ID :</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Product ID :</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Amount :</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Token :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Customer :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Status :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Order ID :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Product ID :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Amount :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Token :</h4>
                 </div>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--blue)'}}>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.name}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_status}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.order_id}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_id}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_amount ? convertPrice(data.product_amount) : '***'}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.name}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_status}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.order_id}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_id}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_amount ? convertPrice(data.product_amount) : '***'}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
                 </div>
             </div>
             <div className='title' style={{textAlign: 'center'}}> <span>Vixcera</span> Invoice </div>
