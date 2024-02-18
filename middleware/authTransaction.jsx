@@ -95,8 +95,8 @@ const AuthTransaction = () => {
                 </div>
             </div>
             {data.transaction_status == 'settlement' && 
-                <div style={{textAlign: 'center'}}>
-                    <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '3.2rem', color: 'var(--blue)'}}></div>
+                <div style={{textAlign: 'center', lineHeight: '30px'}}>
+                    <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
                     <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
                 </div>
             }
