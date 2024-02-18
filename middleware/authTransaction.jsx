@@ -63,35 +63,35 @@ const AuthTransaction = () => {
         }
     }
 
-    const downloadInvoice = () => {
-        const content = document.querySelector('.form.invoice');
-        const bgDiv = document.createElement('div');
-        bgDiv.style.position = 'absolute';
-        bgDiv.style.left = '0';
-        bgDiv.style.top = '0';
-        bgDiv.style.width = '100%';
-        bgDiv.style.height = '100%';
-        bgDiv.style.backgroundColor = '#1f1d25';
-        content.insertAdjacentElement('beforebegin', bgDiv);
+    // const downloadInvoice = () => {
+    //     const content = document.querySelector('.form.invoice');
+    //     const bgDiv = document.createElement('div');
+    //     bgDiv.style.position = 'absolute';
+    //     bgDiv.style.left = '0';
+    //     bgDiv.style.top = '0';
+    //     bgDiv.style.width = '100%';
+    //     bgDiv.style.height = '100%';
+    //     bgDiv.style.backgroundColor = '#1f1d25';
+    //     content.insertAdjacentElement('beforebegin', bgDiv);
 
-        html2canvas(content, {
-            scale: 2, 
-            width: window.innerWidth, 
-            height: window.innerHeight,
-            backgroundColor: '#1f1d25', 
-        }).then((canvas) => {
-            bgDiv.parentNode.removeChild(bgDiv);
-            const img = canvas.toDataURL('image/jpeg')
-            const pdf = new jspdf();
-            const imgProps = pdf.getImageProperties(img);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            const marginLeft = (pdfWidth - canvas.width * pdfHeight / canvas.height) / 2;
-            const marginTop = (pdf.internal.pageSize.getHeight() - pdfHeight) / 2;
-            pdf.addImage(img, 'JPEG', marginLeft, marginTop, canvas.width * pdfHeight / canvas.height, pdfHeight);
-            pdf.save(`invoice-${data.name}.pdf`);
-        })
-    }
+    //     html2canvas(content, {
+    //         scale: 2, 
+    //         width: window.innerWidth, 
+    //         height: window.innerHeight,
+    //         backgroundColor: '#1f1d25', 
+    //     }).then((canvas) => {
+    //         bgDiv.parentNode.removeChild(bgDiv);
+    //         const img = canvas.toDataURL('image/jpeg')
+    //         const pdf = new jspdf();
+    //         const imgProps = pdf.getImageProperties(img);
+    //         const pdfWidth = pdf.internal.pageSize.getWidth();
+    //         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    //         const marginLeft = (pdfWidth - canvas.width * pdfHeight / canvas.height) / 2;
+    //         const marginTop = (pdf.internal.pageSize.getHeight() - pdfHeight) / 2;
+    //         pdf.addImage(img, 'JPEG', marginLeft, marginTop, canvas.width * pdfHeight / canvas.height, pdfHeight);
+    //         pdf.save(`invoice-${data.name}.pdf`);
+    //     })
+    // }
 
     useEffect(() => {
         getData().then((res) => setData(res.data))
@@ -108,7 +108,7 @@ const AuthTransaction = () => {
           </div>
           <div className='form invoice' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Get product file</div>
-            <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}} onClick={() => downloadInvoice()}>Donwload Invoice</p>
+            <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Customer :</h4>
