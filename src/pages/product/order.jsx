@@ -49,7 +49,7 @@ const Order = () => {
     const showPlaceOrder = async () => {
       return Swal.fire({
         html: `
-        <div style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
           <h2 style="text-align: center;">Shipping Details</h2>
           <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
           <h4 style="margin-top: 5px;">Customer : ${name}</h4>
