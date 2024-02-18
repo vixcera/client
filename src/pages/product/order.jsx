@@ -123,7 +123,7 @@ const Order = () => {
                 <div>Email :</div>
                 <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
               </div>
-              <div className='button-max' onClick={() => checkout()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
+              <div className='button-max' onClick={() => showInvoice()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
