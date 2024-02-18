@@ -51,16 +51,16 @@ const Order = () => {
         html: `
         <div style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
           <h2 style="text-align: center;">Shipping Details</h2>
-          <div style="width: 100%; height: 1.5px; background-color: var(--blue);"></div>
+          <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
           <h4 style="margin-top: 5px;">Customer : ${name}</h4>
           <h4>Phone Number : ${phone}</h4>
           <h4>Email Address : ${email}</h4>
           <h4>Product ID : ${vid}</h4>
-          <h4>Product Price : ${i.price}</h4>
+          <h4>Product Price : ${convertPrice(i.price)}</h4>
           <h4>Product Quantity : 1</h4>
           <h4>PPN : 11%</h4>
-          <div style="width: 100%; height: 1.5px; background-color: var(--blue); margin-top: 5px;"></div>
-          <h4>Total Amount: ${i.price * 0.11 + i.price}</h4>
+          <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
+          <h4>Total Amount: ${convertPrice(i.price * 0.11 + i.price)}</h4>
         </div>  
         `,
         confirmButtonText: 'Confirm & Pay',
@@ -70,7 +70,12 @@ const Order = () => {
         focusConfirm: false,
         color: 'var(--blue)',
         background: 'var(--primary)',
-        customClass: {container: 'alertext'}
+        customClass: {container: 'alertext'},
+      })
+      .then((res) => {
+        if (res.isConfirmed) {
+          checkout()
+        }
       })
     }
     
