@@ -64,14 +64,17 @@ const AuthTransaction = () => {
 
     const downloadInvoice = () => {
         const content = document.querySelector('.form.invoice')
-        const options = {
-            margin : 10,
-            filename : `invoice-${data.name}.pdf`,
-            image : { type: 'jpeg', quality: 0.98 },
-            html2canvas : { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        }
-        html2pdf().from(content).set(options).save()
+        const filename = `invoice-${data.name}`
+        const blob = new Blob([content], {type: 'application/pdf'})
+        const url = new URL.createObjectURL(blob)
+
+        let a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
     }
 
     useEffect(() => {
