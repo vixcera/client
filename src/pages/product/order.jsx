@@ -49,19 +49,17 @@ const Order = () => {
     const showPlaceOrder = async () => {
       return Swal.fire({
         html: `
-        <div style="width: 350px; height: 450px; color: #252525; margin: auto; display: flex; flex-direction: column; justify-content: center;">
           <h2 style="text-align: center;">Shipping Details</h2>
-          <div style="width: 100%; height: 3px; background-color: #252525"></div>
-          <h4>Customer : ${name}</h4>
-          <h4>Phone Number : ${phone}</h4>
-          <h4>Email Address : ${email}</h4>
-          <h4>Product ID : ${vid}</h4>
-          <h4>Product Price : ${i.price}</h4>
-          <h4>Product Quantity : 1</h4>
-          <h4>PPN : 11%</h4>
-          <div style="width: 100%; height: 3px; background-color: #252525"></div>
-          <h4>Total Amount: ${i.price * 0.11 + i.price}</h4>
-        </div>
+          <div style="width: 100%; height: 3px; background-color: white"></div>
+          <h5>Customer : ${name}</h5>
+          <h5>Phone Number : ${phone}</h5>
+          <h5>Email Address : ${email}</h5>
+          <h5>Product ID : ${vid}</h5>
+          <h5>Product Price : ${i.price}</h5>
+          <h5>Product Quantity : 1</h5>
+          <h5>PPN : 11%</h5>
+          <div style="width: 100%; height: 3px; background-color: white"></div>
+          <h5>Total Amount: ${i.price * 0.11 + i.price}</h5>
         `,
         confirmButtonText: 'Confirm & Pay',
         focusConfirm: false,
