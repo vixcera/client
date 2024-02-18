@@ -65,13 +65,13 @@ const AuthTransaction = () => {
 
     const downloadInvoice = () => {
         const content = document.querySelector('.form.invoice');
-        html2canvas(content, {scale: 2, backgroundColor: '#1f1d25'}).then((canvas) => {
-            const img = canvas.toDataURL('image/png')
+        html2canvas(content, {scale: 2, backgroundColor: '#1f1d25', width: window.innerWidth, height: window.innerHeight}).then((canvas) => {
+            const img = canvas.toDataURL('image/jpeg')
             const pdf = new jspdf();
             const imgProps = pdf.getImageProperties(img);
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.addImage(img, 'jpeg', 0, 0, pdfWidth, pdfHeight);
             pdf.save(`invoice-${data.name}.pdf`);
         })
     }
