@@ -106,7 +106,7 @@ const Order = () => {
     useEffect(() => {
       if (sessionStorage.getItem('agent')) {
         swalert("cookie is required, please follow the intruction before start purchasing any product", 'info', 5000)
-        .then((res) => navigate('/product'))
+        .then((res) => navigate('/products'))
       }
       snap()
       getProducts()
