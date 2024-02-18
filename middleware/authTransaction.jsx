@@ -65,22 +65,12 @@ const AuthTransaction = () => {
 
     // const downloadInvoice = () => {
     //     const content = document.querySelector('.form.invoice');
-    //     const bgDiv = document.createElement('div');
-    //     bgDiv.style.position = 'absolute';
-    //     bgDiv.style.left = '0';
-    //     bgDiv.style.top = '0';
-    //     bgDiv.style.width = '100%';
-    //     bgDiv.style.height = '100%';
-    //     bgDiv.style.backgroundColor = '#1f1d25';
-    //     content.insertAdjacentElement('beforebegin', bgDiv);
-
     //     html2canvas(content, {
     //         scale: 2, 
     //         width: window.innerWidth, 
     //         height: window.innerHeight,
     //         backgroundColor: '#1f1d25', 
     //     }).then((canvas) => {
-    //         bgDiv.parentNode.removeChild(bgDiv);
     //         const img = canvas.toDataURL('image/jpeg')
     //         const pdf = new jspdf();
     //         const imgProps = pdf.getImageProperties(img);
@@ -128,9 +118,21 @@ const AuthTransaction = () => {
                 </div>
             </div>
             {data.transaction_status == 'settlement' && 
-                <div style={{textAlign: 'center', lineHeight: '30px'}}>
+                <div style={{textAlign: 'center', lineHeight: '32px'}}>
                     <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
                     <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
+                </div>
+            }
+            {data.transaction_status == 'pending' && 
+                <div style={{textAlign: 'center', lineHeight: '32px'}}>
+                    <div className='fa-solid fa-clock fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
+                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Pending</div>
+                </div>
+            }
+            {data.transaction_status == 'expire' && 
+                <div style={{textAlign: 'center', lineHeight: '32px'}}>
+                    <div className='fa-solid fa-circle-xmark fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
+                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Failed</div>
                 </div>
             }
             
