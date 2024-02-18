@@ -74,7 +74,6 @@ const Order = () => {
       })
       .then((res) => {
         if (res.isConfirmed) {
-          localStorage.setItem('transaction_mode', "true")
           checkout()
         }
       })
@@ -90,6 +89,7 @@ const Order = () => {
           phone   : phone,
         }, 
         { headers : { "xsrf-token" : vxsrf } })
+        localStorage.setItem('transaction_mode', "true")
         window.snap.pay(response.data, {
           onSuccess: (result) => { window.location.href = `/transaction/success/${result.order_id}`},
           onPending : () => {window.location.href = '/'}
