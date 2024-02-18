@@ -49,7 +49,7 @@ const Order = () => {
     const showPlaceOrder = async () => {
       return Swal.fire({
         html: `
-        <div style="width: 350px; height: 450px; color: #252525;">
+        <div style="width: 350px; height: 450px; color: #252525; margin: auto; display: flex; flex-direction: column; justify-content: center;">
           <h2 style="text-align: center;">Shipping Details</h2>
           <div style="width: 100%; height: 3px; background-color: #252525"></div>
           <h4>Customer : ${name}</h4>
@@ -65,6 +65,7 @@ const Order = () => {
         `,
         confirmButtonText: 'Confirm & Pay',
         focusConfirm: false,
+        color: 'var(--blue)',
         background: 'var(--primary)',
       })
     }
