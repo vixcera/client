@@ -94,7 +94,7 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
                 </div>
             </div>
-            <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
+            <div className='title' style={{textAlign: 'center'}}> <span>Vixcera</span> Invoice </div>
           </div>
         </div>
     )
