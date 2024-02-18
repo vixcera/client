@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import convertPrice from '../utils/price'
 import { useNavigate, useParams } from "react-router-dom"
+import convertPrice from '../utils/price'
+import html2pdf from "html2pdf"
 import getvxsrf from '../service/getvxsrf'
 import Loading from '../utils/loading'
 import swalert from "../utils/swalert"
@@ -61,6 +62,18 @@ const AuthTransaction = () => {
         }
     }
 
+    const downloadInvoice = () => {
+        const content = document.querySelector('.form.invoice')
+        const options = {
+            margin : 10,
+            filename : `invoice-${data.name}.pdf`,
+            image : { type: 'jpeg', quality: 0.98 },
+            html2canvas : { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        }
+        html2pdf().from(content).set(options).save()
+    }
+
     useEffect(() => {
         getData().then((res) => setData(res.data))
         getvxsrf().then((result) => setVxsrf(result))
@@ -74,9 +87,9 @@ const AuthTransaction = () => {
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
-          <div className='form' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
+          <div className='form invoice' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Get product file</div>
-            <p style={{color: 'var(--blue)'}}>Donwload Invoice transaction</p>
+            <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}} onClick={() => downloadInvoice()}>Donwload Invoice</p>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Customer :</h4>
