@@ -74,7 +74,7 @@ const AuthTransaction = () => {
                 <div className="fa-solid fa-arrow-left fa-xl active"></div>
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
-          <div className='form' style={{justifyContent: 'center',  gap: '50px', textAlign: 'left'}}>
+          <div className='form' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
@@ -94,6 +94,8 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
                 </div>
             </div>
+            <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2rem', color: 'var(--blue)'}}></div>
+            <div className='desc'>Transaction Success</div>
             <div className='title' style={{textAlign: 'center'}}> <span>Vixcera</span> Invoice </div>
           </div>
         </div>
