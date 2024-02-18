@@ -75,7 +75,8 @@ const AuthTransaction = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
-            <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
+            <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Get product file</div>
+            <p style={{color: 'var(--blue)'}}>Donwload Invoice transaction</p>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Customer :</h4>
