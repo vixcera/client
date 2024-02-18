@@ -82,7 +82,7 @@ const Routing = () => {
 
           <Route path="/confirm/user" element={<Confirm.user/>}/>
           {/* <Route path="/confirm/contributor" element={<AuthRegisterCont/>}/> */}
-          <Route path="*/transaction/success/:order_id" element={<AuthTransaction/>}/>
+          <Route path="/transaction/success/:order_id" element={<AuthTransaction/>}/>
         </Routes>
       </Router>
     </Context.Provider>
