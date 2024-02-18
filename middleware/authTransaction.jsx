@@ -12,15 +12,14 @@ const AuthTransaction = () => {
     const navigate = useNavigate()
     const [ loading, setLoading ] = useState(false)
     const [ vxsrf, setVxsrf] = useState('')
-    const [ data, setData ] = useState(null)
+    const [ data, setData ] = useState('')
     const { order_id } = useParams()
-    console.log(data)
 
     const getData = async () => {
         try {
             setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/result/${order_id}`)
-            setData(response.data)
+            return response;
         } catch (error) {
             if (error.response || error) {
                 swalert(error.response.data || "internal server error", 'error', 2000)
@@ -63,7 +62,7 @@ const AuthTransaction = () => {
     }
 
     useEffect(() => {
-        getData()
+        getData().then((res) => setData(res.data))
         getvxsrf().then((result) => setVxsrf(result))
     } , [])
 
