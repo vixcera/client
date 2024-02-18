@@ -65,12 +65,22 @@ const AuthTransaction = () => {
 
     const downloadInvoice = () => {
         const content = document.querySelector('.form.invoice');
+        const bgDiv = document.createElement('div');
+        bgDiv.style.position = 'absolute';
+        bgDiv.style.left = '0';
+        bgDiv.style.top = '0';
+        bgDiv.style.width = '100%';
+        bgDiv.style.height = '100%';
+        bgDiv.style.backgroundColor = '#1f1d25';
+        content.insertAdjacentElement('beforebegin', bgDiv);
+
         html2canvas(content, {
             scale: 2, 
             width: window.innerWidth, 
             height: window.innerHeight,
-            backgroundColor: window.getComputedStyle(content).backgroundColor
+            backgroundColor: '#1f1d25', 
         }).then((canvas) => {
+            bgDiv.parentNode.removeChild(bgDiv);
             const img = canvas.toDataURL('image/jpeg')
             const pdf = new jspdf();
             const imgProps = pdf.getImageProperties(img);
