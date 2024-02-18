@@ -6,9 +6,9 @@ const Handle = ({ status }) => {
         <div className="page" style={{flexDirection: 'column', gap: '30px'}}>
             <Topback/>
             {(status == 404) ? (
-                <LazyLoadImage src="/img/404page.png" style={{width: '250px'}} effect="blur" loading="lazy"/>
+                <LazyLoadImage src="/img/404page.png" style={{width: '220px'}} effect="blur" loading="lazy"/>
             ) : (
-                <LazyLoadImage src="/img/500.png" style={{width: '340px'}} effect="blur" loading="lazy"/>
+                <LazyLoadImage src="/img/500.png" style={{width: '310px'}} effect="blur" loading="lazy"/>
             )}
         </div>
     )
