@@ -66,7 +66,7 @@ const AuthTransaction = () => {
         const content = document.querySelector('.form.invoice').innerHTML;
         const filename = `invoice-${data.name}.pdf`
         const blob = new Blob([content], {type: 'application/pdf'})
-        const url = new URL.createObjectURL(blob)
+        const url = URL.createObjectURL(blob)
 
         let a = document.createElement('a')
         a.href = url
