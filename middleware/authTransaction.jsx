@@ -14,7 +14,6 @@ const AuthTransaction = () => {
     const [ vxsrf, setVxsrf] = useState('')
     const [ data, setData ] = useState('')
     const { order_id } = useParams()
-    console.log(data.transaction_token.substring(0,10) + "***")
 
     const getData = async () => {
         try {
