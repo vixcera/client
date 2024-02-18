@@ -8,6 +8,7 @@ import Loading from '../utils/loading'
 import swalert from "../utils/swalert"
 import swal from "sweetalert2"
 import axios from 'axios'
+import snap from '../utils/snap'
 
 const AuthTransaction = () => {
 
@@ -63,30 +64,14 @@ const AuthTransaction = () => {
         }
     }
 
-    // const downloadInvoice = () => {
-    //     const content = document.querySelector('.form.invoice');
-    //     html2canvas(content, {
-    //         scale: 2, 
-    //         width: window.innerWidth, 
-    //         height: window.innerHeight,
-    //         backgroundColor: '#1f1d25', 
-    //     }).then((canvas) => {
-    //         const img = canvas.toDataURL('image/jpeg')
-    //         const pdf = new jspdf();
-    //         const imgProps = pdf.getImageProperties(img);
-    //         const pdfWidth = pdf.internal.pageSize.getWidth();
-    //         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-    //         const marginLeft = (pdfWidth - canvas.width * pdfHeight / canvas.height) / 2;
-    //         const marginTop = (pdf.internal.pageSize.getHeight() - pdfHeight) / 2;
-    //         pdf.addImage(img, 'JPEG', marginLeft, marginTop, canvas.width * pdfHeight / canvas.height, pdfHeight);
-    //         pdf.save(`invoice-${data.name}.pdf`);
-    //     })
-    // }
+    const repay = () => { window.snap.pay(data.transaction_token)}
 
     useEffect(() => {
         getData().then((res) => setData(res.data))
         getvxsrf().then((result) => setVxsrf(result))
     } , [])
+
+    useEffect(() => { if (data.transaction_status == 'pending') { snap() } }, [data])
 
     if (loading) return <Loading/>
 
@@ -97,7 +82,8 @@ const AuthTransaction = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form invoice' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left'}}>
-            <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Get product file</div>
+            {data.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
+            {data.transaction_status == 'pending' && <div className='button-max' onclick={() => { repay() }} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
             <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
