@@ -14,6 +14,7 @@ const AuthTransaction = () => {
     const [ vxsrf, setVxsrf] = useState('')
     const [ data, setData ] = useState('')
     const { order_id } = useParams()
+    console.log(data.transaction_token.substring(0,10) + "***")
 
     const getData = async () => {
         try {
@@ -91,7 +92,7 @@ const AuthTransaction = () => {
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.order_id}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_id}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{convertPrice(data.product_amount)}</h3>
-                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_token.substring(0, 10) + '***'}</h3>
+                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{''}</h3>
                 </div>
             </div>
             <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
