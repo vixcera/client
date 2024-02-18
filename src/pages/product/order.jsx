@@ -46,25 +46,24 @@ const Order = () => {
         }
     }
 
-    const Invoice = () => {
-      return (
-        <div style={{width: '270px', height: '400px'}}>
-          <h3 className='title' style={{textAlign: 'center'}}>Shipping Details</h3>
-          <div className='line' style={{width: '100%', marginTop: '5px', height: '3px', background: '#aaa'}}></div>
-          <h3 style={{marginTop: '10px'}}>Product ID : {vid}</h3>
-          <h3>Name : {name}</h3>
-          <h3>Email address : {email}</h3>
-          <h3>Phone Number: {phone}</h3>
-        </div>
-      )
-    }
-
-    const showInvoice = async () => {
+    const showPlaceOrder = async () => {
       return Swal.fire({
-        html: () => {return <Invoice/>},
-        confirmButtonText: 'Pay',
-        showCancelButton: true,
-        cancelButtonText: 'Donwload',
+        html: `
+        <div style="width: 350px; height: 450px; color: #252525;">
+          <h2 style="text-align: center;">Shipping Details</h2>
+          <div style="width: 100%; height: 3px; background-color: #252525"></div>
+          <h4>Customer : ${name}</h4>
+          <h4>Phone Number : ${phone}</h4>
+          <h4>Email Address : ${email}</h4>
+          <h4>Product ID : ${vid}</h4>
+          <h4>Product Price : ${i.price}</h4>
+          <h4>Product Quantity : 1</h4>
+          <h4>PPN : 11%</h4>
+          <div style="width: 100%; height: 3px; background-color: #252525"></div>
+          <h4>Total Amount: ${i.price * 0.11 + i.price}</h4>
+        </div>
+        `,
+        confirmButtonText: 'Confirm & Pay',
         focusConfirm: false,
         background: 'var(--primary)',
       })
@@ -123,7 +122,7 @@ const Order = () => {
                 <div>Email :</div>
                 <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
               </div>
-              <div className='button-max' onClick={() => showInvoice()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
+              <div className='button-max' onClick={() => showPlaceOrder()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
