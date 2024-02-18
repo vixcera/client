@@ -77,10 +77,10 @@ const AuthTransaction = () => {
           <div className='form' style={{justifyContent: 'center',  gap: '50px', textAlign: 'left'}}>
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
             <div style={{width: '100%', display: 'flex'}}>
-                <div style={{flexBasis: 1, display: 'flex', flexDirection: 'column', gap: '5px'}}>
+                <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px'}}>
                     <h3>Status</h3>
                 </div>
-                <div style={{flexBasis: 1, display: 'flex', flexDirection: 'column', gap: '5px'}}>
+                <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px'}}>
                     <h3>{data.transaction_status}</h3>
                 </div>
             </div>
