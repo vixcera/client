@@ -71,7 +71,9 @@ const AuthTransaction = () => {
             const imgProps = pdf.getImageProperties(img);
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(img, 'jpeg', 0, 0, pdfWidth, pdfHeight);
+            const marginLeft = (pdfWidth - canvas.width * pdfHeight / canvas.height) / 2;
+            const marginTop = (pdf.internal.pageSize.getHeight() - pdfHeight) / 2;
+            pdf.addImage(imgData, 'JPEG', marginLeft, marginTop, canvas.width * pdfHeight / canvas.height, pdfHeight);
             pdf.save(`invoice-${data.name}.pdf`);
         })
     }
