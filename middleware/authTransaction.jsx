@@ -90,7 +90,7 @@ const AuthTransaction = () => {
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.transaction_status}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.order_id}</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{data.product_id}</h3>
-                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{convertPrice(data.product_amount)}</h3>
+                    <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>Rp {data.product_amount},-</h3>
                     <h3 style={{border: '1px solid var(--blue)', padding: '7px', borderRadius: '5px'}}>{''}</h3>
                 </div>
             </div>
