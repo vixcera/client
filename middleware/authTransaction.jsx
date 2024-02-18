@@ -94,8 +94,13 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
                 </div>
             </div>
-            <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2rem', color: 'var(--blue)'}}></div>
-            <div className='desc'>Transaction Success</div>
+            {data.transaction_status == 'settlement' && 
+                <div style={{textAlign: 'center'}}>
+                    <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '3.2rem', color: 'var(--blue)'}}></div>
+                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
+                </div>
+            }
+            
             <div className='title' style={{textAlign: 'center'}}> <span>Vixcera</span> Invoice </div>
           </div>
         </div>
