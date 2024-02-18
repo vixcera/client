@@ -63,8 +63,8 @@ const AuthTransaction = () => {
     }
 
     const downloadInvoice = () => {
-        const content = document.querySelector('.form.invoice')
-        const filename = `invoice-${data.name}`
+        const content = document.querySelector('.form.invoice').innerHTML;
+        const filename = `invoice-${data.name}.pdf`
         const blob = new Blob([content], {type: 'application/pdf'})
         const url = new URL.createObjectURL(blob)
 
