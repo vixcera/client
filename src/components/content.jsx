@@ -18,9 +18,7 @@ const Content = ({data, setData, setCount}) => {
     const repay = (token, id, status) => {
         if (status === 'settlement') { navigate(`/transaction/success/${id}`) }
         if (status !== "expire" && status !== 'settlement') {
-            window.snap.pay(token, {
-                onSuccess : () => { window.location.href = `/transaction/success/${id}`}
-            })
+            navigate(`/transaction/success/${id}`)
         }
     }
 
