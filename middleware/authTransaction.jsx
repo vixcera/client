@@ -74,7 +74,7 @@ const AuthTransaction = () => {
         getvxsrf().then((result) => setVxsrf(result))
     } , [])
 
-    useEffect(() => { if (data.transaction_status == 'pending') { snap() } }, [data])
+    useEffect(() => { if (data.transaction_status == 'pending' || data.transaction_status == 'created') { snap() } }, [data])
 
     if (loading) return <Loading/>
 
