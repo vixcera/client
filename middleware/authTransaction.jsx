@@ -18,13 +18,14 @@ const AuthTransaction = () => {
 
     const getData = async () => {
         try {
+            setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/result/${order_id}`)
             setData(response.data)
         } catch (error) {
             if (error.response || error) {
                 swalert(error.response.data || "internal server error", 'error', 2000)
             }
-        }
+        } finally {setLoading(false)}
     }
     
     const donwloadProduct = async () => {
@@ -75,8 +76,13 @@ const AuthTransaction = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form' style={{justifyContent: 'center', alignItems: 'center', gap: '50px', textAlign: 'left'}}>
-            <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Check transaction</div>
+            <div className='button-max' onClick={() => { donwloadProduct() }} style={order_id? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
             <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
+            <div className='input-form'>
+                <div>
+                    <div>Status : {data.transaction_status}</div>
+                </div>
+            </div>
           </div>
         </div>
     )
