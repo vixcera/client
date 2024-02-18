@@ -78,10 +78,12 @@ const AuthTransaction = () => {
             <div className='button-max' onClick={() => { data.transaction_status == 'settlement' && donwloadProduct() }} style={data.transaction_status == 'settlement'? { backgroundColor: 'var(--yellow)' } : {backgroundColor: '#aaa'}}>Download File</div>
             <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--quicksand)', color: 'var(--blue)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px'}}>
-                    <h3>Status</h3>
+                    <h3 style={{border: '1px solid var(--blue)'}}>Status :</h3>
+                    <h3 style={{border: '1px solid var(--blue)'}}>Customer :</h3>
                 </div>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px'}}>
-                    <h3>{data.transaction_status}</h3>
+                    <h3 style={{border: '1px solid var(--blue)'}}>{data.transaction_status}</h3>
+                    <h3 style={{border: '1px solid var(--blue)'}}>{data.name}</h3>
                 </div>
             </div>
             <div className='title' style={{textAlign: 'center'}}>Invoice Status</div>
