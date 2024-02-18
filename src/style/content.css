@@ -117,6 +117,12 @@
     font-weight: bold;
     font-size: 1.7rem;
 }
+.text-wrapper h1 {
+    color: var(--yellow);
+    font-size: 1.6rem;
+    font-family: var(--caveat);
+    font-weight: 400;
+}
 
 .button.contact {
     width: 150px;
@@ -241,6 +247,7 @@
         margin-top: 0;
     }
 
+    .text-wrapper h1 { font-size: 1.4rem; }
     .text-wrapper div:nth-child(1) {
         font-size: 1.4rem;
     }
@@ -324,6 +331,7 @@
         width: 190px;
     }
 
+    .text-wrapper h1 { font-size: 20px; }
     .text-wrapper div:nth-child(1) {
         font-size: 20px;
     }
@@ -364,6 +372,7 @@
         bottom: -75px;
     }
 
+    .text-wrapper h1 { font-size: 18px; }
     .text-wrapper div:nth-child(1) {
         font-size: 18px;
     }

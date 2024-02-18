@@ -87,7 +87,7 @@ const Content = ({data, setData, setCount}) => {
                 <div className="developer">
                     <img src="/img/pi.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
-                    <div>Welcome to Vixcera</div>
+                    <h1>Welcome to Vixcera</h1>
                     <div>Let's explore with us.</div>
                     <div className="button contact" onClick={() => navigate('/register')}>Sign up</div>
                     </div>
@@ -147,7 +147,7 @@ const Content = ({data, setData, setCount}) => {
                 <div className="developer">
                 <img src="/img/cont.png" alt="" className="dimasputra"/> 
                 <div className="text-wrapper">
-                <div>Become a Contributor</div>
+                <h1>Become a contributor</h1>
                 <div>Sell your best work</div>
                 <div className="button contact">Upcoming</div>
                 </div>

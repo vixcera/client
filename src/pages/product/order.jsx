@@ -10,6 +10,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import "../../style/create.css"
+import Swal from 'sweetalert2'
 
 const Order = () => {
 
@@ -43,6 +44,30 @@ const Order = () => {
         } finally {
           setLoading(false)
         }
+    }
+
+    const Invoice = () => {
+      return (
+        <div style={{width: '270px', height: '400px'}}>
+          <h3 className='title' style={{textAlign: 'center'}}>Shipping Details</h3>
+          <div className='line' style={{width: '100%', marginTop: '5px', height: '3px', background: '#aaa'}}></div>
+          <h3 style={{marginTop: '10px'}}>Product ID : {vid}</h3>
+          <h3>Name : {name}</h3>
+          <h3>Email address : {email}</h3>
+          <h3>Phone Number: {phone}</h3>
+        </div>
+      )
+    }
+
+    const showInvoice = async () => {
+      return Swal.fire({
+        html: <Invoice/>,
+        confirmButtonText: 'Pay',
+        showCancelButton: true,
+        cancelButtonText: 'Donwload',
+        focusConfirm: false,
+        background: 'var(--primary)',
+      })
     }
     
     const checkout = async () => {
