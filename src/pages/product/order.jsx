@@ -49,16 +49,19 @@ const Order = () => {
     const showPlaceOrder = async () => {
       return Swal.fire({
         html: `
-        <div style="width: 100%, display: flex; gap: 5px; font-family: var(--quicksand);">
-            <div style="width: 50%; display: flex; flex-direction: column; gap: 5px; color: var(--blue);"">
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Customer : <span>${name}</span></h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Email : <span>${email}</span></h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Phone Number : <span>${phone}</span></h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Product ID : <span><${vid}/span></h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Price : <span>${convertPrice(i.price)}</span></h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">PPN : <span>11%</span></h4>
-            </div>
-          </div> 
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+          <h2 style="text-align: center;">Shipping Details</h2>
+          <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
+          <h4 style="margin-top: 5px;"><span>Customer</span> : ${name}</h4>
+          <h4><span>Phone Number</span> : ${phone}</h4>
+          <h4><span>Email Address</span> : ${email}</h4>
+          <h4><span>Product ID</span> : ${vid}</h4>
+          <h4><span>Price</span> : ${convertPrice(i.price)}</h4>
+          <h4><span>Quantity</span> : 1</h4>
+          <h4><span><PPN/span> : 11%</h4>
+          <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
+          <h4><span>Total Amount</span> : ${convertPrice(i.price * 0.11 + i.price)}</h4>
+        </div>  
         `,
         confirmButtonText: 'Confirm & Pay',
         cancelButtonText: "Cancel",
