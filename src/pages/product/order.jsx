@@ -54,11 +54,11 @@ const Order = () => {
           <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
           <h4 style="margin-top: 5px; text-align: left;"><span>Customer</span> : ${name}</h4>
           <h4 style="text-align: left;"><span>Phone Number</span> : ${phone}</h4>
-          <h4><span>Email Address</span> : ${email}</h4>
-          <h4><span>Product ID</span> : ${vid}</h4>
-          <h4><span>Price</span> : ${convertPrice(i.price)}</h4>
-          <h4><span>Quantity</span> : 1</h4>
-          <h4><span>PPN</span> : 11%</h4>
+          <h4 style="text-align: left;"><span>Email Address</span> : ${email}</h4>
+          <h4 style="text-align: left;"><span>Product ID</span> : ${vid}</h4>
+          <h4 style="text-align: left;"><span>Quantity</span> : 1</h4>
+          <h4 style="text-align: left;"><span>Price</span> : ${convertPrice(i.price)}</h4>
+          <h4 style="text-align: left;"><span>PPN</span> : 11%</h4>
           <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
           <h4><span>Total Amount</span> : ${convertPrice(i.price * 0.11 + i.price)}</h4>
         </div>  
