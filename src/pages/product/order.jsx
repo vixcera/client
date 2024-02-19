@@ -49,22 +49,28 @@ const Order = () => {
     const showPlaceOrder = async () => {
       return Swal.fire({
         html: `
-        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
-          <h2 style="text-align: center;">Shipping Details</h2>
-          <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
-          <h4 style="margin-top: 5px;">Customer : ${name}</h4>
-          <h4>Phone Number : ${phone}</h4>
-          <h4>Email Address : ${email}</h4>
-          <h4>Product ID : ${vid}</h4>
-          <h4>Product Price : ${convertPrice(i.price)}</h4>
-          <h4>Product Quantity : 1</h4>
-          <h4>PPN : 11%</h4>
-          <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
-          <h4>Total Amount: ${convertPrice(i.price * 0.11 + i.price)}</h4>
-        </div>  
+        <div style="width: 100%, display: flex; gap: 5px; font-family: var(--quicksand);">
+            <div style="width: 50%; display: flex; flex-direction: column; gap: 5px; color: var(--yellow);"">
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Customer :</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Email :</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Phone Number :</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Product ID :</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Price :</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">PPN :</h4>
+            </div>
+            <div style="width: 50%, display: flex, flex-direction: column, gap: 5px, color: var(--blue)">
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${name}</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${email}</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${phone}</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${vid}</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${convertPrice(i.price)}</h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>11%</h4>
+            </div>
+          </div> 
         `,
         confirmButtonText: 'Confirm & Pay',
         cancelButtonText: "Cancel",
+        reverseButtons : true,
         allowOutsideClick: false,
         showCancelButton: true,
         focusConfirm: false,
