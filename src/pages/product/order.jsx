@@ -50,21 +50,13 @@ const Order = () => {
       return Swal.fire({
         html: `
         <div style="width: 100%, display: flex; gap: 5px; font-family: var(--quicksand);">
-            <div style="width: 50%; display: flex; flex-direction: column; gap: 5px; color: var(--yellow);"">
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Customer :</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Email :</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Phone Number :</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Product ID :</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Price :</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">PPN :</h4>
-            </div>
-            <div style="width: 50%, display: flex, flex-direction: column, gap: 5px, color: var(--blue)">
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${name}</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${email}</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${phone}</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${vid}</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>${convertPrice(i.price)}</h4>
-                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px";>11%</h4>
+            <div style="width: 50%; display: flex; flex-direction: column; gap: 5px; color: var(--blue);"">
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Customer : <span>${name}</span></h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Email : <span>${email}</span></h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Phone Number : <span>${phone}</span></h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Product ID : <span><${vid}/span></h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">Price : <span>${convertPrice(i.price)}</span></h4>
+                <h4 style="border: 1px solid var(--blue); padding: 10px; border-radius: 5px;">PPN : <span>11%</span></h4>
             </div>
           </div> 
         `,
