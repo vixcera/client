@@ -62,9 +62,9 @@ const Navbar = ({ count }) => {
           <NavLink className="menu" to="/about">About</NavLink> 
         </div>
         <div className="nav-user">
-          {(transaction_mode) ? 
+          {(transaction_mode) || (context.email) ? 
           <NavLink className='button' onClick={() => showNotification()}><div style={{color: 'var(--background)'}} className="i fa-solid fa-bell fa-xl"/></NavLink>
-          : 
+          :
           <NavLink className="button" to="/login">Sign in</NavLink>
           }
         </div>  

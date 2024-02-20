@@ -126,7 +126,7 @@ const Order = () => {
             <div className='input-form' >
               <div>
                 <div>Name :</div>
-                <input className='productinput' value={name} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} required/>
+                <input className='productinput' value={context.username} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} required/>
               </div>
               <div>
                 <div>Phone Number :</div>
@@ -134,7 +134,7 @@ const Order = () => {
               </div>
               <div>
                 <div>Email :</div>
-                <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} required/>
+                <input className='productinput' value={context.email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} readOnly required/>
               </div>
               <div className='button-max' onClick={() => showPlaceOrder()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
             </div>
