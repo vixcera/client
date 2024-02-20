@@ -30,6 +30,22 @@ const Confirm = {
                 }
             }
         }
+
+        const resend_otp = async () => {
+            try {
+                setLoading(true)
+                const response = await axios.post(`${import.meta.env.VITE_API}/resend/otp`, {email: register_mode_user.email}, 
+                { headers: {'xsrf-token': vxsrf} })
+                swalert(response.data, "success", 5500)
+            } catch (error) {
+                if (error || error.response) {
+                    swalert(error.response.data || "internal server error", "error", 5000)
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
+
         useEffect(() => { register_mode_user? getvxsrf().then((data) => setVxsrf(data)) : navigate('/')}, [])
         if (loading) return <Loading/>
         return(
