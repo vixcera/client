@@ -21,7 +21,7 @@ const Order = () => {
     const navigate = useNavigate()
     const {vid} = useParams()
     const i = location.state
-    if (!context.token) return navigate('/register')
+    if (!context.token) { window.location.href = '/register' }
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
