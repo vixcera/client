@@ -34,7 +34,7 @@ const History = () => {
                         return (
                         <div className="box-history" key={k} onClick={() => navigate(`/transaction/success/${i.order_id}`)}>
                             <div className="itext" style={{color: 'var(--yellow)'}}>{convertPrice(i.product_amount)}</div>
-                            <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem'}}>Order ID : {i.order_id}</div>
+                            <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem'}}> <span>Order ID</span> : {i.order_id}</div>
                             <div style={{position: 'absolute', bottom: '0', left: '15px', display: 'flex', alignItems: 'center', gap: '5px'}}>
                                 <div className="fa-solid fa-circle-check fa-lg" style={{color: 'var(--blue)'}}/>
                                 <div className="desc" style={{color: 'var(--blue)'}}>Verified Transaction</div>
