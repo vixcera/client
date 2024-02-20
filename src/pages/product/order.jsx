@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import snap from "../../../utils/snap"
 import swalert from '../../../utils/swalert'
 import Loading from "../../../utils/loading"
 import convertPrice from '../../../utils/price'
 import getvxsrf from '../../../service/getvxsrf'
+import Context from "../../../utils/context"
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import "../../style/create.css"
 import Swal from 'sweetalert2'
+import "../../style/create.css"
 
 const Order = () => {
 
+    const context = useContext(Context)
     const location = useLocation()
     const history = JSON.parse(localStorage.getItem("inputOrder"))
     const navigate = useNavigate()
@@ -105,6 +107,7 @@ const Order = () => {
     }
 
     useEffect(() => {
+      if (!context.email) navigate('/register')
       snap()
       getProducts()
       getvxsrf().then((result) => setVxsrf(result))
