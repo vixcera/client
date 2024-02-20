@@ -30,8 +30,12 @@ const History = () => {
                     {data.length !== 0 && data.map((i, k) => {
                         return (
                         <div className="box-history" key={k}>
-                            <div className="itext">{convertPrice(i.product_amount)}</div>
+                            <div className="itext" style={{color: 'var(--yellow)'}}>{convertPrice(i.product_amount)}</div>
                             <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem'}}>Order ID : {i.order_id}</div>
+                            <div style={{position: 'absolute', bottom: '5px', left: '15px', display: 'flex', justifyContent: 'center', gap: '5px'}}>
+                                <div className="fa-solid fa-circle-check fa-2xl" style={{color: 'var(--blue)'}}/>
+                                <div className="desc" style={{color: 'var(--blue)'}}>Verified Transaction</div>
+                            </div>
                         </div>
                         )
                     })}
