@@ -34,7 +34,11 @@ const Confirm = {
         const resend_otp = async () => {
             try {
                 setLoading(true)
-                const response = await axios.post(`${import.meta.env.VITE_API}/resend/otp`, {email: register_mode_user.email}, 
+                const response = await axios.post(`${import.meta.env.VITE_API}/resend/otp`, {
+                    email    : register_mode_user.email,
+                    username : register_mode_user.username,
+                    password : register_mode_user.password
+                }, 
                 { headers: {'xsrf-token': vxsrf} })
                 swalert(response.data, "success", 5500)
             } catch (error) {
