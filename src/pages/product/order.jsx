@@ -21,6 +21,7 @@ const Order = () => {
     const navigate = useNavigate()
     const {vid} = useParams()
     const i = location.state
+    console.log(context.token)
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
@@ -107,7 +108,6 @@ const Order = () => {
     }
 
     useEffect(() => {
-      if (!context.email) return navigate('/register')
       snap()
       getProducts()
       getvxsrf().then((result) => setVxsrf(result))
