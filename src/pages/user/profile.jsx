@@ -18,12 +18,6 @@ const Profile = () => {
     const [vxsrf, setVxsrf] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const edit = () => {
-        const mail = document.getElementById('changemail')
-        mail.removeAttribute('readOnly')
-        mail.value = context.email
-    }
-
     const logout = async() => {
         try {
             setLoading(true)
@@ -72,7 +66,7 @@ const Profile = () => {
                 <input id='changemail' type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
                 {(file || email) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : 
                 <div style={{margin: '30px 0', display: 'flex', gap: '20px'}}>
-                    <div className='button' onClick={() => edit()}><i style={{cursor: 'pointer'}} className='fa-solid fa-money-bill-transfer fa-xl'/></div>
+                    <div className='button' onClick={() => navigate('/transaction/history')}><i style={{cursor: 'pointer'}} className='fa-solid fa-money-bill-transfer fa-xl'/></div>
                     <div className='button' onClick={logout}><i className='fa-solid fa-right-from-bracket fa-xl'/></div>
                 </div>}  
             </form>
