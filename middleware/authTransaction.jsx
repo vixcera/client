@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import convertPrice from '../utils/price'
 import html2canvas from "html2canvas"
 import jspdf from "jspdf"
+import moment from "moment"
 import getvxsrf from '../service/getvxsrf'
 import Loading from '../utils/loading'
 import swalert from "../utils/swalert"
@@ -97,6 +98,7 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Product ID :</h4>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Amount :</h4>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Token :</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Date :</h4>
                 </div>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--blue)'}}>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.name}</h4>
@@ -105,6 +107,7 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_id}</h4>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_amount ? convertPrice(data.product_amount) : '***'}</h4>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,10) + "***" : '***'}</h4>
+                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.updatedAt && moment(data.updatedAt.slice(0, 10)).format('MMMM DD, YYYY')}</h4>
                 </div>
             </div>
             {data.transaction_status == 'settlement' && 
