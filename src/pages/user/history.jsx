@@ -9,8 +9,8 @@ import Swaload from "../../../utils/swaload"
 
 const History = () => {
 
-    let total = 0
     const navigate = useNavigate()
+    const [total, setTotal] = useState(0)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -20,9 +20,12 @@ const History = () => {
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/history`)
             if (response.data.length !== 0) {
                 setData(response.data)
-                response.data.map((i, k) => {
-                    total += i.product_amount
+                let plus = 0
+                response.data.forEach(index => {
+                    plus += index.product_amount
                 })
+                setTotal(plus)
+                console.log(plus)
             }
         } catch (error) {
             if (error || error.response) {
