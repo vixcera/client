@@ -5,22 +5,30 @@ import Topback from "../../components/topback"
 import swalert from "../../../utils/swalert"
 import "../../style/history.css"
 import { useNavigate } from "react-router-dom"
+import Swaload from "../../../utils/swaload"
 
 const History = () => {
 
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const [total, setTotal] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const getData = async () => {
         try {
+            setLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API}/transaction/history`)
-            if (response.data.length !== 0) return setData(response.data)
+            if (response.data.length !== 0) {
+                setData(response.data)
+                response.data.map((i, k) => {
+                    console.log(i.product_amount)
+                })
+            }
         } catch (error) {
             if (error || error.response) {
                 swalert(error.response.data || "Forbidden request", 'error', 2000)
             }
-        }
+        } finally {setLoading(false)}
     }
 
     useEffect(() => {getData()}, [])
@@ -30,22 +38,20 @@ const History = () => {
             <Topback/>
             <div className="form" style={{marginTop: '70px'}}>
                 <div className="input-form" style={{marginTop: '50px'}}>
-                    {data.length !== 0 && data.map((i, k) => {
-                        return (
-                        <div className="box-history" key={k} onClick={() => navigate(`/transaction/success/${i.order_id}`)}>
-                            <div className="itext" style={{color: 'var(--yellow)'}}>{convertPrice(i.product_amount)}</div>
-                            <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem', translate: '0 -5px'}}> <span>Order ID</span> : {i.order_id}</div>
-                            <div style={{position: 'absolute', bottom: '0', left: '15px', display: 'flex', alignItems: 'center', gap: '5px'}}>
-                                <div className="fa-solid fa-circle-check fa-lg" style={{color: 'var(--blue)'}}/>
-                                <div className="desc" style={{color: 'var(--blue)'}}>Verified Transaction</div>
+                    {loading ? (<Swaload.Transaction/>) : 
+                        data.length !== 0 && data.map((i, k) => {
+                            return (
+                            <div className="box-history" key={k} onClick={() => navigate(`/transaction/success/${i.order_id}`)}>
+                                <div className="itext" style={{color: 'var(--yellow)'}}>{convertPrice(i.product_amount)}</div>
+                                <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem', translate: '0 -5px'}}> <span>Order ID</span> : {i.order_id}</div>
+                                <div className= "badge" style={{position: 'absolute', bottom: '0', left: '15px', display: 'flex', alignItems: 'center', gap: '5px'}}>
+                                    <div className="fa-solid fa-circle-check fa-lg" style={{color: 'var(--blue)'}}/>
+                                    <div className="desc" style={{color: 'var(--blue)'}}>Verified Transaction</div>
+                                </div>
                             </div>
-                            <div style={{position: 'absolute', top: '0', right: '10px', display: 'flex', alignItems: 'center', gap: '5px'}}>
-                                <p style={{color: 'var(--background)', fontSize: '0.rem'}}>{i.createdAt.slice(0, 10)}</p>
-                            </div>
-                        </div>
-                        )
-                    })}
-                   
+                            )
+                        })
+                    }
                 </div>
                 <div className="title" style={{textAlign: 'center'}}><span>Order</span> History</div>
             </div>
