@@ -60,7 +60,7 @@ const Confirm = {
                 </div>
                 <div className="form" style={{ textAlign: 'center', gap: '50px' }}>
                     <div style={{display: 'flex', gap: '20px', justifyContent: 'center'}}>
-                        <div className="button" style={{width: '180px', backgroundColor: '#aaa'}}>Resend OTP</div>
+                        <div className="button" onClick={() => resend_otp()} style={{width: '180px', backgroundColor: '#aaa'}}>Resend OTP</div>
                         <div className="button" onClick={() => confirm()}>Verify</div>
                     </div>
                     <input type="text" onChange={(e) => setOTP(e.target.value)} placeholder="input your OTP Code here" required/>
