@@ -16,6 +16,7 @@ import Confirm from "../middleware/confirm"
 import Wetails from "../admin/wetails"
 import Dashboard from "../admin/dashboard"
 import checkvxsrf from "../service/checkvxsrf"
+import History from "../src/pages/user/history"
 import AuthTransaction from "../middleware/authTransaction"
 
 const Routing = () => {
@@ -82,6 +83,7 @@ const Routing = () => {
 
           <Route path="/confirm/user" element={<Confirm.user/>}/>
           {/* <Route path="/confirm/contributor" element={<AuthRegisterCont/>}/> */}
+          <Route path="/transaction/history" element={<History/>}/>
           <Route path="/transaction/success/:order_id" element={<AuthTransaction/>}/>
         </Routes>
       </Router>

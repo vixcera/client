@@ -164,7 +164,7 @@ const Content = ({data, setData, setCount}) => {
                 }))}
             </div>
             }
-            
+            <p style={{textAlign: 'center', color: 'var(--text)', fontSize: '0.8rem', marginTop: '20px', fontFamily: 'var(--quicksand)'}}>Copyright © 2024 Vixcera, Xera platform.</p>
         </div>
     )
 }

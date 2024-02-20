@@ -30,8 +30,8 @@ const Sidebar = () => {
                         <div className="sidetext">Products</div>
                     </NavLink>
                     <NavLink className="sidelist" to={context.token ? '/store' : '/about'}>
-                        <i className={context.token ? 'fa-solid fa-clock-rotate-left fa-xl' : 'fa-solid fa-circle-info fa-xl'}></i>
-                        <div className="sidetext">{context.token ? 'Order history' : 'About'}</div>
+                        <i className={context.token ? 'fa-solid fa-store fa-xl' : 'fa-solid fa-circle-info fa-xl'}></i>
+                        <div className="sidetext">{context.token ? 'My store' : 'About'}</div>
                     </NavLink>
                 </div>
 
