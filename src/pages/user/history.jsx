@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import convertPrice from "../../../utils/price"
 import Topback from "../../components/topback"
 import swalert from "../../../utils/swalert"
 import "../../style/history.css"
@@ -25,11 +26,12 @@ const History = () => {
         <div className="page-max">
             <Topback/>
             <div className="form" style={{marginTop: '70px'}}>
-                <div className="input-form">
+                <div className="input-form" style={{marginTop: '50px'}}>
                     {data.length !== 0 && data.map((i, k) => {
                         return (
                         <div className="box-history" key={k}>
-                            <div className="itext">hi</div>
+                            <div className="itext">{convertPrice(i.product_amount)}</div>
+                            <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem'}}>Order ID : {i.order_id}</div>
                         </div>
                         )
                     })}
