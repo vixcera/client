@@ -9,9 +9,9 @@ import Swaload from "../../../utils/swaload"
 
 const History = () => {
 
+    const total = 0
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const [total, setTotal] = useState(0)
     const [loading, setLoading] = useState(false)
 
     const getData = async () => {
@@ -21,7 +21,7 @@ const History = () => {
             if (response.data.length !== 0) {
                 setData(response.data)
                 response.data.map((i, k) => {
-                    console.log(i.product_amount)
+                    total += i.product_amount
                 })
             }
         } catch (error) {
@@ -37,7 +37,7 @@ const History = () => {
         <div className="page-max">
             <Topback/>
             <div className="form" style={{marginTop: '70px'}}>
-                <div className="input-form" style={{marginTop: '50px'}}>
+                <div className="input-form" style={{marginTop: '40px'}}>
                     {loading ? (<Swaload.Transaction/>) : 
                         data.length !== 0 && data.map((i, k) => {
                             return (
@@ -53,6 +53,7 @@ const History = () => {
                         })
                     }
                 </div>
+                <div style={{fontSize: '1.1rem', fontFamily: 'var(--quicksand)', color: 'var(--blue)', textAlign: 'center'}}>Total of all expenses : {convertPrice(total)}</div>
                 <div className="title" style={{textAlign: 'center'}}><span>Order</span> History</div>
             </div>
         </div>

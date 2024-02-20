@@ -21,7 +21,7 @@ const Order = () => {
     const navigate = useNavigate()
     const {vid} = useParams()
     const i = location.state
-    console.log(context.token)
+    if (!context.token) return navigate('/register')
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
