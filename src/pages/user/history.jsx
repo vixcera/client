@@ -9,7 +9,7 @@ import Swaload from "../../../utils/swaload"
 
 const History = () => {
 
-    const total = 0
+    let total = 0
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
