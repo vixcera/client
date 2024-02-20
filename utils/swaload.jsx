@@ -27,8 +27,8 @@ const Swaload = {
         return lenghtData.map((i, index) => {
             return (
                 <div className="box-history">
-                    <Skeleton style={{boxShadow: 'var(--softshadow)'}} className='itext' count={2} width={120} height={25} baseColor='var(--primary)' highlightColor='var(--prime)'/>
-                    <Skeleton style={{boxShadow: 'var(--softshadow)', position: 'absolute', bottom: '10px', left: '15px'}} width={100} baseColor='var(--primary)' highlightColor='var(--prime)'/>
+                    <Skeleton style={{boxShadow: 'var(--softshadow)'}} className='itext' count={2} width={300} height={25} baseColor='var(--primary)' highlightColor='var(--prime)'/>
+                    <Skeleton style={{boxShadow: 'var(--softshadow)', position: 'absolute', bottom: '10px', left: '15px'}} width={250} height={25} baseColor='var(--primary)' highlightColor='var(--prime)'/>
                 </div>
             )
         })
