@@ -107,7 +107,7 @@ const Order = () => {
     }
 
     useEffect(() => {
-      if (!context.email) navigate('/register')
+      if (!context.email) return navigate('/register')
       snap()
       getProducts()
       getvxsrf().then((result) => setVxsrf(result))
