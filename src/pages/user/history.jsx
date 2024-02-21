@@ -4,7 +4,7 @@ import convertPrice from "../../../utils/price"
 import Topback from "../../components/topback"
 import swalert from "../../../utils/swalert"
 import "../../style/history.css"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Swaload from "../../../utils/swaload"
 
 const History = () => {
@@ -44,7 +44,7 @@ const History = () => {
                     {loading ? (<Swaload.Transaction/>) : 
                         data.length !== 0 && data.map((i, k) => {
                             return (
-                            <div className="box-history" key={k} onClick={() => navigate(`/transaction/success/${i.order_id}`)}>
+                            <div className="box-history" key={k} onClick={() => navigate(`/transaction/success/${i.order_id}`, {state: i})}>
                                 <div className="itext" style={{color: 'var(--yellow)'}}>{convertPrice(i.product_amount)}</div>
                                 <div className="itext" style={{fontFamily: 'var(--quicksand)', fontSize: '1.1rem', translate: '0 -5px'}}> <span>Order ID</span> : {i.order_id}</div>
                                 <div className= "badge" style={{position: 'absolute', bottom: '0', left: '15px', display: 'flex', alignItems: 'center', gap: '5px'}}>

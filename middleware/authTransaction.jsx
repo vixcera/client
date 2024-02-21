@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import convertPrice from '../utils/price'
 import html2canvas from "html2canvas"
 import jspdf from "jspdf"
@@ -18,6 +18,8 @@ const AuthTransaction = () => {
     const [ vxsrf, setVxsrf] = useState('')
     const [ data, setData ] = useState('')
     const { order_id } = useParams()
+    const loc = useLocation()
+    const i = loc.state
 
     const getData = async () => {
         try {
@@ -71,7 +73,9 @@ const AuthTransaction = () => {
     })}
 
     useEffect(() => {
-        getData().then((res) => setData(res.data))
+        if (!i) {
+            getData().then((res) => setData(res.data))
+        }
         getvxsrf().then((result) => setVxsrf(result))
     } , [])
 
@@ -101,16 +105,30 @@ const AuthTransaction = () => {
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Token :</h4>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Date :</h4>
                 </div>
-                <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--blue)'}}>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.name}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.email && data.email.substring(0, 1) + '***@gmail.com'}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_status}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.order_id && data.order_id.substring(0,5) + '*****'}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_id}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_amount && convertPrice(data.product_amount)}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,5) + "*****" : '*****'}</h4>
-                    <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.updatedAt && moment(data.updatedAt.slice(0, 10)).format('MMM DD, YYYY')}</h4>
-                </div>
+                {(data) && 
+                    <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--blue)'}}>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.name}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.email && data.email.substring(0, 1) + '***@gmail.com'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_status}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.order_id && data.order_id.substring(0,5) + '*****'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_id}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.product_amount && convertPrice(data.product_amount)}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.transaction_token? data.transaction_token.substring(0,5) + "*****" : '*****'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{data.updatedAt && moment(data.updatedAt.slice(0, 10)).format('MMM DD, YYYY')}</h4>
+                    </div>
+                }
+                {(i) && 
+                    <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--blue)'}}>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.name}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.email && i.email.substring(0, 1) + '***@gmail.com'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.transaction_status}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.order_id && i.order_id.substring(0,5) + '*****'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.product_id}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.product_amount && convertPrice(i.product_amount)}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.transaction_token? i.transaction_token.substring(0,5) + "*****" : '*****'}</h4>
+                        <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>{i.updatedAt && moment(i.updatedAt.slice(0, 10)).format('MMM DD, YYYY')}</h4>
+                    </div>
+                }
             </div>
             {data.transaction_status == 'settlement' && 
                 <div style={{textAlign: 'center', lineHeight: '35px'}}>
