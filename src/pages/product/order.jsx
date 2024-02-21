@@ -49,7 +49,7 @@ const Order = () => {
     }
 
     const showPlaceOrder = async () => {
-      if (email, phone, name) {
+      if (email && phone && name) {
         return Swal.fire({
           html: `
           <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
