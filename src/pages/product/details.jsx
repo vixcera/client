@@ -12,7 +12,7 @@ const Details = () => {
     const location = useLocation()
     const i = location.state
     const navigate = useNavigate()
-    const date = moment(i.createdAt.slice(0, 10)).format('MMMM DD, YYYY')
+    const date = moment(i.createdAt.slice(0, 10)).format('MMMM Do, YYYY')
 
     return (
         <div className='page-max'>
@@ -34,7 +34,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '1rem', marginTop: '10px', fontFamily: 'var(--poppins)' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1.1rem', marginTop: '10px', fontFamily: 'var(--quicksand)', color: 'var(--blue)' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>

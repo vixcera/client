@@ -38,7 +38,7 @@ const Product = () => {
                     <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
                 </div>
             <div className='product-page'>
-                <div className='product-container'>
+                <div className='product-container' style={{flexDirection: 'column-reverse'}}>
                     <input type="text" className='search'/>
                     {(loading) ? (
                     <Swaload.Product/>
