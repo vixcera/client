@@ -25,7 +25,6 @@ const History = () => {
                     plus += index.product_amount
                 })
                 setTotal(plus)
-                console.log(plus)
             }
         } catch (error) {
             if (error || error.response) {
