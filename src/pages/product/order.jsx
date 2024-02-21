@@ -21,7 +21,6 @@ const Order = () => {
     const navigate = useNavigate()
     const {vid} = useParams()
     const i = location.state
-    if (!context.token) { window.location.href = '/register' }
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
@@ -108,9 +107,14 @@ const Order = () => {
     }
 
     useEffect(() => {
-      snap()
-      getProducts()
-      getvxsrf().then((result) => setVxsrf(result))
+      if (context.token) {
+        snap()
+        getProducts()
+        getvxsrf().then((result) => setVxsrf(result))
+      } else {
+        swalert('please login first before starting the transaction', 'info', 3000)
+        .then((res) => navigate('/login'))
+      }
     }, [])
 
     if (loading) return <Loading/>
