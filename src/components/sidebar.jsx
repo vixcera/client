@@ -35,7 +35,7 @@ const Sidebar = () => {
                     </NavLink>
                     {(context.token) && 
                         <NavLink className="sidelist" to="/transaction/history">
-                            <i className="fa-solid fa-money-bill-transfer fa-xl"></i>
+                            <i className="fa-solid fa-money-bill-transfer fa-lg"></i>
                             <div className="sidetext">Transaction</div>
                         </NavLink>
                     }
