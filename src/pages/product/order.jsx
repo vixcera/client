@@ -111,11 +111,9 @@ const Order = () => {
     }
 
     useEffect(() => {
-      if (email) {
         snap()
         getProducts()
         getvxsrf().then((result) => setVxsrf(result))
-      }
     }, [])
 
     if (loading) return <Loading/>
