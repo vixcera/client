@@ -12,6 +12,7 @@ const Profile = () => {
     const navigate = useNavigate()
     const inputref = useRef(null)
     const context = useContext(Context)
+    const url = import.meta.env.VITE_API
 
     const [file, setFile] = useState(null)
     const [email, setEmail] = useState('')
@@ -19,9 +20,10 @@ const Profile = () => {
     const [loading, setLoading] = useState(false)
 
     const logout = async() => {
+        const filterUrl = context.status == 'contributor' ? `${url}/contributor/logout` : `${url}/logout`
         try {
             setLoading(true)
-            const response = await axios.get(`${import.meta.env.VITE_API}/logout`)
+            const response = await axios.get(filterUrl)
             context.setToken('')
             swalert(response.data, "success", 1500)
             .then((res) =>  { if(res.dismiss) { location.href = '/' } })
@@ -66,7 +68,11 @@ const Profile = () => {
                 <input id='changemail' type="text" style={{width : '300px'}} placeholder={context.email} readOnly/>
                 {(file || email) ? <button style={{margin: '30px 0'}} className='button' type='submit'>update</button> : 
                 <div style={{margin: '30px 0', display: 'flex', gap: '20px'}}>
-                    <div className='button' onClick={() => navigate('/transaction/history')}><i style={{cursor: 'pointer'}} className='fa-solid fa-money-bill-transfer fa-xl'/></div>
+                    {(context.status == 'contributor') ? 
+                        <div className='button'><i style={{cursor: 'pointer'}} className='fa-solid fa-store fa-xl'/></div>
+                        :
+                        <div className='button' onClick={() => navigate('/transaction/history')}><i style={{cursor: 'pointer'}} className='fa-solid fa-money-bill-transfer fa-xl'/></div>
+                    }
                     <div className='button' onClick={logout}><i className='fa-solid fa-right-from-bracket fa-xl'/></div>
                 </div>}  
             </form>
