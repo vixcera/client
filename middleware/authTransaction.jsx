@@ -139,23 +139,27 @@ const AuthTransaction = () => {
                         <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
                     </div>
             }
-            {data.transaction_status == 'settlement' && 
-                <div style={{textAlign: 'center', lineHeight: '35px'}}>
-                    <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
-                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
-                </div>
-            }
-            {data.transaction_status == 'pending' && 
-                <div style={{textAlign: 'center', lineHeight: '32px'}}>
-                    <div className='fa-solid fa-clock fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
-                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Pending</div>
-                </div>
-            }
-            {data.transaction_status == 'expire' && 
-                <div style={{textAlign: 'center', lineHeight: '32px'}}>
-                    <div className='fa-solid fa-circle-xmark fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
-                    <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Failed</div>
-                </div>
+            {(data.length !== 0) &&
+            <>
+                {data.transaction_status == 'settlement' && 
+                    <div style={{textAlign: 'center', lineHeight: '35px'}}>
+                        <div className='fa-solid fa-circle-check fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
+                        <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
+                    </div>
+                }
+                {data.transaction_status == 'pending' && 
+                    <div style={{textAlign: 'center', lineHeight: '32px'}}>
+                        <div className='fa-solid fa-clock fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
+                        <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Pending</div>
+                    </div>
+                }
+                {data.transaction_status == 'expire' && 
+                    <div style={{textAlign: 'center', lineHeight: '32px'}}>
+                        <div className='fa-solid fa-circle-xmark fa-2xl' style={{fontSize: '2.5rem', color: 'var(--blue)'}}></div>
+                        <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Failed</div>
+                    </div>
+                }
+            </>
             }
             
             <div className='title' style={{textAlign: 'center'}}> <span>Vixcera</span> Invoice </div>
