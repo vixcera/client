@@ -30,7 +30,7 @@ const Sidebar = () => {
                         <div className="sidetext">Products</div>
                     </NavLink>
                     <NavLink className="sidelist" to="/about">
-                        <i className="fa-solid fa-layer-circle-info fa-xl"></i>
+                        <i className="fa-solid fa-circle-info fa-xl"></i>
                         <div className="sidetext">About</div>
                     </NavLink>
                     {(context.token) && 
