@@ -29,10 +29,16 @@ const Sidebar = () => {
                         <i className="fa-solid fa-layer-group fa-xl"></i>
                         <div className="sidetext">Products</div>
                     </NavLink>
-                    <NavLink className="sidelist" to={context.token ? '/store' : '/about'}>
-                        <i className={context.token ? 'fa-solid fa-store fa-xl' : 'fa-solid fa-circle-info fa-xl'}></i>
-                        <div className="sidetext">{context.token ? 'My store' : 'About'}</div>
+                    <NavLink className="sidelist" to="/about">
+                        <i className="fa-solid fa-layer-circle-info fa-xl"></i>
+                        <div className="sidetext">About</div>
                     </NavLink>
+                    {(context.token) && 
+                        <NavLink className="sidelist" to="/transaction/history">
+                            <i className="fa-solid fa-money-bill-transfer fa-xl"></i>
+                            <div className="sidetext">Transaction</div>
+                        </NavLink>
+                    }
                 </div>
 
                 <div className="botside">
