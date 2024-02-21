@@ -12,7 +12,7 @@ const Details = () => {
     const location = useLocation()
     const i = location.state
     const navigate = useNavigate()
-    const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
+    const date = moment(i.createdAt.slice(0, 10)).format('MMMM DD, YYYY')
 
     return (
         <div className='page-max'>
