@@ -49,6 +49,10 @@ const Order = () => {
     }
 
     const showPlaceOrder = async () => {
+      if (!context.token) {
+        swalert('please login first berfore starting the transaction', 'info', 3000)
+        .then((res) => res.dismiss && navigate('/login'))
+      }
       return Swal.fire({
         html: `
         <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
@@ -111,9 +115,6 @@ const Order = () => {
         snap()
         getProducts()
         getvxsrf().then((result) => setVxsrf(result))
-      } else {
-        swalert('please login first before starting the transaction', 'info', 3000)
-        .then((res) => res.dismiss && navigate('/login'))
       }
     }, [])
 
