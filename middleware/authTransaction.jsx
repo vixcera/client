@@ -90,12 +90,16 @@ const AuthTransaction = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form invoice' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left', marginTop: '70px'}}>
-            {i.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
-            {data.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
-            {data.transaction_status == 'pending' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
-            {data.transaction_status == 'created' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
-            {data.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
-            {i.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
+            {(i) || (data) && 
+            <>
+                {i.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
+                {data.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
+                {data.transaction_status == 'pending' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
+                {data.transaction_status == 'created' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
+                {data.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
+                {i.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
+            </>
+            }
             <div style={{width: '100%', display: 'flex', gap: '5px', fontFamily: 'var(--quicksand)'}}>
                 <div style={{width: '50%', display: 'flex', flexDirection: 'column', gap: '5px', color: 'var(--yellow)'}}>
                     <h4 style={{border: '1px solid var(--blue)', padding: '10px', borderRadius: '5px'}}>Customer :</h4>
@@ -139,7 +143,7 @@ const AuthTransaction = () => {
                         <div className='desc' style={{color: 'var(--yellow)'}}>Transaction Success</div>
                     </div>
             }
-            {(data.length !== 0) &&
+            {(data) &&
             <>
                 {data.transaction_status == 'settlement' && 
                     <div style={{textAlign: 'center', lineHeight: '35px'}}>
