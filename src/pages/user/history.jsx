@@ -40,7 +40,7 @@ const History = () => {
         <div className="page-max">
             <Topback/>
             <div className="form" style={{marginTop: '70px'}}>
-                <div className="input-form" style={{marginTop: '40px'}}>
+                <div className="input-form" style={{marginTop: '40px', flexDirection: 'column-reverse'}}>
                     {loading ? (<Swaload.Transaction/>) : 
                         data.length !== 0 && data.map((i, k) => {
                             return (
