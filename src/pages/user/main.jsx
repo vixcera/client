@@ -16,10 +16,14 @@ const Main = () => {
     const [ count, setCount ] = useState(0)
 
     const getTransaction = async () => {
-        const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
-        setData(response.data)
-        setCount(response.data.length)
-        response.data.length === 0 && localStorage.removeItem('transaction_mode')
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_API}/transaction/show`)
+            setData(response.data)
+            setCount(response.data.length)
+            response.data.length === 0 && localStorage.removeItem('transaction_mode')
+        } catch (error) {
+            error.response && localStorage.removeItem('transaction_mode')
+        }
     }
 
     useEffect(() => { if (transaction_mode) { getTransaction() }
