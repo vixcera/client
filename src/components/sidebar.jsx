@@ -39,6 +39,12 @@ const Sidebar = () => {
                             <div className="sidetext">Transaction</div>
                         </NavLink>
                     }
+                    {(context.status) && 
+                        <NavLink className="sidelist" to="/create">
+                            <i className="fa-solid fa-plus fa-lg"></i>
+                            <div className="sidetext">Create</div>
+                        </NavLink>
+                    }
                 </div>
 
                 <div className="botside">

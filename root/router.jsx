@@ -24,9 +24,10 @@ const Routing = () => {
   const axtoken = axios.create()
   
   const [vid, setVid] = useState('')
-  const [img, setImg] = useState('')
+  const [img, setImg] = useState('/img/dui.jpg')
   const [token, setToken] = useState('')
   const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('')
   const [expires, setExpires] = useState('')
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
@@ -43,12 +44,12 @@ const Routing = () => {
   useEffect(() => {
     if (token) {
       const decoded = jwt_decode(token)
+      decoded.img && setImg(decoded.img)
+      decoded.status && setStatus(decoded.status)
       setVid(decoded.vid)
-      setImg(decoded.img)
       setEmail(decoded.email)
       setExpires(decoded.exp)
       setUsername(decoded.username)
-      if (!decoded.img) setImg('/img/dui.jpg')
     } 
   }, [token])
 
@@ -61,7 +62,7 @@ const Routing = () => {
       .finally(() => {context.setLoading(false)})
   }, [])
 
-  const context = {vid, img, email, username, token, setToken, axtoken, loading, setLoading}
+  const context = {vid, img, email, username, status, token, setToken, axtoken, loading, setLoading}
 
   return (
     <Context.Provider value={context}>
