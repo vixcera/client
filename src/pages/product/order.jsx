@@ -107,13 +107,13 @@ const Order = () => {
     }
 
     useEffect(() => {
-      if (context.token) {
+      if (email) {
         snap()
         getProducts()
         getvxsrf().then((result) => setVxsrf(result))
       } else {
         swalert('please login first before starting the transaction', 'info', 3000)
-        .then((res) => navigate('/login'))
+        .then((res) => res.dismiss && navigate('/login'))
       }
     }, [])
 
