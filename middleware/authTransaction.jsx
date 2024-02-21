@@ -98,7 +98,7 @@ const AuthTransaction = () => {
                 {data.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
             </>
             }
-            {(i) || (data) && 
+            {(i) && 
             <>
                 {i.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
                 {i.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
