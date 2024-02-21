@@ -20,7 +20,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(false)
 
     const logout = async() => {
-        const filterUrl = context.status == 'contributor' ? `${url}/contributor/logout` : `${url}/logout`
+        const filterUrl = context.status == 'contributor' ? `${url}/logout/contributor` : `${url}/logout`
         try {
             setLoading(true)
             const response = await axios.get(filterUrl)
