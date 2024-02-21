@@ -90,13 +90,17 @@ const AuthTransaction = () => {
                 <div className="nav-logo" style={{fontFamily: 'var(--caveat)'}}>Vixcera</div>
           </div>
           <div className='form invoice' style={{justifyContent: 'center',  gap: '30px', textAlign: 'left', marginTop: '70px'}}>
-            {(i) || (data) && 
+            {(data) && 
             <>
-                {i.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
                 {data.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
                 {data.transaction_status == 'pending' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
                 {data.transaction_status == 'created' && <div className='button-max' onClick={() => repay()} style={{ backgroundColor: 'var(--yellow)' }}>Pay now</div>}
                 {data.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
+            </>
+            }
+            {(i) || (data) && 
+            <>
+                {i.transaction_status == 'settlement' && <div className='button-max' onClick={() => { donwloadProduct() }} style={{ backgroundColor: 'var(--yellow)' }}>Get product file</div>}
                 {i.transaction_status == 'settlement' && <p style={{color: 'var(--blue)', textAlign: 'center', cursor: 'pointer'}}>*Screenshot if needed</p>}
             </>
             }
