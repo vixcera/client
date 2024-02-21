@@ -28,6 +28,7 @@ const Login = () => {
             const response = await axios.post(url, { email, password }, { headers: {'xsrf-token' : vxsrf} })
             context.setToken(response.data.token)
             localStorage.removeItem('email')
+            localStorage.setItem('transaction_mode', "true")
             navigate('/profile')
         }
         catch (error) {
