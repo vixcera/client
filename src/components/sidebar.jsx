@@ -33,16 +33,16 @@ const Sidebar = () => {
                         <i className="fa-solid fa-circle-info fa-xl"></i>
                         <div className="sidetext">About</div>
                     </NavLink>
+                    {(context.status) && 
+                        <NavLink className="sidelist" to="/create">
+                            <i className="fa-solid fa-plus fa-xl"></i>
+                            <div className="sidetext">Create</div>
+                        </NavLink>
+                    }
                     {(context.token) && 
                         <NavLink className="sidelist" to="/transaction/history">
                             <i className="fa-solid fa-money-bill-transfer fa-lg"></i>
                             <div className="sidetext">Transaction</div>
-                        </NavLink>
-                    }
-                    {(context.status) && 
-                        <NavLink className="sidelist" to="/create">
-                            <i className="fa-solid fa-plus fa-lg"></i>
-                            <div className="sidetext">Create</div>
                         </NavLink>
                     }
                 </div>
