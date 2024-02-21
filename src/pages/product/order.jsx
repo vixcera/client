@@ -126,7 +126,7 @@ const Order = () => {
             <div className='input-form' >
               <div>
                 <div>Name :</div>
-                <input className='productinput' value={context.username} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} required/>
+                <input className='productinput' value={context.username} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} readOnly required/>
               </div>
               <div>
                 <div>Phone Number :</div>
