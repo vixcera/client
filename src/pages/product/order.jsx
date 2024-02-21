@@ -49,42 +49,37 @@ const Order = () => {
     }
 
     const showPlaceOrder = async () => {
-      if (!context.token) {
-        swalert('please login first berfore starting the transaction', 'info', 3000)
-        .then((res) => res.dismiss && navigate('/login'))
-      } else {
-        return Swal.fire({
-          html: `
-          <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
-            <h2 style="text-align: center;">Shipping Details</h2>
-            <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
-            <h4 style="margin-top: 5px; text-align: left;"><span>Customer</span> : ${name}</h4>
-            <h4 style="text-align: left;"><span>Phone Number</span> : ${phone}</h4>
-            <h4 style="text-align: left;"><span>Email Address</span> : ${email}</h4>
-            <h4 style="text-align: left;"><span>Product ID</span> : ${vid}</h4>
-            <h4 style="text-align: left;"><span>Quantity</span> : 1</h4>
-            <h4 style="text-align: left;"><span>Price</span> : ${convertPrice(i.price)}</h4>
-            <h4 style="text-align: left;"><span>PPN</span> : 11%</h4>
-            <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
-            <h4><span>Total Amount</span> : ${convertPrice(i.price * 0.11 + i.price)}</h4>
-          </div>  
-          `,
-          confirmButtonText: 'Confirm & Pay',
-          cancelButtonText: "Cancel",
-          reverseButtons : true,
-          allowOutsideClick: false,
-          showCancelButton: true,
-          focusConfirm: false,
-          color: 'var(--blue)',
-          background: 'var(--primary)',
-          customClass: {container: 'alertext'},
-        })
-        .then((res) => {
-          if (res.isConfirmed) {
-            checkout()
-          }
-        })
-      }
+      return Swal.fire({
+        html: `
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+          <h2 style="text-align: center;">Shipping Details</h2>
+          <div style="width: 100%; height: 1px; background-color: var(--blue);"></div>
+          <h4 style="margin-top: 5px; text-align: left;"><span>Customer</span> : ${name}</h4>
+          <h4 style="text-align: left;"><span>Phone Number</span> : ${phone}</h4>
+          <h4 style="text-align: left;"><span>Email Address</span> : ${email}</h4>
+          <h4 style="text-align: left;"><span>Product ID</span> : ${vid}</h4>
+          <h4 style="text-align: left;"><span>Quantity</span> : 1</h4>
+          <h4 style="text-align: left;"><span>Price</span> : ${convertPrice(i.price)}</h4>
+          <h4 style="text-align: left;"><span>PPN</span> : 11%</h4>
+          <div style="width: 100%; height: 1px; background-color: var(--blue)"></div>
+          <h4><span>Total Amount</span> : ${convertPrice(i.price * 0.11 + i.price)}</h4>
+        </div>  
+        `,
+        confirmButtonText: 'Confirm & Pay',
+        cancelButtonText: "Cancel",
+        reverseButtons : true,
+        allowOutsideClick: false,
+        showCancelButton: true,
+        focusConfirm: false,
+        color: 'var(--blue)',
+        background: 'var(--primary)',
+        customClass: {container: 'alertext'},
+      })
+      .then((res) => {
+        if (res.isConfirmed) {
+          checkout()
+        }
+      })
     }
     
     const checkout = async () => {
@@ -111,6 +106,13 @@ const Order = () => {
       finally { setLoading(false) }
     }
 
+    const getWarning = () => {
+      if (!context.token) {
+        swalert('please login first before starting the transaction', 'info', 3000)
+        .then((res) => res.dismiss && navigate('/login'))
+      }
+    }
+
     useEffect(() => {
         snap()
         getProducts()
@@ -135,7 +137,7 @@ const Order = () => {
             <div className='input-form' >
               <div>
                 <div>Name :</div>
-                <input className='productinput' value={name} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} readOnly required/>
+                <input className='productinput' onClick={() => getWarning()} value={name} type="text" placeholder='input your name' onChange={(e) => setName(e.target.value)} readOnly required/>
               </div>
               <div>
                 <div>Phone Number :</div>
@@ -145,7 +147,7 @@ const Order = () => {
                 <div>Email :</div>
                 <input className='productinput' value={email} type="email" placeholder='input your email' onChange={(e) => setEmail(e.target.value)} readOnly required/>
               </div>
-              <div className='button-max' onClick={() => showPlaceOrder()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
+              <div className='button-max' onClick={() => context.token ? showPlaceOrder() : getWarning()} style={(name && phone && email) ? { backgroundColor: 'var(--yellow)' } : { backgroundColor: "#aaa" }}>Checkout</div>
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
