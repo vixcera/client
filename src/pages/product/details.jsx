@@ -1,4 +1,5 @@
 import swal from "sweetalert2"
+import moment from "moment"
 import convertPrice from "../../../utils/price"
 import { useLocation, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +12,7 @@ const Details = () => {
     const location = useLocation()
     const i = location.state
     const navigate = useNavigate()
+    const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
 
     return (
         <div className='page-max'>
@@ -49,7 +51,7 @@ const Details = () => {
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product"><span>Created by</span>  : {i.by}</div>
-                                    <div className="product-desc-product"><span>Created at</span>  : {i.createdAt.slice(0, 10)}</div>
+                                    <div className="product-desc-product"><span>Created at</span>  : {date}</div>
                                 </div>
                             </div>
                         </div>
