@@ -75,7 +75,7 @@ const Details = () => {
                                         {(loading) ? 
                                             <div style={{marginTop: '10px',display: 'flex', gap: '10px', alignItems: 'center'}}>
                                                 <Skeleton style={{boxShadow: 'var(--softshadow)', width: '30px', height: '30px', borderRadius: '50%'}} baseColor='var(--primary)' highlightColor='var(--prime)'/> 
-                                                <Skeleton style={{boxShadow: 'var(--softshadow)'}} className='itext' count={2} width={150} height={30} baseColor='var(--primary)' highlightColor='var(--prime)'/>
+                                                <Skeleton style={{boxShadow: 'var(--softshadow)'}} className='itext' width={150} height={30} baseColor='var(--primary)' highlightColor='var(--prime)'/>
                                             </div>
                                         : 
                                             <div style={{marginTop: '10px',display: 'flex', gap: '10px', alignItems: 'center'}}>
