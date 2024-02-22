@@ -53,7 +53,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '0.95rem', marginTop: '10px', fontFamily: 'var(--quicksand)', color: 'var(--blue)' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '1rem', marginTop: '10px', fontFamily: 'var(--quicksand)', color: 'var(--blue)' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
@@ -63,15 +63,15 @@ const Details = () => {
                                     <div className="product-desc-product"><span>Price</span>        : {convertPrice(i.price)}</div>
                                     <div className="product-desc-product"><span>Category</span>     : {i.ctg}</div>
                                     {i.ctg == 'web' && <div className="product-desc-product"><span>Framework</span>  : {i.tech} {i.tech.toLowerCase().includes('html') ? "" : 'JS'}</div>}
+                                    <div className="product-desc-product"><span>Date created</span>  : {date}</div>
                                 </div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product"><span>Created at</span>  : {date}</div>
-                                    <div className="product-desc-product" style={{marginTop: '15px'}}>
-                                        <span>Contributor</span>
+                                    <div className="product-desc-product">
+                                        <span>Contributor : </span>
                                         {(loading) ? 
                                             <div style={{marginTop: '10px',display: 'flex', gap: '10px', alignItems: 'center'}}>
                                                 <Skeleton style={{boxShadow: 'var(--softshadow)', width: '30px', height: '30px', borderRadius: '50%'}} baseColor='var(--primary)' highlightColor='var(--prime)'/> 
