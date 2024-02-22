@@ -67,7 +67,7 @@ const Content = ({data, setData, setCount}) => {
             <div>
                 {(context.token) ? 
                 <div className="developer">
-                    <img src="/img/greeting.png" className="dimasputra" alt="" />
+                    <img src="/img/greetin.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
                     <div>Hi {context.username}!,</div>
                     <div>Welcome back.</div>
@@ -76,7 +76,7 @@ const Content = ({data, setData, setCount}) => {
                 </div>
                 : 
                 <div className="developer">
-                    <img src="/img/greeting.png" className="dimasputra" alt="" />
+                    <img src="/img/greetin.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
                     <h1>Welcome to Vixcera</h1>
                     <div>Let's explore with us.</div>
