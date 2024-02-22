@@ -35,10 +35,11 @@ const Profile = () => {
     const updateImage = async(e) => {
         e.preventDefault()
         setLoading(true)
+        const filterUrl = context.status == 'contributor' ? `${url}/contributor/update` : `${url}/user/update`
         let formData = new FormData();
         formData.append('img', file);
         try {
-            const response = await axios.put(`${import.meta.env.VITE_API}/user/update`, formData, {
+            const response = await axios.put(filterUrl, formData, {
                 headers : {"Content-Type" : "multipart/form-data", "xsrf-token" : vxsrf}, 
                 withCredentials : true
             })
