@@ -24,7 +24,7 @@ const Order = () => {
     
     const [loading, setLoading] = useState('')
     const [vxsrf, setVxsrf] = useState('')
-    const [data, setData] = useState([])
+    const [data, setData] = useState(i)
     const [name, setName] = useState(context.username ? context.username : '')
     const [email, setEmail] = useState(context.email ? context.email : '')
     const [phone, setPhone] = useState(history ? history.phone : '')
@@ -115,9 +115,9 @@ const Order = () => {
     }
 
     useEffect(() => {
-        snap()
-        getProducts()
-        getvxsrf().then((result) => setVxsrf(result))
+      if (!i) { getProducts() }
+      snap()
+      getvxsrf().then((result) => setVxsrf(result))
     }, [])
 
     useEffect(() => {
@@ -152,20 +152,16 @@ const Order = () => {
             </div>
             <div className='prev-form'>
               <div className='itext'>Product</div>
-              {data.map((i,k) => {
-                    return(
-                      <div className='product-card' key={k}>
-                          <LazyLoadImage className='product-img' src={i.img} loading='lazy' effect='blur'/>
-                          <div className='wrapped-text'>
-                              <div className='product-title'>{i.title}</div>
-                              <div className='product-desc'>{i.desc}</div>
-                              <div className='wrapped-details'>
-                                  <div className='button price'>{convertPrice(i.price)}</div>
-                              </div>
-                          </div>
-                      </div>
-                    )
-                })}
+              <div className='product-card'>
+                <LazyLoadImage className='product-img' src={data.img} loading='lazy' effect='blur'/>
+                <div className='wrapped-text'>
+                    <div className='product-title'>{data.title}</div>
+                    <div className='product-desc'>{data.desc}</div>
+                    <div className='wrapped-details'>
+                        <div className='button price'>{convertPrice(data.price)}</div>
+                    </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
