@@ -4,6 +4,8 @@ import convertPrice from "../../../utils/price"
 import { useLocation, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { useEffect, useState } from "react"
+import axios from "axios"
 import "../../style/create.css"
 
 const Details = () => {
@@ -13,6 +15,15 @@ const Details = () => {
     const i = location.state
     const navigate = useNavigate()
     const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
+    const [cont, setCont] = useState('')
+
+    const getContributor = async () => {
+        axios.get(`${import.meta.env.VITE_API}/product/by/${i.by}`)
+        .then((response) => setCont(response.data))
+        .catch((error) => { return Promise.reject(error) })
+    }
+
+    useEffect(() => { i.by && getContributor() }, [])
 
     return (
         <div className='page-max'>
@@ -50,8 +61,8 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product"><span>Created by</span>  : {i.contributor.name}</div>
                                     <div className="product-desc-product"><span>Created at</span>  : {date}</div>
+                                    <div className="product-desc-product"><span>Created by</span>  : {cont.username ? cont.username : '---'}</div>
                                 </div>
                             </div>
                         </div>
