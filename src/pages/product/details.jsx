@@ -16,11 +16,18 @@ const Details = () => {
     const navigate = useNavigate()
     const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
     const [cont, setCont] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const getContributor = async () => {
-        axios.get(`${import.meta.env.VITE_API}/product/by/${i.by}`)
-        .then((response) => setCont(response.data))
-        .catch((error) => { return Promise.reject(error) })
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/product/by/${i.by}`)
+            setCont(response.data)
+        } catch (error) {
+            return Promise.reject(error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     useEffect(() => { i.by && getContributor() }, [])
@@ -45,7 +52,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: "30px" }}>
                             <div className='wrapped-text'>
                                 <div className='product-title' style={{ fontSize: '1.4rem' }}>{i.title}</div>
-                                <div className='product-desc' style={{ display: "block", fontSize: '1.1rem', marginTop: '10px', fontFamily: 'var(--quicksand)', color: 'var(--blue)' }}>{i.desc}</div>
+                                <div className='product-desc' style={{ display: "block", fontSize: '0.95rem', marginTop: '10px', fontFamily: 'var(--quicksand)', color: 'var(--blue)' }}>{i.desc}</div>
                             </div>
                         </div>
                         <div className='product-card' style={{ height: 'max-content', width: '100%', marginTop: '10px' }}>
@@ -62,7 +69,13 @@ const Details = () => {
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product"><span>Created at</span>  : {date}</div>
-                                    <div className="product-desc-product"><span>Created by</span>  : {cont.username ? cont.username : '---'}</div>
+                                    <div className="product-desc-product">
+                                        <span>Created by : </span>
+                                        <div style={{display: 'flex', gap: '5px'}}>
+                                            <LazyLoadImage src={cont.img ? cont.img : '/img/dui.jpg'} style={{width: '10px', height: '10px', objectFit: 'cover', borderRadius: '50%'}}/>
+                                            <p style={{color: 'var(--blue)'}}>{cont.username && cont.username}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
