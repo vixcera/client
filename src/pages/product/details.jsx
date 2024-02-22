@@ -50,7 +50,7 @@ const Details = () => {
                         <div className='product-card' style={{ height: 'max-content', width: '100%' }}>
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
-                                    <div className="product-desc-product"><span>Created by</span>  : {i.by}</div>
+                                    <div className="product-desc-product"><span>Created by</span>  : {i.contributor.name}</div>
                                     <div className="product-desc-product"><span>Created at</span>  : {date}</div>
                                 </div>
                             </div>
