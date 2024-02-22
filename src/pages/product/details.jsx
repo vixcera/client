@@ -1,5 +1,5 @@
-import swal from "sweetalert2"
 import moment from "moment"
+import Skeleton from "react-loading-skeleton"
 import convertPrice from "../../../utils/price"
 import { useLocation, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -7,17 +7,16 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import "../../style/create.css"
-import Skeleton from "react-loading-skeleton"
 
 const Details = () => {
 
     const { vid } = useParams()
     const location = useLocation()
-    const i = location.state
     const navigate = useNavigate()
-    const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
     const [cont, setCont] = useState('')
+    const [i, seti] = useState(location.state)
     const [loading, setLoading] = useState(false)
+    const date = moment(i.createdAt.slice(0, 10)).format('MMM DD, YYYY')
 
     const getContributor = async () => {
         try {
@@ -31,7 +30,25 @@ const Details = () => {
         }
     }
 
-    useEffect(() => { i.by && getContributor() }, [])
+    const getProducts = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get(`${import.meta.env.VITE_API}/products/vid/${vid}`)
+            seti(response.data)
+        }   catch (error) {
+            if (error || error.response) {
+              swalert(error.response.data, "error", 1500)
+              .then((res) => res.dismiss && navigate('/'))
+            }
+        } finally {
+          setLoading(false)
+        }
+    }
+
+    useEffect(() => { 
+        i.by && getContributor() 
+        !i && getProducts()
+    }, [])
 
     return (
         <div className='page-max'>
