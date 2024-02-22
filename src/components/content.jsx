@@ -67,7 +67,7 @@ const Content = ({data, setData, setCount}) => {
             <div>
                 {(context.token) ? 
                 <div className="developer">
-                    <img src="/img/pi.png" className="dimasputra" alt="" />
+                    <img src="/img/user.png" className="dimasputra" alt="" />
                     <div className="text-wrapper">
                     <div>Hi {context.username}!,</div>
                     <div>Welcome back.</div>
