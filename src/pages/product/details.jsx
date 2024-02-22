@@ -7,6 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import "../../style/create.css"
+import Skeleton from "react-loading-skeleton"
 
 const Details = () => {
 
@@ -69,12 +70,19 @@ const Details = () => {
                             <div className='wrapped-text'>
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product"><span>Created at</span>  : {date}</div>
-                                    <div className="product-desc-product">
+                                    <div className="product-desc-product" style={{marginTop: '15px'}}>
                                         <span>Contributor</span>
-                                        <div style={{marginTop: '7px',display: 'flex', gap: '5px', alignItems: 'center'}}>
-                                            <LazyLoadImage src={cont.img ? cont.img : '/img/dui.jpg'} style={{width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%'}}/>
-                                            <p style={{color: 'var(--blue)'}}>{cont.username && cont.username}</p>
-                                        </div>
+                                        {(loading) ? 
+                                            <div style={{marginTop: '10px',display: 'flex', gap: '10px', alignItems: 'center'}}>
+                                                <Skeleton style={{boxShadow: 'var(--softshadow)', width: '30px', height: '30px', borderRadius: '50%'}} baseColor='var(--primary)' highlightColor='var(--prime)'/> 
+                                                <Skeleton style={{boxShadow: 'var(--softshadow)'}} className='itext' count={2} width={150} height={30} baseColor='var(--primary)' highlightColor='var(--prime)'/>
+                                            </div>
+                                        : 
+                                            <div style={{marginTop: '10px',display: 'flex', gap: '10px', alignItems: 'center'}}>
+                                                <LazyLoadImage src={cont.img ? cont.img : '/img/dui.jpg'} style={{width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%'}}/>
+                                                <p style={{color: 'var(--blue)'}}>{cont.username && cont.username}</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
