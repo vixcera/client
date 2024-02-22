@@ -70,9 +70,9 @@ const Details = () => {
                                 <div className='wrapped-details' style={{margin: 0, paddingTop: '0', display: 'flex',alignItems: 'unset', flexDirection: "column", gap: '10px'}}>
                                     <div className="product-desc-product"><span>Created at</span>  : {date}</div>
                                     <div className="product-desc-product">
-                                        <span>Contributor : </span>
-                                        <div style={{marginLeft: '5px',display: 'flex', gap: '5px', alignItems: 'center'}}>
-                                            <LazyLoadImage src={cont.img ? cont.img : '/img/dui.jpg'} style={{width: '25px', height: '25px', objectFit: 'cover', borderRadius: '50%'}}/>
+                                        <span>Contributor</span>
+                                        <div style={{marginTop: '7px',display: 'flex', gap: '5px', alignItems: 'center'}}>
+                                            <LazyLoadImage src={cont.img ? cont.img : '/img/dui.jpg'} style={{width: '30px', height: '30px', objectFit: 'cover', borderRadius: '50%'}}/>
                                             <p style={{color: 'var(--blue)'}}>{cont.username && cont.username}</p>
                                         </div>
                                     </div>
