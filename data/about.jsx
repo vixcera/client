@@ -6,7 +6,7 @@ const about =
         [
             {
                 title : "Vixcera",
-                text : "provides your technology design needs.",
+                text : "provides your technology design.",
                 img : "img/vx.png",
                 color : "var(--yellow)",
                 pricing : ['Tech', 'Design']
